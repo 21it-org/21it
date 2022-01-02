@@ -1,3 +1,3 @@
 # 21it
-Hello this is 21it org. we are start to provide online learning contents on github.
-it's started to be writtend in Japanese in docs.it must be translated to English soon.
+Hello this is 21it org. we started to provide online learning contents on github.
+Docs are written in Japanese so far.it must be translated to English soon.
