@@ -1,6 +1,6 @@
 #!/bin/bash
 
-authkey="Ym9va19zZWFyY2guYXBwOmI2YTRmNDRhNDE2OTVmNDYwZDcyYzJkNDQ3MzE3NWE2Yjg2NDVkMGIK"
+authkey="%%authkey"
 IP_whitelisting=%%IP_whitelisting
 
 # load remote addr
@@ -120,6 +120,14 @@ case "$req" in
 
   "file")
     ../bin/book_search_dl.sh session:$session pin:$pin user_name:$user_name id:$id ;;
+
+  # add routing
+  "location.table") ../bin/location_table.sh session:$session pin:$pin user_name:$user_name page:$page table_command:$table_command;;
+  "location.get") ../bin/location_get.sh session:$session pin:$pin user_name:$user_name id:$id;;
+  "location.set") ../bin/location_set.sh session:$session pin:$pin user_name:$user_name id:$id;;
+  "location.del") ../bin/location_del.sh session:$session pin:$pin user_name:$user_name id:$id;;
+  "location.log_viewer") ../bin/location_log_viewer.sh session:$session pin:$pin id:$id;;
+  "location.file") ../bin/location_dl.sh session:$session pin:$pin id:$id;;
 
   *)
     echo "error: wrong request";;

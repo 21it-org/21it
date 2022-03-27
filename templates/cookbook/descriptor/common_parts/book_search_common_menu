@@ -1,2 +1,2 @@
-<li><a href="./book_search?%%session&req=main">APP Portal</a></li>
-<li><a href="./book_search?%%session&req=table">Table@book_search</a></li>
+<li><a href="./book_search?%%session&req=table">book.master</a></li>
+<li><a href="./book_search?%%session&subapp=location&req=table">location.search</a></li>

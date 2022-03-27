@@ -2,7 +2,7 @@
 
 # Target databox and keys
 databox=book.res
-keys=all
+keys=hashid,name,location
 
 # load query string param
 for param in `echo $@`
@@ -109,13 +109,17 @@ fi
 #  Preprocedure
 # -----------------
 if [ "$filter_table" ];then
-  line_num=`$DATA_SHELL databox:$databox command:show_all[filter=${filter_table}][keys=$keys] format:none | wc -l`
+  line_num=`$DATA_SHELL databox:$databox \
+  command:show_all[filter=${filter_table}][keys=$keys][match=status{on{%%%%%%%}the{%%%%%%%}shelve}] format:none | wc -l`
 
 elif [ "$sort_col" ];then
-  line_num=`$DATA_SHELL databox:$databox command:show_all[sort=${sort_option},${sort_col}] format:none | wc -l`
+  line_num=`$DATA_SHELL databox:$databox \
+  command:show_all[sort=${sort_option},${sort_col}][match=status{on{%%%%%%%}the{%%%%%%%}shelve}] format:none | wc -l`
 
 else
-  line_num=`$META get.num:$databox`
+  # line_num=`$META get.num:$databox`
+  line_num=`$DATA_SHELL databox:$databox \
+  command:show_all[keys=$keys][match=status{on{%%%%%%%}the{%%%%%%%}shelve}] format:none | wc -l`
 
 fi
 
@@ -135,13 +139,16 @@ fi
 #-----------------------
 if [ "$filter_table" ];then
   $DATA_SHELL databox:$databox \
-  command:show_all[line=$line_start-$line_end][keys=$keys][filter=${filter_table}] > ../tmp/$session/table &
+  command:show_all[line=$line_start-$line_end][keys=$keys][filter=${filter_table}][match=status{on{%%%%%%%}the{%%%%%%%}shelve}] \
+  > ../tmp/$session/table &
 
 elif [ "$sort_col" ];then
   $DATA_SHELL databox:$databox \
-  command:show_all[line=$line_start-$line_end][keys=$keys][sort=${sort_option},${sort_col}] > ../tmp/$session/table &
+  command:show_all[line=$line_start-$line_end][keys=$keys][sort=${sort_option},${sort_col}][match=status{on{%%%%%%%}the{%%%%%%%}shelve}] \
+  > ../tmp/$session/table &
 else
-  $DATA_SHELL databox:$databox command:show_all[line=$line_start-$line_end][keys=$keys] > ../tmp/$session/table &
+  $DATA_SHELL databox:$databox command:show_all[line=$line_start-$line_end][keys=$keys][match=status{on{%%%%%%%}the{%%%%%%%}shelve}] \
+  > ../tmp/$session/table &
 fi
 
 # gen %%tag contents
@@ -196,14 +203,14 @@ if [ "$line_num" = 0 ];then
     if [ ! "$permission" = "ro" ];then
       echo "<h4><a href=\"./book_search?&%%params&req=get&id=new\">+ ADD DATA</a></h4>" >> ../tmp/$session/table
     else
-      echo "<h4>= NO DATA</h4>" >> ../tmp/$session/table
+      echo "<h4>NO DATA</h4>" >> ../tmp/$session/table
     fi
 
   elif [ "$sort_col" ];then
     echo "<h4>sort option $sort_option seems wrong</h4>" >> ../tmp/$session/table
     view=location_table.html.def
   else
-    echo "<h4>= NO DATA</h4>" >> ../tmp/$session/table
+    echo "<h4>NO DATA</h4>" >> ../tmp/$session/table
     view=location_table.html.def
   fi
 else

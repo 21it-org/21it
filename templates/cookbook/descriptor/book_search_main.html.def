@@ -22,8 +22,14 @@
       </div>
       <div class="main">
       <div class="description">
-        <h1>Hello Small Shell World, you must be %%user_name</h1>
-        <h3><a href="./book_search?%%session&req=table">Go to databox table</a></h3>
+        <h1>Welcome to book_search APP. please search book and request for lending.</h1>
+        <pre>
+STEP1: Search book from table
+STEP2: Request from book page, then you can get your request link
+STEP3: Message will be updated once admin check your request on your link, then you can get book
+       </pre>
+        <br>
+        <a href="./book_search?%%params&req=table"><button class="button">Search</button></a>
       </div>
       </div>
     </div>

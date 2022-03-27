@@ -32,7 +32,7 @@ if [ "$IP_whitelisting" = "yes" ];then
 fi
 
 # auth for small-shell databox
-authkey="Ym9va2luZ19yZXEuYXBwOjAzNTQ1OTE2NDljNzZmYjAwODRjYjRkOGQwYmFlN2U1YzZmYTBiMzcK"
+authkey="%%authkey"
 auth_req=`sudo -u small-shell ${small_shell_path}/bin/extension_auth key_auth:${authkey} remote_addr:${remote_addr} app:booking_req`
 user_name=`echo $auth_req | awk -F "," '{print $1}' | awk -F ":" '{print $2}'`
 session=`echo $auth_req | awk -F "," '{print $2}' | awk -F ":" '{print $2}'`
@@ -94,7 +94,8 @@ fi
 case "$req" in
 
   "get")
-    ../bin/booking_req_get.sh session:$session pin:$pin id:$id remote_addr:${remote_addr};;
+    #../bin/booking_req_get.sh session:$session pin:$pin id:$id remote_addr:${remote_addr};;
+    ../bin/booking_req_get.sh session:$session pin:$pin id:$id remote_addr:${remote_addr} book_name:${book_name} ;;
 
   "set")
     ../bin/booking_req_set.sh session:$session pin:$pin id:$id remote_addr:${remote_addr};;

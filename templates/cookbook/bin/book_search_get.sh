@@ -90,6 +90,8 @@ elif [ "$form_chk" = "multipart" ];then
 fi
 
 # render HTML
+book_name=`$DATA_SHELL databox:book.master action:get key:name id:$id format:none | awk -F ":" '{print $2}'`
+
 cat ../descriptor/${view} | sed "s/^ *</</g" \
 | sed "/%%common_menu/r ../descriptor/common_parts/book_search_common_menu" \
 | sed "/%%common_menu/d" \
@@ -98,6 +100,7 @@ cat ../descriptor/${view} | sed "s/^ *</</g" \
 | sed "/%%history/r ../tmp/$session/history" \
 | sed "s/%%history//g"\
 | sed "s/%%id/$id/g" \
+| sed "s/%%book_name/$book_name/g" \
 | sed "s/%%pdls/session=$session\&pin=$pin\&req=get/g" \
 | sed "s/%%session/session=$session\&pin=$pin/g" \
 | sed "s/%%params/session=$session\&pin=$pin/g"

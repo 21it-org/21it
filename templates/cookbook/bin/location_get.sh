@@ -2,7 +2,7 @@
 
 # Target databox and keys
 databox=book.res
-keys=all
+keys=hashid,name,location
 
 # load query string param
 for param in `echo $@`
@@ -90,6 +90,10 @@ elif [ "$form_chk" = "multipart" ];then
 fi
 
 # render HTML
+resource_id=$id
+book_name=`$DATA_SHELL databox:book.res action:get key:name id:$id format:none | awk -F ":" '{print $2}'`
+book_id=`$DATA_SHELL databox:book.master command:show_all[match=name{$book_name}] format:json | jq '.[] | .id'| sed -s "s/\"//g"`
+
 cat ../descriptor/${view} | sed "s/^ *</</g" \
 | sed "/%%common_menu/r ../descriptor/common_parts/book_search_common_menu" \
 | sed "/%%common_menu/d" \
@@ -98,6 +102,7 @@ cat ../descriptor/${view} | sed "s/^ *</</g" \
 | sed "/%%history/r ../tmp/$session/history" \
 | sed "s/%%history//g"\
 | sed "s/%%id/$id/g" \
+| sed "s/%%book_id/$book_id/g" \
 | sed "s/%%pdls/session=$session\&pin=$pin\&req=get/g" \
 | sed "s/%%session/session=$session\&pin=$pin/g" \
 | sed "s/%%params/subapp=location\&session=$session\&pin=$pin/g"

@@ -30,6 +30,7 @@
         %%dataset
        </ul>
        <div class="action_links">
+        <span><a href="./book_search?%%session&req=get&id=%%book_id"><p>Master data</p></a></span>
        </div>
       </div>
    </div>

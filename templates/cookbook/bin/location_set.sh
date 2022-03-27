@@ -35,6 +35,8 @@ if [ "$form_chk" = "multipart" ];then
   cat ../tmp/$session/binary_file/file_name > ../tmp/$session/$file_key 2>/dev/null
 fi
 
+echo "aaa"
+
 
 # check posted param
 if [ -d ../tmp/$session ];then

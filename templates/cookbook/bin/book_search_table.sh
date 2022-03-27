@@ -109,13 +109,14 @@ fi
 #  Preprocedure
 # -----------------
 if [ "$filter_table" ];then
-  line_num=`$DATA_SHELL databox:$databox command:show_all[filter=${filter_table}][keys=$keys] format:none | wc -l`
+  line_num=`$DATA_SHELL databox:$databox command:show_all[filter=${filter_table}][keys=$keys][match=available{yes}] format:none | wc -l`
 
 elif [ "$sort_col" ];then
-  line_num=`$DATA_SHELL databox:$databox command:show_all[sort=${sort_option},${sort_col}] format:none | wc -l`
+  line_num=`$DATA_SHELL databox:$databox command:show_all[sort=${sort_option},${sort_col}][match=available{yes}] format:none | wc -l`
 
 else
-  line_num=`$META get.num:$databox`
+  #line_num=`$META get.num:$databox`
+  line_num=`$DATA_SHELL databox:$databox command:show_all[keys=$keys][match=available{yes}] format:none | wc -l`
 
 fi
 
@@ -135,13 +136,13 @@ fi
 #-----------------------
 if [ "$filter_table" ];then
   $DATA_SHELL databox:$databox \
-  command:show_all[line=$line_start-$line_end][keys=$keys][filter=${filter_table}] > ../tmp/$session/table &
+  command:show_all[line=$line_start-$line_end][keys=$keys][filter=${filter_table}][match=available{yes}] > ../tmp/$session/table &
 
 elif [ "$sort_col" ];then
   $DATA_SHELL databox:$databox \
-  command:show_all[line=$line_start-$line_end][keys=$keys][sort=${sort_option},${sort_col}] > ../tmp/$session/table &
+  command:show_all[line=$line_start-$line_end][keys=$keys][sort=${sort_option},${sort_col}][match=available{yes}] > ../tmp/$session/table &
 else
-  $DATA_SHELL databox:$databox command:show_all[line=$line_start-$line_end][keys=$keys] > ../tmp/$session/table &
+  $DATA_SHELL databox:$databox command:show_all[line=$line_start-$line_end][keys=$keys][match=available{yes}] > ../tmp/$session/table &
 fi
 
 # gen %%tag contents

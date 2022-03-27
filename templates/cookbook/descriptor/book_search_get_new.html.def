@@ -31,7 +31,6 @@
         %%dataset
        </ul>
        <button class="button" type="submit">SET</button>
-     </div>
    </div>
    <script>
    const btn = document.querySelector('.even-btn-menu');

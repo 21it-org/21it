@@ -20,6 +20,10 @@ do
     id=`echo $param | awk -F":" '{print $2}'`
   fi
 
+  if [[ $param == book_name:* ]]; then
+    book_name=`echo $param | awk -F":" '{print $2}'`
+  fi
+
 done
 
 # load small-shell path
@@ -40,14 +44,18 @@ DATA_SHELL="sudo -u small-shell ${small_shell_path}/bin/DATA_shell session:$sess
 if [ $id = "new" ];then
 
   # gen reqd/write form #new
-  $DATA_SHELL databox:request.db action:get id:$id keys:requester,email,book_name format:html_tag > ../tmp/$session/dataset
+  $DATA_SHELL databox:request.db action:get id:$id keys:requester,email,book_name format:html_tag > ../tmp/$session/dataset.0.1
+  
+  cat ../tmp/$session/dataset.0.1 \
+  | sed "s/name=\"book_name\" value=\"\"/name=\"book_name\" value=\"$book_name\"/g" > ../tmp/$session/dataset
 
 else
 
-  # gen read only contents
-  $DATA_SHELL databox:request.db action:get id:$id keys:requester,email,book_name format:none > ../tmp/$session/dataset.0.1
+  # gen read only datas
+  $DATA_SHELL databox:request.db action:get id:$id keys:requester,email,book_name,status,message format:none | grep -v hashid > ../tmp/$session/dataset.0.1
   cat ../tmp/$session/dataset.0.1 | sed "s/^/<li><label>/g" | sed "s/:/<\/label><pre>/g" | sed "s/$/<\/pre><\/li>/g" \
   | sed "s/<pre><\/pre>/<pre>-<\/pre>/g" | sed "s/_%%enter_/\n/g" > ../tmp/$session/dataset
+
 
   # history #default is head -1
   $DATA_SHELL databox:request.db action:get type:log id:$id format:none | head -1 > ../tmp/$session/history

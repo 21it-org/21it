@@ -29,7 +29,9 @@
        <ul>
         %%dataset
        </ul>
+       <a href="./booking_req?book_name=%%book_name"><button class="button">Reserve</button></a> 
        <div class="action_links">
+        <span><a href="./book_search?%%session&subapp=location&req=table&table_command=%%book_name"><p>location table</p></a></span>
        </div>
       </div>
    </div>
