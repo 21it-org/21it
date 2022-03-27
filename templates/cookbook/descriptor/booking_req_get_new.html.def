@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>booking_req.new</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <link rel="stylesheet" href="./booking_req_css">
+    </head>
+    <body>
+    <div class="container">
+
+      <div class="form-box">
+      <div class="description">
+      <h1>#booking_req</h1>
+      <p>This is request form for booking library</p>
+      <hr>
+      <br>
+      </div>
+      <form method="post" action="./booking_req?req=set&id=%%id">
+      <ul>
+       %%dataset
+      </ul>
+      <button class="button" type="submit">SUBMIT</button>
+      </form>
+      </div>
+
+    </div>
+   </body>
+</html>
