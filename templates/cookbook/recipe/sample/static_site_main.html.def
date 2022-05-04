@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>static_site portal</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <link rel="stylesheet" href="./static_site_css">
+    </head>
+    <body>
+    <div class="container">
+      <div class="flex-header">
+        <div class="left-header">
+         <a href="https://github.com"><img src="../GitHub-Mark-32px.png"></a>
+         <a href="https://small-shell.org"><h2>Docs</h2></a>
+        </div>
+        <div class="right-header">
+        <button class="even-btn-menu">=</button>
+        <nav>
+         <ul>
+         %%common_menu
+         </ul>
+        </nav>
+        </div>
+      </div>
+      <div class="main">
+        <div class="left-nav">
+         <a href="#section1"><p>section1</p></a>
+         <a href="#section2"><p>section2</p></a>
+         <a href="#section3"><p>section3</p></a>
+        </div>
+        <div class="description">
+          <h1 id="section1">Sample Main Page</h1>
+          <p>This is section number 1, please write down text here freely.</p>
+          <button class="button">Sample</button>
+          <br></br>
+
+          <h2 id="section2">Section2</h2>
+          <p>This is section number 2</p>
+          <br>
+
+          <h2 id="section3">Section3</h2>
+	  <div class="table-box"> 
+            <div class="table"> 
+              <ul>
+                <li class="table-header">  
+                  <p>column1</p>
+                  <p>column2</p>
+                  <p>column3</p>
+                  <p>column4</p>
+                </li>
+                <li>
+                  <p>data1.column1</p>
+                  <p>data1.column2</p>
+                  <p>data1.column3</p>
+                  <p>data1.column4</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <div class="footer">
+        <p>powered by small-shell.org</p>
+      </div>
+     </div>
+    </div>
+    <script>
+    const btn = document.querySelector('.even-btn-menu');
+    const nav = document.querySelector('nav');
+
+    document.addEventListener('click', (e) => {
+      if(e.target.closest('.even-btn-menu')) {
+        nav.classList.toggle('open-menu')
+        if (btn.innerHTML === '=') {
+          btn.innerHTML = '-';
+        } else {
+          btn.innerHTML = '=';
+        }
+      }else{
+        nav.classList.remove('open-menu')
+        btn.innerHTML = '=';
+      }
+    })
+
+   </script>
+   </body>
+</html>
+
