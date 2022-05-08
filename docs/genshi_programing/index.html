@@ -1,0 +1,1580 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>shell programing - 21it Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shell-script" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="ヘッダー">
+    <a href=".." title="21it Docs" class="md-header-nav__button md-logo" aria-label="21it Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            21it Docs
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              shell programing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="クリア" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="21it Docs" class="md-nav__button md-logo" aria-label="21it Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    21it Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix1/" class="md-nav__link">
+        Unix Basic 1
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix2/" class="md-nav__link">
+        Unix Basic 2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          shell programing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        shell programing
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    プログラミング
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    条件分岐
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    引数と返値
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    変数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    論理演算と判定
+  </a>
+  
+    <nav class="md-nav" aria-label="論理演算と判定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    文字の比較
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    数値の比較
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    存在判定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    空判定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    否定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    高度な分岐
+  </a>
+  
+    <nav class="md-nav" aria-label="高度な分岐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    or条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and" class="md-nav__link">
+    and条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    正規表現の利用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if" class="md-nav__link">
+    if文
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for" class="md-nav__link">
+    for文
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#while" class="md-nav__link">
+    while文
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    コマンドライン読み取り
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    引数読み取り
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    ファイルの読み込み処理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    実行権限の付与
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    デバッグ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    関数の利用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    Tips
+  </a>
+  
+    <nav class="md-nav" aria-label="Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awksed" class="md-nav__link">
+    awk,sedの多用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    終了ステータス
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit" class="md-nav__link">
+    exit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load" class="md-nav__link">
+    load
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    隠しファイル
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sleep" class="md-nav__link">
+    sleep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    ファイル名のみ抽出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    実行結果の変数への格納
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    変数をコマンドとして実行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmp" class="md-nav__link">
+    tmpファイルの多用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    別スクリプト呼び出し
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    さらなる学習のために
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/" class="md-nav__link">
+        WEB Basic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell1/" class="md-nav__link">
+        small-shell Basic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell2/" class="md-nav__link">
+        small-shell Advanced
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../digital_resilience/" class="md-nav__link">
+        Digital耐性
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    プログラミング
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    条件分岐
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    引数と返値
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    変数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    論理演算と判定
+  </a>
+  
+    <nav class="md-nav" aria-label="論理演算と判定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    文字の比較
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    数値の比較
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    存在判定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    空判定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    否定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    高度な分岐
+  </a>
+  
+    <nav class="md-nav" aria-label="高度な分岐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    or条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and" class="md-nav__link">
+    and条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    正規表現の利用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if" class="md-nav__link">
+    if文
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for" class="md-nav__link">
+    for文
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#while" class="md-nav__link">
+    while文
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    コマンドライン読み取り
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    引数読み取り
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    case
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    ファイルの読み込み処理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    実行権限の付与
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    デバッグ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    関数の利用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    Tips
+  </a>
+  
+    <nav class="md-nav" aria-label="Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awksed" class="md-nav__link">
+    awk,sedの多用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    終了ステータス
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit" class="md-nav__link">
+    exit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load" class="md-nav__link">
+    load
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    隠しファイル
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sleep" class="md-nav__link">
+    sleep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    ファイル名のみ抽出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    実行結果の変数への格納
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    変数をコマンドとして実行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmp" class="md-nav__link">
+    tmpファイルの多用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    別スクリプト呼び出し
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    さらなる学習のために
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="shell-script">shell script</h1>
+<h2 id="_1">プログラミング</h2>
+<p>shellはコマンドラインインターフェースとして都度コマンド要求を処理することもできますが、処理を固めて自動化することもできます。もっとも簡単なプログラム、たとえば所定の文字を出力するだけのたった2行の処理を代表的なshellであるbashを使って記述してみましょう。処理をファイルに書き出し固めることで、都度コマンドで打っていた仕事が再生産可能な仕事として、自動化されます。</p>
+<p><br>
+コマンドライン上でechoコマンドを実行した結果は以下のとおりです</p>
+<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo "Hello"
+Hello
+
+ubuntu@LAPTOP-8KU2HS6V:~$ echo "World
+World
+</code></pre>
+<p>上述の処理をスクリプト化すると以下code内の処理のようになります。手動実行していた処理が固められ、再生産可能な一定の処理になりました。ちなみに、冒頭1行はbashを使うという宣言に使われています</p>
+<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ nano echo.sh
+---code--
+#!/bin/bash
+echo "Hello"
+echo "World"
+---------
+
+ubuntu@LAPTOP-8KU2HS6V:~$ bash ./echo.sh
+Hello
+World
+</code></pre>
+<h2 id="_2">条件分岐</h2>
+<p>shell scriptは上述のとおり単に処理を並べて書いていくだけでも処理を自動化できますが、様々な条件のもと処理を分岐させ、パターンに応じた望ましい処理を展開することができます。以下例ではスクリプトに対してHelloというパラメーターが渡されると、Wolrdと返す分岐を作成しています。その際渡されるパラメーターはVALUEという変数に格納されています。変数やif文については後述します</p>
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+
+VALUE=$1
+if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
+  echo &quot;World&quot;
+fi
+</code></pre></div>
+<p>実行すると以下のような結果になります
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./hello.sh Hello
+World
+</code></pre></div></p>
+<h2 id="_3">引数と返値</h2>
+<p>スクリプト実行時に渡されるパラメーターを引数といいます、また、スクリプトを実行して返される値を返値といいます。上述のスクリプトではHelloが引数、Worldが返値となります</p>
+<h2 id="_4">変数</h2>
+<p>上記例でも条件分岐処理に利用されていますが、値を一時的に格納しておく変数を利用すると処理が円滑に記述できます。プログラム上で値が仮置きされる箱は変数と呼ばれ、様々な値を代入することができます。変数はコマンドライン上でも、script内でもいずれもで使うことができます。例えば、以下にて"test"という空の変数を定義しましょう</p>
+<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ test=""
+</code></pre>
+<p>変数"test"の内容はechoコマンドで出力することができます,変数であることは$を頭につけることで宣言できます</p>
+<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo $test
+! 空のため何も返ってこない
+</code></pre>
+<p>次に変数"test"に、値を入れて出力してみましょう</p>
+<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ test="123"
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $test
+123
+</code></pre>
+<p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは``(バッククォート)で囲んでください。以下例ではdateコマンドの実行結果を格納しています。shellは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できますが、操作からscript化まで非常に簡単に移行でき、コマンドを用いた様々な分岐を作ることができます。これはshellの非常に有用な特徴であり、利点であるといえます</p>
+<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ test="`date`"
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $test
+Fri Jan 21 21:33:03 JST 2022
+</code></pre>
+<h2 id="_5">論理演算と判定</h2>
+<p>条件分岐のためには論理演算を多用します[]内で実行されてりる論理演算では、各種判定をおこない、結果に応じてif文やwhile文が分岐を制御します</p>
+<h4 id="_6">文字の比較</h4>
+<p>単純に右側と左側の文字列が同じであるかを判定する場合、単に=を使います。=の場合は同じ値である場合に真となり、!=はその逆の異なる値の場合に真とします</p>
+<pre><code>#同じ場合に真
+[ "文字列A" = "文字列B" ]
+</code></pre>
+<p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。$?は特殊な変数で直前の実行コマンドの実行結果が正常(0)であったか異常(1)であったかを表示します
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ WORD_A=abc
+ubuntu@LAPTOP-8KU2HS6V:~$ WORD_B=def
+ubuntu@LAPTOP-8KU2HS6V:~$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+1
+&gt; WORD_AとBは違うため異常(1)が返ってきます
+
+ubuntu@LAPTOP-8KU2HS6V:~$ WORD_B=abc
+ubuntu@LAPTOP-8KU2HS6V:~$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+0
+&gt; WORD_AとBが同じため正常終了しています
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>本来の論理演算では真は1とされ、偽は0とされるべきです。上述の例が逆になっているのは$?変数が直前の処理結果が正常終了であれば0として、異常終了であれば1とするためです。論理演算が真(1)であった場合は、処理が正常に終了したとみなされ結果は(0)と表現されます。</p>
+</div>
+<h4 id="_7">数値の比較</h4>
+<p>数値どうしの判定に際してはいくつか使用可能なオプションがあります、以下をご確認ください。ちなみにshellの変数には特に何も意識せず変数には数値も文字も入れられます</p>
+<pre><code># equal, 同じ値の場合に真
+[ 数値A -eq 数値B ]
+
+# equalの逆、異なる値の場合に真
+[ 数値A -ne 数値B ]
+
+# less than, 左側の数値が右側の数値より小さければ真
+[ 数値A -lt 数値B ]
+
+# less than or equal, 左側の数値が右側の数値と同値かそれより小さければ真
+[ 数値A -le 数値B ]
+
+# greater than or equal, 左側の数値が右側の数値より大きければ真
+[ 数値A -gt 数値B ]
+
+# greater than or equal, 左側の数値が右側の数値と同値かそれおｙり大きければ真
+[ 数値A -ge 数値B ]
+</code></pre>
+<h4 id="_8">存在判定</h4>
+<p>ファイルやディレクトリの存在有無で分岐することも可能です、例えば全行程の処理が終わった場合にフラグファイルを作成し、そのファイルが存在すれば後工程に進むといったプログラムを書くことができます</p>
+<pre><code># ファイルが存在する場合に真
+[ -f 対象ファイルPATH ]
+
+# ディレクトリが存在する場合に真
+[ -d 対象ディレクトリPATH ]
+</code></pre>
+<p>以下はdoneというファイルがあるかどうかで結果がどう変わるかを示した例です
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ [ -f ./done ]
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+1 
+&gt; ファイルが存在しないため異常(1)が返ってきます
+
+#touchコマンドでファイルを作成
+ubuntu@LAPTOP-8KU2HS6V:~$ touch done  
+ubuntu@LAPTOP-8KU2HS6V:~$ [ -f ./done ]
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+0
+&gt; ファイルが存在するため正常終了(0)が返ってきます
+</code></pre></div></p>
+<h4 id="_9">空判定</h4>
+<p>変数が空(null)か、ファイルが空(0byte)かといった判定が可能です。空判定はコマンド実行結果を変数に格納して、結果の有無で分岐することができ便利です。</p>
+<pre><code># 変数が空(null)ではない場合に真
+[ "変数" ]
+
+# ファイルが空でない場合に真
+[ -s 対象ファイルPATH]
+</code></pre>
+<p>以下はos-releaseファイルで任意の文字を検索して結果が空だったかどうかを判定しています
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ NULL_CHECK=`grep aaa /etc/os-release`
+ubuntu@LAPTOP-8KU2HS6V:~$ [ &quot;$NULL_CHECK&quot; ]
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+1
+&gt; 変数が空のため異常(1)が返ってきます
+ubuntu@LAPTOP-8KU2HS6V:~$ NULL_CHECK=`grep ubuntu /etc/os-release`
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+0
+&gt; 変数に値が入っているため正常終了(0)が返ってきます
+</code></pre></div></p>
+<h4 id="_10">否定</h4>
+<p>!を使うと、条件式の真と偽りが逆になります</p>
+<pre><code>#　文字列が異なる場合に真
+[ "文字列A" != "文字列B" ]
+
+# 数値が異なる値の場合に真
+[ ! 数値A -eq 数値B ]
+
+# 変数が空(null)
+[ ! "変数" ]
+
+# 空ファイルの判定
+[ ! -s 対象ファイルPATH ]
+</code></pre>
+<h3 id="_11">高度な分岐</h3>
+<h4 id="or">or条件</h4>
+<p>-oオプションを使うとor条件として機能させることができます、or条件は2つ以上でも記述可能です</p>
+<pre><code>#条件式AもしくはBが成立すれば真
+[ 条件式A -o 条件式B ]
+
+#条件式AもしｋはB,Cが成立すれば真
+[ 条件式A -o 条件式B -o 条件式C ]
+</code></pre>
+<h4 id="and">and条件</h4>
+<p>-aオプションを使うとand条件として機能させることができます、and条件は2つ以上でも記述可能です</p>
+<pre><code>#条件式A及びBが成立すれば真
+[ 条件式A -a 条件式B ]
+
+#条件式A,B,Cが成立すれば真
+[ 条件式A -a 条件式B -a 条件式C ]
+</code></pre>
+<h4 id="_12">正規表現の利用</h4>
+<p>分岐に正規表現を利用することもできます、その場合[[ ]]で囲んでください</p>
+<pre><code>[[ 文字列A == 文字列B ]]
+</code></pre>
+<div class="highlight"><pre><span></span><code># 例：aからはじまりdで終わる任意の文字列であれば真
+[[ &quot;変数&quot; == a*d ]]
+
+ubuntu@LAPTOP-8KU2HS6V:~$ value=abc
+ubuntu@LAPTOP-8KU2HS6V:~$ [[ &quot;$value&quot; == a*d ]]
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+1 
+&gt; abcはaからはじまりcで終わるため異常終了(1)が返ってきます
+
+ubuntu@LAPTOP-8KU2HS6V:~$ value=aaabbbcccddd
+ubuntu@LAPTOP-8KU2HS6V:~$ [[ &quot;$value&quot; == a*d ]]
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+0
+&gt; aからはじまりdで終わるため正常終了(0)が返ってきます
+</code></pre></div>
+<h2 id="if">if文</h2>
+<p>それでは早速プログラミングを組み上げていきましょう。if文による条件分岐は通常以下のように記載されます。以下例では文字列Aと文字列Bが同一であった場合、処理Aが実行されます。処理を柔軟にするため文字列Aは変数を使うのが良いでしょう</p>
+<pre><code>if [ "文字列A" = "文字列B" ];then
+    処理A #条件式が真の場合に実行
+else
+    処理B #条件式が偽りの場合に実行
+fi
+</code></pre>
+<p>本コースの冒頭で紹介した条件分岐の例にelse処理も加えて実行してみましょう
+<div class="highlight"><pre><span></span><code>nano hello.sh
+--code--
+#!/bin/bash
+
+VALUE=$1
+if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
+  echo &quot;World&quot;
+else
+  echo &quot;Hello?&quot;
+fi
+--------
+</code></pre></div>
+スクリプトができたら実行してみましょう、Helloという入力を渡さないと聞き返されます
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash hello.sh
+Hello?
+ubuntu@LAPTOP-8KU2HS6V:~$ bash hello.sh Hello
+World
+</code></pre></div></p>
+<h2 id="for">for文</h2>
+<p>for文を使うとリストを変数に格納しながら１つずつ処理することが可能です</p>
+<pre><code>for 変数 in リスト
+do
+　処理 変数
+done
+</code></pre>
+<p>for文のリストにはコマンドの出力結果もつかえますので、たとえばディレクトリ内のファイル一覧を出力し、ファイルを１つずつ処理するという場合に便利です。以下例ではfor文を使ってファイルの名前に一律.txtを付与しています</p>
+<div class="highlight"><pre><span></span><code># ファイル作成
+ubuntu@LAPTOP-8KU2HS6V:~$ mkdir for_test
+ubuntu@LAPTOP-8KU2HS6V:~$ touch ./for_test/fileA
+ubuntu@LAPTOP-8KU2HS6V:~$ touch ./for_test/fileB
+ubuntu@LAPTOP-8KU2HS6V:~$ touch ./for_test/fileC
+ubuntu@LAPTOP-8KU2HS6V:~$ touch ./for_test/fileD
+ubuntu@LAPTOP-8KU2HS6V:~$ ls ./for_test
+fileA  fileB  fileC  fileD
+
+# スクリプト作成
+nano for_test.sh
+--code--
+#!/bin/bash
+
+DIR=./for_test
+
+for file in `ls $DIR`
+do
+  mv ${DIR}/${file} ${DIR}/${file}.txt
+done
+--------
+
+# 実行 &amp; 結果確認
+ubuntu@LAPTOP-8KU2HS6V:~$ bash ./for_test.sh 
+ubuntu@LAPTOP-8KU2HS6V:~$ ls for_test
+fileA.txt  fileB.txt  fileC.txt  fileD.txt
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Tips : 変数を{}で囲むとどこまでが変数かを示すことができます。lsの出力結果を$file変数に格納しているため、${file}としています</p>
+</div>
+<h2 id="while">while文</h2>
+<p>while文は条件式が真の間、処理をループさせます</p>
+<pre><code>while [ 条件式 ]
+do
+  処理
+done
+</code></pre>
+<p>以下は1から10までカウントしながら出力するwhile文を使った処理の例です
+<div class="highlight"><pre><span></span><code>nano while_test.sh
+--code--
+#!/bin/bash
+
+count=0
+while [ $count -le 10 ]
+do
+ echo $count
+ ((count++))
+done
+--------
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./while_test.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</code></pre></div></p>
+<h2 id="_13">コマンドライン読み取り</h2>
+<p>readはコマンドラインでの入力値を読み取り、変数に格納します。</p>
+<pre><code>read 変数
+</code></pre>
+<p>以下は入力をinputという変数に格納して表示した例になります
+<div class="highlight"><pre><span></span><code>nano read_test.sh
+--code--
+#!/bin/bash
+
+echo -n &quot;あなたの名前を入力してください: &quot;
+read name
+echo &quot;こんにちは$nameさん&quot;
+--------
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash read_test.sh
+あなたの名前を入力してください: 田中(入力値)
+こんにちは田中さん
+</code></pre></div>
+<h2 id="_14">引数読み取り</h2>
+<p>$数字はスクリプトに渡されたパラメータを順番に変数に格納します、以下例では1-3までのパラメーターを読み取っています</p>
+<pre><code>$1,$2,$3,$4...
+</code></pre>
+<p><div class="highlight"><pre><span></span><code>nano param_test.sh
+--code--
+#!/bin/bavsh
+
+param1=$1
+param2=$2
+param3=$3
+
+echo param1:$param1
+echo param2:$param2
+echo param3:$param3
+--------
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./param_test.sh aaa bbb ccc
+param1:aaa
+param2:bbb
+param3:ccc
+</code></pre></div></p>
+<h2 id="case">case</h2>
+<p>case文は変数の値がマッチした場合の処理をそれぞれ記述できます</p>
+<pre><code>case 変数 in
+  パターン1) 処理;;
+  パターン2) 処理;;      
+esac
+</code></pre>
+<p>以下は与えられたパラメーターがAかBかそれ以外かで処理を分岐させた例になります、*は任意の文字列を意味するメタキャラクターですがここではA,Bに該当しなかった場合の処理として使われます</p>
+<p><div class="highlight"><pre><span></span><code>nano case_test.sh
+--code--
+#!/bin/bash
+echo -n &quot;AかBを選んでください: &quot;
+read input
+
+case $input in
+  A) echo &quot;正解です&quot;;;
+  B) echo &quot;不正解です&quot;;;
+  *) echo &quot;AかBを入力してください&quot;;;
+esac
+--------
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash case_test.sh
+AかBを選んでください: A
+正解です
+</code></pre></div></p>
+<h2 id="_15">ファイルの読み込み処理</h2>
+<p>While文を使ってファイルを1行ずつ読み込むといった処理ができます</p>
+<pre><code>while read 変数
+do
+  処理
+done &lt; ファイル名
+</code></pre>
+<p>以下はテキストをHTMLタグを付与した別ファイルにする例です</p>
+<div class="highlight"><pre><span></span><code>nano org.txt
+--code--
+abc
+def
+efg
+--------
+
+nano ch2html.sh
+--code--
+#!/bin/bash
+
+while read line
+do
+  echo &quot;&lt;p&gt;$line&lt;/p&gt;&quot; &gt;&gt; ch2html.txt
+done &lt; org.txt
+--------
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./ch2html.sh
+ubuntu@LAPTOP-8KU2HS6V:~$ cat ch2html.txt
+&lt;p&gt;abc&lt;/p&gt;
+&lt;p&gt;def&lt;/p&gt;
+&lt;p&gt;efg&lt;/p&gt;
+</code></pre></div>
+<h2 id="_16">実行権限の付与</h2>
+<p>実行権限を付与していないスクリプトは本来はそのままでは実行できません、これまでの例では"bash スクリプト"というかたちで実行してきたことで、ファイルの読み取りさえできれば内容をコマンドのbashに渡して処理してきました。直接ファイルを指定するだけで実行可能な状態にするためにはchmodコマンドで実行権限を付与しましょう。755の権限付与がプログラムとしては最適です。chmodコマンドの詳細はあらためて<a href="../unix1/#_14">パーミッション</a>にて確認してください</p>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ./case_test.sh
+-bash: ./case_test.sh: Permission denied
+ubuntu@LAPTOP-8KU2HS6V:~$ chmod 755 case_test.sh
+ubuntu@LAPTOP-8KU2HS6V:~$ ./case_test.sh
+AかBを選んでください: A
+正解です
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+0
+</code></pre></div>
+<h2 id="_17">デバッグ</h2>
+<p>bash実行時に-xオプションを付与すると、スクリプトをデバッグモードで実行できます。これによりスクリプトの処理経過が可視化できます</p>
+<pre><code>bash -x スクリプト
+</code></pre>
+<p>以下は再びcase_test.shを使った例です
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash -x case_test.sh
++ echo -n &#39;AかBを選んでください: &#39;
+AかBを選んでください: + read input
+C
++ case $input in
++ echo AかBを入力してください
+AかBを入力してください
++ exit 1
+</code></pre></div></p>
+<p>処理結果が長い場合は、debugファイルに書き出して中身を確認しましょう</p>
+<pre><code>bash -x スクリプト &gt; debug 2&gt;&amp;1
+</code></pre>
+<h2 id="_18">関数の利用</h2>
+<p>functionを用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です、ASCIIテキスト以外ではエラーを返します
+<div class="highlight"><pre><span></span><code>nano ascii_chk.sh
+
+--code--
+#!/bin/bash
+
+# ascii check
+function ascii_check(){
+  input=$1
+  check=`echo &quot;$input&quot; | file -i - | grep -i ascii`
+  if [ &quot;$check&quot; ]; then
+    echo &quot;ASCII&quot;
+    return 0
+  else
+    echo &quot;ERROR&quot;
+    return 1
+  fi
+}
+
+echo -n &quot;入力をしてください: &quot;
+read INPUT
+ascii_check $INPUT
+exit 0
+---------
+</code></pre></div>
+関数を含んだスクリプトを実行してみましょう
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ chmod 755 ascii_chk.sh
+ubuntu@LAPTOP-8KU2HS6V:~$ ./ascii_chk.sh
+入力をしてください: test
+ASCII
+ubuntu@LAPTOP-8KU2HS6V:~$ ./ascii_chk.sh
+入力をしてください: テスト
+ERROR
+</code></pre></div></p>
+<h2 id="tips">Tips</h2>
+<h3 id="awksed">awk,sedの多用</h3>
+<p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます、以下はwhile文で記述したファイル読み込み処理を1ラインで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます</p>
+<div class="highlight"><pre><span></span><code># sed
+ubuntu@LAPTOP-8KU2HS6V:~$ time cat org.txt | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
+&lt;p&gt;abc&lt;/p&gt;
+&lt;p&gt;def&lt;/p&gt;
+&lt;p&gt;efg&lt;/p&gt;
+
+
+# awk
+ubuntu@LAPTOP-8KU2HS6V:~$ time cat org.txt | awk &#39;{print &quot;&lt;p&gt;&quot;$1&quot;&lt;/p&gt;&quot;}&#39;
+&lt;p&gt;abc&lt;/p&gt;
+&lt;p&gt;def&lt;/p&gt;
+&lt;p&gt;efg&lt;/p&gt;
+</code></pre></div>
+<h3 id="_19">終了ステータス</h3>
+<p>$?は直前のコマンドが正常終了した場合に0を格納し、異常値だった場合に0以外を格納する特殊な変数です。以下例では一般ユーザーが/rootを閲覧してエラーになっていますが、終了ステータスは2が返されています
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ls /root
+ls: cannot open directory &#39;/root&#39;: Permission denied
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+2
+</code></pre></div></p>
+<h3 id="exit">exit</h3>
+<p>スクリプト自体が正常終了だったかどうかを確認するために最後に終了コードを設定しましょう</p>
+<p>0を返す場合は正常終了を表します、scriptの処理の最後に記述しましょう</p>
+<pre><code>exit 0
+</code></pre>
+<p>1を返す場合は異常終了であることを通知できます</p>
+<pre><code>exit 1
+</code></pre>
+<p>先ほどcaseで作成したスクリプトに終了コードを付与してみましょう</p>
+<div class="highlight"><pre><span></span><code>nano case_test.sh
+--code--
+#!/bin/bash
+echo -n &quot;AかBを選んでください: &quot;
+read input
+
+case $input in
+  A) echo &quot;正解です&quot;
+     exit 0;;
+
+  B) echo &quot;不正解です&quot;  
+     exit 0;;
+
+  *) echo &quot;AかBを入力してください&quot;
+     exit 1;;
+esac
+--------
+</code></pre></div>
+<p>想定がの入力値のCを入力されたためにエラーステータスを返します
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./case_test.sh
+AかBを選んでください: C
+AかBを入力してください
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+1
+</code></pre></div></p>
+<h3 id="load">load</h3>
+<p>パラメーター一覧が記載されたファイルを直接読み込み一度に変数をロードすることができます。このテクニックをスクリプトの冒頭に入れれば、外部環境ファイルを毎回読み込むことなどができます</p>
+<pre><code>. 設定ファイル
+</code></pre>
+<p>以下例ではparams.envという設定ファイルを作成し、読み込んでいます
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat params.env
+param1=&quot;abc&quot;
+param2=&quot;def&quot;
+
+ubuntu@LAPTOP-8KU2HS6V:~$ . params.env
+ubuntu@LAPTOP-8KU2HS6V:~$ echo $param1
+abc
+</code></pre></div></p>
+<h3 id="_20">隠しファイル</h3>
+<p>ファイル名やディレクトリ名の先頭に.をつけると隠しファイルとして扱われます。隠しファイルの確認はls -aオプションで確認できます</p>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~/invisible$ touch .test
+ubuntu@LAPTOP-8KU2HS6V:~/invisible$ ls
+ubuntu@LAPTOP-8KU2HS6V:~/invisible$ ls -a
+.  ..  .test
+</code></pre></div>
+<h3 id="sleep">sleep</h3>
+<p>処理を任意の秒数停止したい場合、sleepコマンドを使うと便利です</p>
+<pre><code>sleep 秒数
+</code></pre>
+<h3 id="_21">ファイル名のみ抽出</h3>
+<p>lsコマンドでリスト表示する際にディレクトリ名は無視してファイル名だけを抽出したい場合があります、そういう場合xargsコマンドとbasenameコマンドを組み合わせてください。</p>
+<pre><code>xargs basename -a
+</code></pre>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ls /var/log/apache2/access.log
+/var/log/apache2/access.log
+ubuntu@LAPTOP-8KU2HS6V:~$ ls /var/log/apache2/access.log  | xargs basename -a
+access.log
+</code></pre></div>
+<p>grepコマンドでファイル名だけを表示したい場合は -l オプションを付けてください</p>
+<pre><code>grep -l
+</code></pre>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ grep ubuntu /etc/os-release
+ID=ubuntu
+HOME_URL=&quot;https://www.ubuntu.com/&quot;
+SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
+BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
+PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
+ubuntu@LAPTOP-8KU2HS6V:~$ grep -l ubuntu /etc/os-release
+/etc/os-release
+</code></pre></div>
+<h3 id="_22">実行結果の変数への格納</h3>
+<p>コマンド実行結果を変数に格納する方法はいくつかありますが、本コースの冒頭でご紹介した``(バッククォート)以外にもいくつかあります</p>
+<pre><code>#バッククォート
+変数=`実行コマンド`
+
+#$()
+変数=$(実行コマンド)
+</code></pre>
+<h3 id="_23">変数をコマンドとして実行</h3>
+<p>コマンド変数内で組み立てて、実行することもできます</p>
+<pre><code>eval 変数
+</code></pre>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ls_exe=&quot;ls /var/log&quot;
+ubuntu@LAPTOP-8KU2HS6V:~$ eval $ls_exe
+alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape  lastlog  unattended-upgrades  wtmp
+</code></pre></div>
+<p>後続のsmall shellのmetaコマンドではevalを使って変数内で組み立てたコマンドを実行していますので参考にして下さい
+<div class="highlight"><pre><span></span><code>  if [ &quot;$type&quot; = &quot;json&quot; ];then
+    header=`grep &quot;^name=&quot; $ROOT/databox/${databox}/def/col*  | sort -V |  awk -F&quot;=&quot; &#39;{print $2}&#39; | sed &quot;s/\&quot;//g&quot; \
+            | sed &quot;s/ //g&quot; | sed -z &quot;s/\n/,/g&quot; | sed &quot;s/,$//&quot;`
+
+    JQ=&quot;echo \$header | jq -R &#39;split(\&quot;,\&quot;) | {&quot;
+    count=0
+    for col in `ls $ROOT/databox/${databox}/def/col* | sort -V | xargs basename -a`
+    do
+      if [ $count -eq 0 ];then
+        JQ=&quot;${JQ}\&quot;$col\&quot;: .[$count]&quot;
+      else
+        JQ=&quot;${JQ}, \&quot;$col\&quot;: .[$count]&quot;
+      fi
+      ((count += 1))
+    done
+    JQ=&quot;${JQ}}&#39;&quot;
+    eval $JQ
+  fi
+</code></pre></div></p>
+<h3 id="tmp">tmpファイルの多用</h3>
+<p>処理を組み立てていく際にevalのように変数の中でコマンドを組み立てながら実行する方法もありますが、処理をテンポラリーファイルを作って過程を書き出しておくことであとからdebugが容易になります</p>
+<h3 id="_24">別スクリプト呼び出し</h3>
+<p>スクリプト内で別スクリプトを呼び出す際は単純にスクリプトをそのまま実行すれば良いです。呼び出すという意味ではコマンドとスクリプトは本質的にあまり変わりがありません</p>
+<h3 id="_25">さらなる学習のために</h3>
+<p>高度なプログラミング言語において、それぞれの処理をモジュール化し疎結合にする手法がとられます。この手法はオブジェクト指向と呼ばれ、プログラムを学ぶ上で必要性を理解できず挫折する契機にもなる手法でもあります。bashでは処理をオブジェクト指向を実現するためのクラスやインスタンスの生成といったことがそもそもできません。代わりにコマンドや外部スクリプトを組み合わせてモジュールとして使います。即席で平易であることがshellスクリプトの特徴ですが、その特性を最大限に活用して作ったフレームワークがsmall shellです。small shellを使うことで非常に簡単にWEBアプリケーションも作ることができますので、ぜひ<a href="../small_shell1/">small-shell Basic</a>もご確認ください</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="フッター">
+        
+          <a href="../unix2/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                Unix Basic 2
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../web/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                WEB Basic
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

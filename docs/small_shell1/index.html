@@ -1,0 +1,1811 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>small-shell Basic - 21it Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#small-shell-basic" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="ヘッダー">
+    <a href=".." title="21it Docs" class="md-header-nav__button md-logo" aria-label="21it Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            21it Docs
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              small-shell Basic
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="クリア" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="21it Docs" class="md-nav__button md-logo" aria-label="21it Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    21it Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix1/" class="md-nav__link">
+        Unix Basic 1
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix2/" class="md-nav__link">
+        Unix Basic 2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genshi_programing/" class="md-nav__link">
+        shell programing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/" class="md-nav__link">
+        WEB Basic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          small-shell Basic
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        small-shell Basic
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    フレームワーク
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    アプリケーションタイプ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-app" class="md-nav__link">
+    Base APPの利用シナリオ
+  </a>
+  
+    <nav class="md-nav" aria-label="Base APPの利用シナリオ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    標準機能
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    高度な連携
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    クイックスタート
+  </a>
+  
+    <nav class="md-nav" aria-label="クイックスタート">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#os-setup" class="md-nav__link">
+    OS setup
+  </a>
+  
+    <nav class="md-nav" aria-label="OS setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu" class="md-nav__link">
+    ubuntu環境設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#small-shell" class="md-nav__link">
+    small shellのインストール
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo" class="md-nav__link">
+    Sudo設定の追加
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-app_1" class="md-nav__link">
+    Base APP生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-app_2" class="md-nav__link">
+    Base APPユーザー作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-app_3" class="md-nav__link">
+    Base APPログイン
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    Data構造の検討
+  </a>
+  
+    <nav class="md-nav" aria-label="Data構造の検討">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-key" class="md-nav__link">
+    Primary Key
+  </a>
+  
+    <nav class="md-nav" aria-label="Primary Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#item_name" class="md-nav__link">
+    item_nameの正規化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    フラットデータ構造
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databox" class="md-nav__link">
+    DataBox生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databox_1" class="md-nav__link">
+    DataBoxへのアクセス
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    Table管理
+  </a>
+  
+    <nav class="md-nav" aria-label="Table管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    sort
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tag" class="md-nav__link">
+    Tag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    Consoleによる分析
+  </a>
+  
+    <nav class="md-nav" aria-label="Consoleによる分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    log検索
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primary_key" class="md-nav__link">
+    Primary_key重複によるエラー
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    フォームの利用の検討
+  </a>
+  
+    <nav class="md-nav" aria-label="フォームの利用の検討">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#box" class="md-nav__link">
+    アンケートBox作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    フォームの生成
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    テンプレートの利用
+  </a>
+  
+    <nav class="md-nav" aria-label="テンプレートの利用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#team-app-install" class="md-nav__link">
+    Team APP install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-app" class="md-nav__link">
+    Team APPユーザー追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-app_1" class="md-nav__link">
+    Team APPログイン
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    テーブルの追加削除
+  </a>
+  
+    <nav class="md-nav" aria-label="テーブルの追加削除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    Routingの追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    メニューの追加
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    その他の基本操作
+  </a>
+  
+    <nav class="md-nav" aria-label="その他の基本操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hashchain" class="md-nav__link">
+    Hashchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    ダウンロード / 一括更新
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-url" class="md-nav__link">
+    Initialize URLの再生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databoxkey" class="md-nav__link">
+    DataBoxへのkeyの追加削除
+  </a>
+  
+    <nav class="md-nav" aria-label="DataBoxへのkeyの追加削除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    key追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_1" class="md-nav__link">
+    key削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databox_2" class="md-nav__link">
+    DataBoxの削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    Graph生成
+  </a>
+  
+    <nav class="md-nav" aria-label="Graph生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-graph" class="md-nav__link">
+    Snapshot Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph_1" class="md-nav__link">
+    Graphの確認
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph_2" class="md-nav__link">
+    Graphの削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    定期ジョブの登録
+  </a>
+  
+    <nav class="md-nav" aria-label="定期ジョブの登録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    ジョブの生成と登録
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell2/" class="md-nav__link">
+        small-shell Advanced
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../digital_resilience/" class="md-nav__link">
+        Digital耐性
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    フレームワーク
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    アプリケーションタイプ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-app" class="md-nav__link">
+    Base APPの利用シナリオ
+  </a>
+  
+    <nav class="md-nav" aria-label="Base APPの利用シナリオ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    標準機能
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    高度な連携
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    クイックスタート
+  </a>
+  
+    <nav class="md-nav" aria-label="クイックスタート">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#os-setup" class="md-nav__link">
+    OS setup
+  </a>
+  
+    <nav class="md-nav" aria-label="OS setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu" class="md-nav__link">
+    ubuntu環境設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#small-shell" class="md-nav__link">
+    small shellのインストール
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo" class="md-nav__link">
+    Sudo設定の追加
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-app_1" class="md-nav__link">
+    Base APP生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-app_2" class="md-nav__link">
+    Base APPユーザー作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-app_3" class="md-nav__link">
+    Base APPログイン
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    Data構造の検討
+  </a>
+  
+    <nav class="md-nav" aria-label="Data構造の検討">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-key" class="md-nav__link">
+    Primary Key
+  </a>
+  
+    <nav class="md-nav" aria-label="Primary Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#item_name" class="md-nav__link">
+    item_nameの正規化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    フラットデータ構造
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databox" class="md-nav__link">
+    DataBox生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databox_1" class="md-nav__link">
+    DataBoxへのアクセス
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" class="md-nav__link">
+    Table管理
+  </a>
+  
+    <nav class="md-nav" aria-label="Table管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    sort
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tag" class="md-nav__link">
+    Tag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    Consoleによる分析
+  </a>
+  
+    <nav class="md-nav" aria-label="Consoleによる分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    log検索
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primary_key" class="md-nav__link">
+    Primary_key重複によるエラー
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    フォームの利用の検討
+  </a>
+  
+    <nav class="md-nav" aria-label="フォームの利用の検討">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#box" class="md-nav__link">
+    アンケートBox作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    フォームの生成
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    テンプレートの利用
+  </a>
+  
+    <nav class="md-nav" aria-label="テンプレートの利用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#team-app-install" class="md-nav__link">
+    Team APP install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-app" class="md-nav__link">
+    Team APPユーザー追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-app_1" class="md-nav__link">
+    Team APPログイン
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    テーブルの追加削除
+  </a>
+  
+    <nav class="md-nav" aria-label="テーブルの追加削除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    Routingの追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    メニューの追加
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    その他の基本操作
+  </a>
+  
+    <nav class="md-nav" aria-label="その他の基本操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hashchain" class="md-nav__link">
+    Hashchain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    ダウンロード / 一括更新
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-url" class="md-nav__link">
+    Initialize URLの再生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databoxkey" class="md-nav__link">
+    DataBoxへのkeyの追加削除
+  </a>
+  
+    <nav class="md-nav" aria-label="DataBoxへのkeyの追加削除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    key追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_1" class="md-nav__link">
+    key削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databox_2" class="md-nav__link">
+    DataBoxの削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    Graph生成
+  </a>
+  
+    <nav class="md-nav" aria-label="Graph生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-graph" class="md-nav__link">
+    Snapshot Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph_1" class="md-nav__link">
+    Graphの確認
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph_2" class="md-nav__link">
+    Graphの削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    定期ジョブの登録
+  </a>
+  
+    <nav class="md-nav" aria-label="定期ジョブの登録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    ジョブの生成と登録
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="small-shell-basic">small shell Basic</h1>
+<h2 id="_1">フレームワーク</h2>
+<p>small shellはshell{bash}だけでWEB applicationプログラムを書くことができるようにした、特異なフレームワークです。フレームワークというのはある一定の枠組みに従って進めると、一定のアウトプットがでるような一連の手続きのことを指します。手続きといっても、そう難しいものではなく、small shellにおいてはただコマンドを並べるだけであったり対話式のコマンドに答えるだけでWEB applicationができあがります。</p>
+<h2 id="_2">アプリケーションタイプ</h2>
+<p>small shellでは標準のWEBアプリケーション機能をパッケージ化したBase APPを対話式のコマンドで即座に生成することができます。Base APPに対してカスタマイズを行うことができるアプリケーションをScratch APPと呼んでいます。本コースではまずはBase APPの生成を通じて標準のWEBアプリケーションを理解いただきます</p>
+<h2 id="base-app">Base APPの利用シナリオ</h2>
+<p>Base APPはカスタマイズ不要な即席で生成できるWEBアプリケーションですが、WEBアプリケーション自体の特性であるデータの共有のしやすさや、オープンで共同作業をしやすいという性質を持ちます。その点においてチームによるデータ管理を行う際、Excel等のスプレッドシートよりも優れているといえるでしょう。Base APPは標準でAnd検索が可能で、Unix Basic 2コースでご紹介した高度なUnixコマンド群を使ったデータ分析も可能です。Formを用いることで外部からのデータ収集や依頼受付などもすることができます。さらに、small shellのAutomation機能を組み合わせれば定期的なグラフ作成などの分析作業の自動化も可能になります</p>
+<h4 id="_3">標準機能</h4>
+<ul>
+<li>容易なデータ共有と同時編集</li>
+<li>And検索など優れた検索とUnixコマンドを用いた解析</li>
+<li>loggingとtracking</li>
+<li>Formを利用した外部データの収集</li>
+</ul>
+<h4 id="_4">高度な連携</h4>
+<ul>
+<li>システム統合(API,Job)</li>
+<li>python libraryを用いたgraphの定期作成</li>
+</ul>
+<h2 id="_5">クイックスタート</h2>
+<h3 id="os-setup">OS setup</h3>
+<p>Base APPを立ち上げるために、まずはOSのセットアップを行っていきましょう。すでにubuntuの環境構築はUnix Basic 1コースで体験されていると思いますが、small shellをインストールするために最低限必要になるライブラリとWEBサーバをインストールしましょう。Base APPはWEBサーバ上で動くアプリケーションのため、WEB Basicコースでご紹介したapache WEBサーバを利用します。</p>
+<h5 id="ubuntu">ubuntu環境設定</h5>
+<pre><code># OSへのユーザーの追加
+sudo useradd -s /sbin/nologin small-shell
+
+# aptリストのアップデート
+sudo apt-get update
+
+# apacheのインストール
+sudo apt-get install apache2
+sudo a2enmod cgid
+#sudo systemctl start apache2
+sudo service apache2 start
+sudo update-rc.d apache2 defaults
+
+# 各種ライブラリのインストール
+sudo apt-get install php
+sudo curl -o /usr/bin/jq -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 &amp;&amp; sudo chmod +x /usr/bin/jq
+</code></pre>
+<h5 id="small-shell">small shellのインストール</h5>
+<pre><code>cd /usr/local
+sudo git clone https://github.com/small-shell/small-shell.git
+sudo chown -R small-shell:small-shell /usr/local/small-shell
+</code></pre>
+<h5 id="sudo">Sudo設定の追加</h5>
+<pre><code># visudo editorの設定
+sudo update-alternatives --config editor
+
+# sudo設定
+sudo visudo    
+# ファイルの最後尾に追記してください
+www-data   ALL=(small-shell)    NOPASSWD: /usr/local/small-shell/bin/*, /usr/local/small-shell/sbin/*
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>もしもWSLをwindows上で利用している場合はwindowsを再起動してubuntuを起動した都度"sudo service apache2 start"にてapacheを起動してください。</p>
+</div>
+<h3 id="base-app_1">Base APP生成</h3>
+<p>いよいよgenコマンドでBase APPを生成していきましょう、以下はwindows上にWSLとして構築したubuntu上でBase APPを生成する場合の例です。WSLとしてあくまでローカルに構築されているため、WEBサーバとしてはlocalhostを指定しましょう</p>
+<p><div class="highlight"><pre><span></span><code># gen コマンド実行
+sudo /usr/local/small-shell/adm/gen -app
+
+Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 1
+Root directory of web (/var/www): &lt;enter&gt;
+CGI directory (/usr/lib/cgi-bin): &lt;enter&gt;
+APP exec user (e.g. www-data or apache or nginx): www-data
+protocol (http | https): http
+WEB Server FQDN or IP addr (e.g. 192.168.10.1): localhost
+BASE URL for WEB APP is http://localhost/cgi-bin/ is it OK ? (yes | no): yes
+</code></pre></div>
+ubuntuをお使いの場合は以下シンボリックリンクを作成して良いか確認されますので、yesを入力してください。その後アプリが自動生成されます</p>
+<div class="highlight"><pre><span></span><code>www dir must have relation with CGI dir. Is it OK to make symbolic link on /usr/lib ?
+following command will be executed
+-----------------------------------------------------------------
+ln -s /var/www/bin /usr/lib/bin
+ln -s /var/www/descriptor /usr/lib/descriptor
+ln -s /var/www/tmp /usr/lib/tmp
+-----------------------------------------------------------------
+(yes | no): yes
+</code></pre></div>
+<h3 id="base-app_2">Base APPユーザー作成</h3>
+<p>続いてBase APPへアクセスするためのユーザーを作成しましょう、あなたが管理者の場合アプリ利用者の人数分ユーザー作成をしてください。以下ではtestというユーザーを作成しています。</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops add.usr:test
+</code></pre>
+<p>コマンドが正常に実行されると、作成したユーザー向けのinitialize URLが生成されますのでユーザーへURLを展開してください。ユーザーが initialize URLへ接続した際にアプリへのアクセスを可能にする鍵が生成されます。その際、管理者でも鍵の配列は予想することができません。以下はユーザーがinitialize URLへアクセスした際の画面です。"OPEN DATA_BOX WITH KEY"というボタンを押すとBase APPへ接続がされ、Base APPが管理するDATA BOXへのアクセスが可能になります</p>
+<p><img alt="Screenshot" src="../img/initialize_key.png" /></p>
+<h3 id="base-app_3">Base APPログイン</h3>
+<p>OPEN DATA_BOX WITH KEYボタンを押すと、そのままログインフォームに鍵を選択することができますので、生成された鍵を選択してBase APPへログインしましょう。その際、Base APPのログインURLはブラウザのお気に入りに登録しておくことをお勧めします</p>
+<p><img alt="Screenshot" src="../img/key_auth.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>鍵を選択してアクセスすると、"NO DATABOX, please create databox first"というメッセージが表示されるますが特に問題ありません。Base APPの管理対象となるDATA Boxがないために出ているワーニングですが、次章でData Boxを作成していけば解消します</p>
+</div>
+<h3 id="data">Data構造の検討</h3>
+<p>BaseAPPは基本的にはDataBoxを管理するためのアプリケーションですが、DataBoxが作成されていないと何も操作することができません。DataBoxを作成し、BaseAPPを通じてデータ管理をしていきましょう</p>
+<h4 id="primary-key">Primary Key</h4>
+<p>DataBoxではkeyとvalueという概念でデータを管理します。データは複数のkeyで構成され、登録されたデータはそれぞれ他のデータと識別するための一意なkeyを持ちます。例として在庫データを管理するDataBoxを作成してみましょう。非常にざっくりとした情報にはなりますが、メーカーAのノートパソコンが10台あるという状態を表現するとき、それを名前と数という2つのkeyから構成されるデータとして扱うことができます。その際、このデータを一意で識別するのは"メーカーAのノートパソコン"という漠然とした名前でも構いません。それが名前として重複しない限り、データとして問題なく管理ができます。その際、item_nameを識別のためのkeyとするのは自然なことですがそのように識別のために使われるkeyをprimary_keyと呼びます。</p>
+<pre><code>#在庫データ
+key   : item_name(primary_key),num
+value : メーカーAのノートパソコン,10
+</code></pre>
+<p>もちろんitem_nameはそれ自体様々な情報を含んでいますので以下のように分解することもできます。以下例のようにデータ構造をより細かく矛盾なく分割して定義することにより、精緻なデータ管理が可能になります。一方で以下例ではpc_type {laptop or desktop}というkeyを含んでしまうことでPCの在庫はより精緻にできるようになったものの、PC以外の在庫管理が難しくなります。データをどの程度分解し、適切に管理するかというのはセンスのいる作業になります。</p>
+<h6 id="item_name">item_nameの正規化</h6>
+<pre><code>key   : item_name(primary_key), maker, pc_type, num, note
+</code></pre>
+<p>データの正規化は大規模なシステム開発においては非常に重要な作業になりますが、フラットな箱にデータを入れ直観的に管理したいというsmall shellの基本的なスタンスからすると少し重すぎる作業だともいます。いったん過度な正規化はここでは行わず、簡易的な補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう</p>
+<h6 id="_6">フラットデータ構造</h6>
+<pre><code>#在庫データ
+key   : item_name(primary_key),num,note
+label : アイテム名,数量,メモ
+value : メーカーＡのノートパソコン,10,来月10個使う
+</code></pre>
+<h3 id="databox">DataBox生成</h3>
+<p>データ構造を比較的緩めなものにすると決まったところで、さっそくDataBoxを生成していきましょう、再びgenコマンドで簡単に生成できます。DataBox自体の名前はわかりやすくitem.dbとして、在庫管理のために使ってみましょう</p>
+<pre><code>sudo /usr/local/small-shell/adm/gen -databox
+</code></pre>
+<p>対話例は以下のとおりです。Do you want to add more column to datase？と聞かれた際にnoと答えると対話が終了しデータボックスが生成されます, またrequired to input each time?と聞かれてyesと答えると必須の入力項目としてBaseAPPで扱われます</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>対話を途中で抜けたい場合はCtrl + cを同時に押して抜けてください</p>
+</div>
+<div class="highlight"><pre><span></span><code>databox_name: item.db
+primary_key(col1): item_name
+primary_key label: アイテム名
+Do you want to add column to dataset ? (yes | no): yes
+key(col2) name: num
+key(col2) label: 数量
+data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): num
+required to input each time? (yes | no): yes
+Do you want to add more column to dataset ? (yes | no) : yes
+key(col3) name: note
+key(col3) label: メモ
+data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): text
+required to input each time? (yes | no): no
+Do you want to add more column to dataset ? (yes | no) : no
+</code></pre></div>
+<p>最終確認が求められるのでyesと答えてデータボックスを生成しましょう
+<div class="highlight"><pre><span></span><code>Data box will be generated by following order, please check it
+-----------------------------------------------------------------
+
+databox_name:item.db
+#primary_key
+name=&quot;item_name&quot;
+label=&quot;アイテム名&quot;
+type=&quot;text&quot;
+option=&quot;required&quot;
+
+#column2
+name=&quot;num&quot;
+label=&quot;数量&quot;
+type=&quot;number&quot;
+option=&quot;required&quot;
+
+#column3
+name=&quot;note&quot;
+label=&quot;メモ&quot;
+type=&quot;text&quot;
+option=&quot;&quot;
+
+-----------------------------------------------------------------
+
+Is it OK ? (yes | no): yes
+</code></pre></div></p>
+<h3 id="databox_1">DataBoxへのアクセス</h3>
+<p>DataBoxが生成されたら早速BaseAPPをつうじてデータへアクセスしましょう。WSL環境の場合は以下URLでアクセスができます。ログインURLで再度鍵を選択してログインしてみましょう、データボックスが表示されていることでしょう</p>
+<p>http://localhost/cgi-bin/auth.shell</p>
+<p><img alt="Screenshot" src="../img/databox.png" /></p>
+<p>早速+Addリンクからアイテムを登録しましょう
+<img alt="Screenshot" src="../img/add_item.png" /></p>
+<h3 id="table">Table管理</h3>
+<p>ログイン後に表示されるテーブルviewではデータの検索やソートが非常に簡単に行うことができます。標準でAnd条件の検索が可能ですのでGoogle検索のような感覚でデータを探すことができます。また、Unixのsortコマンドを使ったsortもTable上で可能ですのでお試しください。sortの基本的なオプションは以下です</p>
+<h4 id="sort">sort</h4>
+<pre><code># 自然な昇順並び替え
+sort -V Label名
+
+# アルファベット降順並び替え
+sort -r Label名
+
+# 数字の昇順並び替え
+sort -n Label名
+
+# 数字の降順並び替え
+sort -nr Label名
+</code></pre>
+<p><img alt="Screenshot" src="../img/sort_table.png" /></p>
+<h4 id="tag">Tag</h4>
+<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます、以下例ではメーカーAというワードでtagを作っています</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{word}
+(e.g.)
+sudo /usr/local/small-shell/adm/ops add.tag:item.db{メーカーA}
+</code></pre>
+<p><img alt="Screenshot" src="../img/tag_table.png" /></p>
+<h3 id="console">Consoleによる分析</h3>
+<p>メニューからconsoleへ遷移すると、高度なUnixコマンドとして紹介した各種コマンドを使った分析ができます。以下はDataBoxをパソコンというwordでgrepし、件数をwcで集計しています</p>
+<p><img alt="Screenshot" src="../img/console.png" /></p>
+<h4 id="log">log検索</h4>
+<p>Consoleではlogの検索を行うこともできます、ログ検索であることを明示するため検索実行時は#logを付与してください、以下は "メーカーAノートパソコン #log"と検索した例です</p>
+<p><img alt="Screenshot" src="../img/console_log.png" /></p>
+<h3 id="primary_key">Primary_key重複によるエラー</h3>
+<p>primary_keyが同じ値のデータを登録しようとすると以下エラーが発生します。こういった重複排除の厳密な制御を逃れたい場合、primary_keyとしてhashidを指定してください。hashidの例はフォームの生成で再度ご説明します</p>
+<p><img alt="Screenshot" src="../img/error.png" /></p>
+<h2 id="_7">フォームの利用の検討</h2>
+<p>BaseAPPにアカウントを持たない外部ユーザーから所定の入力項目をもとにデータを収集し、DataBoxに格納するために外部Formの作成をすることができます。ここでは外部ユーザーからの意見収集のためのアンケートformの作成を例としてご説明します。</p>
+<h3 id="box">アンケートBox作成</h3>
+<p>初めに収集したいデータを格納するDataBoxを作成しましょう、ここでは架空の製品である"XYZ"についての感想をアンケートとして収集しましょう。その際一意となるkeyは特に想定されないため、primary_keyはhashidとします</p>
+<pre><code>sudo /usr/local/small-shell/adm/gen -databox
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>primary_keyをhashidとすることで一意のデータを持つkeyを作る必要がありません</p>
+</div>
+<p><div class="highlight"><pre><span></span><code>databox_name: survey.box
+primary_key(col1): hashid
+! ここをhashidとしてください、その後は対話を続けてください
+</code></pre></div>
+対話結果例は以下のとおりです</p>
+<div class="highlight"><pre><span></span><code>Data box will be generated by following order, please check it
+-----------------------------------------------------------------
+
+databox_name:survey.box
+#primary_key
+name=&quot;hashid&quot;
+label=&quot;#ID&quot;
+type=&quot;text&quot;
+option=&quot;required&quot;
+
+#column2
+name=&quot;generation&quot;
+label=&quot;世代&quot;
+type=&quot;radio&quot;
+params=&quot;10-20代 30-40代 50-60代 60代以上&quot;
+option=&quot;required&quot;
+
+#column3
+name=&quot;impression&quot;
+label=&quot;使ってみた印象&quot;
+type=&quot;radio&quot;
+params=&quot;良い 普通 悪い&quot;
+option=&quot;required&quot;
+
+#column4
+name=&quot;comment&quot;
+label=&quot;コメントがあればお願いします&quot;
+type=&quot;textarea&quot;
+option=&quot;&quot;
+
+-----------------------------------------------------------------
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>日本語でparameterを定義する場合に、入力中にback spaceを使うとテキストが崩れるためnotepadなどに書いた内容をコピーペーストすることをお勧めします。その際パラメーターの区切りとしては全角スペースは使わず必ず半角スペースを使ってください</p>
+</div>
+<h3 id="_8">フォームの生成</h3>
+<p>DataBoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます</p>
+<pre><code>sudo /usr/local/small-shell/adm/gen -app
+</code></pre>
+<p>アプリケーションタイプとして2.FORMを選択し、名前は仮にsurveyとしましょう。DataBoxとしては先ほど作成したsurvey.boxを指定します</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>IP whitelistingは接続可能なIPアドレスを制限するかという確認ですが、いったんnoとして作成します</p>
+</div>
+<p><div class="highlight"><pre><span></span><code>Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 2
+form_name: survey
+databox: survey.box
+description of the form : xyzにつてのアンケートにお答えください
+Do you want to enable IP whitelisting for this form ? (yes | no): no
+</code></pre></div>
+その後、フォームに含むkeyを選びますが今回はすべてのkeyを追加しましょう
+<div class="highlight"><pre><span></span><code>select data that must be included in the form (generation | impression | comment) : generation
+Do you want to add more data to the form (yes | no): yes
+additional data that must be included in the form (impression | comment) : impression
+Do you want to add more data to the form ? (yes | no): yes
+additional data that must be included in the form (comment) : comment
+</code></pre></div>
+最終確認がありますので、問題なければyesと入力して下さい
+<div class="highlight"><pre><span></span><code>form will be generated by following order, please check it
+-----------------------------------------------------------------
+
+APP type: 2.FORM
+Form name: survey
+target_databox: survey.box
+description: xyzにつてのアンケートにお答えください
+IP_whitelisting: no
+Included keys: generation,impression,comment
+Access URL: http://localhost/cgi-bin/survey
+
+-----------------------------------------------------------------
+
+Is it OK ? (yes | no): yes
+</code></pre></div>
+フォームが生成されますので、最終確認時にAccess URLとして記載のあったURLにアクセスしてみましょう。認証なしで入力フォームへアクセスでき、データの追加ができるはずですので試してください</p>
+<p><img alt="Screenshot" src="../img/survey.png" /></p>
+<p>BaseAPPで登録されたデータを見てみると、一意のIDも自動生成されていることが確認できます。hashidはBaseAPPのフォーム入力でも、外部のフォーム入力でも同じく自動で生成されます</p>
+<p><img alt="Screenshot" src="../img/survey_table.png" /></p>
+<h2 id="_9">テンプレートの利用</h2>
+<p>small shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam APPをインポートして使ってみましょう。Team APPではチームの共同作業に必要な機能をパッケージ化したsmall shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team APPに管理したいDataBoxを追加することもできます</p>
+<h3 id="team-app-install">Team APP install</h3>
+<p>早速Team APPをインストールしましょう、git cloneした後deploy.shを実行するとDataBoxも自動生成されます
+<div class="highlight"><pre><span></span><code>cd $HOME
+git clone https://github.com/naruoken/small-shell-apps
+cd small-shell-apps/team_app
+sudo ./deploy.sh
+
+# small-shellのディレクトリpathに間違いなければenterを押してください
+small-shell root (/usr/local/small-shell): &lt;enter&gt;
+</code></pre></div></p>
+<h3 id="team-app">Team APPユーザー追加</h3>
+<p>Team APPはBase APPのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではapp_testというユーザーを作成しています</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops add.usr:app_test app:team
+</code></pre>
+<p>ユーザー生成後に、再びInitialize URLが生成れるので対象ユーザーへ展開しましょう。Base APPと同じくInitialize URLへアクセスするとTeam APPへアクセスするためのカギとリンクが生成されます</p>
+<h3 id="team-app_1">Team APPログイン</h3>
+<p>Team APPへログインして右上のeven(=)メニューをクリックするとメニューが展開します。各種機能をお試しください, Team eventやtaskをカレンダーに一元的に表示できるので便利です。Driveを使うとファイル共有も簡単に行えます</p>
+<p><img alt="Screenshot" src="../img/team_app_menu.png" /></p>
+<h3 id="_10">テーブルの追加削除</h3>
+<p>Teamで管理したいDataBoxを追加したい場合も、容易に追加ができます。Team APPのsubAPPとしてアプリケーションを追加しましょう、3.SCRATCH を選択してapp_nameを定義する際に@teamと付けることでTeam APP配下のsub APPという宣言が可能です。その後追加したいDataBoxを指定しましょう。以下ではitem.dbを追加します</p>
+<p><div class="highlight"><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
+Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
+app_name: item@team
+primary databox: item.db
+</code></pre></div>
+最終確認が問題なければyesと入力してください
+<div class="highlight"><pre><span></span><code>APP will be generated by following order, please check it
+-----------------------------------------------------------------
+
+APP type: 3.SCRATCH
+APP name: item
+authentication:
+Parent APP: team
+
+-----------------------------------------------------------------
+
+Is it OK ? (yes | no): yes
+</code></pre></div>
+Team APPのコードにsubAPPを追加するインストラクションが表示されます
+<div class="highlight"><pre><span></span><code>SUB APP template is successfully generated
+
+1. APP controller
+ please add routing on /usr/lib/cgi-bin/team
+#---------------------------------------------------------------------------------------------------------
+&quot;item.table&quot;) ../bin/item_table.sh session:$session pin:$pin user_name:$user_name page:$page table_command:$table_command;;
+&quot;item.get&quot;) ../bin/item_get.sh session:$session pin:$pin user_name:$user_name id:$id;;
+&quot;item.set&quot;) ../bin/item_set.sh session:$session pin:$pin user_name:$user_name id:$id;;
+&quot;item.del&quot;) ../bin/item_del.sh session:$session pin:$pin user_name:$user_name id:$id;;
+&quot;item.log_viewer&quot;) ../bin/item_log_viewer.sh session:$session pin:$pin id:$id;;
+&quot;item.file&quot;) ../bin/item_dl.sh session:$session pin:$pin id:$id;;
+#---------------------------------------------------------------------------------------------------------
+then you can access to the subapp
+http://localhost/cgi-bin/team?&amp;subapp=item&amp;req=table
+
+2. Meta link in the descriptor #html.def
+ +link to the APP #e.g please insert team_main.html.def
+ &lt;a href=&quot;./team?%%session&amp;subapp=item&amp;req=table&quot;&gt;link to subapp table&lt;/a&gt;
+</code></pre></div></p>
+<h4 id="routing">Routingの追加</h4>
+<p>インストラクションに従ってTeam APPへsubAPPコードを埋め込んでいきましょう</p>
+<pre><code>sudo nano /usr/lib/cgi-bin/team
+</code></pre>
+<p>アプリケーションのroutingについてはsmall shell Advancedで説明しますが、ここでは深く考えず、以下codeの前にroutingを追記しましょう
+<div class="highlight"><pre><span></span><code>  *)
+  echo &quot;error: wrong request&quot;;;
+</code></pre></div>
+編集後は以下のようになります
+<div class="highlight"><pre><span></span><code>  # item
+  &quot;item.table&quot;) ../bin/item_table.sh session:$session pin:$pin user_name:$user_name page:$page table_command:$table_&gt;  &quot;item.get&quot;) ../bin/item_get.sh session:$session pin:$pin user_name:$user_name id:$id;;
+  &quot;item.set&quot;) ../bin/item_set.sh session:$session pin:$pin user_name:$user_name id:$id;;
+  &quot;item.del&quot;) ../bin/item_del.sh session:$session pin:$pin user_name:$user_name id:$id;;
+  &quot;item.log_viewer&quot;) ../bin/item_log_viewer.sh session:$session pin:$pin id:$id;;
+  &quot;item.file&quot;) ../bin/item_dl.sh session:$session pin:$pin id:$id;;
+
+  *)
+    echo &quot;error: wrong request&quot;;;
+</code></pre></div></p>
+<h4 id="_11">メニューの追加</h4>
+<p>Team APPのeven(=)メニューに生成されたメタリンクを追加します。メタリンクはTeam APP内でのsession情報を維持する特殊な文字列を含んだリンクですが、%%タグ付いている個所は決して消さないでください</p>
+<pre><code>sudo nano /var/www/descriptor/common_parts/team_common_menu
+</code></pre>
+<p>commonメニューにメタリンクを追加します、ここではInquiry Formの前にItem.dbとして追加してみましょう、その際他のエントリー同様にliでリンクを囲みましょう。ちなみにInquiry Formはあくまで外部向けのリンクですのでTeam APP内ユーザーが不要な場合は消してしまいましょう
+<div class="highlight"><pre><span></span><code>&lt;li&gt;&lt;a href=&quot;./team?%%session&amp;subapp=item&amp;req=table&quot;&gt;Item.db&lt;/a&gt;&lt;/li&gt;
+</code></pre></div>
+以上でitem.dbもTeam APP配下でデータ管理ができるようになりました。再度Team APPへアクセスしてデータへアクセスできることを確認してみましょう</p>
+<p><img alt="Screenshot" src="../img/team_app_item.png" /></p>
+<h2 id="_12">その他の基本操作</h2>
+<h4 id="hashchain">Hashchain</h4>
+<p>Table viewにある#HashchainというリンクをクリックするとこれまでのDatBoxに取り込まれたデータの履歴をダウンロードできます、前回更新のデータと今回更新データを掛け合わせてhash値を取得し、一連の履歴をhashchainにするため同データを分析することで改ざんがないことを証明できます</p>
+<h3 id="_13">ダウンロード / 一括更新</h3>
+<p>DataBoxのデータをWEB上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してみましょう</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>primary_keyをhashidとした場合で、新規データをファイルimportにより登録したい場合hashidの値は一律newとしてください、その後自動採番されます</p>
+</div>
+<h3 id="initialize-url">Initialize URLの再生成</h3>
+<p>鍵は基本的にブラウザに自動保存されますが、もしも鍵をなくしてしまったりBase APPのURLがわからなくなった場合は再度鍵を生成しましょう</p>
+<pre><code># Base APP
+sudo /usr/local/small-shell/adm/ops initialize.usr:test
+
+# Team APP
+sudo /usr/local/small-shell/adm/ops initialize.usr:test app:team
+</code></pre>
+<h3 id="databoxkey">DataBoxへのkeyの追加削除</h3>
+<p>DataBoxへのkeyの追加削除もgenコマンドで可能です、以下コマンドを実行しその後はdialogに従ってdataboxとkeyを指定してください</p>
+<h4 id="key">key追加</h4>
+<pre><code>sudo /usr/local/small-shell/adm/gen -addcol
+</code></pre>
+<h4 id="key_1">key削除</h4>
+<pre><code>sudo /usr/local/small-shell/adm/gen -delcol
+</code></pre>
+<h3 id="databox_2">DataBoxの削除</h3>
+<p>DataBoxを消したい場合はrmコマンドにて削除して下さい、以下はsurvey.boxを削除しています</p>
+<pre><code>rm -rf /usr/local/small-shell/databox/survey.box
+</code></pre>
+<h2 id="graph">Graph生成</h2>
+<p>pyshellを使うことで容易にGraph生成ができます、まずはsmall shell公式サイトを確認してpython及びlibraryのインストールをしてください。公式サイトはChromeの翻訳機能を使えば日本語での閲覧が可能です   </p>
+<p><a href="https://small-shell.org/python_tour/">pyshell</a>
+<img alt="Screenshot" src="../img/translate.png" /></p>
+<p>公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではenv設定が適切に実施されpython3.9がインストールされていることを確認します
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat /usr/local/small-shell/util/pyshell/env | grep PYTHON
+PYTHON=&quot;/usr/local/bin/python3.9&quot;
+ubuntu@LAPTOP-8KU2HS6V:~$ ls /usr/local/bin/python3.9
+/usr/local/bin/python3.9
+</code></pre></div></p>
+<p>日本語を扱えるようにフォントをインストールしてフォント定義を変更しましょう
+<div class="highlight"><pre><span></span><code># フォントインストール
+sudo apt install fonts-ipaexfont
+sudo vi /usr/local/small-shell/util/pyshell/env
+--code--
+font_family=&quot;IPAexGothic&quot; 
+--------
+
+# キャッシュの削除
+sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-v330.json
+</code></pre></div></p>
+<h4 id="snapshot-graph">Snapshot Graph</h4>
+<p>pyshell環境が適切に設定できていたら、utility scriptであるcountup.shを使ってスナップショットグラフを作成しましょう。スナップショットグラフとはpyshell実行時点のデータを集計し、記録したグラフです。スナップショット以外にデータ蓄積を前提としたhourly, daily, monthlyのグラフの作成が可能です。以下は先ほどアンケート集計のために作成したsurvey.boxを"良い"、"普通"、"悪い"でそれぞれデータを集計するコマンド例になります</p>
+<div class="highlight"><pre><span></span><code>sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.box \
+key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+</code></pre></div>
+<p>タイトルを入れたい場合はtitleも入力してください、ここではタイトルにスペースを使わず"2022-04-18_調査結果"としています
+<div class="highlight"><pre><span></span><code>sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.box \
+key:impression filters:良い,普通,悪い title:2022-04-18_調査結果 type:pie frequency:snapshot
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>countup.shは指定のDataBoxのデータに対し指定のwordで検索をかけ、その件数を集計しグラフにします</p>
+</div>
+<h4 id="graph_1">Graphの確認</h4>
+<p>countup.shの実行がエラーなく完了したらconsoleでgraphを確認しましょう、command lineに#statsと打ち込めば作成されたグラフの一覧が出てきます。</p>
+<p><img alt="Screenshot" src="../img/graph.png" /></p>
+<p>Title付きのグラフをクリックしてみましょう、グラフがポップアップで表示されます</p>
+<p><img alt="Screenshot" src="../img/popup_graph.png" /></p>
+<h4 id="graph_2">Graphの削除</h4>
+<p>Graphを削除したい場合は、統計データを蓄積しているstatisticsディレクトリで直接データを消してください</p>
+<div class="highlight"><pre><span></span><code>ls /usr/local/small-shell/util/statistics/graph
+sudo rm /usr/local/small-shell/util/statistics/graph/countup_s_20220419_db_survey.box_impression_filtered.png
+sudo rm /usr/local/small-shell/util/statistics/rawdata/countup_s_20220419_db_survey.box_impression_filtered.csv
+</code></pre></div>
+<h2 id="_14">定期ジョブの登録</h2>
+<p>グラフを定期取得するためのジョブを登録しましょう、small shellでは対話を通じたcronへのジョブ登録が可能です</p>
+<h3 id="_15">ジョブの生成と登録</h3>
+<p>以下では先ほど実行したcountup.shを毎日0時0分に実行するジョブを登録しています</p>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ sudo /usr/local/small-shell/adm/gen -job
+job name: gen_survey_graph
+Type of job (1.job automation | 2.file exchange) : 1
+--Define schedule--
+Month [ any | 1-12 ]: any
+Date  [ any | 1-31 ]: any
+Hour  [ any | 0-23 ]: 0
+Min   [ any | 0-59 ]: 0
+Week  [ any | mon - sun ]: any
+Exec command or batch script: /usr/local/small-shell/util/scripts/countup.sh databox:survey.box \
+key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>genコマンドで登録されるジョブは自動でsmall-shell権限で実行されます</p>
+</div>
+<p>バッチスクリプトを指定すると最終確認が求められますので問題なければyesと入力しましょう
+<div class="highlight"><pre><span></span><code>job will be generated by following order, please check it
+-----------------------------------------------------------------
+
+jobtype: 1.job automation
+job_name: gen_survey_graph
+min: 0
+hour: any
+date: any
+month: any
+week: any
+exec_command: /usr/local/small-shell/util/scripts/countup.sh databox:survey.box key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+
+-----------------------------------------------------------------
+Is it OK ? (yes | no):
+</code></pre></div>
+ジョブ登録が完了したメッセージが表示されます。defにジョブ定義がありますので事後で編集することも可能です
+<div class="highlight"><pre><span></span><code>Succesfully generated. job definition is here
+def: /usr/local/small-shell/util/e-cron/def/gen_survey_graph.def
+Please enable job &quot;sudo -u small-shell /usr/local/small-shell/bin/e-cron enable.gen_survey_graph&quot;
+</code></pre></div>
+上記状態ではジョブは有効かされていないため有効化しましょう</p>
+<p><div class="highlight"><pre><span></span><code>sudo -u small-shell /usr/local/small-shell/bin/e-cron enable.gen_survey_graph
+</code></pre></div>
+有効化後はジョブの手動実行も可能です、以下はジョブの一覧を確認しgen_survey_graphを実行し結果を確認する例になります
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron ls
+--------------------------------------------------------------
+job definition: /usr/local/small-shell/util/e-cron/def
+--------------------------------------------------------------
+del_session.enabled
+del_util_log.enabled
+gen_survey_graph.enabled
+ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron exec.gen_survey_graph
+gen_survey_graph successfully completed
+ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron stat
+--------------------------------------------------------
+LATEST STATUS OF JOB
+--------------------------------------------------------
+2022-03-30 21:27:53 del_session successfully completed
+2022-04-19 20:22:18 gen_survey_graph successfully completed
+</code></pre></div>
+WSLをお使いの場合はcronは無効になっているので、windows再起動の都度以下コマンドを実行してcrondを起動してください</p>
+<pre><code>sudo service cron start
+</code></pre>
+<p>e-cronを用いるとさらに高度なジョブの登録や、他のホストとのメッセージ交換やデータ交換ができるようになります。詳細はsmall shell公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron tour</a>をご確認ください。chromeで翻訳して閲覧することをお勧めします。</p>
+<p>次章ではいよいよsmall shellフレームワークを用いた独自WEBアプリケーションの作成方法のご紹介します、ぜひ楽しんで学んでください</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="フッター">
+        
+          <a href="../web/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                WEB Basic
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../small_shell2/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                small-shell Advanced
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

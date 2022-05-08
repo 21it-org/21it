@@ -1,0 +1,665 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>Digital耐性 - 21it Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hello-digitalized-world" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="ヘッダー">
+    <a href=".." title="21it Docs" class="md-header-nav__button md-logo" aria-label="21it Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            21it Docs
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Digital耐性
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="クリア" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="21it Docs" class="md-nav__button md-logo" aria-label="21it Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    21it Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix1/" class="md-nav__link">
+        Unix Basic 1
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix2/" class="md-nav__link">
+        Unix Basic 2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genshi_programing/" class="md-nav__link">
+        shell programing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/" class="md-nav__link">
+        WEB Basic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell1/" class="md-nav__link">
+        small-shell Basic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell2/" class="md-nav__link">
+        small-shell Advanced
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Digital耐性
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Digital耐性
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    デジタル的なものの外観
+  </a>
+  
+    <nav class="md-nav" aria-label="デジタル的なものの外観">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    ひかりとかげ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#01" class="md-nav__link">
+    0と1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    真と偽
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    リンクしあう世界
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    くも
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    情報の海
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digital" class="md-nav__link">
+    Digital耐性
+  </a>
+  
+    <nav class="md-nav" aria-label="Digital耐性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    アルゴリズム
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    ちせいめいたもの
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    数字の魔術
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    不完全性の証明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    そら
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    デジタル的なものの外観
+  </a>
+  
+    <nav class="md-nav" aria-label="デジタル的なものの外観">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    ひかりとかげ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#01" class="md-nav__link">
+    0と1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    真と偽
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    リンクしあう世界
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    くも
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    情報の海
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digital" class="md-nav__link">
+    Digital耐性
+  </a>
+  
+    <nav class="md-nav" aria-label="Digital耐性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    アルゴリズム
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    ちせいめいたもの
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    数字の魔術
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    不完全性の証明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    そら
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="hello-digitalized-world">Hello digitalized World</h1>
+<p>デジタルなものが生まれたのは20世紀の世界大戦のあとまもなくで、あるいはそれは世界大戦のさなかの情報戦で暗躍しその後明瞭な姿を現したともいえます。まだ1世紀も経たないうちにそれはいま世界に氾濫しています。アナログなもの、触れられるものに代わりそれはいつしかそこにあり、ときには何かを語り掛けてきます。存在しないものが存在する、とでもいうべきなのでしょうか？それはアナログ的なもの、波のようなもの、触れられるものを分断し、再構成し、独自の虚構の世界を作り上げていきます。そこで働くデーモンたちはときに美しく、時に恐ろしくもあります。それらは存在せず、存在します。虚構のうちに。何が真実で、何が虚構か、それを見極め決断できるのは、結局のところ誰でもなく、ほかでもないあなた自身なのかもしれません。このアナログな世界に深く根ざし、痛みとともに世界を感じた、あなた自身が、結局のところ虚構を見極め得る最後の砦なのです。Digital耐性とは、デジタル的なものを正しくとらえ、その非人間的な性質を理解し、それがもたらす破壊的イノベーションに飲み込まれず、これを馴らし、乗りこなし、あなた自身の力とする、そういった耐性のことを考えています。それではデジタル的なものの外観をまずは観ていきましょう。</p>
+<h2 id="_1">デジタル的なものの外観</h2>
+<h3 id="_2">ひかりとかげ</h3>
+<p>デジタルとは何かという問いかけの前に、そもそも情報とは何なのかと考えてみたいと思います。Information Technologyなるものの、Informationの定義は何なのでしょうか？とくにどこかで明確に定義がされているわけではないと思うのですが、ここでは情報とは単純に数字や言葉によって置き換えられたものと考えたいと思います。遊ぶ猫を見て、猫が遊んでいたと日記のようなものに記述したとして、それはもう立派な情報です。いつどこで、猫が遊んでいたか、時間軸とともに記述すればなを情報として、ほかの誰かに伝えやすいことでしょう。一方で、その記述は多くの現実をそぎ落としています。そこで猫と呼ばれていた不思議な何かは、猫であると同時に固有の一回性の現象であり、それそのものを固有の事象としてとらえようとすれば名前で呼ぶことになるのかもしれませんし、もっとも厳密にいえばDNA配列で記述するほうが良いのかもしれません。   </p>
+<p>しかしながら双子の猫だった場合、DNAによる定義では十分ではないですし、名前にしても世界には無数の同じような猫の名前があるのだからして、厳密に記述することはなかなか難しいものです。ましてその名前は何によって権威づけられたものでしょうか、まったくのところ、ただ勝手にそのように呼び、表現したにすぎません。そして猫が遊んでいた場所の定義にしても、どこかというのもあいまいですし、そもそも遊ぶという概念が猫それ自体にあるのかもわかりませんし、猫自身に遊んでいる自覚があるのかもわかりません。それはただ、そう表現し、伝わりうるかぎりにおいて、一定の情報でありうるにすぎません。つまるところ、情報とは現象の一面にひかりをあて、その一部を抽象化し、それ以外のすべてをかげとしてそぎ落とすことなのだと言えます。そういった意味では、多くのものは欠落し、なくなり、情報になることによって別の何かに置き換わっているのだといえます。</p>
+<h3 id="01">0と1</h3>
+<p>デジタルにおいて、情報についての上述のような半ば哲学的な問いかけは即座に消え去ります。猫と記述されればそれは猫であり、それ以上でも以下でもない単なるテキストです。さらにそのテキストは機械に送られるに際して、信号に変換され、そのじつ、0と1の二進数の集合に変換されます。なぜ0と1を使うのかというと、それは0が電気的な状態としてOFFであり、1が電気的にはONという状態だという、それだけのことなのです。突き詰めてしまえば、それ以外の表現は難しく、難しいからこそ、そぎ落とされるに値します。半導体は電圧によって電気を通したり通さなかったりする状態を持ちうるという性質をもつため、デジタル的なものを処理するのに非常に適していました。0と1の信号を論理演算により、別の0と1の並びに置き換える。これがInformation Technologyがやっていることのすべてであり、それ以上でもなければ以下でもないといえます。それ自体は、特段良くも悪くもないです。機能するか、しないか、結局のところそれだけが重要なのかもしれません、なぜならそれは機械なのだから。</p>
+<h3 id="_3">真と偽</h3>
+<p>デジタルの世界において、真というべきものは論理演算において1となるものであり、偽りというべきものは論理演算において0となるものにすぎません。論理演算自体は半導体の内部においてゲートを通した結果、結果が1、つまり通電したというのにすぎませんし、論理ゲートを記述するというのがプログラミングの本質であり、それを実行するのが汎用プロセッサなのだといえば、それはただそれだけのことです。ITにおける真とは論理演算において、返値が1であるという、たったそれだけのことであり、真実や真理とは全く関係のないことだといえます。もっとも、それがそうであることは実に機能的には良いことでもあります、真理なるものは測りがたく、表現の域を超えています。詰まるところ、わかりようもないので、切り捨てるに値するともいえます。それ自体は合理的で、機能という観点においては美しいことでもあります</p>
+<h3 id="_4">リンクしあう世界</h3>
+<p>情報は現実の一面に光をあて、それ以外の要素をそぎ落とすという性質を持ちますが、それは本来言葉持っていた性質でもあります。一方で、言葉それ自体は多義的でもあります。言葉は、あいまいで、文脈により変化し、気づきをもたらし、現象それ自体への、物質的なものへの降下から、認識の高みへと人を導きます。それと同じことなのかはわかりませんが、インターネット上のハイパーテキストはリンクしあい、リンクすることにより巨大な意味を形成しました。</p>
+<p>人はこれを介し、世界に自ら情報を発信し、また世界からも情報を受け取ることができるようになりました。言葉は伝播し、情報は分散ネットワーク上に様々な形態で、深くあるいは浅く広く蓄積されていきました。世界はリンクしあい、開かれたかのようでした。性善説に基づいて作られたインターネットは、開かれた世界のフロンティアのようでもありました。そこではコミュニティが自律的に公平な運用ルールを定め、他者を排除せず、建設的にネットワークをつないでいく姿がありました。それがもともとのインターネットの原点だったのです。</p>
+<h3 id="_5">くも</h3>
+<p>インターネットの姿を思い描くとき、それはふたつの意味でくものようです。一つは巨大なWEB=蜘蛛で、リンクしあうサイト間のつながりはその実、World Wideに広がった蜘蛛の糸のようですし、それはもともとWorld Wide Webと呼ばれていました。WEBはつながりあい、伝播しあい、情報をつなげます。もう一つのくもはcloud=雲で、その雲は問いかけをすると即座に答えを返す、不思議な雲に見えます。インターネットは二重のくもが重なりあった巨大なネットワークのようにみえます。蜘蛛の糸は細部までいきわたり、つなげ、呼吸する生物のようですし、雲はどこか測りがたく、ときとして空に溶け込みその存在にすら気づかないもののようでもあります。   </p>
+<p>インターネットのくもが人にもたらしたものは、大きなものでした。情報は流通し、経済は開かれ、人は相互に意見交換しました。蜘蛛はつなげ、雲は答えました。それは、ある意味限界まで拡大していたグローバルな経済をさらに拡張するためのあらたなフロンティアでもありました。インターネット上に新たな産業が生まれ、価値はソフトウェアとして容易にコピーされ、伝播することができるようになりました。一方で、くもは元来の性質がそうであったように、別の性質も持っています。蜘蛛の糸は獲物を絡め、停止させ、食料としますが、それこそが生物的な目的としてはすべてでもあります。一方の雲は白い概観に反して、そのうちには多くの暗さ、雷と雨を孕み、巨大になれば嵐をもたらします。</p>
+<p>インターネットは単にそれらと似ているだけかもしれませんが、つまるところ、似ているからこそ同じ性質を持っているようにもみえます。それは人々を絡め捕らえ、思考を停止させ、嵐のうちに飲み込む力を持ちます。しっかりとした足場を築き、対峙しているそれが何かを知ったうえで対処しなければ人は容易に流されてしまいます。それが持っている力は、すでに絶望的なほどに大きく、それがうちに孕んでいる嵐は、今まさに恵みではない雷雨をもたらそうとしているようにも思えます。もちろん悪い予感は的中しないに越したことはありませんが、しかるべき準備はしておいたほうが良いでしょう</p>
+<h3 id="_6">情報の海</h3>
+<p>あるいは人は情報の海に、いかだで漕ぎ出した小さな子供のようにもみえます。いかだはもろくも崩れ、嵐の海に投げ出されることでしょう。その実、しっかりと未来を見据えて組み上げられていなかったのです。当座の金銭事情で、ありあわせの材料で組み上げたいかだはもろくも崩れ、情報の渦に飲まれることでしょう。そうして泳いでいるのか、溺れているのかもわからずただ流されていく。軸となる考えを持たず、原理的に物事を考える習慣を持たない場合、表面的な情報にどこまで流されていくことでしょう、情報は誇張することが容易で、偽装することも容易です。特段嘘をつく必要はないのです、ただ少し、ほんの少し誇張すればそれで十分、あとは個々人が都合の良いように解釈してくれます。　　　</p>
+<p>しかしながら、答えているのはただの暗雲であり、苛立ちであるのかもしれません。雲の中は全く見えないのです。信号の先にある実体を捉えることは難しく、唐突な答えを検証することは難しく、その姿は捕らえがたく、ただ、雲であるにすぎないのです。この目でみて、この手で触れ、確かめることはもはやできないのです</p>
+<h2 id="digital">Digital耐性</h2>
+<h3 id="_7">アルゴリズム</h3>
+<p>答えているのは暗雲で、ましてや苛立ちであるかもしれないというのは、それこそ間違った誇張を含んだ表現だったとまずは認めなければなりません。その実、それはそういうものではないのです。それは単なる計算の結果で、人間ではないのです。それは所定の手続きに沿って計算された結果で、入力値が同じであれば出力される結果も同じになります。その所定の手続きのことをアルゴリズムといいますが、アルゴリズムそのものは非常に単純な概念でもあります。　　　</p>
+<p>0に対して+1を3回繰り返すと3になりますが、この+1を3回繰り返すという手続きはアルゴリズムと呼ぶことができます。所定の手続きを経て一定の結果を得ること、それがアルゴリズムの定義といえます。それはそのままプログラム可能で、単なる処理の方法と結果であるにすぎません。本来それは正しさや、真実とは全く異なるものだと言えます。+1を3回繰り返すと3になるというのは自明なことですが、+1をなぜ3回繰り返さなければいけなかったのか、その前提をコンピューターは考慮しません。それはプログラムとは別の問題なのです。そして、その前提はあまり開示もされず議論もされなていないように思えます</p>
+<h3 id="_8">ちせいめいたもの</h3>
+<p>クラウドのその先にあるものは何でしょう、そこには膨大な電力を消費しながら稼働する無数のサーバとそれを収容するどこかへき地のデータセンターがあることでしょう。温度は空調で一定に保たれ、半ば無人で、半ば薄暗く、半ば冷たい場所で、同じような形状のラックが秩序だって並び、同じような形状のサーバが収容され、音を立てながら、旺盛に電力を喰らいながら、振動しながら動いていることでしょう。部外者は立ち入ることができず、場合によっては武装した警備が守っているかもしれません。データと、データを格納し演算する機械を守っているのです。</p>
+<p>データはどこかに格納されると同時に人工知能の訓練にも使われることでしょう、人工知能はアルゴリズムに基づき分類を最適化します。それはArtificialな知能であって、知性や知能そのものとは異なります。それはただ統計的手法に基づき、最適化します。パラメーターを調整しながら関数を生成し、関数によって対象を分類します。対象は特徴量として記録され、ただの数字となって暗いストレージの中に押し込められます。それは電力が許す限り、あわよくばCPUとGPUの処理性能を限界まで使い切り、データを喰らい、電力を喰らい、つまるところ数式を調整し、数字に変換し、記録し、蓄積します。</p>
+<h3 id="_9">数字の魔術</h3>
+<p>あなた自身に関する何かも、きっと世界のデータセンターのどこかのストレージに数字として格納されていることでしょう、その数字が何を意味するかはアルゴリズムを組み立てなおさなければわかりようもないことでしょう。はっきりとした同意をした覚えはないかもしれませんが、おそらくすでに、それはあなたを何かとして分類し、ストレージの奥深くに単なる特徴量として記録しています。データの一部として</p>
+<p>数字は嘘をつかないというのは本当ですが、同時に数字ほど嘘をつくもありません。たとえば、売上げが毎年100億円ある企業は投資に値する企業でしょうか？100億円という数字は巨大なもので人を魅了するものではありますが、その実その会社は毎年100億円超の赤字を出しているかもしれません。その会社の決済報告書をきちんと読み、数字を多面的に並べなければ実体は見えてこないのです。売り上げ100億円の企業の経営者だなどと自慢げにはなし、豪遊する人物に出会った場合は気を付けたほうが良いでしょう。実際の利益などわかったものではないですが、その多くをその人は独占して社員に還元していない可能性も大いにあります。それはたかだか100億円の売り上げしかないワンマン企業で、先など見えているかもしれません。</p>
+<h3 id="_10">不完全性の証明</h3>
+<p>実際のところ、都合の良いように数字を並べて良好な状態を装うことは非常に簡単ではあります。数字そのものに嘘はなくとも、断片だけを見せ、不都合な数字を隠すことで事実とは異なる姿を描くことはそれほど難しくありません。数字は単なる数字で、これをもとに様々な想像をめぐらすのが人であるともいえます。人がめぐらす想像は魔術のようにその人自身を誘惑し、自らが見たい架空の姿を作り上げます。数字そのものは、触れられることのできない架空の代物だと考えたほうが良いでしょう。クラウドの奥に断片になって隠された、あなたを表す特徴量があなたとは何の関係もないように。</p>
+<p>数字は本質において架空なものですが、それを処理するアルゴリズムもまた現実とは乖離しています。それ自体は、完ぺきななにかではなく単なる処理手順であるにすぎません。計算機が人より正確に計算できるように、アルゴリズムは今では人より正確に人の特徴を分類するかもしれません。しかしながら、バグは常にプログラムに入り込みます。それは意図せず、平然と、そこにあります。バグはプログラムの至る所に入り込みますが、それをつぶすためには時間をかけた検証が必要になります。時間をかけテストをし、あらゆる入力パターンを確かめ、さらに実際に使いこみ、実用性をたしかめてみて、初めてそれは一定程度の信頼性をもって機能すると言えるようになります。あるいはバグの存在こそが、人の計画の不完全性を証明するものであり、またそれが入り込むことを認めることこそが人の可能性を開くものであるといえるかもしれません。</p>
+<p>一方で、昨今AIと呼ばれているものを検証する術は、実際のところあまりありません。それは事実を無造作に切り取り、分類し、蓄積します。もちろんそれは実体との差分を数値的に表現し、関数に修正は加え続けるのですが、その関数が正しいことは誰にも証明できません。今それなりに妥当であったとしても、次の瞬間も妥当であるかは本当のところわかりようもないのです。機械自体が機械自体に対してフィードバックを加えて関数を修正し続けるというのは、結局のところそういうことなのです。それは人が間違える以上に、おそらく間違えるでしょう。それも、人からすると全く信じがたいかたちで間違えるでしょう。つまるところ、それは人ではないのです</p>
+<p>おそらく、AIを作り上げている基礎的な理論を理解せずにAIを信用すれば、大きな失敗をするでしょう。それが社会インフラの本質的な部分に組み込まれると、その社会は場合によっては大きな利益を得ると同時に、大きな不具合も内在化することでしょう。何事も鵜呑みにするのはよくないものです、事実に即して腹落ちするまで考え、地に足の着いた決定をしたいものです。</p>
+<h3 id="_11">そら</h3>
+<p>デジタルは本質において空虚なものです、それは数字が現実の多くの要素をそぎ落とし抽象化したものであり、架空であることによって有用となったように、デジタルやそれが扱っているものが単なる信号であり、事実性の多くを欠落させているというのは、それ自体は有用なことです。けれどそこに過度の意味やつながりを見出すのは危険です。あたかも情報は氾濫し、人の批評や批判の雨はときに雷雨のように荒れています。しかし、たとえ雷雨の中にあっても、信念をもちまっすぐに歩むことができれば、間もなく雲は晴れることでしょう。   </p>
+<p>現時点でAIにはなんらの知性もありません、それはせいぜい認知レイヤーであってアプリケーションにいくつかの可能性を付与するにすぎないと考えます。それはもともと偽物で、それ以上でもなければ以下でもないのです。本当の認識がどういったものか、英語にそのヒントがあるように思えます。認識するということは、つまりrealize=現実化するということを示唆します。未だ見ぬ未来はすでにそこにあり、認識し具現しえる誰かを待っているのかもしれません。来るべき未来を認識するのは、人なのです。多くの人が正直で、開かれた目と開かれた心を持ち、嘘を厭うようになれば、きっと、未来は良いものになるでしょう。そのために21世紀IT塾を私は始めたのです。</p>
+<p>*</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="フッター">
+        
+          <a href="../small_shell2/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                small-shell Advanced
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

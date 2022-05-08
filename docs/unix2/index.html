@@ -1,0 +1,2553 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>Unix Basic 2 - 21it Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unix-basic-2" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="ヘッダー">
+    <a href=".." title="21it Docs" class="md-header-nav__button md-logo" aria-label="21it Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            21it Docs
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Unix Basic 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="クリア" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="21it Docs" class="md-nav__button md-logo" aria-label="21it Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    21it Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix1/" class="md-nav__link">
+        Unix Basic 1
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Unix Basic 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Unix Basic 2
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    シェル
+  </a>
+  
+    <nav class="md-nav" aria-label="シェル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    パイプ
+  </a>
+  
+    <nav class="md-nav" aria-label="パイプ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    検索結果のフィルター
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    Text加工
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    高度なコマンド
+  </a>
+  
+    <nav class="md-nav" aria-label="高度なコマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grep" class="md-nav__link">
+    { grep }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ grep }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    or検索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    大文字小文字を無視
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and" class="md-nav__link">
+    and検索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    特定文字を含まない行の検索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    さらに高度な検索
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk" class="md-nav__link">
+    { awk }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ awk }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    スペース区切り
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    任意の区切り文字
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    列組みなおし
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep_1" class="md-nav__link">
+    grepとの組合わせ
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    { sed }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ sed }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    削除処理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    改行処理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    行頭・行末への文字追加
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    { sort }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ sort }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    昇順、降順の並び替え
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    自然な並び替え
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniq" class="md-nav__link">
+    { uniq }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ uniq }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    重複排除の例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wc" class="md-nav__link">
+    { wc }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ wc }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    行数カウント
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cut" class="md-nav__link">
+    { cut }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ cut }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    N列抽出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n_1" class="md-nav__link">
+    N列目以降を抽出
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tr" class="md-nav__link">
+    { tr }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ tr }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    文字列削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nl" class="md-nav__link">
+    { nl }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ nl }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    行番号の付与
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#head" class="md-nav__link">
+    { head }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ head }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    先頭から指定行数を表示
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tail" class="md-nav__link">
+    { tail }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ tail }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#watch" class="md-nav__link">
+    ログファイルをwatchする
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diff" class="md-nav__link">
+    { diff }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ diff }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    差分を出力
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meta-charactor" class="md-nav__link">
+    Meta charactor
+  </a>
+  
+    <nav class="md-nav" aria-label="Meta charactor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    アスタリスク
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    行頭
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    行末
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    任意の一文字
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    無効化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    その他の特殊文字
+  </a>
+  
+    <nav class="md-nav" aria-label="その他の特殊文字">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    改行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    文字区切り
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi" class="md-nav__link">
+    高度なエディター (vi)
+  </a>
+  
+    <nav class="md-nav" aria-label="高度なエディター (vi)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mode" class="md-nav__link">
+    mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    カーソルの移動
+  </a>
+  
+    <nav class="md-nav" aria-label="カーソルの移動">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    コマンドモード
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    インサートモードへ移行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    コマンドモードへ移行
+  </a>
+  
+    <nav class="md-nav" aria-label="コマンドモードへ移行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    文字検索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    文字削除
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    一括削除
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    一括コピー
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    一括貼り付け
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    元に戻す
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    一括置換
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    その他の便利なコマンド
+  </a>
+  
+    <nav class="md-nav" aria-label="その他の便利なコマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    行頭に移動する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    行末に移動する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    ファイルの最初に移動する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    ファイルの最後に移動する
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    ファイルを保存する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi_1" class="md-nav__link">
+    viを終了する
+  </a>
+  
+    <nav class="md-nav" aria-label="viを終了する">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    保存して終了
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    保存せず終了
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    強制終了
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    自動インデントをなくす
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    その他のテクニック
+  </a>
+  
+    <nav class="md-nav" aria-label="その他のテクニック">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    候補の表示
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administrator" class="md-nav__link">
+    Administrator
+  </a>
+  
+    <nav class="md-nav" aria-label="Administrator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sudo" class="md-nav__link">
+    sudo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    ユーザーを作る
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    グループを作る
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo_1" class="md-nav__link">
+    sudo権限付与
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    SSHでログインする
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automation" class="md-nav__link">
+    Automation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    WEB系コマンド
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    体系的な学習
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genshi_programing/" class="md-nav__link">
+        shell programing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/" class="md-nav__link">
+        WEB Basic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell1/" class="md-nav__link">
+        small-shell Basic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell2/" class="md-nav__link">
+        small-shell Advanced
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../digital_resilience/" class="md-nav__link">
+        Digital耐性
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    シェル
+  </a>
+  
+    <nav class="md-nav" aria-label="シェル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    パイプ
+  </a>
+  
+    <nav class="md-nav" aria-label="パイプ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    検索結果のフィルター
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    Text加工
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    高度なコマンド
+  </a>
+  
+    <nav class="md-nav" aria-label="高度なコマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grep" class="md-nav__link">
+    { grep }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ grep }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    or検索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    大文字小文字を無視
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and" class="md-nav__link">
+    and検索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    特定文字を含まない行の検索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    さらに高度な検索
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk" class="md-nav__link">
+    { awk }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ awk }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    スペース区切り
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    任意の区切り文字
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    列組みなおし
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep_1" class="md-nav__link">
+    grepとの組合わせ
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    { sed }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ sed }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    削除処理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    改行処理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    行頭・行末への文字追加
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    { sort }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ sort }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    昇順、降順の並び替え
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    自然な並び替え
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniq" class="md-nav__link">
+    { uniq }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ uniq }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    重複排除の例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wc" class="md-nav__link">
+    { wc }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ wc }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    行数カウント
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cut" class="md-nav__link">
+    { cut }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ cut }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    N列抽出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n_1" class="md-nav__link">
+    N列目以降を抽出
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tr" class="md-nav__link">
+    { tr }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ tr }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    文字列削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nl" class="md-nav__link">
+    { nl }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ nl }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    行番号の付与
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#head" class="md-nav__link">
+    { head }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ head }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    先頭から指定行数を表示
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tail" class="md-nav__link">
+    { tail }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ tail }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#watch" class="md-nav__link">
+    ログファイルをwatchする
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diff" class="md-nav__link">
+    { diff }
+  </a>
+  
+    <nav class="md-nav" aria-label="{ diff }">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    差分を出力
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meta-charactor" class="md-nav__link">
+    Meta charactor
+  </a>
+  
+    <nav class="md-nav" aria-label="Meta charactor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    アスタリスク
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    行頭
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    行末
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    任意の一文字
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    無効化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    その他の特殊文字
+  </a>
+  
+    <nav class="md-nav" aria-label="その他の特殊文字">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    改行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    文字区切り
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi" class="md-nav__link">
+    高度なエディター (vi)
+  </a>
+  
+    <nav class="md-nav" aria-label="高度なエディター (vi)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mode" class="md-nav__link">
+    mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    カーソルの移動
+  </a>
+  
+    <nav class="md-nav" aria-label="カーソルの移動">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    コマンドモード
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    インサートモードへ移行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    コマンドモードへ移行
+  </a>
+  
+    <nav class="md-nav" aria-label="コマンドモードへ移行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    文字検索
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    文字削除
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    一括削除
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    一括コピー
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    一括貼り付け
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    元に戻す
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    一括置換
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    その他の便利なコマンド
+  </a>
+  
+    <nav class="md-nav" aria-label="その他の便利なコマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    行頭に移動する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    行末に移動する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    ファイルの最初に移動する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    ファイルの最後に移動する
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    ファイルを保存する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi_1" class="md-nav__link">
+    viを終了する
+  </a>
+  
+    <nav class="md-nav" aria-label="viを終了する">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    保存して終了
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    保存せず終了
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    強制終了
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    自動インデントをなくす
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    その他のテクニック
+  </a>
+  
+    <nav class="md-nav" aria-label="その他のテクニック">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    候補の表示
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administrator" class="md-nav__link">
+    Administrator
+  </a>
+  
+    <nav class="md-nav" aria-label="Administrator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sudo" class="md-nav__link">
+    sudo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    ユーザーを作る
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    グループを作る
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo_1" class="md-nav__link">
+    sudo権限付与
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    SSHでログインする
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automation" class="md-nav__link">
+    Automation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    WEB系コマンド
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    体系的な学習
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="unix-basic-2">UNIX Basic 2</h1>
+<h2 id="_1">シェル</h2>
+<p>shellはどこか東洋的なものであるように思えます。無駄なものをそぎ落とし端的に応える。これがshellの基本的な哲学のようなものだといえます。もともとコンピューターに十分なリソースがないときから人との対話を可能にするために、shell自体はとても小さく作られ、冗長なといかけや応答は削られていきました。その伝統はCPUリソースが十分に使える現在においても継承され、無駄なステップをすべてそぎ落とした端的な表現や指示がコンピューターに対して行えるように設計されています。それは、それ自体がcommand line interfaceであったからでしょうか、テキストの処理に優れ、データを思うままに抽出・集計し、期待するアウトプットに加工することができます。コマンドを連結し、処理をつなげる。たったこれだけのことが。実にありふれた、簡潔で平易なshellの奥義だといえます</p>
+<h3 id="_2">パイプ</h3>
+<p>パイプ(pipe)はあるコマンドの結果を次のコマンドに渡し、処理に幾重にもフィルダーをかけていくことができます</p>
+<h4 id="_3">検索結果のフィルター</h4>
+<p>パイプを利用して検索結果に幾重にもフィルターをかけることができます。また、フィルターされた結果を集計することもできます</p>
+<div class="highlight"><pre><span></span><code>#ファイルを開き、特定の文字を検索する (And条件)
+cat 対象ファイル | grep 検索ワードA | grep 検索ワードB
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>#さらに検索結果の数を数える (カウントアップ)
+cat 対象ファイル | grep 検索ワードA | grep 検索ワードB | wc -l
+</code></pre></div>
+<h4 id="text">Text加工</h4>
+<p>以下はコマンドをつなげてできた処理の一例です。コマンドをパイプでつないで結んでいくことでテキストを様々な形に加工することができます</p>
+<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo "Hello World"
+Hello World
+ubuntu@LAPTOP-8KU2HS6V:~$ echo "Hello World" | awk '{print $1}'
+Hello
+ubuntu@LAPTOP-8KU2HS6V:~$ echo "Hello World" | sed "s/Hello/Hi/g"
+Hi Wrold
+</code></pre>
+<p>後述する高度なコマンドを用いると入力に対して様々なアウトプットを作ることができます</p>
+<h2 id="_4">高度なコマンド</h2>
+<p>Unix/Linux上で使うことができる有用なコマンドを紹介します、コマンドは単体で使うのではなく、他のコマンドと組み合わせて使うことで無限の応用ができます。コマンドを使うことでテキスト処理プログラムを１から作成する必要がなく、オプションやコマンド自体の組み合わせで一括処理できるため非常に高い生産性を発揮します。以下はよく使うコマンドの組み合わせテクニックの例です。必ずしもすべてを理解してもらう必要はありませんが、単純なコマンドの組み合わせだけで、複雑な処理が組めるというのを理解してもらえればと思います。次章以降でご紹介するshellを利用したプログラムにおいても、コマンドは処理の中心になります</p>
+<h3 id="grep">{ grep }</h3>
+<p>grepはすでにご紹介した検索用のコマンドですが、非常に有用なためあらためて紹介させていただきます。まずはよく使うオプションをご紹介します</p>
+<pre><code>grep 検索ワード 対象ファイル
+</code></pre>
+<h4 id="or">or検索</h4>
+<p>-eオプションはgrepだけでor検索をできるようにします、任意の単語を含む行を指定ファイルから抽出します</p>
+<pre><code>grep -e 検索ワードA -e 検索ワードB 対象ファイル
+</code></pre>
+<h4 id="_5">大文字小文字を無視</h4>
+<p>-iオプションは大文字小文字を区別しません</p>
+<pre><code>grep -i 検索ワード 対象ファイル
+</code></pre>
+<h4 id="and">and検索</h4>
+<p>pipeの例でもご紹介しましたが、処理結果にフィルターをかけてpipeでつなげることで、and検索をすることもできます、以下記述では任意のファイルを開き 任意の検索ワードAでフィルターしさらにその結果を任意の検索ワードBでフィルターしています</p>
+<pre><code>cat 対象ファイル | grep 検索ワードA | grep 検索ワードB
+</code></pre>
+<h4 id="_6">特定文字を含まない行の検索</h4>
+<p>grep -vは非常に有用なコマンドです、特定の文字を含まない行を表示することができます。これを用いることで任意の行をファイル内から除外して表示することができ、例えばリストから特定のIDを消したい場合などに有用です。</p>
+<pre><code>grep -v 検索ワード　対象ファイル
+</code></pre>
+<div class="highlight"><pre><span></span><code># 元ファイル
+ubuntu@LAPTOP-8KU2HS6V:~$ cat list.csv
+-------
+id,name
+01,adam
+02,eve 
+-------
+
+# id=01の行を削除,^は行頭を意味するメタキャラクター
+ubuntu@LAPTOP-8KU2HS6V:~$ cat list.csv | grep -v ^01,
+-------
+id,name
+02,eve
+-------
+</code></pre></div>
+<h4 id="_7">さらに高度な検索</h4>
+<p>メタキャラクターを使用してさらに高度な検索をすることができます。詳しくは<a href="#meta-charactor">メタキャラクター</a>を参照してください</p>
+<h3 id="awk">{ awk }</h3>
+<p>awkは任意の文字を区切り文字として、指定の列を抽出します、デフォルトの区切り文字はスペースになります</p>
+<h4 id="_8">スペース区切り</h4>
+<p>以下例ではスペース区切りの2列目を取り出します、echoコマンドで"abc def ghr"という文字列を出力したものをpipeでawkコマンドに渡し、スペース区切りの2列目を抽出しています</p>
+<pre><code>awk '{print $列番号}'
+</code></pre>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc def ghr&quot; | awk &#39;{print $2}&#39;
+def
+</code></pre></div>
+<p>awkはファイルを対象にして使うことができます, abc.txtというファイルを作ってawkで列抽出を試してみましょう</p>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc def ghr&quot; &gt; abc.txt
+ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;jkl mno pqr&quot; &gt;&gt; abc.txt
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.txt
+abc def ghr
+jkl mno pqr
+ubuntu@LAPTOP-8KU2HS6V:~$ awk &#39;{print $2}&#39; abc.txt
+def
+mno
+</code></pre></div>
+<h4 id="_9">任意の区切り文字</h4>
+<p>-Fオプションで区切り文字を定義することができます、以下例ではカンマを区切り文字としてcsvの2列目を取り出します</p>
+<pre><code>awk -F "区切り文字" '{print $列番号}'
+</code></pre>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc,def,ghr&quot; | awk -F &quot;,&quot; &#39;{print $2}&#39;
+def
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $2}&#39;
+def
+mno
+</code></pre></div>
+<h4 id="_10">列組みなおし</h4>
+<p>以下例ではcsvファイルの列の並びを入れ替えて出力しています、各列の間に","を入れることでcsvを再構成しています
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;,&quot;$2&quot;,&quot;$1}&#39;
+ghr,def,abc
+pqr,mno,jkl
+</code></pre></div></p>
+<p>列と列の間の区切り文字を変えることもできます
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;:&quot;$2&quot;:&quot;$1}&#39;
+ghr:def:abc
+pqr:mno:jkl
+</code></pre></div></p>
+<h4 id="grep_1">grepとの組合わせ</h4>
+<p>以下のようなitem.csvというリストを作成します
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat item.csv
+-----------------------------------------------
+item_name,category,description,price
+りんご,フルーツ,青森県産,100円
+みかん,フルーツ,愛媛県産,100円
+大根,野菜,,100円
+-----------------------------------------------
+</code></pre></div>
+フルーツカテゴリーの商品名だけ抜き出したい場合はgrepと組み合わせると簡単に処理を作ることができます
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat item.csv | grep フルーツ | awk -F &quot;,&quot; &#39;{print $1}&#39;
+りんご
+みかん
+</code></pre></div></p>
+<p>awkはそれ自体で1冊本が書けてしまうほど奥深いコマンドです、上記grepコマンドを使わずともawkコマンドだけでより高度なフィルター処理が可能です。awkコマンドについてはぜひご自身でその可能性を探ってみてください</p>
+<h3 id="sed">{ sed }</h3>
+<p>sedコマンドは文字列の変換コマンドとして使われます、以下はabcという文字列をdefという文字列に経何する例です</p>
+<pre><code>sed "s/変換文字/変換後文字/g"
+</code></pre>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc&quot;
+abc
+ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc&quot; | sed &quot;s/abc/def/g&quot;
+def
+</code></pre></div>
+<h4 id="_11">削除処理</h4>
+<p>sedで特定文字列を削除する場合は変換文字を空にします。以下例ではabという文字を削除しています
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc&quot; | sed &quot;s/ab//g&quot;
+c
+</code></pre></div></p>
+<h4 id="_12">改行処理</h4>
+<p>sedを利用して、改行を加えて見やすくしたり、逆に改行をなくして1列にして処理をしやすくしたrすることがあります。\nはUNIXの改行コードです</p>
+<div class="highlight"><pre><span></span><code># 元ファイル
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+abc,def,ghr
+jkl,mno,pqr
+
+# カンマを改行へ変換
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv  | sed &quot;s/,/\n/g&quot;
+abc
+def
+ghr
+jkl
+mno
+pqr
+
+# 上記処理の改行をさらにスペースへ変換, -zオプションを使用
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv  | sed &quot;s/,/\n/g&quot; | sed -z &quot;s/\n/ /g&quot;
+abc def ghr jkl mno pqr
+</code></pre></div>
+<h4 id="_13">行頭・行末への文字追加</h4>
+<p>メタキャラクターを使用してさらに高度な変換をすることができます。例えば行頭、行末に一括で特定の文字列を付与することができ、非常に便利です。行とは^、行末は$で表すことができますが、メタキャラクタについては<a href="#meta-charactor">メタキャラクター</a>を参照してください</p>
+<div class="highlight"><pre><span></span><code># 元ファイル
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+abc,def,ghr
+jkl,mno,pqr
+
+# 行頭にシャープを追加
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/$/#/g&quot;
+#abc,def,ghr
+#jkl,mno,pqr
+
+# 行末にタグを追加
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/$/#/g&quot;
+abc,def,ghr#
+jkl,mno,pqr#
+
+# 行頭・行末にタグを追加（HTMLタグへ変換）
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
+&lt;p&gt;abc,def,ghr&lt;/p&gt;
+&lt;p&gt;jkl,mno,pqr&lt;/p&gt;
+</code></pre></div>
+<h3 id="sort">{ sort }</h3>
+<p>sortは並び替えを行うためのコマンドです、pipeと組み合わせて使うのが一般的です。先ほどのabc.csvを解体して並び替えてみましょう</p>
+<h4 id="_14">昇順、降順の並び替え</h4>
+<div class="highlight"><pre><span></span><code># 元ファイル
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+abc,def,ghr
+jkl,mno,pqr
+
+# カンマ区切りを改行に変換し昇順にソート
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/,/\n/g&quot; | sort -n
+abc
+def
+ghr
+jkl
+mno
+pqr
+
+
+# アルファベット降順にソート
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/,/\n/g&quot; | sort -r
+pqr
+mno
+jkl
+ghr
+def
+abc
+</code></pre></div>
+<h4 id="_15">自然な並び替え</h4>
+<p>sort -Vを使うと自然な並び替えができて便利です、詳しくはsortのmanページを参照ください</p>
+<pre><code>sort -v
+</code></pre>
+<h3 id="uniq">{ uniq }</h3>
+<p>uniqは重複した行を集約するコマンドです、一般的にpipeでsortと一緒に使うことが多いです。以下例ではコマンドを組み合わせながら文字列を操作し、あえて重複を作った後、最後に重複を排除しています</p>
+<h4 id="_16">重複排除の例</h4>
+<div class="highlight"><pre><span></span><code># 対象ファイル
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+abc,def,ghr
+jkl,mno,pqr 
+
+# 重複させる
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv &gt; double.csv
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv &gt;&gt; double.csv
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv
+abc,def,ghr
+jkl,mno,pqr
+abc,def,ghr
+jkl,mno,pqr
+
+# 1列にする (,を改行に変換)
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot;
+abc
+def
+ghr
+jkl
+mno
+pqr
+abc
+def
+ghr
+jkl
+mno
+pqr
+
+# sortする
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort
+abc
+abc
+def
+def
+ghr
+ghr
+jkl
+jkl
+mno
+mno
+pqr
+pqr
+
+# 重複を排除する(uniq)
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq
+abc
+def
+ghr
+jkl
+mno
+pqr
+</code></pre></div>
+<h3 id="wc">{ wc }</h3>
+<p>wcはカウントに使うコマンドですが、行数カウントに使うことが最も多いです</p>
+<h4 id="_17">行数カウント</h4>
+<p>-lで行数がカウントできます</p>
+<pre><code>wc -l
+</code></pre>
+<p>入力値の行数を出せるため例えば、検索した単語が含まれる行数を出すのに便利です</p>
+<div class="highlight"><pre><span></span><code># ubuntuという単語を含む行
+ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release | grep ubuntu | wc -l
+5
+
+# 大文字小文字の区別をなくした場合8行に増える
+ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release | grep -i ubuntu | wc -l
+8
+</code></pre></div>
+<h3 id="cut">{ cut }</h3>
+<p>cutコマンドはawkと同じく列抽出に使われます、awkほど高度な処理ができない一方で簡潔に処理を記載することができます。</p>
+<h4 id="n">N列抽出</h4>
+<pre><code>cut -f 列番号 -d "区切り文字"
+</code></pre>
+<div class="highlight"><pre><span></span><code># 対象ファイル
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+abc,def,ghr
+jkl,mno,pqr
+
+# 2列目を抽出
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | cut -f 2 -d &quot;,&quot;
+def
+mno
+</code></pre></div>
+<h4 id="n_1">N列目以降を抽出</h4>
+<p>列指定の際に列番号のあとに-を付けると何列目以降という指定が容易にできます</p>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | cut -f 2- -d &quot;,&quot;
+def,ghr
+mno,pqr
+</code></pre></div>
+<h3 id="tr">{ tr }</h3>
+<p>trコマンドはsedと同じく文字変換に使われます、sedほど高度な処理ができないですが、以下のように削除処理などは簡潔に記載できます
+-dは"delete"を意味するオプションです</p>
+<h4 id="_18">文字列削除</h4>
+<pre><code>tr -d 削除文字
+</code></pre>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc&quot; | tr -d ab
+c
+</code></pre></div>
+<h3 id="nl">{ nl }</h3>
+<p>nlは行頭に行番号を振ることができるコマンドです、cat等のコマンドと組み合わせて使うと便利です</p>
+<h4 id="_19">行番号の付与</h4>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release
+NAME=&quot;Ubuntu&quot;
+VERSION=&quot;20.04 LTS (Focal Fossa)&quot;
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME=&quot;Ubuntu 20.04 LTS&quot;
+VERSION_ID=&quot;20.04&quot;
+HOME_URL=&quot;https://www.ubuntu.com/&quot;
+SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
+BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
+PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+
+
+#行番号を付与(nl)
+ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release | nl
+     1  NAME=&quot;Ubuntu&quot;
+     2  VERSION=&quot;20.04 LTS (Focal Fossa)&quot;
+     3  ID=ubuntu
+     4  ID_LIKE=debian
+     5  PRETTY_NAME=&quot;Ubuntu 20.04 LTS&quot;
+     6  VERSION_ID=&quot;20.04&quot;
+     7  HOME_URL=&quot;https://www.ubuntu.com/&quot;#
+     8  SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
+     9  BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
+    10  PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
+    11  VERSION_CODENAME=focal
+    12  UBUNTU_CODENAME=focal
+</code></pre></div>
+<h3 id="head">{ head }</h3>
+<p>headはファイルの先頭から指定行を表示するコマンドですが、sortした結果の上位表示などによく使われます</p>
+<pre><code>head -行数 対象ファイル
+</code></pre>
+<p>以下はuniqでも使用した例ですが、最後に上位3行をheadで表示しています</p>
+<h4 id="_20">先頭から指定行数を表示</h4>
+<div class="highlight"><pre><span></span><code># 対象ファイル
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+abc,def,ghr
+jkl,mno,pqr 
+
+# 重複させる
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv &gt; double.csv
+ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv &gt;&gt; double.csv
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv
+abc,def,ghr
+jkl,mno,pqr
+abc,def,ghr
+jkl,mno,pqr
+
+# 1列にする (,を改行に変換)
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot;
+abc
+def
+ghr
+jkl
+mno
+pqr
+abc
+def
+ghr
+jkl
+mno
+pqr
+
+# sortする
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort
+abc
+abc
+def
+def
+ghr
+ghr
+jkl
+jkl
+mno
+mno
+pqr
+pqr
+
+# 重複を排除する(uniq)
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq
+abc
+def
+ghr
+jkl
+mno
+pqr
+
+
+# 上位3行を表示
+ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq | head -3
+abc
+def
+ghr
+</code></pre></div>
+<h3 id="tail">{ tail }</h3>
+<p>tailはheadとは逆に最終行から指定行を表示するコマンドですが、logファイルの閲覧などによく使われます</p>
+<pre><code>tail -指定行　対象ファイル
+</code></pre>
+<h4 id="watch">ログファイルをwatchする</h4>
+<p>-fオプションはファイルが追記される都度標準出力にお表示することができます、リアルタイムにログを表示するのに便利です</p>
+<pre><code>tail -f 対象ファイル
+</code></pre>
+<h3 id="diff">{ diff }</h3>
+<h4 id="_21">差分を出力</h4>
+<p>diffは2つのファイルの差分 (difference)を表示します</p>
+<pre><code>diff 対象ファイルA 対象ファイルB
+</code></pre>
+<p>以下例では架空の設定ファイルabc.confのバックアップを取ってから編集をして、差分を確認します。</p>
+<pre><code># バックアップ取得
+cp abc.conf abc.conf.20220205
+
+# 編集
+nano abc.conf
+
+# 差分確認
+diff abc.conf abc.conf.20220205
+&gt; 変更した差分が表示できます、差分チェックが問題なければ設定の反映などするのが一般的です
+</code></pre>
+<h3 id="meta-charactor">Meta charactor</h3>
+<p>UNIXのコマンドライン上で特別な意味をもった文字（メタキャラクター）を扱うことができます。この使用法はワイルドカードや正規表現と呼ばれますが、ここでは単純に特別な意味合いを持った文字と考えましょう、代表的なものを以下紹介します。メタ文字を使うことで、非常に柔軟な検索や文字変換、プログラムの際の条件分岐が行えるようになります。</p>
+<h4 id="_22">アスタリスク</h4>
+<p>"*"は任意の文字列を意味しますが、例えばHello Woldという文字列は、アスタリスクを用いて以下のような表現に置き換えられます</p>
+<pre><code>Hello World (メタ文字なし)
+
+使用例 
+grep H* test.txt  　 # Hから始まる任意の文字列を検索、Hello Wolrdを含む行もHit
+grep H*d test.txt  　# Hから始まりdで終わる任意の文字列で、Hello Worldむ行もHit
+grep Hello *         # Helloを含むすべてのファイルを検索
+</code></pre>
+<h4 id="_23">行頭</h4>
+<p>"^"ハットはUNIXのメタ文字としては行の最初を意味します、これを使うことで例えば文章の最初がHelloではじまる行などを容易に検索でき、非常に便利です。検索例などは後続のセクションでご確認いただけます</p>
+<pre><code>使用例 
+grep ^Hello # 行頭がHelloから始まる行を検索
+grep ^H*    # 行頭がHから始まる任意の行を検索
+</code></pre>
+<h4 id="_24">行末</h4>
+<p>"$"をパラメーターの最初に記載した場合、変数という意味を付与しますが、単体で使う場合や最後に持ってきた場合行末を意味するようになります、ある行末に特定の文字をつけたい場合に役立ちます</p>
+<pre><code>$hello (hello変数)
+--
+$ (行末を意味する)
+
+使用例
+grep hello$ #helloという文字列で終わる行を検索
+</code></pre>
+<h4 id="_25">任意の一文字</h4>
+<p>"."は正規表現を使うコマンドでは任意の位置文字を表します</p>
+<h4 id="_26">無効化</h4>
+<p>各メタ文字に\をつけることで、その意味合いを無効化することができます</p>
+<pre><code>\* (メタキャラクターとしてのアスタリスクの無効化、アスタリスクは単なる文字に戻ります)
+</code></pre>
+<h3 id="_27">その他の特殊文字</h3>
+<h4 id="_28">改行</h4>
+<p>Unixでは改行コードは\nを使用します、これに対してwindowsの改行コードは\r\nです、windowファイルをunix/linuxにコピーする場合改行コードの変換をしましょう</p>
+<pre><code>\n
+</code></pre>
+<h4 id="_29">文字区切り</h4>
+<p>""を使うことで、どこまでが対象かをコマンドに対して明示することができるようになります</p>
+<pre><code>使用例 (.と組み合わせた場合)
+grep "H.llo World" #Hello Worldを含む行もヒット, Hallo Worldとした場合でもヒット
+</code></pre>
+<h2 id="vi">高度なエディター (vi)</h2>
+<p>vi(vim)は高度なコマンドライン機能を持ったエディタで、Unix/Linuxでは非常に歴史あるエディタです。慣れると非常に高いパフォーマンスを発揮する一方で、習得には少し訓練を要します。nanoで十分という方は読み飛ばしていただいて構いませんが、挑戦できる方はぜひ手を動かして試してみてください。以下はtest.txtというファイルをviで編集する例です</p>
+<pre><code>vi test.txt
+</code></pre>
+<h3 id="mode">mode</h3>
+<p>viにはコマンドモードとインサートモードの2つの状態があります。コマンドモードは文字の検索や削除、その他の一括操作が行える状態で、インサートモードは文字の加筆が行えます</p>
+<h3 id="_30">カーソルの移動</h3>
+<p>コマンドモードであれ、インサートモードであれカーソルの移動は矢印キーで行えます</p>
+<pre><code>↑→↓←
+</code></pre>
+<h4 id="_31">コマンドモード</h4>
+<p>viを最初に起動するとコマンドモードになります、test.txtにはまだ何も記載されていないと思いますので早速インサートモードへ移行しましょう</p>
+<h4 id="_32">インサートモードへ移行</h4>
+<p>インサートモードに移行するためにはコマンドモードでiとうつか、oと打つのが通常です。iと打った場合はカーソルのある行を直接編集できるようになります。また、oと打った場合は行の追加になります</p>
+<pre><code>#編集
+i
+
+#行の挿入
+o
+</code></pre>
+<p>インサートモードへ移行して、1行目にabcという文字をファイルに追記し、2行目にdefという文字を追記しましょう</p>
+<pre><code>1. vi test.txt
+2. iとうつ
+3. abcを追記してEnter
+4. defという文字を追記
+
+vi test.txt
+--code--
+abc
+def
+--------
+</code></pre>
+<h4 id="_33">コマンドモードへ移行</h4>
+<p>文字が追記できたらコマンドモードへ戻りましょう、Escapeキーを打つことでコマンドモードへ戻ることができます。</p>
+<pre><code>Esc
+</code></pre>
+<h5 id="_34">文字検索</h5>
+<p>コマンドモードで文字の検索をしたいときはまず/を打ってみてください、文字を検索することができます</p>
+<pre><code>/文字列
+</code></pre>
+<p>以下abcを検索してみましょう</p>
+<pre><code>/abc
+</code></pre>
+<h5 id="_35">文字削除</h5>
+<p>コマンドモードで文字の削除をしたいときは、カーソルを該当文字の個所にもっていきxと打ってください</p>
+<pre><code>x
+</code></pre>
+<p>試しにaという文字を消してみてください</p>
+<h5 id="_36">一括削除</h5>
+<p>削除したい行に移動してddと打ってみてください</p>
+<pre><code>dd
+</code></pre>
+<h5 id="_37">一括コピー</h5>
+<p>コピーしたい行に移動してyyと打ってみてください</p>
+<pre><code>yy
+</code></pre>
+<h5 id="_38">一括貼り付け</h5>
+<p>文字を挿入したい行にいき、pと打ってみてください</p>
+<pre><code>p
+</code></pre>
+<h5 id="_39">元に戻す</h5>
+<p>編集した内容を基に戻したい場合はundoコマンドで戻してください、コマンドモードで単にuと打てば元に戻ります</p>
+<pre><code>u
+</code></pre>
+<p>元に戻したものを、取り消したい場合は</p>
+<pre><code>:redo
+</code></pre>
+<p>と打ってください</p>
+<h5 id="_40">一括置換</h5>
+<p>sedと同じような命令文で一括変換が行えます</p>
+<pre><code>:%s/変更したい文字列/変更後文字列/g
+</code></pre>
+<p>defをdepに変換してみましょう</p>
+<pre><code>:%s/def/dep/g
+</code></pre>
+<h4 id="_41">その他の便利なコマンド</h4>
+<p>コマンドモードにはその他にも便利なコマンドがありますが、以下よく使うものを列挙します</p>
+<h5 id="_42">行頭に移動する</h5>
+<pre><code>0
+</code></pre>
+<h5 id="_43">行末に移動する</h5>
+<pre><code>$
+</code></pre>
+<h5 id="_44">ファイルの最初に移動する</h5>
+<pre><code>:0
+</code></pre>
+<h5 id="_45">ファイルの最後に移動する</h5>
+<pre><code>shift + G
+</code></pre>
+<h3 id="_46">ファイルを保存する</h3>
+<p>編集内容を保存する場合は、まずコマンドモードに移行してください、その後:wで保存することができます</p>
+<pre><code>1. Esc
+2. :w
+</code></pre>
+<h3 id="vi_1">viを終了する</h3>
+<p>viを終了する際、編集内容を保存して終了する方法と、編集内容を破棄して終了する方法の2通りがあります</p>
+<h4 id="_47">保存して終了</h4>
+<p>保存して終了する場合はコマンドモードで:wqと入力してください</p>
+<pre><code>1. Esc
+2. :wq
+</code></pre>
+<h4 id="_48">保存せず終了</h4>
+<p>保存せずに終了する場合はコマンドモードで:qと入力してください</p>
+<pre><code>1. Esc
+2. :q
+</code></pre>
+<h4 id="_49">強制終了</h4>
+<p>うまく終了できない場合は強制終了しましょう、!オプションをつけることで強制終了できます</p>
+<pre><code>1. Esc
+2. :q!   (保存せず強制終了)
+or      
+2. :wq!　(保存して強制終了)
+</code></pre>
+<h4 id="_50">自動インデントをなくす</h4>
+<p>viを操作する際に自動でインデントがつけられ、逆に邪魔なことがあります。その場合はユーザー毎にあらかじめ設定ファイルを作って消しておきましょう</p>
+<pre><code>vi $HOME/.vimrc
+set noautoindent
+set nosmartindent
+set nocindent
+</code></pre>
+<p>viにはその他にも多くの便利なコマンドやオプションがありますのでインターネットで使用法を探ってみてください。それがUnix/LinuxをHackするということです</p>
+<h2 id="_51">その他のテクニック</h2>
+<h4 id="_52">候補の表示</h4>
+<p>コマンドライン上でtab keyを打つと候補を表示することができ、非常に便利です。たとえば、ディレクトリをすべて手で打つよりは ls /hに続いてtabキーを打つと/homeが候補として表示されます</p>
+<pre><code>+tab
+</code></pre>
+<h2 id="administrator">Administrator</h2>
+<p>UNIX/Linuxを管理するための最低限の操作を説明します</p>
+<h3 id="sudo">sudo</h3>
+<p>特権権限でのコマンド実行はsudoコマンドで実行します、以下は/etc/passwdファイルを特権ユーザーになって開いている例です</p>
+<pre><code>sudo cat /etc/passwd
+</code></pre>
+<h3 id="_53">ユーザーを作る</h3>
+<p>useraddコマンドでユーザーを作成できます、1人1アカウントをユーザーアカウントを作るのが良いでしょう</p>
+<pre><code>sudo useradd ユーザー名
+</code></pre>
+<p>userのパスワードを設定します</p>
+<pre><code>sudo passwd ユーザー名
+</code></pre>
+<p>以上のコマンドでuser情報は/etc/passwdファイルに追記されます</p>
+<p>userを削除したい場合はuserdelコマンドで削除してください</p>
+<pre><code>userdel ユーザー名
+</code></pre>
+<h3 id="_54">グループを作る</h3>
+<p>グループを作成してユーザー管理する場合、groupaddコマンドで作成しましょう</p>
+<pre><code>sudo groupadd グループ名
+</code></pre>
+<p>グループにユーザーを追加する場合はgpasswdコマンドを実行してください</p>
+<pre><code>sudo gpasswd -a ユーザー名　グループ名
+</code></pre>
+<p>グループの設定状況は/etc/groupファイルで確認できます</p>
+<pre><code>cat /etc/group
+</code></pre>
+<p>グループを削除したい場合はgroupdelコマンドを実行してください</p>
+<pre><code>sudo groupdel グループ名
+</code></pre>
+<h3 id="sudo_1">sudo権限付与</h3>
+<p>作成したユーザーやグループにsudo権限を付けたい場合、visudoコマンドで/etc/sudoersファイルを編集してください</p>
+<pre><code>visudo
+</code></pre>
+<p>以下はtestグループに所属するユーザー全員にsudo権限を付けている例です</p>
+<pre><code>%test   ALL=(ALL:ALL) ALL
+</code></pre>
+<p>sudoのオプションとして他のユーザーにsudoすることもできます、後述のsmall-shellプログラムでは頻繁にsmall-shellユーザー権限での実行を行いますがその際は、sudoに-uオプションをつけて実行します</p>
+<pre><code>sudo -u small-shell #特定ユーザー権限でのコマンド実行
+</code></pre>
+<h3 id="ssh">SSHでログインする</h3>
+<p>クラウド環境のLinuxにログインする場合、sshプロトコルを使ってLinuxにログインしましょう。localにインストールしているubuntuで以下コマンドを実行してください</p>
+<pre><code>ssh -l ユーザー名 サーバIP
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>クラウド環境でLinuxを使っている場合はパスワード認証は極力使わず、証明書認証を使いましょう。併せてクラウド管理コンソールなどで特定のIPアドレスからの接続のみ許可することを推奨します。別途オンラインで開催するLinux DOJOにて方法をご紹介できればと思います</p>
+</div>
+<h3 id="automation">Automation</h3>
+<p>Unix/Linuxで処理の自動化を行う際にcronを使います。cron自体は非常にすぐれたツールですが、エンジニア以外には少し使い勝手が難しい部分もあります。後述のsmall shellを利用することで、登録や結果の確認が容易になりますのでぜひsmall shell Basicコースで登録方法を確認してください</p>
+<h2 id="web">WEB系コマンド</h2>
+<pre><code>jq
+curl
+wget
+ssh/scp
+</code></pre>
+<h2 id="_55">体系的な学習</h2>
+<p>Linuxについてより深く、体系的に理解したい場合はLPICの教材などで学習することをお勧めします。LPIC1相当の知識があればLinuxを扱うには十分だといえます</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="フッター">
+        
+          <a href="../unix1/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                Unix Basic 1
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../genshi_programing/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                shell programing
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
