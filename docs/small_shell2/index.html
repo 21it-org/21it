@@ -1087,7 +1087,7 @@ descriptor  # HTML及びCSSの定義を配置
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のactionスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="routing">Routing</h4>
 <p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase分をルーティングと呼んでいます</p>
-<div class="highlight"><pre><span></span><code>tail -34 /usr/lib/cgi-bin/21DOJO
+<div class="highlight"><pre><span></span><code>sudo tail -34 /usr/lib/cgi-bin/21DOJO
 
 #----------------------------
 # routing to action scripts
@@ -1125,10 +1125,10 @@ esac
 exit 0
 </code></pre></div>
 <h4 id="parse">Parse</h4>
-<p>ルーティングに至る前処理としてはsessionの妥当性の確認やクライアントからのリクエスト内容の解析などを行いますが、クライアントからPOSTされた要求を解析するプログラムとしてparse.shを使用します。controllerに、例えばuser_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にuser_nameというファイルを作り、そこにPOSTされたユーザー名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
+<p>ルーティングに至る前処理としてはsessionの妥当性の確認やクライアントからのリクエスト内容の解析などを行いますが、クライアントから送信(POST)された要求を解析するプログラムとしてparse.shを使用します。controllerに、例えばuser_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にuser_nameというファイルを作り、そこにPOSTされたユーザー名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
 <h3 id="_8">アクションスクリプト</h3>
 <p>コントローラーがルーティングを通じて呼び出すのがアクションスクリプトですが、ユーザーへの応答を返すのはアクションスクリプトになります。主な処理としてはDATA_shellへ接続してデータを抽出したうえで所定のHTML descriptorを読み込みそのまま返します。その際、%%tagについてsedで置き換えるという処理を行っています。例として21DOJO_get.shの中身を見てみましょう、いくつかの%%tagがありますがデータは主に%%datasetの中にsedで埋め込まれます</p>
-<div class="highlight"><pre><span></span><code>tail -18 /var/www/bin/21DOJO_get.sh
+<div class="highlight"><pre><span></span><code>sudo tail -18 /var/www/bin/21DOJO_get.sh
 
 # render HTML
 cat ../descriptor/${view} | sed &quot;s/^ *&lt;/&lt;/g&quot; \
@@ -1189,14 +1189,16 @@ Do you want to add more column to dataset ? (yes | no) : no
 
 --code--
  &lt;div class=&quot;main&quot;&gt;
- &lt;div class=&quot;description&quot;&gt;
-   &lt;h1&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h1&gt;
-   &lt;h1&gt;記載のURLからご参加いただければと思います&lt;/h1&gt;
-   &lt;a href=&quot;./21DOJO?%%session&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
- &lt;/div&gt;
- &lt;div class=&quot;event&quot;&gt;
-   %%event
- &lt;/div&gt;
+   &lt;div class=&quot;left-nav&quot;&gt;
+   &lt;/div&gt; 
+   &lt;div class=&quot;description&quot;&gt;
+     &lt;h1&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h1&gt;
+     &lt;h1&gt;記載のURLからご参加いただければと思います&lt;/h1&gt;
+     &lt;a href=&quot;./21DOJO?%%session&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;event&quot;&gt;
+     %%event
+   &lt;/div&gt;
  &lt;/div&gt;
 --------
 </code></pre></div></p>
@@ -1248,7 +1250,7 @@ cat ../descriptor/21DOJO_main.html.def | sed &quot;s/^ *&lt;/&lt;/g&quot; \
 &lt;li&gt;&lt;a href=&quot;./21DOJO?%%session&amp;req=table&quot;&gt;イベント検索&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;./inquiry&quot;&gt;お問い合わせ&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://21it.org&quot;&gt;21世紀IT塾HOME&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://doc.21it.org&quot;&gt;オンラインドキュメント&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.21it.org&quot;&gt;オンラインドキュメント&lt;/a&gt;&lt;/li&gt;
 --------
 </code></pre></div>
 更新されたメニューを確認してみましょう
@@ -1262,20 +1264,20 @@ cat ../descriptor/21DOJO_main.html.def | sed &quot;s/^ *&lt;/&lt;/g&quot; \
 <div class="highlight"><pre><span></span><code>sudo nano /var/www/bin/21DOJO_table.sh
 --code--
 #keys=all
-keys=name,start,end,detail,url
+keys=name,start,end,url,detail
 --------
 </code></pre></div>
-<p>sudo nano /var/www/bin/21DOJO_get.sh
-<div class="highlight"><pre><span></span><code>--code--
+<div class="highlight"><pre><span></span><code>sudo nano /var/www/bin/21DOJO_get.sh
+--code--
 #keys=all
-keys=name,start,end,detail,url
+keys=name,start,end,url,detail
 --------
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="url_1">チケットURL整備</h3>
 <p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みそのURLをQR codeにしましょう。URLにQUERY_STRINGを付加すれば認証画面なしで自動ログインが可能です</p>
 <h4 id="url_2">URLデザイン</h4>
 <p>以下はWSL環境でpass codeとして1234を設定したアプリにQUERY_STRINGだけでログインするためのURLの例です</p>
-<pre><code>http://localhost/auth.21DOJO?app_pass=1234
+<pre><code>http://localhost/cgi-bin/auth.21DOJO?app_pass=1234
 </code></pre>
 <h3 id="_12">問い合わせフォーム更新</h3>
 <p>Team APP付属のInquiries DataBox及びInquiryフォームを利用ケースにあわせて更新しましょう</p>
