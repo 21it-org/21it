@@ -334,6 +334,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pathpath" class="md-nav__link">
+    相対PATHと絶対PATH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     ファイルを開く
   </a>
@@ -814,6 +821,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pathpath" class="md-nav__link">
+    相対PATHと絶対PATH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     ファイルを開く
   </a>
@@ -1157,6 +1171,16 @@ CLI(command line interface)/shell IN&gt; {{ kernel }} OUT&gt; Hardware
 <p>子ディレクトリへ移動したい場合は./で指定しましょう。"."はカレントディレクトリを意味し、"./"は現在のディレクトリ配下の、という意味を持ちます</p>
 <pre><code>cd ./任意のディレクトリ
 </code></pre>
+<h3 id="pathpath">相対PATHと絶対PATH</h3>
+<p>ディレクトリやファイルを指定する際、相対PATHと絶対PATHの二通りの指定方法があります。カレントディレクトリからの経路を記述するのが相対PATHで、rootからの階層を全て記述するのが絶対パスとなりますが、いずれも有効な指定方法になります。以下は/home/ubuntu配下にtestというディレクトリがある場合の指定例です</p>
+<pre><code>#絶対PATHでの指定
+ls /home/ubuntu/test
+cd /home/ubuntu/test
+
+#相対PATHでの指定（/home/ubuntuがカレントディレクトリの場合）
+ls ./test
+cd test
+</code></pre>
 <h3 id="_8">ファイルを開く</h3>
 <p>ファイルの中身を表示する方法はいくつかありますが、主にcat, more ,lessなどを使うことが多いです。catはファイルを一度に表示し、moreやlessは少しずつ表示することができます</p>
 <pre><code>cat 対象ファイル
@@ -1164,7 +1188,8 @@ more 対象ファイル
 less 対象ファイル
 </code></pre>
 <p>例としてubuntuのOSバージョンファイルを開いてみましょう</p>
-<pre><code>cat /etc/os-release
+<pre><code># 絶対PATHでの表示
+cat /etc/os-release
 </code></pre>
 <h3 id="_9">ファイルを検索する</h3>
 <p>特定の名前のファイルを検索する場合、findというコマンドを使います</p>
@@ -1185,7 +1210,8 @@ less 対象ファイル
 </code></pre>
 <h3 id="_11">ディレクトリを作る</h3>
 <p>編集権限のあるディレクトリであれば、ディレクトリを新規で作成することもできます。-pオプションをつけると複数階層のディレクトリを一括で作成することができます</p>
-<pre><code>mkdir -p ./layer1/layer2
+<pre><code>cd $HOME
+mkdir -p ./layer1/layer2
 </code></pre>
 <h3 id="_12">対象をコピーする</h3>
 <p>ファイルやディレクトリをコピーする場合cpコマンドを使ってください</p>
