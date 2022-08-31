@@ -1108,7 +1108,7 @@ case &quot;$req&quot; in
     ../bin/21DOJO_del.sh databox:$databox session:$session pin:$pin id:$id ;;
 
   &quot;table&quot;)
-    table_command=&quot;`echo $table_command | sed &quot;s/ /{%%space}/g&quot;`&quot;
+    table_command=&quot;`echo $table_command | $SED &quot;s/ /{%%space}/g&quot;`&quot;
     ../bin/21DOJO_table.sh session:$session pin:$pin user_name:$user_name id:$id page:$page table_command:$table_command;;
 
   &quot;log_viewer&quot;)
@@ -1131,17 +1131,17 @@ exit 0
 <div class="highlight"><pre><span></span><code>sudo tail -18 /var/www/bin/21DOJO_get.sh
 
 # render HTML
-cat ../descriptor/${view} | sed &quot;s/^ *&lt;/&lt;/g&quot; \
-| sed &quot;/%%common_menu/r ../descriptor/common_parts/21DOJO_common_menu&quot; \
-| sed &quot;/%%common_menu/d&quot; \
-| sed &quot;/%%dataset/r ../tmp/$session/dataset&quot; \
-| sed &quot;s/%%dataset//g&quot;\
-| sed &quot;/%%history/r ../tmp/$session/history&quot; \
-| sed &quot;s/%%history//g&quot;\
-| sed &quot;s/%%id/$id/g&quot; \
-| sed &quot;s/%%pdls/session=$session\&amp;pin=$pin\&amp;req=get/g&quot; \
-| sed &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
-| sed &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
+cat ../descriptor/${view} | $SED &quot;s/^ *&lt;/&lt;/g&quot; \
+| $SED &quot;/%%common_menu/r ../descriptor/common_parts/21DOJO_common_menu&quot; \
+| $SED &quot;/%%common_menu/d&quot; \
+| $SED &quot;/%%dataset/r ../tmp/$session/dataset&quot; \
+| $SED &quot;s/%%dataset//g&quot;\
+| $SED &quot;/%%history/r ../tmp/$session/history&quot; \
+| $SED &quot;s/%%history//g&quot;\
+| $SED &quot;s/%%id/$id/g&quot; \
+| $SED &quot;s/%%pdls/session=$session\&amp;pin=$pin\&amp;req=get/g&quot; \
+| $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
+| $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
 
 if [ &quot;$session&quot; ];then
   rm -rf ../tmp/$session
@@ -1151,7 +1151,7 @@ exit 0
 </code></pre></div>
 <h3 id="html-descriptor">HTML descriptor</h3>
 <p>アクションスクリプトが呼び出しているHTML descriptorも見てみましょう。get用のActoin scriptはget関連のHTMLディスクリプターを呼び出しますが、%%datasetの前後4行を抽出すると以下のようになっています。基本的には純粋なHTMLに所定のtagを埋め込みデータ変換しながらクライアントに要求を返すというのがsmall shellの基本的な処理ロジックになります
-<div class="highlight"><pre><span></span><code>cat /var/www/descriptor/21DOJO_get_rw.html.def  | grep -2 %%dataset | sed -r &quot;s/^(.*)&lt;/&lt;/g&quot;
+<div class="highlight"><pre><span></span><code>cat /var/www/descriptor/21DOJO_get_rw.html.def  | grep -2 %%dataset | $SED -r &quot;s/^(.*)&lt;/&lt;/g&quot;
 
 &lt;form method=&quot;post&quot; action=&quot;./21DOJO?%%params&amp;req=set&amp;id=%%id&quot; onclick=&quot;document.charset=&#39;utf-8&#39;;&quot;&gt;
 &lt;ul&gt;
@@ -1178,7 +1178,7 @@ data type (text | select | radio | checkbox | email | num | tel | date | date-ti
 required to input each time? (yes | no): no
 Do you want to add more column to dataset ? (yes | no) : no
 </code></pre></div>
-イベントへ詳細情報やURLの追加が可能になったと思います</p>
+イベントへ詳細情報やURLの追加が可能になったと思いますので、さっそくテストイベントを追加しましょう</p>
 <h6 id="new-event-form">new event form</h6>
 <p><img alt="Screenshot" src="../img/new_event.png" /></p>
 <h3 id="_10">ポータルのアップデート</h3>
@@ -1203,7 +1203,7 @@ Do you want to add more column to dataset ? (yes | no) : no
 --------
 </code></pre></div></p>
 <p>併せてevent classを21DOJO cssに追記してレイアウトを微修正しましょう、classの追記は基本的にはどこでも構いませんが、ここでは一番下に追記しています
-<div class="highlight"><pre><span></span><code>nano /var/www/descriptor/21DOJO.css.def
+<div class="highlight"><pre><span></span><code>sudo nano /var/www/descriptor/21DOJO.css.def
 
 --code--
 .event {
@@ -1222,25 +1222,29 @@ Do you want to add more column to dataset ? (yes | no) : no
 #META=&quot;sudo -u small-shell ${small_shell_path}/bin/meta&quot;
 DATA_SHELL=&quot;sudo -u small-shell ${small_shell_path}/bin/DATA_shell session:$session pin:$pin app:21DOJO&quot;
 
-id=`$DATA_SHELL databox:events command:head_-1 format:none | awk -F &quot;,&quot; &#39;{print $1}&#39;`
+id=`$DATA_SHELL databox:events command:head_-1 format:none | $AWK -F &quot;,&quot; &#39;{print $1}&#39;`
 $DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail format:html_tag &gt; ../tmp/$session/event
 
 # -----------------
 # render HTML
 # -----------------
 
-cat ../descriptor/21DOJO_main.html.def | sed &quot;s/^ *&lt;/&lt;/g&quot; \
-| sed &quot;/%%common_menu/r ../descriptor/common_parts/21DOJO_common_menu&quot; \
-| sed &quot;s/%%common_menu//g&quot;\
-| sed &quot;/%%event/r ../tmp/$session/event&quot; \
-| sed &quot;s/%%event//g&quot; \
-| sed &quot;s/%%user_name/$user_name/g&quot; \
-| sed &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
-| sed &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
+cat ../descriptor/21DOJO_main.html.def | $SED &quot;s/^ *&lt;/&lt;/g&quot; \
+| $SED &quot;/%%common_menu/r ../descriptor/common_parts/21DOJO_common_menu&quot; \
+| $SED &quot;s/%%common_menu//g&quot;\
+| $SED &quot;/%%event/r ../tmp/$session/event&quot; \
+| $SED &quot;s/%%event//g&quot; \
+| $SED &quot;s/%%user_name/$user_name/g&quot; \
+| $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
+| $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
 --------
 </code></pre></div>
 完成したポータルはこちらになります
 <img alt="Screenshot" src="../img/portal_2.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>イベントが何も登録されていないときは"error: please input id"というメッセージが表示されるため、イベントを登録して下さい</p>
+</div>
 <h3 id="_11">メニューの更新</h3>
 <p>続いてアプリケーションの右上 even(=)メニューの内容も変更してみましょう。ここではTeam APP付属のInquiryのURLと、21世紀IT塾の公式サイトおよびオンラインドキュメントサイトのURLを追記します。併せてメニューの文言も少し整理します</p>
 <p><div class="highlight"><pre><span></span><code>sudo nano /var/www/descriptor/common_parts/21DOJO_common_menu
