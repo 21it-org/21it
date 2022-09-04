@@ -1496,7 +1496,7 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 </code></pre></div></p>
 <h3 id="team-app">Team APPユーザー追加</h3>
 <p>Team APPはBase APPのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではapp_testというユーザーを作成しています</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops add.usr:app_test app:team
+<pre><code>sudo /usr/local/small-shell/adm/ops app:team add.usr:app_test
 </code></pre>
 <p>ユーザー生成後に、再びInitialize URLが生成れるので対象ユーザーへ展開しましょう。Base APPと同じくInitialize URLへアクセスするとTeam APPへアクセスするためのカギとリンクが生成されます</p>
 <h3 id="team-app_1">Team APPログイン</h3>
