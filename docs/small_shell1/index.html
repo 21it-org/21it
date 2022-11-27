@@ -360,13 +360,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#sudo" class="md-nav__link">
-    Sudo設定の追加
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -851,13 +844,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#sudo" class="md-nav__link">
-    Sudo設定の追加
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1243,13 +1229,7 @@
 </ul>
 <h2 id="_5">クイックスタート</h2>
 <h3 id="os-setup">OS setup</h3>
-<p>Base APPを立ち上げるために、まずはOSのセットアップを行っていきましょう。すでにubuntuの環境構築はUnix Basic 1コースで体験されていると思いますが、small shellをインストールするために最低限必要になるライブラリとWEBサーバをインストールしましょう。Base APPはWEBサーバ上で動くアプリケーションのため、WEB Basicコースでご紹介したapache WEBサーバを利用します。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>small shellはMac OSでも動かすことができます、手順についてはsmall shell公式サイトをご確認ください  <br />
-<a href="https://www.small-shell.org/quick_start_Mac/">Quick Start</a>
-</p>
-</div>
+<p>small shellをインストールする前にLinux OSの基本設定から始めましょう、ここでは必要なOSユーザーを作成し、必要ライブラリを事前にインストールします</p>
 <h5 id="ubuntu">ubuntu環境設定</h5>
 <pre><code># OSへのユーザーの追加
 sudo useradd -s /sbin/nologin small-shell
@@ -1257,15 +1237,9 @@ sudo useradd -s /sbin/nologin small-shell
 # aptリストのアップデート
 sudo apt-get update
 
-# apacheのインストール
-sudo apt-get install apache2
-sudo a2enmod cgid
-#sudo systemctl start apache2
-sudo service apache2 start
-sudo update-rc.d apache2 defaults
-
 # 各種ライブラリのインストール
 sudo apt-get install php
+sudo apt-get install npm
 sudo curl -o /usr/bin/jq -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 &amp;&amp; sudo chmod +x /usr/bin/jq
 </code></pre>
 <h5 id="small-shell">small shellのインストール</h5>
@@ -1273,41 +1247,14 @@ sudo curl -o /usr/bin/jq -L https://github.com/stedolan/jq/releases/download/jq-
 sudo git clone https://github.com/small-shell/small-shell.git
 sudo chown -R small-shell:small-shell /usr/local/small-shell
 </code></pre>
-<h5 id="sudo">Sudo設定の追加</h5>
-<pre><code># visudo editorの設定
-sudo update-alternatives --config editor
-
-# sudo設定
-sudo visudo    
-# ファイルの最後尾に追記してください
-www-data   ALL=(small-shell)    NOPASSWD: /usr/local/small-shell/bin/*, /usr/local/small-shell/sbin/*
-</code></pre>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>もしもWSLをwindows上で利用している場合はwindowsを再起動してubuntuを起動した都度"sudo service apache2 start"にてapacheを起動してください。</p>
-</div>
 <h3 id="base-app_1">Base APP生成</h3>
-<p>いよいよgenコマンドでBase APPを生成していきましょう、以下はwindows上にWSLとして構築したubuntu上でBase APPを生成する場合の例です。WSLとしてあくまでローカルに構築されているため、WEBサーバとしてはlocalhostを指定しましょう</p>
-<p><div class="highlight"><pre><span></span><code># gen コマンド実行
+<p>いよいよgenコマンドでBase APPを生成していきましょう、以下はwindows上にWSLとして構築したubuntu上でBase APPを生成する場合の例です。WSLとしてあくまでローカルに構築されているため、WEBサーバとしてはlocalhostを指定しましょう。なおsmall-shellのパッケージにはapache以外のWEBサーバが含まれるため、今回apacheは使用しません。もし前の章で起動したままの状態の場合は停止してください (停止例: service apache2 stop)</p>
+<div class="highlight"><pre><span></span><code># gen コマンド実行
 sudo /usr/local/small-shell/adm/gen -app
-
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 1
-Root directory of web (/var/www): &lt;enter&gt;
-CGI directory (/usr/lib/cgi-bin): &lt;enter&gt;
-APP exec user (e.g. www-data or apache or nginx): www-data
+Type of server (1.small-shell WEB srv | 2.other WEB srv): 1
 protocol (http | https): http
 WEB Server FQDN or IP addr (e.g. 192.168.10.1): localhost
-BASE URL for WEB APP is http://localhost/cgi-bin/ is it OK ? (yes | no): yes
-</code></pre></div>
-ubuntuをお使いの場合は以下シンボリックリンクを作成して良いか確認されますので、yesを入力してください。その後アプリが自動生成されます</p>
-<div class="highlight"><pre><span></span><code>www dir must have relation with CGI dir. Is it OK to make symbolic link on /usr/lib ?
-following command will be executed
------------------------------------------------------------------
-ln -s /var/www/bin /usr/lib/bin
-ln -s /var/www/descriptor /usr/lib/descriptor
-ln -s /var/www/tmp /usr/lib/tmp
------------------------------------------------------------------
-(yes | no): yes
 </code></pre></div>
 <h3 id="base-app_2">Base APPユーザー作成</h3>
 <p>続いてBase APPへアクセスするためのユーザーを作成しましょう、あなたが管理者の場合アプリ利用者の人数分ユーザー作成をしてください。以下ではtestというユーザーを作成しています。</p>
@@ -1321,6 +1268,11 @@ ln -s /var/www/tmp /usr/lib/tmp
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>鍵を選択してアクセスすると、"NO DATABOX, please create databox first"というメッセージが表示されるますが特に問題ありません。Base APPの管理対象となるDATA Boxがないために出ているワーニングですが、次章でData Boxを作成していけば解消します</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>small shellはMac OSでも動かすことができます、手順についてはsmall shell公式サイトをご確認ください  <br />
+<a href="https://www.small-shell.org/quick_start_Mac/">Quick Start</a></p>
 </div>
 <h3 id="data">Data構造の検討</h3>
 <p>BaseAPPは基本的にはDataBoxを管理するためのアプリケーションですが、DataBoxが作成されていないと何も操作することができません。DataBoxを作成し、BaseAPPを通じてデータ管理をしていきましょう</p>

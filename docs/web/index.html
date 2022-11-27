@@ -590,9 +590,6 @@ Client#req &lt;- protocol/communication -&gt; Server#res
 <p>続いて、サーバプロセスを起動しましょう</p>
 <pre><code>sudo service apache2 start
 </code></pre>
-<p>Linuxの再起動時にも自動起動するようにします</p>
-<pre><code>sudo update-rc.d apache2 defaults
-</code></pre>
 <p>apache2デーモンが動いていることはpsコマンドで確認できます</p>
 <div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ps -ef | grep apache2
 root       102     8  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
@@ -672,7 +669,10 @@ p       : 本文を記載
 b       : 囲んだ文字を大文字にする
 br      : 改行
 </code></pre></div>
-<p>WEBサーバのインストールと起動、HTMLサイトの作成を学んでいただきましたが上記はあくまで文章をタグで補完して表現を整えているだけのいわば紙芝居のようなサイトです。次章のsmall shellではデータの出し入れや要求毎の処理の分岐などができる本格的なアプリケーションを作っていきましょう</p>
+<p>次章に進む前にapacheサーバは一旦停止しましょう　　　　</p>
+<pre><code>service apache2 stop
+</code></pre>
+<p>WEBサーバのインストールと起動、HTMLサイトの作成を学んでいただきましたが上記はあくまで文章をタグで補完して表現を整えているだけのいわば紙芝居のようなサイトです。次章のsmall shellではデータの出し入れや要求毎の処理の分岐などができる本格的なアプリケーションを作っていきましょう　　　</p>
 
 
 
