@@ -1256,6 +1256,14 @@ Type of server (1.small-shell WEB srv | 2.other WEB srv): 1
 protocol (http | https): http
 WEB Server FQDN or IP addr (e.g. 192.168.10.1): localhost
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>WSLのubuntuはあくまでwindows PC上の簡易的なサーバ環境のため以下のようなエラーが表示される場合があります
+System has not been booted with systemd as init system (PID 1). Can't operate.  <br />
+curl: (7) Failed to connect to localhost port 80: Connection refused</p>
+<p>エラーが表示された場合は手動でwebサーバを起動してください  <br />
+sudo /var/www/app/index.js &amp;</p>
+</div>
 <h3 id="base-app_2">Base APPユーザー作成</h3>
 <p>続いてBase APPへアクセスするためのユーザーを作成しましょう、あなたが管理者の場合アプリ利用者の人数分ユーザー作成をしてください。以下ではtestというユーザーを作成しています。</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.usr:test
