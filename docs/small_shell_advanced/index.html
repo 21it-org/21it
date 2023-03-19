@@ -1,0 +1,1622 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.1">
+    
+    
+      
+        <title>small-shell Advanced - 21it Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2e8b5541.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#small-shell-advanced" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="21it Docs" class="md-header__button md-logo" aria-label="21it Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            21it Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              small-shell Advanced
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="21it Docs" class="md-nav__button md-logo" aria-label="21it Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    21it Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix1/" class="md-nav__link">
+        Unix Basic 1
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix2/" class="md-nav__link">
+        Unix Basic 2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genshi_programing/" class="md-nav__link">
+        shell programing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/" class="md-nav__link">
+        WEB Basic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell1/" class="md-nav__link">
+        small-shell Basic 1
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../small_shell2/" class="md-nav__link">
+        small-shell Basic 2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          small-shell Advanced
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        small-shell Advanced
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    アプリ開発
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリ開発">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    WEBアプリシナリオ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-app" class="md-nav__link">
+    Team APPの生成
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    スクラッチアプリ生成
+  </a>
+  
+    <nav class="md-nav" aria-label="スクラッチアプリ生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    ログイン画面の確認
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-shell" class="md-nav__link">
+    APP shell基本構造
+  </a>
+  
+    <nav class="md-nav" aria-label="APP shell基本構造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    ディレクトリ構造
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    URL構造
+  </a>
+  
+    <nav class="md-nav" aria-label="URL構造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_string" class="md-nav__link">
+    QUERY_STRING
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    コントローラー
+  </a>
+  
+    <nav class="md-nav" aria-label="コントローラー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    Routing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse" class="md-nav__link">
+    Parse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    アクションスクリプト
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html-descriptor" class="md-nav__link">
+    HTML descriptor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    アプリのカスタマイズ
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリのカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    keyの追加
+  </a>
+  
+    <nav class="md-nav" aria-label="keyの追加">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#original-event-form" class="md-nav__link">
+    original event form
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-event-form" class="md-nav__link">
+    new event form
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    ポータルのアップデート
+  </a>
+  
+    <nav class="md-nav" aria-label="ポータルのアップデート">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#html" class="md-nav__link">
+    サンプルHTML
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainsh" class="md-nav__link">
+    main.sh
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    メニューの更新
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-only" class="md-nav__link">
+    Read onlyへの変更
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_1" class="md-nav__link">
+    閲覧keyの制限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_1" class="md-nav__link">
+    チケットURL整備
+  </a>
+  
+    <nav class="md-nav" aria-label="チケットURL整備">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url_2" class="md-nav__link">
+    URLデザイン
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    問い合わせフォーム更新
+  </a>
+  
+    <nav class="md-nav" aria-label="問い合わせフォーム更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    データ定義の更新
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html_1" class="md-nav__link">
+    フォームHTML
+  </a>
+  
+    <nav class="md-nav" aria-label="フォームHTML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    問い合わせフォーム
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    その他の高度な機能
+  </a>
+  
+    <nav class="md-nav" aria-label="その他の高度な機能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    Graph生成
+  </a>
+  
+    <nav class="md-nav" aria-label="Graph生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-graph" class="md-nav__link">
+    Snapshot Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph_1" class="md-nav__link">
+    Graphの確認
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph_2" class="md-nav__link">
+    Graphの削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    定期ジョブの登録
+  </a>
+  
+    <nav class="md-nav" aria-label="定期ジョブの登録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    ジョブの生成と登録
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    さらなる学習のために
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../digital_resilience/" class="md-nav__link">
+        Digital耐性
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    アプリ開発
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリ開発">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    WEBアプリシナリオ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-app" class="md-nav__link">
+    Team APPの生成
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    スクラッチアプリ生成
+  </a>
+  
+    <nav class="md-nav" aria-label="スクラッチアプリ生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    ログイン画面の確認
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-shell" class="md-nav__link">
+    APP shell基本構造
+  </a>
+  
+    <nav class="md-nav" aria-label="APP shell基本構造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    ディレクトリ構造
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    URL構造
+  </a>
+  
+    <nav class="md-nav" aria-label="URL構造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query_string" class="md-nav__link">
+    QUERY_STRING
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    コントローラー
+  </a>
+  
+    <nav class="md-nav" aria-label="コントローラー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    Routing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse" class="md-nav__link">
+    Parse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    アクションスクリプト
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html-descriptor" class="md-nav__link">
+    HTML descriptor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    アプリのカスタマイズ
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリのカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    keyの追加
+  </a>
+  
+    <nav class="md-nav" aria-label="keyの追加">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#original-event-form" class="md-nav__link">
+    original event form
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-event-form" class="md-nav__link">
+    new event form
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    ポータルのアップデート
+  </a>
+  
+    <nav class="md-nav" aria-label="ポータルのアップデート">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#html" class="md-nav__link">
+    サンプルHTML
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainsh" class="md-nav__link">
+    main.sh
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    メニューの更新
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-only" class="md-nav__link">
+    Read onlyへの変更
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_1" class="md-nav__link">
+    閲覧keyの制限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_1" class="md-nav__link">
+    チケットURL整備
+  </a>
+  
+    <nav class="md-nav" aria-label="チケットURL整備">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url_2" class="md-nav__link">
+    URLデザイン
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    問い合わせフォーム更新
+  </a>
+  
+    <nav class="md-nav" aria-label="問い合わせフォーム更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    データ定義の更新
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html_1" class="md-nav__link">
+    フォームHTML
+  </a>
+  
+    <nav class="md-nav" aria-label="フォームHTML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    問い合わせフォーム
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    その他の高度な機能
+  </a>
+  
+    <nav class="md-nav" aria-label="その他の高度な機能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    Graph生成
+  </a>
+  
+    <nav class="md-nav" aria-label="Graph生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snapshot-graph" class="md-nav__link">
+    Snapshot Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph_1" class="md-nav__link">
+    Graphの確認
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph_2" class="md-nav__link">
+    Graphの削除
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    定期ジョブの登録
+  </a>
+  
+    <nav class="md-nav" aria-label="定期ジョブの登録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    ジョブの生成と登録
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    さらなる学習のために
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="small-shell-advanced">small shell Advanced</h1>
+<h2 id="_1">アプリ開発</h2>
+<p>small shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。Application Shellの基本構造を理解することで、生成したScratch APPに思いのままにコマンドで処理を記述でき、データを結合、加工することができます。本コースではScratch APPの生成とカスタマイズの流れをご説明します。それでは早速Scratch APPを生成してApplication Shellの構造を読み解いていきましょう。</p>
+<p>Scratch APPを使って作成するアプリケーションのシナリオは以下のとおりです。対象地域で配られたチケットでアクセスできる21it.orgの公開アプリを作成します</p>
+<h5 id="web">WEBアプリシナリオ</h5>
+<pre><code>1. アプリへは対象地域で配られたチケット(QRコードもしくはShared Passコード)でアクセスする
+2. 正当なアクセスと判断された場合アプリは公開講義の詳細日時とオンライン参加のためのURLを表示する
+3. ユーザーはメニューから問い合わせをすることができる
+4. 管理者はTeam APPで問い合わせ管理やスケジュール管理をする
+</code></pre>
+<h4 id="team-app">Team APPの生成</h4>
+<p>small shell BasicにてTeam APPはすでに作成済みかと思いますが、もし生成していない場合は前章を参照のうえ生成してください</p>
+<h2 id="_2">スクラッチアプリ生成</h2>
+<p>早速 Scratch APPを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。前提としてsmall shell Basicコースで作成したBase APPが作られている必要がありますのでBasicコースを参照して生成しておいてください。</p>
+<pre><code>sudo /usr/local/small-shell/adm/gen -app
+</code></pre>
+<p>対話が始まりますが、ここではアプリケーションの名前は21DOJOとします、pass codeは任意の4桁の数字を入力しています
+<div class="highlight"><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
+Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
+app_name: 21DOJO
+Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 1
+shared pass code: XXXX
+primary databox: events
+</code></pre></div>
+前章同様、アプリはshared passを選択しますがもちろん他の認証方式も選択可能です</p>
+<h4 id="_3">ログイン画面の確認</h4>
+<p>アプリケーションが生成されたのでアクセスしてみましょう</p>
+<p><img alt="Screenshot" src="../img/21login.png" /></p>
+<h2 id="app-shell">APP shell基本構造</h2>
+<p>アプリケーションシェルの構造を理解して、スクラッチアプリを更新していきましょう。スクラッチアプリ作成時に以下のようにコードが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">APP shell</a>も参考にしてください</p>
+<div class="highlight"><pre><span></span><code>SCRATCH APP template is successfully generated
+Please update codes
+/var/www/cgi-bin/auth.21DOJO
+/var/www/cgi-bin/21DOJO
+/var/www/cgi-bin/21DOJO_css
+/var/www/bin/21DOJO_del.sh     /var/www/bin/21DOJO_main.sh
+/var/www/bin/21DOJO_dl.sh      /var/www/bin/21DOJO_page_links.sh
+/var/www/bin/21DOJO_get.sh     /var/www/bin/21DOJO_set.sh
+/var/www/bin/21DOJO_log_viewer.sh  /var/www/bin/21DOJO_table.sh
+/var/www/descriptor/21DOJO_auth_form.html.def
+/var/www/descriptor/21DOJO_get_err.html.def
+/var/www/descriptor/21DOJO_get_new.html.def
+/var/www/descriptor/21DOJO_get_new_incf.html.def
+/var/www/descriptor/21DOJO_get_ro.html.def
+/var/www/descriptor/21DOJO_get_rw.html.def
+/var/www/descriptor/21DOJO_get_rw_incf.html.def
+/var/www/descriptor/21DOJO_log_viewer.html.def
+/var/www/descriptor/21DOJO_main.html.def
+/var/www/descriptor/21DOJO_set_err.html.def
+/var/www/descriptor/21DOJO_table.html.def
+</code></pre></div>
+<h3 id="_4">ディレクトリ構造</h3>
+<p>コードは3つのディレクトリに格納されます、以下のとおり1.cgi-bin 2.bin 3.descriptorにコードが格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のアクションスクリプトを呼び出し、アクションスクリプトがdescription配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
+<pre><code>/var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
+/var/www/bin         # 応答処理をAction scriptとして記述、DataBoxへの接続や分岐処理をする
+/var/www/descriptor  # HTML及びCSSの定義を配置
+/var/www/html        # 静的なコンテンツを配置可能 (必須ではない）
+</code></pre>
+<h3 id="url">URL構造</h3>
+<p>先ほど作成した21DOJOアプリの認証画面へアクセスした際、WSL環境をお使いの場合URLは以下のとおりだったと思います、small shellではウェブアプリケーション毎にauth.$APPというプログラムが生成され、アプリケーション毎の認証を制御します</p>
+<pre><code>http://localhost/cgi-bin/auth.21DOJO
+</code></pre>
+<p>認証が成功した場合、コントローラーへ自動で接続されます。ログイン後のURLをブラウザからコピーしてみてみましょう、URLはsession情報やsessionを保証するpinコードを含んでいます。また、req=mainという記述も確認できると思いますが、これはmainページのリクエストを意味します</p>
+<pre><code>http://localhost/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
+</code></pre>
+<h5 id="query_string">QUERY_STRING</h5>
+<p>QUERY_STRINGとはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY_STRINGをURLに連結していくことができます。</p>
+<h3 id="_5">コントローラー</h3>
+<p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のactionスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
+<h4 id="routing">Routing</h4>
+<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase分をルーティングと呼んでいます</p>
+<div class="highlight"><pre><span></span><code>sudo tail -34 /var/www/cgi-bin/21DOJO
+
+#----------------------------
+# routing to action scripts
+#----------------------------
+
+case &quot;$req&quot; in
+
+  &quot;main&quot;)
+    /var/www/bin/21DOJO_main.sh session:$session pin:$pin user_name:$user_name remote_addr:${remote_addr};;
+
+  &quot;get&quot;)
+    /var/www/bin/21DOJO_get.sh session:$session pin:$pin user_name:$user_name id:$id duplicate:$duplicate;;
+
+  &quot;set&quot;)
+    /var/www/bin/21DOJO_set.sh session:$session pin:$pin user_name:$user_name id:$id;;
+
+  &quot;del&quot;)
+    /var/www/bin/21DOJO_del.sh databox:$databox session:$session pin:$pin id:$id ;;
+
+  &quot;table&quot;)
+    table_command=&quot;`echo $table_command | $SED &quot;s/ /{%%space}/g&quot;`&quot;
+    /var/www/bin/21DOJO_table.sh session:$session pin:$pin user_name:$user_name id:$id page:$page table_command:$table_command line:$line;;
+
+  &quot;log_viewer&quot;)
+    /var/www/bin/21DOJO_log_viewer.sh session:$session pin:$pin user_name:$user_name id:$id ;;
+
+  &quot;file&quot;)
+    /var/www/bin/21DOJO_dl.sh session:$session pin:$pin user_name:$user_name id:$id ;;
+
+  *)
+    echo &quot;error: wrong request&quot;;;
+
+esac
+</code></pre></div>
+<h4 id="parse">Parse</h4>
+<p>ルーティングに至る前処理としてはsessionの妥当性の確認やクライアントからのリクエスト内容の解析などを行いますが、クライアントから送信(POST)された要求を解析するプログラムとしてparse.shを使用します。controllerに、例えばuser_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にuser_nameというファイルを作り、そこにPOSTされたユーザー名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
+<h3 id="_6">アクションスクリプト</h3>
+<p>コントローラーがルーティングを通じて呼び出すのがアクションスクリプトですが、ユーザーへの応答を返すのはアクションスクリプトになります。主な処理としてはDATA_shellへ接続してデータを抽出したうえで所定のHTML descriptorを読み込みそのまま返します。その際、%%tagについてsedで置き換えるという処理を行っています。例として21DOJO_get.shの中身を見てみましょう、いくつかの%%tagがありますがデータは主に%%datasetの中にsedで埋め込まれます</p>
+<div class="highlight"><pre><span></span><code>sudo tail -18 /var/www/bin/21DOJO_get.sh
+
+# render HTML
+cat ../descriptor/${view} | $SED &quot;s/^ *&lt;/&lt;/g&quot; \
+| $SED &quot;/%%common_menu/r ../descriptor/common_parts/21DOJO_common_menu&quot; \
+| $SED &quot;/%%common_menu/d&quot; \
+| $SED &quot;/%%dataset/r ../tmp/$session/dataset&quot; \
+| $SED &quot;s/%%dataset//g&quot;\
+| $SED &quot;/%%history/r ../tmp/$session/history&quot; \
+| $SED &quot;s/%%history//g&quot;\
+| $SED &quot;s/%%id/$id/g&quot; \
+| $SED &quot;s/%%pdls/session=$session\&amp;pin=$pin\&amp;req=get/g&quot; \
+| $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
+| $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
+
+if [ &quot;$session&quot; ];then
+  rm -rf ../tmp/$session
+fi
+
+exit 0
+</code></pre></div>
+<h3 id="html-descriptor">HTML descriptor</h3>
+<p>アクションスクリプトが呼び出しているHTML descriptorも見てみましょう。get用のActoin scriptはget関連のHTMLディスクリプターを呼び出しますが、%%datasetの前後4行を抽出すると以下のようになっています。基本的には純粋なHTMLに所定のtagを埋め込みデータ変換しながらクライアントに要求を返すというのがsmall shellの基本的な処理ロジックになります
+<div class="highlight"><pre><span></span><code>cat /var/www/descriptor/21DOJO_get_rw.html.def  | grep -2 %%dataset | $SED -r &quot;s/^(.*)&lt;/&lt;/g&quot;
+
+&lt;form method=&quot;post&quot; action=&quot;./21DOJO?%%params&amp;req=set&amp;id=%%id&quot; onclick=&quot;document.charset=&#39;utf-8&#39;;&quot;&gt;
+&lt;ul&gt;
+        %%dataset
+&lt;/ul&gt;
+&lt;/button&gt;
+</code></pre></div></p>
+<h2 id="_7">アプリのカスタマイズ</h2>
+<p>大枠の構造を理解いただいたところで、さっそくアプリのカスタマイズを行っていきましょう。</p>
+<h3 id="key">keyの追加</h3>
+<p>まずは、今回の目的に応じてDataBoxを拡張しましょう、Team APPのデフォルトのevents定義だとイベントの詳細や参加URLを追記できないためkeyを追加します</p>
+<h6 id="original-event-form">original event form</h6>
+<p><img alt="Screenshot" src="../img/org_event.png" /></p>
+<p><div class="highlight"><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -addcol
+databox_name: events
+key(col7) name: url
+key (col7) label: イベントURL
+data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): url
+required to input each time? (yes | no): no
+Do you want to add more column to dataset ? (yes | no) : yes
+key(col8) name: detail
+key (col8) label: イベント詳細
+data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): textarea
+required to input each time? (yes | no): no
+Do you want to add more column to dataset ? (yes | no) : no
+</code></pre></div>
+イベントへ詳細情報やURLの追加が可能になったと思いますので、さっそくテストイベントを追加しましょう</p>
+<h6 id="new-event-form">new event form</h6>
+<p><img alt="Screenshot" src="../img/new_event.png" /></p>
+<h3 id="_8">ポータルのアップデート</h3>
+<p>続いて21DOJOへのログイン時に最初に表示されるポータルページに最新のイベント情報が出てくるようにしましょう</p>
+<h4 id="html">サンプルHTML</h4>
+<p>メインページのmain配下を以下のように更新しましょう、各%%tagにはアクションスクリプト側で情報を埋め込みます
+<div class="highlight"><pre><span></span><code>sudo nano /var/www/descriptor/21DOJO_main.html.def
+
+--code--
+ &lt;div class=&quot;main&quot;&gt;
+   &lt;div class=&quot;left-nav&quot;&gt;
+   &lt;/div&gt; 
+   &lt;div class=&quot;description&quot;&gt;
+     &lt;h1&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h1&gt;
+     &lt;h1&gt;記載のURLからご参加いただければと思います&lt;/h1&gt;
+     &lt;a href=&quot;./21DOJO?%%session&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;event&quot;&gt;
+     %%event
+   &lt;/div&gt;
+ &lt;/div&gt;
+--------
+</code></pre></div></p>
+<p>併せてevent classを21DOJO cssに追記してレイアウトを微修正しましょう、classの追記は基本的にはどこでも構いませんが、ここでは一番下に追記しています
+<div class="highlight"><pre><span></span><code>sudo nano /var/www/descriptor/21DOJO.css.def
+
+--code--
+.event {
+ padding: 24px 4px;
+}
+--------
+</code></pre></div>
+ポータルには現時点で%%tagが埋め込まれていませんが、続いてアクションスクリプトを更新します
+<img alt="Screenshot" src="../img/portal_1.png" /></p>
+<h4 id="mainsh">main.sh</h4>
+<p>21DOJOのmain.shにて%%tagを埋め込みます、始めにDATA_SHELLが使えるようコメントアウトしてください。databoxの最新の1行目のエントリーをhead -1でサーチして、idを取得、データをeventファイルに書き出したのちsedで%%eventを上書しています
+<div class="highlight"><pre><span></span><code>sudo nano /var/www/bin/21DOJO_main.sh
+
+--code--
+# SET BASE_COMMAND
+META=&quot;${small_shell_path}/bin/meta&quot;
+DATA_SHELL=&quot;${small_shell_path}/bin/DATA_shell session:$session pin:$pin app:21DOJO&quot;
+
+id=`$DATA_SHELL databox:events command:head_-1 format:none | $AWK -F &quot;,&quot; &#39;{print $1}&#39;`
+$DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail format:html_tag &gt; ../tmp/$session/event
+
+# -----------------
+# render HTML
+# -----------------
+
+cat /var/www/descriptor/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
+| $SED &quot;/%%common_menu/r /var/www/descriptor/common_parts/21DOJO_common_menu&quot; \
+| $SED &quot;s/%%common_menu//g&quot;\
+| $SED &quot;s/%%user_name/$user_name/g&quot; \
+| $SED &quot;/%%event/r ../tmp/$session/event&quot; \
+| $SED &quot;s/%%event//g&quot; \
+| $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
+| $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
+</code></pre></div>
+完成したポータルはこちらになります
+<img alt="Screenshot" src="../img/portal_2.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>イベントが何も登録されていないときは"error: please input id"というメッセージが表示されるため、イベントを登録して下さい</p>
+</div>
+<h3 id="_9">メニューの更新</h3>
+<p>続いてアプリケーションの右上 even(=)メニューの内容も変更してみましょう。ここではTeam APP付属のInquiryのURLと、21世紀IT塾の公式サイトおよびオンラインドキュメントサイトのURLを追記します。併せてメニューの文言も少し整理します</p>
+<p><div class="highlight"><pre><span></span><code>sudo nano /var/www/descriptor/common_parts/21DOJO_common_menu
+
+--code--
+&lt;li&gt;&lt;a href=&quot;./21DOJO?%%session&amp;req=main&quot;&gt;最新イベント&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;./21DOJO?%%session&amp;req=table&quot;&gt;イベント検索&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;./inquiry&quot;&gt;お問い合わせ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://21it.org&quot;&gt;21世紀IT塾HOME&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.21it.org&quot;&gt;オンラインドキュメント&lt;/a&gt;&lt;/li&gt;
+--------
+</code></pre></div>
+更新されたメニューを確認してみましょう
+<img alt="Screenshot" src="../img/menu.png" /></p>
+<h3 id="read-only">Read onlyへの変更</h3>
+<p>21DOJOはshared passのためシステムユーザーしかもちませんが、このユーザーをread onlyに変更することでアプリ全体が読み取り権限のみとなり書き込みができなくなります</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops set.attr:21DOJO.app{ro} app:21DOJO
+</code></pre>
+<h3 id="key_1">閲覧keyの制限</h3>
+<p>管理目的以外で使用しないkeyは21DOJOアプリからは閲覧できないようkeys=allをコメントアウトして閲覧可能なkeyを制限しましょう</p>
+<div class="highlight"><pre><span></span><code>sudo nano /var/www/bin/21DOJO_table.sh
+--code--
+#keys=all
+keys=name,start,end,url,detail
+--------
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>sudo nano /var/www/bin/21DOJO_get.sh
+--code--
+#keys=all
+keys=name,start,end,url,detail
+--------
+</code></pre></div>
+<h3 id="url_1">チケットURL整備</h3>
+<p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みそのURLをQR codeにしましょう。URLにQUERY_STRINGを付加すれば認証画面なしで自動ログインが可能です</p>
+<h4 id="url_2">URLデザイン</h4>
+<p>以下はWSL環境でpass codeとして1234を設定したアプリにQUERY_STRINGだけでログインするためのURLの例です</p>
+<pre><code>http://localhost/cgi-bin/auth.21DOJO?app_pass=1234
+</code></pre>
+<h3 id="_10">問い合わせフォーム更新</h3>
+<p>Team APP付属のInquiries DataBox及びInquiryフォームを利用ケースにあわせて更新しましょう</p>
+<h4 id="_11">データ定義の更新</h4>
+<p>DataBoxのラベルやselect可能なパラメーターは直接更新することができます。DataBoxの定義が格納されたdef配下で定義を１つずつ更新していきましょう</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>nameやtypeの変更はデータを破壊することがあるため変更しないでください。label, params, optionのみ変更可能になっています</p>
+</div>
+<div class="highlight"><pre><span></span><code>sudo nano /usr/local/small-shell/databox/inquiries/def/col2
+--code--
+name=&quot;user_name&quot;
+label=&quot;お名前&quot;
+type=&quot;text&quot;
+option=&quot;required&quot;
+--------
+
+sudo nano /usr/local/small-shell/databox/inquiries/def/col3
+--code--
+name=&quot;email&quot;
+label=&quot;メールアドレス(任意)&quot;
+type=&quot;email&quot;
+option=&quot;&quot;
+--------
+
+sudo nano /usr/local/small-shell/databox/inquiries/def/col4
+--code--
+name=&quot;type&quot;
+label=&quot;Inquiry Type&quot;
+type=&quot;select&quot;
+params=&quot;公開講義について オンラインドキュメントについて small-shellについて その他&quot;
+option=&quot;required&quot;
+--------
+
+
+sudo nano /usr/local/small-shell/databox/inquiries/def/col6
+--code--
+name=&quot;inquiry&quot;
+label=&quot;お問い合わせ内容&quot;
+type=&quot;textarea&quot;
+option=&quot;&quot;
+--------
+</code></pre></div>
+<h4 id="html_1">フォームHTML</h4>
+<p>お問い合わせHTMLフォームも変更が可能です、必要に応じてdescriptorを直接更新してください。</p>
+<div class="highlight"><pre><span></span><code>sudo nano /var/www/descriptor/inquiry_get_new.html.def
+
+--code--
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        &lt;title&gt;inquiry.new&lt;/title&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;./inquiry_css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+
+      &lt;div class=&quot;form-box&quot;&gt;
+      &lt;div class=&quot;description&quot;&gt;
+      &lt;h1&gt;#inquiry&lt;/h1&gt;
+      &lt;p&gt;21世紀IT塾お問い合わせフォーム&lt;/p&gt;
+      &lt;hr&gt;
+      &lt;/div&gt;
+      &lt;form method=&quot;post&quot; action=&quot;./inquiry?req=set&amp;id=%%id&quot;&gt;
+      &lt;ul&gt;
+       %%dataset
+      &lt;/ul&gt;
+      &lt;button class=&quot;button&quot; type=&quot;submit&quot;&gt;SUBMIT&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+--------
+</code></pre></div>
+<h6 id="_12">問い合わせフォーム</h6>
+<p><img alt="Screenshot" src="../img/inquiry.png" /></p>
+<p>問い合わせはTeam APP上でチケットして管理され、チャット形式でやりとりを継続できます
+<img alt="Screenshot" src="../img/ticket.png" /></p>
+<h2 id="_13">その他の高度な機能</h2>
+<h3 id="graph">Graph生成</h3>
+<p>pyshellを使うことで容易にGraph生成ができます、まずはsmall shell公式サイトを確認してpython及びlibraryのインストールをしてください。公式サイトはChromeの翻訳機能を使えば日本語での閲覧が可能です   </p>
+<p><a href="https://small-shell.org/python_tour/">pyshell</a></p>
+<p>公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではenv設定が適切に実施されpython3.9がインストールされていることを確認します
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat /usr/local/small-shell/util/pyshell/env | grep PYTHON
+PYTHON=&quot;/usr/local/bin/python3.9&quot;
+ubuntu@LAPTOP-8KU2HS6V:~$ ls /usr/local/bin/python3.9
+/usr/local/bin/python3.9
+</code></pre></div></p>
+<p>日本語を扱えるようにフォントをインストールしてフォント定義を変更しましょう
+<div class="highlight"><pre><span></span><code># フォントインストール
+sudo apt install fonts-ipaexfont
+sudo vi /usr/local/small-shell/util/pyshell/env
+--code--
+font_family=&quot;IPAexGothic&quot; 
+--------
+
+# キャッシュの削除
+sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-v330.json
+</code></pre></div></p>
+<h4 id="snapshot-graph">Snapshot Graph</h4>
+<p>pyshell環境が適切に設定できていたら、utility scriptであるcountup.shを使ってスナップショットグラフを作成しましょう。スナップショットグラフとはpyshell実行時点のデータを集計し、記録したグラフです。スナップショット以外にデータ蓄積を前提としたhourly, daily, monthlyのグラフの作成が可能です。以下は先ほどアンケート集計のために作成したsurvey.boxを"良い"、"普通"、"悪い"でそれぞれデータを集計するコマンド例になります</p>
+<div class="highlight"><pre><span></span><code>sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.box \
+key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+</code></pre></div>
+<p>タイトルを入れたい場合はtitleも入力してください、ここではタイトルにスペースを使わず"2022-04-18_調査結果"としています
+<div class="highlight"><pre><span></span><code>sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.box \
+key:impression filters:良い,普通,悪い title:2022-04-18_調査結果 type:pie frequency:snapshot
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>countup.shは指定のDataBoxのデータに対し指定のwordで検索をかけ、その件数を集計しグラフにします</p>
+</div>
+<h4 id="graph_1">Graphの確認</h4>
+<p>countup.shの実行がエラーなく完了したらconsoleでgraphを確認しましょう、command lineに#statsと打ち込めば作成されたグラフの一覧が出てきます。</p>
+<p><img alt="Screenshot" src="../img/graph.png" /></p>
+<p>Title付きのグラフをクリックしてみましょう、グラフがポップアップで表示されます</p>
+<p><img alt="Screenshot" src="../img/popup_graph.png" /></p>
+<h4 id="graph_2">Graphの削除</h4>
+<p>Graphを削除したい場合は、統計データを蓄積しているstatisticsディレクトリで直接データを消してください</p>
+<div class="highlight"><pre><span></span><code>ls /usr/local/small-shell/util/statistics/graph
+sudo rm /usr/local/small-shell/util/statistics/graph/countup_s_20220419_db_survey.box_impression_filtered.png
+sudo rm /usr/local/small-shell/util/statistics/rawdata/countup_s_20220419_db_survey.box_impression_filtered.csv
+</code></pre></div>
+<h3 id="_14">定期ジョブの登録</h3>
+<p>定期ジョブを用いて、提携処理を自動で実行することができます。ここではグラフを定期取得するためのジョブを登録しましょう、small shellでは対話を通じたcronへのジョブ登録が可能です</p>
+<h4 id="_15">ジョブの生成と登録</h4>
+<p>以下では先ほど実行したcountup.shを毎日0時0分に実行するジョブを登録しています</p>
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ sudo /usr/local/small-shell/adm/gen -job
+job name: gen_survey_graph
+Type of job (1.job automation | 2.file exchange) : 1
+--Define schedule--
+Month [ any | 1-12 ]: any
+Date  [ any | 1-31 ]: any
+Hour  [ any | 0-23 ]: 0
+Min   [ any | 0-59 ]: 0
+Week  [ any | mon - sun ]: any
+Exec command or batch script: /usr/local/small-shell/util/scripts/countup.sh databox:survey.box \
+key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>genコマンドで登録されるジョブは自動でsmall-shell権限で実行されます</p>
+</div>
+<p>バッチスクリプトを指定すると最終確認が求められますので問題なければyesと入力しましょう
+<div class="highlight"><pre><span></span><code>job will be generated by following order, please check it
+-----------------------------------------------------------------
+
+jobtype: 1.job automation
+job_name: gen_survey_graph
+min: 0
+hour: any
+date: any
+month: any
+week: any
+exec_command: /usr/local/small-shell/util/scripts/countup.sh databox:survey.box key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+
+-----------------------------------------------------------------
+Is it OK ? (yes | no):
+</code></pre></div>
+ジョブ登録が完了したメッセージが表示されます。defにジョブ定義がありますので事後で編集することも可能です
+<div class="highlight"><pre><span></span><code>Succesfully generated. job definition is here
+def: /usr/local/small-shell/util/e-cron/def/gen_survey_graph.def
+Please enable job &quot;sudo -u small-shell /usr/local/small-shell/bin/e-cron enable.gen_survey_graph&quot;
+</code></pre></div>
+上記状態ではジョブは有効かされていないため有効化しましょう</p>
+<p><div class="highlight"><pre><span></span><code>sudo -u small-shell /usr/local/small-shell/bin/e-cron enable.gen_survey_graph
+</code></pre></div>
+有効化後はジョブの手動実行も可能です、以下はジョブの一覧を確認しgen_survey_graphを実行し結果を確認する例になります
+<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron ls
+--------------------------------------------------------------
+job definition: /usr/local/small-shell/util/e-cron/def
+--------------------------------------------------------------
+del_session.enabled
+del_util_log.enabled
+gen_survey_graph.enabled
+ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron exec.gen_survey_graph
+gen_survey_graph successfully completed
+ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron stat
+--------------------------------------------------------
+LATEST STATUS OF JOB
+--------------------------------------------------------
+2022-03-30 21:27:53 del_session successfully completed
+2022-04-19 20:22:18 gen_survey_graph successfully completed
+</code></pre></div>
+WSLをお使いの場合はcronは無効になっているので、windows再起動の都度以下コマンドを実行してcrondを起動してください</p>
+<pre><code>sudo service cron start
+</code></pre>
+<p>e-cronを用いるとさらに高度なジョブの登録や、他のホストとのメッセージ交換やデータ交換ができるようになります。詳細はsmall shell公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron tour</a>をご確認ください。chromeで翻訳して閲覧することをお勧めします。</p>
+<h2 id="_16">さらなる学習のために</h2>
+<p><a href="https://small-shell.org/">small shell</a>公式サイトにはより詳細で高度なドキュメントが公開されていますので是非読み解いて下さい。また、21世紀IT塾公開講座へ参加いただければさらに実用的なスキルもつけていただけます。次章では21世紀のデジタル化社会を生きる上で必要不可欠な耐性として考慮されるDigital耐性についてご説明します</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="フッター" >
+      
+        
+        <a href="../small_shell2/" class="md-footer__link md-footer__link--prev" aria-label="前: small-shell Basic 2" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                前
+              </span>
+              small-shell Basic 2
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../digital_resilience/" class="md-footer__link md-footer__link--next" aria-label="次: Digital耐性" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                次
+              </span>
+              Digital耐性
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d691e9de.min.js"></script>
+      
+    
+  </body>
+</html>
