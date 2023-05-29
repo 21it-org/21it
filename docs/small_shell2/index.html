@@ -989,7 +989,7 @@ option=&quot;required&quot;
 name=&quot;impression&quot;
 label=&quot;使ってみた印象&quot;
 type=&quot;radio&quot;
-params=&quot;良い 普通 悪い&quot;
+params=&quot;良い,普通,悪い&quot;
 option=&quot;required&quot;
 
 #column4
@@ -1000,9 +1000,13 @@ option=&quot;&quot;
 
 -----------------------------------------------------------------
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>入力値をパラメーターとして選べるようにする際、区切り文字として上記例のとおりカンマ,を使って並べて記載することができます。</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>日本語でparameterを定義する場合に、入力中にback spaceを使うとテキストが崩れるためnotepadなどに書いた内容をコピーペーストすることをお勧めします。その際パラメーターの区切りとしては全角スペースは使わず必ず半角スペースを使ってください</p>
+<p>対話モードの際にバックスペースを使って日本語を修正すると入力値が壊れるため、できるだけコピペなどで生成してください</p>
 </div>
 <h3 id="_14">フォームの生成</h3>
 <p>DataBoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます</p>
