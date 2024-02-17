@@ -410,8 +410,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#item_name" class="md-nav__link">
-    item_nameの正規化
+  <a href="#item_name-key" class="md-nav__link">
+    item_name keyの分解
   </a>
   
 </li>
@@ -753,8 +753,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#item_name" class="md-nav__link">
-    item_nameの正規化
+  <a href="#item_name-key" class="md-nav__link">
+    item_name keyの分解
   </a>
   
 </li>
@@ -998,22 +998,22 @@ sudo node /var/www/app/index.js &amp;</p>
 key   : item_name(primary_key),num
 value : メーカーAのノートパソコン,10
 </code></pre>
-<p>もちろんitem_nameはそれ自体様々な情報を含んでいますので以下のように分解することもできます。以下例のようにデータ構造をより細かく重複や矛盾なく分割して定義することにより、データを検索しやすくしたり管理しやすくする作業を正規化といいます。一方で以下例ではpc_type {laptop or desktop}というkeyを含んでしまうことでPCの在庫はより精緻にできるようになったものの、PC以外の在庫管理が難しくなります。データをどの程度分解し、適切に管理するかというのはセンスのいる作業になります。</p>
-<h6 id="item_name">item_nameの正規化</h6>
-<pre><code>key   : item_name(primary_key), maker,  CPU, Memry, HDD&lt; model number, pc_type, num, note
+<p>item_nameは様々な情報を含んでいますので、適正に管理するためには以下のように分解することもできます。データをより細かく重複や矛盾なく分解して定義することにより、検索しやすくしたり管理しやすくする作業を正規化といいます。一方で以下例ではkeyを分解していくことでPCの在庫はより精緻にできるようになったものの、PC以外の在庫管理が難しくなります。データをどの程度分解し、適切に管理するかというのはセンスのいる作業になります。</p>
+<h6 id="item_name-key">item_name keyの分解</h6>
+<pre><code>key   : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
 </code></pre>
 <p>データの正規化は大規模なシステム開発においては非常に重要な作業になりますが、フラットな箱にデータを入れ直観的に管理したいというsmall shellの基本的なスタンスからすると少し重すぎる作業だともいます。いったん過度な正規化はここでは行わず、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度の、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう</p>
 <h6 id="_6">フラットデータ構造</h6>
 <pre><code>#在庫データ
-key   : item_name(primary_key),maker, type, num,note
-label : アイテム名(型番),メーカー,タイプ,在庫数,メモ
-value : P123,Aメーカー,パソコン,10,-
+key   : item_name(primary_key), maker, type, num, note
+label : アイテム名(型番), メーカー, タイプ, 在庫数, メモ
+value : P123,Aメーカー, パソコン, 10, -
 </code></pre>
 <h3 id="databox">DataBox生成</h3>
 <p>データ構造を比較的緩めなものにすると決まったところで、さっそくDataBoxを生成していきましょう、再びgenコマンドで簡単に生成できます。DataBox自体の名前はわかりやすくitem.dbとして、在庫管理のために使ってみましょう</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -databox
 </code></pre>
-<p>対話例は以下のとおりです。Do you want to add more column to datase？と聞かれた際にnoと答えると対話が終了しデータボックスが生成されます, またrequired to input each time?と聞かれてyesと答えると必須の入力項目としてBaseAPPで扱われます</p>
+<p>対話例は以下のとおりです。Do you want to add more column to datase？と聞かれた際にnoと答えると対話が終了しデータボックスが生成されます, またrequired to input each time?と聞かれてyesと答えると必須の入力項目としてBaseAPPで扱われます。通常のフィールドはフリーワードが登録できるtext、ある程度固定値にして検索性を高めたいフィールドにはselectを選択して固定値を指定しましょう</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>対話を途中で抜けたい場合はCtrl + cを同時に押して抜けてください</p>
