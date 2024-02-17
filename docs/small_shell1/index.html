@@ -1021,24 +1021,26 @@ value : P123,Aメーカー, パソコン, 10, -
 <div class="highlight"><pre><span></span><code>databox_name: item.db
 primary_key(col1): item_name
 primary_key label: アイテム名(型番)
-Do you want to add column to dataset ? (yes | no): yes
+Do you want to add column to dataset ? (yes | no): yes ※keyを追加しますかという意味です、以降もyesと答えてください
+
 key(col2) name: type
 key(col2) label: タイプ
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
 please define parameters using comma as separator: パソコン,モニター,アクセサリー,その他
-required to input each time? (yes | no): yes
-Do you want to add more column to dataset ? (yes | no) : yes
+required to input each time? (yes | no): yes ※必須項目はyesとしますDo you want to add column to dataset ? (yes | no): yes 
+
 key(col3) name: maker
 key(col3) label: メーカー
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
 please define parameters using comma as separator: メーカーA社,メーカーB社,メーカーC社,その他
 required to input each time? (yes | no): yes
-Do you want to add more column to dataset ? (yes | no) : yes
+
 key(col4) name: num
 key(col4) label: 在庫数
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): num
 required to input each time? (yes | no): yes
 Do you want to add more column to dataset ? (yes | no) : yes
+
 key(col5) name: note
 key(col5) label: 備考
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): text
