@@ -455,6 +455,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    選択式にしたデータの追加
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -467,6 +474,13 @@
   
     <nav class="md-nav" aria-label="Table管理">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    単純検索
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#sort" class="md-nav__link">
@@ -515,7 +529,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     ダウンロード / 一括更新
   </a>
   
@@ -524,6 +538,13 @@
           <li class="md-nav__item">
   <a href="#initialize-url" class="md-nav__link">
     Initialize URLの再生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    より高度な正規化
   </a>
   
 </li>
@@ -777,6 +798,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    選択式にしたデータの追加
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -789,6 +817,13 @@
   
     <nav class="md-nav" aria-label="Table管理">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    単純検索
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#sort" class="md-nav__link">
@@ -837,7 +872,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     ダウンロード / 一括更新
   </a>
   
@@ -846,6 +881,13 @@
           <li class="md-nav__item">
   <a href="#initialize-url" class="md-nav__link">
     Initialize URLの再生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    より高度な正規化
   </a>
   
 </li>
@@ -956,16 +998,16 @@ sudo node /var/www/app/index.js &amp;</p>
 key   : item_name(primary_key),num
 value : メーカーAのノートパソコン,10
 </code></pre>
-<p>もちろんitem_nameはそれ自体様々な情報を含んでいますので以下のように分解することもできます。以下例のようにデータ構造をより細かく矛盾なく分割して定義することにより、精緻なデータ管理が可能になります。一方で以下例ではpc_type {laptop or desktop}というkeyを含んでしまうことでPCの在庫はより精緻にできるようになったものの、PC以外の在庫管理が難しくなります。データをどの程度分解し、適切に管理するかというのはセンスのいる作業になります。</p>
+<p>もちろんitem_nameはそれ自体様々な情報を含んでいますので以下のように分解することもできます。以下例のようにデータ構造をより細かく重複や矛盾なく分割して定義することにより、データを検索しやすくしたり管理しやすくする作業を正規化といいます。一方で以下例ではpc_type {laptop or desktop}というkeyを含んでしまうことでPCの在庫はより精緻にできるようになったものの、PC以外の在庫管理が難しくなります。データをどの程度分解し、適切に管理するかというのはセンスのいる作業になります。</p>
 <h6 id="item_name">item_nameの正規化</h6>
-<pre><code>key   : item_name(primary_key), maker, pc_type, num, note
+<pre><code>key   : item_name(primary_key), maker,  CPU, Memry, HDD&lt; model number, pc_type, num, note
 </code></pre>
-<p>データの正規化は大規模なシステム開発においては非常に重要な作業になりますが、フラットな箱にデータを入れ直観的に管理したいというsmall shellの基本的なスタンスからすると少し重すぎる作業だともいます。いったん過度な正規化はここでは行わず、簡易的な補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう</p>
+<p>データの正規化は大規模なシステム開発においては非常に重要な作業になりますが、フラットな箱にデータを入れ直観的に管理したいというsmall shellの基本的なスタンスからすると少し重すぎる作業だともいます。いったん過度な正規化はここでは行わず、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度の、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう</p>
 <h6 id="_6">フラットデータ構造</h6>
 <pre><code>#在庫データ
-key   : item_name(primary_key),num,note
-label : アイテム名,数量,メモ
-value : メーカーＡのノートパソコン,10,来月10個使う
+key   : item_name(primary_key),maker, type, num,note
+label : アイテム名(型番),メーカー,タイプ,在庫数,メモ
+value : P123,Aメーカー,パソコン,10,-
 </code></pre>
 <h3 id="databox">DataBox生成</h3>
 <p>データ構造を比較的緩めなものにすると決まったところで、さっそくDataBoxを生成していきましょう、再びgenコマンドで簡単に生成できます。DataBox自体の名前はわかりやすくitem.dbとして、在庫管理のために使ってみましょう</p>
@@ -978,15 +1020,27 @@ value : メーカーＡのノートパソコン,10,来月10個使う
 </div>
 <div class="highlight"><pre><span></span><code>databox_name: item.db
 primary_key(col1): item_name
-primary_key label: アイテム名
+primary_key label: アイテム名(型番)
 Do you want to add column to dataset ? (yes | no): yes
-key(col2) name: num
-key(col2) label: 数量
+key(col2) name: type
+key(col2) label: タイプ
+data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
+please define parameters using comma as separator: パソコン,モニター,アクセサリー,その他
+required to input each time? (yes | no): yes
+Do you want to add more column to dataset ? (yes | no) : yes
+key(col3) name: maker
+key(col3) label: メーカー
+data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
+please define parameters using comma as separator: メーカーA社,メーカーB社,メーカーC社,その他
+required to input each time? (yes | no): yes
+Do you want to add more column to dataset ? (yes | no) : yes
+key(col4) name: num
+key(col4) label: 在庫数
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): num
 required to input each time? (yes | no): yes
 Do you want to add more column to dataset ? (yes | no) : yes
-key(col3) name: note
-key(col3) label: メモ
+key(col5) name: note
+key(col5) label: 備考
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): text
 required to input each time? (yes | no): no
 Do you want to add more column to dataset ? (yes | no) : no
@@ -998,19 +1052,33 @@ Do you want to add more column to dataset ? (yes | no) : no
 databox_name:item.db
 #primary_key
 name=&quot;item_name&quot;
-label=&quot;アイテム名&quot;
+label=&quot;アイテム名(型番)&quot;
 type=&quot;text&quot;
 option=&quot;required&quot;
 
 #column2
-name=&quot;num&quot;
-label=&quot;数量&quot;
-type=&quot;number&quot;
+name=&quot;type&quot;
+label=&quot;タイプ&quot;
+type=&quot;select&quot;
+params=&quot;パソコン,モニター,アクセサリー,その他&quot;
 option=&quot;required&quot;
 
 #column3
+name=&quot;maker&quot;
+label=&quot;メーカー&quot;
+type=&quot;select&quot;
+params=&quot;メーカーA社,メーカーB社,メーカーC社,その他&quot;
+option=&quot;required&quot;
+
+#column4
+name=&quot;num&quot;
+label=&quot;在庫数&quot;
+type=&quot;number&quot;
+option=&quot;required&quot;
+
+#column5
 name=&quot;note&quot;
-label=&quot;メモ&quot;
+label=&quot;備考&quot;
 type=&quot;text&quot;
 option=&quot;&quot;
 
@@ -1020,7 +1088,7 @@ Is it OK ? (yes | no): yes
 </code></pre></div></p>
 <h3 id="databox_1">DataBoxへのアクセス</h3>
 <p>DataBoxが生成されたら早速BaseAPPをつうじてデータへアクセスしましょう。WSL環境の場合は以下URLでアクセスができます。ログインURLで再度鍵を選択してログインしてみましょう、データボックスが表示されていることでしょう</p>
-<p>http://localhost/cgi-bin/shell.auth</p>
+<p>http://localhost/base</p>
 <p><img alt="Screenshot" src="../img/databox.png" /></p>
 <p>早速+Addリンクからアイテムを登録しましょう
 <img alt="Screenshot" src="../img/add_item.png" /></p>
@@ -1032,9 +1100,26 @@ sudo /usr/local/small-shell/adm/gen -addcol
 # 削除
 sudo /usr/local/small-shell/adm/gen -delcol
 </code></pre></div></p>
+<h4 id="_7">選択式にしたデータの追加</h4>
+<p>たとえばメーカーD社を追加登録したいとき、定義ファイルを編集して直接追加できます
+<div class="highlight"><pre><span></span><code>#　編集
+sudo nano /usr/local/small-shell/databox/item.db/def/col3
+# paramsにメーカーD社をカンマ区切りで追加
+name=&quot;maker&quot;
+label=&quot;メーカー&quot;
+type=&quot;select&quot;
+params=&quot;メーカーA社,メーカーB社,メーカーC社,メーカーD社,その他&quot;
+option=&quot;required&quot;
+</code></pre></div></p>
 <h3 id="table">Table管理</h3>
-<p>ログイン後に表示されるテーブルviewではデータの検索やソートが非常に簡単に行うことができます。標準でAnd条件の検索が可能ですのでGoogle検索のような感覚でデータを探すことができます。また、Unixのsortコマンドを使ったsortもTable上で可能ですのでお試しください。sortの基本的なオプションは以下です</p>
+<p>ログイン後に表示されるテーブルviewではデータの検索やソートが非常に簡単に行うことができます。標準でAnd条件の検索が可能ですのでGoogle検索のような感覚でデータを探すことができます。</p>
+<h4 id="_8">単純検索</h4>
+<p>単語をサーチボックスに入力してエンターを押すとフリーワード検索ができます
+<img alt="Screenshot" src="../img/search.png" /></p>
+<p>And検索ももちろん可能です
+<img alt="Screenshot" src="../img/andsearch.png" /></p>
 <h4 id="sort">sort</h4>
+<p>Unixのsortコマンドを使ったsortもTable上で可能ですのでお試しください。sortの基本的なオプションは以下です</p>
 <pre><code># 自然な昇順並び替え
 sort -V Label名
 
@@ -1057,10 +1142,11 @@ sort -nr Label名
 検索ワード #line:100
 </code></pre>
 <h4 id="tag">Tag</h4>
-<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます、以下例ではメーカーAというワードでtagを作っています</p>
+<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます、以下例ではメーカーAというワードでtagを作っています。add.tagで追加、del.tagで削除できます</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{word}
 (e.g.)
 sudo /usr/local/small-shell/adm/ops add.tag:item.db{メーカーA}
+sudo /usr/local/small-shell/adm/ops del.tag:item.db{メーカーA}
 </code></pre>
 <p><img alt="Screenshot" src="../img/tag_table.png" /></p>
 <h3 id="console">Consoleによる分析</h3>
@@ -1070,10 +1156,10 @@ sudo /usr/local/small-shell/adm/ops add.tag:item.db{メーカーA}
 <p><img alt="Screenshot" src="../img/console.png" /></p>
 <h4 id="log">log検索</h4>
 <p>Consoleではlogの検索を行うこともできます、ログ検索であることを明示するため検索実行時は#logを付与してください、以下は "メーカーAノートパソコン #log"と検索した例です
-<div class="highlight"><pre><span></span><code>メーカーAノートパソコン #log
+<div class="highlight"><pre><span></span><code>P123 #log
 </code></pre></div></p>
 <p><img alt="Screenshot" src="../img/console_log.png" /></p>
-<h3 id="_7">ダウンロード / 一括更新</h3>
+<h3 id="_9">ダウンロード / 一括更新</h3>
 <p>DataBoxのデータをWEB上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してみましょう</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1084,6 +1170,9 @@ sudo /usr/local/small-shell/adm/ops add.tag:item.db{メーカーA}
 <pre><code># Base APP
 sudo /usr/local/small-shell/adm/ops initialize.usr:test
 </code></pre>
+<h3 id="_10">より高度な正規化</h3>
+<p>pdlsというタイプのフィールドを使えば、例えばメーカー管理用（正式名や所在地、連絡先などを管理）専用のdataboxをつくり、そのdataboxからメーカー名をitem.dbから参照させるという使い方も可能です。詳しくは公式サイトでpdlsの使い方をご確認ください</p>
+<p>--</p>
 <p>以上がBaseAPPをもちいたデータ管理方法についての説明になりますが、次章以降ではさらに多機能なアプリを自動生成する方法や、情報をまとめてポータル（ホームページのようなもの）で管理する方法をご説明します</p>
 
 
