@@ -607,7 +607,7 @@ Client#req &lt;- protocol/communication -&gt; Server#res
 <pre><code>sudo service apache2 start
 </code></pre>
 <p>apache2デーモンが動いていることはpsコマンドで確認できます</p>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ps -ef | grep apache2
+<div class="highlight"><pre><span></span><code>$ ps -ef | grep apache2
 root       102     8  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
 www-data   105   102  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
 www-data   106   102  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
@@ -625,7 +625,7 @@ ubuntu     115     9  0 21:53 pts/0    00:00:00 grep --color=auto apache2
 <h4 id="ip">IPアドレスの表示</h4>
 <p>ip addressコマンドもしくはifconfig -aコマンドでLinuxに付与されているIPアドレスを確認することもできます、
 以下例ではLinuxのIPアドレスは172.31.107.223を使っています
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ip address
+<div class="highlight"><pre><span></span><code>$ ip address
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo

@@ -943,21 +943,21 @@
 <p>shellはコマンドラインインターフェースとして都度コマンド要求を処理することもできますが、処理を固めて自動化することもできます。もっとも簡単なプログラム、たとえば所定の文字を出力するだけのたった2行の処理を代表的なshellであるbashを使って記述してみましょう。処理をファイルに書き出し固めることで、都度コマンドで打っていた仕事が再生産可能な仕事として、自動化されます。</p>
 <p><br>
 コマンドライン上でechoコマンドを実行した結果は以下のとおりです</p>
-<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo "Hello"
+<pre><code>$ echo "Hello"
 Hello
 
-ubuntu@LAPTOP-8KU2HS6V:~$ echo "World
+$ echo "World
 World
 </code></pre>
 <p>上述の処理をスクリプト化すると以下code内の処理のようになります。手動実行していた処理が固められ、再生産可能な一定の処理になりました。ちなみに、冒頭1行はbashを使うという宣言に使われています</p>
-<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ nano echo.sh
+<pre><code>$ nano echo.sh
 ---code--
 #!/bin/bash
 echo "Hello"
 echo "World"
 ---------
 
-ubuntu@LAPTOP-8KU2HS6V:~$ bash ./echo.sh
+$ bash ./echo.sh
 Hello
 World
 </code></pre>
@@ -971,27 +971,27 @@ if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
 fi
 </code></pre></div>
 <p>実行すると以下のような結果になります
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./hello.sh Hello
+<div class="highlight"><pre><span></span><code>$ bash ./hello.sh Hello
 World
 </code></pre></div></p>
 <h2 id="_3">引数と返値</h2>
 <p>スクリプト実行時に渡されるパラメーターを引数といいます、また、スクリプトを実行して返される値を返値といいます。上述のスクリプトではHelloが引数、Worldが返値となります</p>
 <h2 id="_4">変数</h2>
 <p>上記例でも条件分岐処理に利用されていますが、値を一時的に格納しておく変数を利用すると処理が円滑に記述できます。プログラム上で値が仮置きされる箱は変数と呼ばれ、様々な値を代入することができます。変数はコマンドライン上でも、script内でもいずれもで使うことができます。例えば、以下にて"test"という空の変数を定義しましょう</p>
-<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ test=""
+<pre><code>$ test=""
 </code></pre>
 <p>変数"test"の内容はechoコマンドで出力することができます,変数であることは$を頭につけることで宣言できます</p>
-<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo $test
+<pre><code>$ echo $test
 ! 空のため何も返ってこない
 </code></pre>
 <p>次に変数"test"に、値を入れて出力してみましょう</p>
-<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ test="123"
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $test
+<pre><code>$ test="123"
+$ echo $test
 123
 </code></pre>
 <p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは``(バッククォート)で囲んでください。以下例ではdateコマンドの実行結果を格納しています。shellは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できますが、操作からscript化まで非常に簡単に移行でき、コマンドを用いた様々な分岐を作ることができます。これはshellの非常に有用な特徴であり、利点であるといえます</p>
-<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ test="`date`"
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $test
+<pre><code>$ test="`date`"
+$ echo $test
 Fri Jan 21 21:33:03 JST 2022
 </code></pre>
 <h2 id="_5">論理演算と判定</h2>
@@ -1002,16 +1002,16 @@ Fri Jan 21 21:33:03 JST 2022
 [ "文字列A" = "文字列B" ]
 </code></pre>
 <p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。$?は特殊な変数で直前の実行コマンドの実行結果が正常(0)であったか異常(1)であったかを表示します
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ WORD_A=abc
-ubuntu@LAPTOP-8KU2HS6V:~$ WORD_B=def
-ubuntu@LAPTOP-8KU2HS6V:~$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+<div class="highlight"><pre><span></span><code>$ WORD_A=abc
+$ WORD_B=def
+$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+$ echo $?
 1
 &gt; WORD_AとBは違うため異常(1)が返ってきます
 
-ubuntu@LAPTOP-8KU2HS6V:~$ WORD_B=abc
-ubuntu@LAPTOP-8KU2HS6V:~$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+$ WORD_B=abc
+$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+$ echo $?
 0
 &gt; WORD_AとBが同じため正常終了しています
 </code></pre></div></p>
@@ -1048,15 +1048,15 @@ ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
 [ -d 対象ディレクトリPATH ]
 </code></pre>
 <p>以下はdoneというファイルがあるかどうかで結果がどう変わるかを示した例です
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ [ -f ./done ]
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+<div class="highlight"><pre><span></span><code>$ [ -f ./done ]
+$ echo $?
 1 
 &gt; ファイルが存在しないため異常(1)が返ってきます
 
 #touchコマンドでファイルを作成
-ubuntu@LAPTOP-8KU2HS6V:~$ touch done  
-ubuntu@LAPTOP-8KU2HS6V:~$ [ -f ./done ]
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+$ touch done  
+$ [ -f ./done ]
+$ echo $?
 0
 &gt; ファイルが存在するため正常終了(0)が返ってきます
 </code></pre></div></p>
@@ -1069,13 +1069,13 @@ ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
 [ -s 対象ファイルPATH]
 </code></pre>
 <p>以下はos-releaseファイルで任意の文字を検索して結果が空だったかどうかを判定しています
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ NULL_CHECK=`grep aaa /etc/os-release`
-ubuntu@LAPTOP-8KU2HS6V:~$ [ &quot;$NULL_CHECK&quot; ]
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+<div class="highlight"><pre><span></span><code>$ NULL_CHECK=`grep aaa /etc/os-release`
+$ [ &quot;$NULL_CHECK&quot; ]
+$ echo $?
 1
 &gt; 変数が空のため異常(1)が返ってきます
-ubuntu@LAPTOP-8KU2HS6V:~$ NULL_CHECK=`grep ubuntu /etc/os-release`
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+$ NULL_CHECK=`grep ubuntu /etc/os-release`
+$ echo $?
 0
 &gt; 変数に値が入っているため正常終了(0)が返ってきます
 </code></pre></div></p>
@@ -1117,15 +1117,15 @@ ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
 <div class="highlight"><pre><span></span><code># 例：aからはじまりdで終わる任意の文字列であれば真
 [[ &quot;変数&quot; == a*d ]]
 
-ubuntu@LAPTOP-8KU2HS6V:~$ value=abc
-ubuntu@LAPTOP-8KU2HS6V:~$ [[ &quot;$value&quot; == a*d ]]
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+$ value=abc
+$ [[ &quot;$value&quot; == a*d ]]
+$ echo $?
 1 
 &gt; abcはaからはじまりcで終わるため異常終了(1)が返ってきます
 
-ubuntu@LAPTOP-8KU2HS6V:~$ value=aaabbbcccddd
-ubuntu@LAPTOP-8KU2HS6V:~$ [[ &quot;$value&quot; == a*d ]]
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+$ value=aaabbbcccddd
+$ [[ &quot;$value&quot; == a*d ]]
+$ echo $?
 0
 &gt; aからはじまりdで終わるため正常終了(0)が返ってきます
 </code></pre></div>
@@ -1151,9 +1151,9 @@ fi
 --------
 </code></pre></div>
 スクリプトができたら実行してみましょう、Helloという入力を渡さないと聞き返されます
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash hello.sh
+<div class="highlight"><pre><span></span><code>$ bash hello.sh
 Hello?
-ubuntu@LAPTOP-8KU2HS6V:~$ bash hello.sh Hello
+$ bash hello.sh Hello
 World
 </code></pre></div></p>
 <h2 id="for">for文</h2>
@@ -1165,12 +1165,12 @@ done
 </code></pre>
 <p>for文のリストにはコマンドの出力結果もつかえますので、たとえばディレクトリ内のファイル一覧を出力し、ファイルを１つずつ処理するという場合に便利です。以下例ではfor文を使ってファイルの名前に一律.txtを付与しています</p>
 <div class="highlight"><pre><span></span><code># ファイル作成
-ubuntu@LAPTOP-8KU2HS6V:~$ mkdir for_test
-ubuntu@LAPTOP-8KU2HS6V:~$ touch ./for_test/fileA
-ubuntu@LAPTOP-8KU2HS6V:~$ touch ./for_test/fileB
-ubuntu@LAPTOP-8KU2HS6V:~$ touch ./for_test/fileC
-ubuntu@LAPTOP-8KU2HS6V:~$ touch ./for_test/fileD
-ubuntu@LAPTOP-8KU2HS6V:~$ ls ./for_test
+$ mkdir for_test
+$ touch ./for_test/fileA
+$ touch ./for_test/fileB
+$ touch ./for_test/fileC
+$ touch ./for_test/fileD
+$ ls ./for_test
 fileA  fileB  fileC  fileD
 
 # スクリプト作成
@@ -1187,8 +1187,8 @@ done
 --------
 
 # 実行 &amp; 結果確認
-ubuntu@LAPTOP-8KU2HS6V:~$ bash ./for_test.sh 
-ubuntu@LAPTOP-8KU2HS6V:~$ ls for_test
+$ bash ./for_test.sh 
+$ ls for_test
 fileA.txt  fileB.txt  fileC.txt  fileD.txt
 </code></pre></div>
 <div class="admonition note">
@@ -1215,7 +1215,7 @@ do
 done
 --------
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./while_test.sh
+<div class="highlight"><pre><span></span><code>$ bash ./while_test.sh
 1
 2
 3
@@ -1241,7 +1241,7 @@ read name
 echo &quot;こんにちは$nameさん&quot;
 --------
 </code></pre></div></p>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash read_test.sh
+<div class="highlight"><pre><span></span><code>$ bash read_test.sh
 あなたの名前を入力してください: 田中(入力値)
 こんにちは田中さん
 </code></pre></div>
@@ -1262,7 +1262,7 @@ echo param2:$param2
 echo param3:$param3
 --------
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./param_test.sh aaa bbb ccc
+<div class="highlight"><pre><span></span><code>$ bash ./param_test.sh aaa bbb ccc
 param1:aaa
 param2:bbb
 param3:ccc
@@ -1288,7 +1288,7 @@ case $input in
 esac
 --------
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash case_test.sh
+<div class="highlight"><pre><span></span><code>$ bash case_test.sh
 AかBを選んでください: A
 正解です
 </code></pre></div></p>
@@ -1317,21 +1317,21 @@ do
 done &lt; org.txt
 --------
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./ch2html.sh
-ubuntu@LAPTOP-8KU2HS6V:~$ cat ch2html.txt
+<div class="highlight"><pre><span></span><code>$ bash ./ch2html.sh
+$ cat ch2html.txt
 &lt;p&gt;abc&lt;/p&gt;
 &lt;p&gt;def&lt;/p&gt;
 &lt;p&gt;efg&lt;/p&gt;
 </code></pre></div>
 <h2 id="_16">実行権限の付与</h2>
 <p>実行権限を付与していないスクリプトは本来はそのままでは実行できません、これまでの例では"bash スクリプト"というかたちで実行してきたことで、ファイルの読み取りさえできれば内容をコマンドのbashに渡して処理してきました。直接ファイルを指定するだけで実行可能な状態にするためにはchmodコマンドで実行権限を付与しましょう。755の権限付与がプログラムとしては最適です。chmodコマンドの詳細はあらためて<a href="../unix1/#_14">パーミッション</a>にて確認してください</p>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ./case_test.sh
+<div class="highlight"><pre><span></span><code>$ ./case_test.sh
 -bash: ./case_test.sh: Permission denied
-ubuntu@LAPTOP-8KU2HS6V:~$ chmod 755 case_test.sh
-ubuntu@LAPTOP-8KU2HS6V:~$ ./case_test.sh
+$ chmod 755 case_test.sh
+$ ./case_test.sh
 AかBを選んでください: A
 正解です
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+$ echo $?
 0
 </code></pre></div>
 <h2 id="_17">デバッグ</h2>
@@ -1339,7 +1339,7 @@ ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
 <pre><code>bash -x スクリプト
 </code></pre>
 <p>以下は再びcase_test.shを使った例です
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash -x case_test.sh
+<div class="highlight"><pre><span></span><code>$ bash -x case_test.sh
 + echo -n &#39;AかBを選んでください: &#39;
 AかBを選んでください: + read input
 C
@@ -1378,11 +1378,11 @@ exit 0
 ---------
 </code></pre></div>
 関数を含んだスクリプトを実行してみましょう
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ chmod 755 ascii_chk.sh
-ubuntu@LAPTOP-8KU2HS6V:~$ ./ascii_chk.sh
+<div class="highlight"><pre><span></span><code>$ chmod 755 ascii_chk.sh
+$ ./ascii_chk.sh
 入力をしてください: test
 ASCII
-ubuntu@LAPTOP-8KU2HS6V:~$ ./ascii_chk.sh
+$ ./ascii_chk.sh
 入力をしてください: テスト
 ERROR
 </code></pre></div></p>
@@ -1390,23 +1390,23 @@ ERROR
 <h3 id="awksed">awk,sedの多用</h3>
 <p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます、以下はwhile文で記述したファイル読み込み処理を1ラインで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます</p>
 <div class="highlight"><pre><span></span><code># sed
-ubuntu@LAPTOP-8KU2HS6V:~$ time cat org.txt | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
+$ time cat org.txt | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
 &lt;p&gt;abc&lt;/p&gt;
 &lt;p&gt;def&lt;/p&gt;
 &lt;p&gt;efg&lt;/p&gt;
 
 
 # awk
-ubuntu@LAPTOP-8KU2HS6V:~$ time cat org.txt | awk &#39;{print &quot;&lt;p&gt;&quot;$1&quot;&lt;/p&gt;&quot;}&#39;
+$ time cat org.txt | awk &#39;{print &quot;&lt;p&gt;&quot;$1&quot;&lt;/p&gt;&quot;}&#39;
 &lt;p&gt;abc&lt;/p&gt;
 &lt;p&gt;def&lt;/p&gt;
 &lt;p&gt;efg&lt;/p&gt;
 </code></pre></div>
 <h3 id="_19">終了ステータス</h3>
 <p>$?は直前のコマンドが正常終了した場合に0を格納し、異常値だった場合に0以外を格納する特殊な変数です。以下例では一般ユーザーが/rootを閲覧してエラーになっていますが、終了ステータスは2が返されています
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ls /root
+<div class="highlight"><pre><span></span><code>$ ls /root
 ls: cannot open directory &#39;/root&#39;: Permission denied
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+$ echo $?
 2
 </code></pre></div></p>
 <h3 id="exit">exit</h3>
@@ -1437,10 +1437,10 @@ esac
 --------
 </code></pre></div>
 <p>想定がの入力値のCを入力されたためにエラーステータスを返します
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ bash ./case_test.sh
+<div class="highlight"><pre><span></span><code>$ bash ./case_test.sh
 AかBを選んでください: C
 AかBを入力してください
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
+$ echo $?
 1
 </code></pre></div></p>
 <h3 id="load">load</h3>
@@ -1448,19 +1448,19 @@ ubuntu@LAPTOP-8KU2HS6V:~$ echo $?
 <pre><code>. 設定ファイル
 </code></pre>
 <p>以下例ではparams.envという設定ファイルを作成し、読み込んでいます
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat params.env
+<div class="highlight"><pre><span></span><code>$ cat params.env
 param1=&quot;abc&quot;
 param2=&quot;def&quot;
 
-ubuntu@LAPTOP-8KU2HS6V:~$ . params.env
-ubuntu@LAPTOP-8KU2HS6V:~$ echo $param1
+$ . params.env
+$ echo $param1
 abc
 </code></pre></div></p>
 <h3 id="_20">隠しファイル</h3>
 <p>ファイル名やディレクトリ名の先頭に.をつけると隠しファイルとして扱われます。隠しファイルの確認はls -aオプションで確認できます</p>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~/invisible$ touch .test
-ubuntu@LAPTOP-8KU2HS6V:~/invisible$ ls
-ubuntu@LAPTOP-8KU2HS6V:~/invisible$ ls -a
+<div class="highlight"><pre><span></span><code>/invisible$ touch .test
+/invisible$ ls
+/invisible$ ls -a
 .  ..  .test
 </code></pre></div>
 <h3 id="sleep">sleep</h3>
@@ -1471,21 +1471,21 @@ ubuntu@LAPTOP-8KU2HS6V:~/invisible$ ls -a
 <p>lsコマンドでリスト表示する際にディレクトリ名は無視してファイル名だけを抽出したい場合があります、そういう場合xargsコマンドとbasenameコマンドを組み合わせてください。</p>
 <pre><code>xargs basename -a
 </code></pre>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ls /var/log/apache2/access.log
+<div class="highlight"><pre><span></span><code>$ ls /var/log/apache2/access.log
 /var/log/apache2/access.log
-ubuntu@LAPTOP-8KU2HS6V:~$ ls /var/log/apache2/access.log  | xargs basename -a
+$ ls /var/log/apache2/access.log  | xargs basename -a
 access.log
 </code></pre></div>
 <p>grepコマンドでファイル名だけを表示したい場合は -l オプションを付けてください</p>
 <pre><code>grep -l
 </code></pre>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ grep ubuntu /etc/os-release
+<div class="highlight"><pre><span></span><code>$ grep ubuntu /etc/os-release
 ID=ubuntu
 HOME_URL=&quot;https://www.ubuntu.com/&quot;
 SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
 BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
-ubuntu@LAPTOP-8KU2HS6V:~$ grep -l ubuntu /etc/os-release
+$ grep -l ubuntu /etc/os-release
 /etc/os-release
 </code></pre></div>
 <h3 id="_22">実行結果の変数への格納</h3>
@@ -1500,8 +1500,8 @@ ubuntu@LAPTOP-8KU2HS6V:~$ grep -l ubuntu /etc/os-release
 <p>コマンド変数内で組み立てて、実行することもできます</p>
 <pre><code>eval 変数
 </code></pre>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ ls_exe=&quot;ls /var/log&quot;
-ubuntu@LAPTOP-8KU2HS6V:~$ eval $ls_exe
+<div class="highlight"><pre><span></span><code>$ ls_exe=&quot;ls /var/log&quot;
+$ eval $ls_exe
 alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape  lastlog  unattended-upgrades  wtmp
 </code></pre></div>
 <p>後続のsmall shellのmetaコマンドではevalを使って変数内で組み立てたコマンドを実行していますので参考にして下さい

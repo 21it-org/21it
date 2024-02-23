@@ -1433,9 +1433,9 @@ option=&quot;&quot;
 <p>pyshellを使うことで容易にGraph生成ができます、まずはsmall shell公式サイトを確認してpython及びlibraryのインストールをしてください。公式サイトはChromeの翻訳機能を使えば日本語での閲覧が可能です   </p>
 <p><a href="https://small-shell.org/python_tour/">pyshell</a></p>
 <p>公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではenv設定が適切に実施されpython3.9がインストールされていることを確認します
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat /usr/local/small-shell/util/pyshell/env | grep PYTHON
+<div class="highlight"><pre><span></span><code>$ cat /usr/local/small-shell/util/pyshell/env | grep PYTHON
 PYTHON=&quot;/usr/local/bin/python3.9&quot;
-ubuntu@LAPTOP-8KU2HS6V:~$ ls /usr/local/bin/python3.9
+$ ls /usr/local/bin/python3.9
 /usr/local/bin/python3.9
 </code></pre></div></p>
 <p>日本語を扱えるようにフォントをインストールしてフォント定義を変更しましょう
@@ -1477,7 +1477,7 @@ sudo rm /usr/local/small-shell/util/statistics/rawdata/countup_s_20220419_db_sur
 <p>定期ジョブを用いて、提携処理を自動で実行することができます。ここではグラフを定期取得するためのジョブを登録しましょう、small shellでは対話を通じたcronへのジョブ登録が可能です</p>
 <h4 id="_15">ジョブの生成と登録</h4>
 <p>以下では先ほど実行したcountup.shを毎日0時0分に実行するジョブを登録しています</p>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ sudo /usr/local/small-shell/adm/gen -job
+<div class="highlight"><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -job
 job name: gen_survey_graph
 Type of job (1.job automation | 2.file exchange) : 1
 --Define schedule--
@@ -1518,16 +1518,16 @@ Please enable job &quot;sudo -u small-shell /usr/local/small-shell/bin/e-cron en
 <p><div class="highlight"><pre><span></span><code>sudo -u small-shell /usr/local/small-shell/bin/e-cron enable.gen_survey_graph
 </code></pre></div>
 有効化後はジョブの手動実行も可能です、以下はジョブの一覧を確認しgen_survey_graphを実行し結果を確認する例になります
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron ls
+<div class="highlight"><pre><span></span><code>$ sudo -u small-shell /usr/local/small-shell/bin/e-cron ls
 --------------------------------------------------------------
 job definition: /usr/local/small-shell/util/e-cron/def
 --------------------------------------------------------------
 del_session.enabled
 del_util_log.enabled
 gen_survey_graph.enabled
-ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron exec.gen_survey_graph
+$ sudo -u small-shell /usr/local/small-shell/bin/e-cron exec.gen_survey_graph
 gen_survey_graph successfully completed
-ubuntu@LAPTOP-8KU2HS6V:~$ sudo -u small-shell /usr/local/small-shell/bin/e-cron stat
+$ sudo -u small-shell /usr/local/small-shell/bin/e-cron stat
 --------------------------------------------------------
 LATEST STATUS OF JOB
 --------------------------------------------------------

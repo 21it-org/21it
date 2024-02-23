@@ -1917,11 +1917,11 @@ cat 対象ファイル | grep 検索ワードA | grep 検索ワードB | wc -l
 </code></pre></div>
 <h4 id="text">Text加工</h4>
 <p>以下はコマンドをつなげてできた処理の一例です。コマンドをパイプでつないで結んでいくことでテキストを様々な形に加工することができます</p>
-<pre><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo "Hello World"
+<pre><code>$ echo "Hello World"
 Hello World
-ubuntu@LAPTOP-8KU2HS6V:~$ echo "Hello World" | awk '{print $1}'
+$ echo "Hello World" | awk '{print $1}'
 Hello
-ubuntu@LAPTOP-8KU2HS6V:~$ echo "Hello World" | sed "s/Hello/Hi/g"
+$ echo "Hello World" | sed "s/Hello/Hi/g"
 Hi Wrold
 </code></pre>
 <p>後述する高度なコマンドを用いると入力に対して様々なアウトプットを作ることができます</p>
@@ -1948,7 +1948,7 @@ Hi Wrold
 <pre><code>grep -v 検索ワード　対象ファイル
 </code></pre>
 <div class="highlight"><pre><span></span><code># 元ファイル
-ubuntu@LAPTOP-8KU2HS6V:~$ cat list.csv
+$ cat list.csv
 -------
 id,name
 01,adam
@@ -1956,7 +1956,7 @@ id,name
 -------
 
 # id=01の行を削除,^は行頭を意味するメタキャラクター
-ubuntu@LAPTOP-8KU2HS6V:~$ cat list.csv | grep -v ^01,
+$ cat list.csv | grep -v ^01,
 -------
 id,name
 02,eve
@@ -1970,16 +1970,16 @@ id,name
 <p>以下例ではスペース区切りの2列目を取り出します、echoコマンドで"abc def ghr"という文字列を出力したものをpipeでawkコマンドに渡し、スペース区切りの2列目を抽出しています</p>
 <pre><code>awk '{print $列番号}'
 </code></pre>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc def ghr&quot; | awk &#39;{print $2}&#39;
+<div class="highlight"><pre><span></span><code>$ echo &quot;abc def ghr&quot; | awk &#39;{print $2}&#39;
 def
 </code></pre></div>
 <p>awkはファイルを対象にして使うことができます, abc.txtというファイルを作ってawkで列抽出を試してみましょう</p>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc def ghr&quot; &gt; abc.txt
-ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;jkl mno pqr&quot; &gt;&gt; abc.txt
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.txt
+<div class="highlight"><pre><span></span><code>$ echo &quot;abc def ghr&quot; &gt; abc.txt
+$ echo &quot;jkl mno pqr&quot; &gt;&gt; abc.txt
+$ cat abc.txt
 abc def ghr
 jkl mno pqr
-ubuntu@LAPTOP-8KU2HS6V:~$ awk &#39;{print $2}&#39; abc.txt
+$ awk &#39;{print $2}&#39; abc.txt
 def
 mno
 </code></pre></div>
@@ -1987,26 +1987,26 @@ mno
 <p>-Fオプションで区切り文字を定義することができます、以下例ではカンマを区切り文字としてcsvの2列目を取り出します</p>
 <pre><code>awk -F "区切り文字" '{print $列番号}'
 </code></pre>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc,def,ghr&quot; | awk -F &quot;,&quot; &#39;{print $2}&#39;
+<div class="highlight"><pre><span></span><code>$ echo &quot;abc,def,ghr&quot; | awk -F &quot;,&quot; &#39;{print $2}&#39;
 def
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $2}&#39;
+$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $2}&#39;
 def
 mno
 </code></pre></div>
 <h4 id="_10">列組みなおし</h4>
 <p>以下例ではcsvファイルの列の並びを入れ替えて出力しています、各列の間に","を入れることでcsvを再構成しています
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;,&quot;$2&quot;,&quot;$1}&#39;
+<div class="highlight"><pre><span></span><code>$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;,&quot;$2&quot;,&quot;$1}&#39;
 ghr,def,abc
 pqr,mno,jkl
 </code></pre></div></p>
 <p>列と列の間の区切り文字を変えることもできます
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;:&quot;$2&quot;:&quot;$1}&#39;
+<div class="highlight"><pre><span></span><code>$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;:&quot;$2&quot;:&quot;$1}&#39;
 ghr:def:abc
 pqr:mno:jkl
 </code></pre></div></p>
 <h4 id="grep_1">grepとの組合わせ</h4>
 <p>以下のようなitem.csvというリストを作成します
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat item.csv
+<div class="highlight"><pre><span></span><code>$ cat item.csv
 -----------------------------------------------
 item_name,category,description,price
 りんご,フルーツ,青森県産,100円
@@ -2015,7 +2015,7 @@ item_name,category,description,price
 -----------------------------------------------
 </code></pre></div>
 フルーツカテゴリーの商品名だけ抜き出したい場合はgrepと組み合わせると簡単に処理を作ることができます
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat item.csv | grep フルーツ | awk -F &quot;,&quot; &#39;{print $1}&#39;
+<div class="highlight"><pre><span></span><code>$ cat item.csv | grep フルーツ | awk -F &quot;,&quot; &#39;{print $1}&#39;
 りんご
 みかん
 </code></pre></div></p>
@@ -2024,25 +2024,25 @@ item_name,category,description,price
 <p>sedコマンドは文字列の変換コマンドとして使われます、以下はabcという文字列をdefという文字列に経何する例です</p>
 <pre><code>sed "s/変換文字/変換後文字/g"
 </code></pre>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc&quot;
+<div class="highlight"><pre><span></span><code>$ echo &quot;abc&quot;
 abc
-ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc&quot; | sed &quot;s/abc/def/g&quot;
+$ echo &quot;abc&quot; | sed &quot;s/abc/def/g&quot;
 def
 </code></pre></div>
 <h4 id="_11">削除処理</h4>
 <p>sedで特定文字列を削除する場合は変換文字を空にします。以下例ではabという文字を削除しています
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc&quot; | sed &quot;s/ab//g&quot;
+<div class="highlight"><pre><span></span><code>$ echo &quot;abc&quot; | sed &quot;s/ab//g&quot;
 c
 </code></pre></div></p>
 <h4 id="_12">改行処理</h4>
 <p>sedを利用して、改行を加えて見やすくしたり、逆に改行をなくして1列にして処理をしやすくしたrすることがあります。\nはUNIXの改行コードです</p>
 <div class="highlight"><pre><span></span><code># 元ファイル
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+$ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
 
 # カンマを改行へ変換
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv  | sed &quot;s/,/\n/g&quot;
+$ cat abc.csv  | sed &quot;s/,/\n/g&quot;
 abc
 def
 ghr
@@ -2051,28 +2051,28 @@ mno
 pqr
 
 # 上記処理の改行をさらにスペースへ変換, -zオプションを使用
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv  | sed &quot;s/,/\n/g&quot; | sed -z &quot;s/\n/ /g&quot;
+$ cat abc.csv  | sed &quot;s/,/\n/g&quot; | sed -z &quot;s/\n/ /g&quot;
 abc def ghr jkl mno pqr
 </code></pre></div>
 <h4 id="_13">行頭・行末への文字追加</h4>
 <p>メタキャラクターを使用してさらに高度な変換をすることができます。例えば行頭、行末に一括で特定の文字列を付与することができ、非常に便利です。行とは^、行末は$で表すことができますが、メタキャラクタについては<a href="#meta-charactor">メタキャラクター</a>を参照してください</p>
 <div class="highlight"><pre><span></span><code># 元ファイル
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+$ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
 
 # 行頭にシャープを追加
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/$/#/g&quot;
+$ cat abc.csv | sed &quot;s/$/#/g&quot;
 #abc,def,ghr
 #jkl,mno,pqr
 
 # 行末にタグを追加
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/$/#/g&quot;
+$ cat abc.csv | sed &quot;s/$/#/g&quot;
 abc,def,ghr#
 jkl,mno,pqr#
 
 # 行頭・行末にタグを追加（HTMLタグへ変換）
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
+$ cat abc.csv | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
 &lt;p&gt;abc,def,ghr&lt;/p&gt;
 &lt;p&gt;jkl,mno,pqr&lt;/p&gt;
 </code></pre></div>
@@ -2080,12 +2080,12 @@ ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &q
 <p>sortは並び替えを行うためのコマンドです、pipeと組み合わせて使うのが一般的です。先ほどのabc.csvを解体して並び替えてみましょう</p>
 <h4 id="_14">昇順、降順の並び替え</h4>
 <div class="highlight"><pre><span></span><code># 元ファイル
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+$ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
 
 # カンマ区切りを改行に変換し昇順にソート
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/,/\n/g&quot; | sort -n
+$ cat abc.csv | sed &quot;s/,/\n/g&quot; | sort -n
 abc
 def
 ghr
@@ -2095,7 +2095,7 @@ pqr
 
 
 # アルファベット降順にソート
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | sed &quot;s/,/\n/g&quot; | sort -r
+$ cat abc.csv | sed &quot;s/,/\n/g&quot; | sort -r
 pqr
 mno
 jkl
@@ -2111,21 +2111,21 @@ abc
 <p>uniqは重複した行を集約するコマンドです、一般的にpipeでsortと一緒に使うことが多いです。以下例ではコマンドを組み合わせながら文字列を操作し、あえて重複を作った後、最後に重複を排除しています</p>
 <h4 id="_16">重複排除の例</h4>
 <div class="highlight"><pre><span></span><code># 対象ファイル
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+$ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr 
 
 # 重複させる
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv &gt; double.csv
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv &gt;&gt; double.csv
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv
+$ cat abc.csv &gt; double.csv
+$ cat abc.csv &gt;&gt; double.csv
+$ cat double.csv
 abc,def,ghr
 jkl,mno,pqr
 abc,def,ghr
 jkl,mno,pqr
 
 # 1列にする (,を改行に変換)
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot;
+$ cat double.csv | sed &quot;s/,/\n/g&quot;
 abc
 def
 ghr
@@ -2140,7 +2140,7 @@ mno
 pqr
 
 # sortする
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort
+$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort
 abc
 abc
 def
@@ -2155,7 +2155,7 @@ pqr
 pqr
 
 # 重複を排除する(uniq)
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq
+$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq
 abc
 def
 ghr
@@ -2171,11 +2171,11 @@ pqr
 </code></pre>
 <p>入力値の行数を出せるため例えば、検索した単語が含まれる行数を出すのに便利です</p>
 <div class="highlight"><pre><span></span><code># ubuntuという単語を含む行
-ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release | grep ubuntu | wc -l
+$ cat /etc/os-release | grep ubuntu | wc -l
 5
 
 # 大文字小文字の区別をなくした場合8行に増える
-ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release | grep -i ubuntu | wc -l
+$ cat /etc/os-release | grep -i ubuntu | wc -l
 8
 </code></pre></div>
 <h3 id="cut">{ cut }</h3>
@@ -2184,18 +2184,18 @@ ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release | grep -i ubuntu | wc -l
 <pre><code>cut -f 列番号 -d "区切り文字"
 </code></pre>
 <div class="highlight"><pre><span></span><code># 対象ファイル
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+$ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
 
 # 2列目を抽出
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | cut -f 2 -d &quot;,&quot;
+$ cat abc.csv | cut -f 2 -d &quot;,&quot;
 def
 mno
 </code></pre></div>
 <h4 id="n_1">N列目以降を抽出</h4>
 <p>列指定の際に列番号のあとに-を付けると何列目以降という指定が容易にできます</p>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv | cut -f 2- -d &quot;,&quot;
+<div class="highlight"><pre><span></span><code>$ cat abc.csv | cut -f 2- -d &quot;,&quot;
 def,ghr
 mno,pqr
 </code></pre></div>
@@ -2205,13 +2205,13 @@ mno,pqr
 <h4 id="_18">文字列削除</h4>
 <pre><code>tr -d 削除文字
 </code></pre>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ echo &quot;abc&quot; | tr -d ab
+<div class="highlight"><pre><span></span><code>$ echo &quot;abc&quot; | tr -d ab
 c
 </code></pre></div>
 <h3 id="nl">{ nl }</h3>
 <p>nlは行頭に行番号を振ることができるコマンドです、cat等のコマンドと組み合わせて使うと便利です</p>
 <h4 id="_19">行番号の付与</h4>
-<div class="highlight"><pre><span></span><code>ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release
+<div class="highlight"><pre><span></span><code>$ cat /etc/os-release
 NAME=&quot;Ubuntu&quot;
 VERSION=&quot;20.04 LTS (Focal Fossa)&quot;
 ID=ubuntu
@@ -2227,7 +2227,7 @@ UBUNTU_CODENAME=focal
 
 
 #行番号を付与(nl)
-ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release | nl
+$ cat /etc/os-release | nl
      1  NAME=&quot;Ubuntu&quot;
      2  VERSION=&quot;20.04 LTS (Focal Fossa)&quot;
      3  ID=ubuntu
@@ -2248,21 +2248,21 @@ ubuntu@LAPTOP-8KU2HS6V:~$ cat /etc/os-release | nl
 <p>以下はuniqでも使用した例ですが、最後に上位3行をheadで表示しています</p>
 <h4 id="_20">先頭から指定行数を表示</h4>
 <div class="highlight"><pre><span></span><code># 対象ファイル
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv
+$ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr 
 
 # 重複させる
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv &gt; double.csv
-ubuntu@LAPTOP-8KU2HS6V:~$ cat abc.csv &gt;&gt; double.csv
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv
+$ cat abc.csv &gt; double.csv
+$ cat abc.csv &gt;&gt; double.csv
+$ cat double.csv
 abc,def,ghr
 jkl,mno,pqr
 abc,def,ghr
 jkl,mno,pqr
 
 # 1列にする (,を改行に変換)
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot;
+$ cat double.csv | sed &quot;s/,/\n/g&quot;
 abc
 def
 ghr
@@ -2277,7 +2277,7 @@ mno
 pqr
 
 # sortする
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort
+$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort
 abc
 abc
 def
@@ -2292,7 +2292,7 @@ pqr
 pqr
 
 # 重複を排除する(uniq)
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq
+$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq
 abc
 def
 ghr
@@ -2302,7 +2302,7 @@ pqr
 
 
 # 上位3行を表示
-ubuntu@LAPTOP-8KU2HS6V:~$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq | head -3
+$ cat double.csv | sed &quot;s/,/\n/g&quot; | sort | uniq | head -3
 abc
 def
 ghr
