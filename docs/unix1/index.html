@@ -1123,10 +1123,12 @@ ls　-l
 <pre><code>|-root  (始点)
    |-/lib           
    |-/etc
+   |-/sbin
    |-/bin
    |-/tmp
    |-/usr/local
    |-/home
+   |-/var
 </code></pre>
 <p>また、続いてsudo suとwhoamiと打ってみてください。rootと結果が返ってくると思います。これはLinuxにおける特権ユーザーであるrootユーザーになっているということを意味します。rootとはファイルシステムの起点を表すと同時に、ただ一つの特権ユーザーを表す二重の意味を持った非常に重要な概念なのです。sudoの際のパスワードはwsl作成時に設定したパスワードを入力してください</p>
 <pre><code>sudo su
