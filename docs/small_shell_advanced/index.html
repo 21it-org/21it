@@ -1309,7 +1309,7 @@ DATA_SHELL=&quot;${small_shell_path}/bin/DATA_shell session:$session pin:$pin ap
 
 # 以下行を追加
 id=`$DATA_SHELL databox:events command:head_-1 format:none | $AWK -F &quot;,&quot; &#39;{print $1}&#39;`
-$DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,description format:html_tag &gt; ../tmp/$session/event
+$DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail format:html_tag &gt; ../tmp/$session/event
 
 # -----------------
 # render HTML
@@ -1363,13 +1363,13 @@ cat /var/www/descriptor/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&
 <div class="highlight"><pre><span></span><code>sudo nano /var/www/bin/21DOJO_table.sh
 --code--
 #keys=all
-keys=name,start,end,url,description
+keys=name,start,end,url,detail
 --------
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>sudo nano /var/www/bin/21DOJO_get.sh
 --code--
 #keys=all
-keys=name,start,end,url,description
+keys=name,start,end,url,detail
 --------
 </code></pre></div>
 <h3 id="url_1">チケットURL整備</h3>
