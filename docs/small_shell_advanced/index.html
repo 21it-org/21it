@@ -458,10 +458,10 @@
         
           <li class="md-nav__item">
   <a href="#key" class="md-nav__link">
-    keyの追加
+    keyの再定義
   </a>
   
-    <nav class="md-nav" aria-label="keyの追加">
+    <nav class="md-nav" aria-label="keyの再定義">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -470,19 +470,6 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#key_1" class="md-nav__link">
-    keyラベルの編集
-  </a>
-  
-    <nav class="md-nav" aria-label="keyラベルの編集">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
@@ -538,7 +525,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#key_2" class="md-nav__link">
+  <a href="#key_1" class="md-nav__link">
     閲覧keyの制限
   </a>
   
@@ -870,10 +857,10 @@
         
           <li class="md-nav__item">
   <a href="#key" class="md-nav__link">
-    keyの追加
+    keyの再定義
   </a>
   
-    <nav class="md-nav" aria-label="keyの追加">
+    <nav class="md-nav" aria-label="keyの再定義">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -882,19 +869,6 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#key_1" class="md-nav__link">
-    keyラベルの編集
-  </a>
-  
-    <nav class="md-nav" aria-label="keyラベルの編集">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
@@ -950,7 +924,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#key_2" class="md-nav__link">
+  <a href="#key_1" class="md-nav__link">
     閲覧keyの制限
   </a>
   
@@ -1248,38 +1222,31 @@ exit 0
 </code></pre></div></p>
 <h2 id="_7">アプリのカスタマイズ</h2>
 <p>大枠の構造を理解いただいたところで、さっそくアプリのカスタマイズを行っていきましょう。</p>
-<h3 id="key">keyの追加</h3>
-<p>まずは、今回の目的に応じてDataBoxを拡張しましょう、Team APPのデフォルトのevents定義だと以下の通り参加URLを追記できないためkeyを追加します</p>
+<h3 id="key">keyの再定義</h3>
+<p>まずは、今回の目的に応じてDataBoxを拡張しましょう、Team APPのデフォルトのevents定義だと以下のとおり表記が英語だったりURLが追加できなかったりするため、genコマンドで再定義しましょう</p>
 <h6 id="_8">新規イベント登録画面</h6>
 <p><img alt="Screenshot" src="../img/org_event.png" /></p>
-<p>keyの追加にはgenをaddcolオプションをつけて実行しましょう。ちなみにkeyを削除する場合はdelcolオプションで削除が可能です
+<p>keyの追加削除にはgenコマンドを使用します。不要なkeyをまずは消しましょう。
+<div class="highlight"><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -delcol
+databox_name: events
+column&#39;s key name: description 
+Do you want to delete more column from dataset ? (yes | no) : no 
+</code></pre></div></p>
+<p>続いて必要なkeyを追加していきます
 <div class="highlight"><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -addcol
 databox_name: events
-key(col8) name: url
-key (col8) label: イベントURL
+key(col7) name: url
+key (col7) label: イベントURL
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): url
+required to input each time? (yes | no): no
+Do you want to add more column to dataset ? (yes | no) : yes
+key(col8) name: detail
+key (col8) label: イベント詳細
+data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): textarea
 required to input each time? (yes | no): no
 Do you want to add more column to dataset ? (yes | no) : no
 </code></pre></div>
-最終確認が求められますので問題なければyesと解答してkeyの追加を完了しましょう。</p>
-<h3 id="key_1">keyラベルの編集</h3>
-<p>続いてイベントの詳細についてevents databoxだとdescriptionという英語記載のラベルとなるため、ラベルを英語から日本語に変更しましょう。</p>
-<pre><code>sudo nano /usr/local/small-shell/databox/events/def/col7
-</code></pre>
-<p>以下labelをdescriptionからイベント詳細に変更します</p>
-<p><div class="highlight"><pre><span></span><code># 修正前
-name=&quot;description&quot;
-label=&quot;description&quot;
-type=&quot;textarea&quot;
-option=&quot;&quot;
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># 修正後
-name=&quot;description&quot;
-label=&quot;イベント詳細&quot;
-type=&quot;textarea&quot;
-option=&quot;&quot;
-</code></pre></div>
-編集が完了したら再度eventを登録してみましょう</p>
+最終確認が求められますので問題なければyesと解答してkeyの追加を完了しましょう。再度イベント登録画面にいくとフィールドが更新されています</p>
 <h6 id="_9">更新後のイベント追加画面</h6>
 <p><img alt="Screenshot" src="../img/new_event.png" /></p>
 <h3 id="_10">ポータルのアップデート</h3>
@@ -1391,7 +1358,7 @@ cat /var/www/descriptor/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&
 <p>21DOJOはshared passのためシステムユーザーしかもちませんが、このユーザーをread onlyに変更することでアプリ全体が読み取り権限のみとなり書き込みができなくなります</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops set.attr:21DOJO.app{ro} app:21DOJO
 </code></pre>
-<h3 id="key_2">閲覧keyの制限</h3>
+<h3 id="key_1">閲覧keyの制限</h3>
 <p>管理目的以外で使用しないkeyは21DOJOアプリからは閲覧できないようkeys=allをコメントアウトして閲覧可能なkeyを制限しましょう</p>
 <div class="highlight"><pre><span></span><code>sudo nano /var/www/bin/21DOJO_table.sh
 --code--
