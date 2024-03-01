@@ -1292,51 +1292,38 @@ Do you want to add more column to dataset ? (yes | no) : no
 <h3 id="_10">ポータルのアップデート</h3>
 <p>続いて21DOJOへのログイン時に最初に表示されるポータルページに最新のイベント情報が出てくるようにしましょう</p>
 <h4 id="html">サンプルHTML</h4>
-<p>今回のポータルページはmarkdownでは記述しないため、markdownの記述はBaseAPP上で一度全部消してnullとだけいれて更新しましょう
+<p>今回のポータルページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。一度descriptionを全て消して、以下を貼り付けて更新してください。
 <img alt="Screenshot" src="../img/update_portal.png" /></p>
-<p>http://localhost/21DOJOへアクセスしてポータルがnullになったことを確認しましょう
-<img alt="Screenshot" src="../img/null_portal.png" /></p>
-<p>続いて、メインページのhtml記述ファイルであるhtml.defを直接編集して、表示を更新しましょう。main配下を一度消して記述を変更してください。なお、%%eventにはアクションスクリプト側で情報を埋め込みます
-<div class="highlight"><pre><span></span><code>$ sudo nano /var/www/descriptor/21DOJO_main.html.def
-
---code--
-1. 以下行を消します
----------------------------------------------------
-&lt;div class=&quot;main&quot;&gt;
-&lt;div class=&quot;left-nav&quot;&gt;
-
+<div class="highlight"><pre><span></span><code>&lt;div class=&quot;flex-box&quot;&gt;
+  &lt;div class=&quot;potal-description&quot;&gt;
+    &lt;h1&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h1&gt;
+    &lt;h1&gt;記載のURLからご参加いただければと思います&lt;/h1&gt;
+    &lt;a href=&quot;./21DOJO?e81cc0f25cc930a2e7a8e0f01bfe57cfe2f5491ee77c1e015a943a5fdabdb844&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;event&quot;&gt;
+    &lt;div class=&quot;app-form&quot;&gt;
+%%event
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;description&quot;&gt;
+</code></pre></div>
+<p>以下が更新後の画面です、現時点で%%event tagが埋め込まれていないためそのまま%%event tagが表示されています、またeventの位置があまりよくないためcssをつかって位置を調整しましょう
+<img alt="Screenshot" src="../img/portal_1.png" /></p>
+<p>アプリ毎のcss定義については直接編集が可能です</p>
+<pre><code>sudo nano /var/www/descriptor/21DOJO.css.def
+</code></pre>
+<p>nanoでファイルを開いたら以下コードを一番下に貼り付けましょう、ctrl + Vでページを進むことができます
+<div class="highlight"><pre><span></span><code>.flex-box {
+  display:flex;
+  flex-wrap:wrap;
+} 
 
-&lt;p&gt;null&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;footer&quot;&gt;
-
-&lt;p&gt;powered by small-shell.org&lt;/p&gt;
-&lt;/div&gt;
----------------------------------------------------
-
-2.消した箇所に以下記述を貼り付けて置き換えます
----------------------------------------------------
- &lt;div class=&quot;main&quot;&gt;
-   &lt;div class=&quot;left-nav&quot;&gt;
-   &lt;/div&gt; 
-   &lt;div class=&quot;description&quot;&gt;
-     &lt;h1&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h1&gt;
-     &lt;h1&gt;記載のURLからご参加いただければと思います&lt;/h1&gt;
-     &lt;a href=&quot;./21DOJO?%%session&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
-   &lt;/div&gt;
-   &lt;div class=&quot;event&quot;&gt;
-     &lt;div class=&quot;form-box&quot;&gt;
-       %%event
-     &lt;/div&gt;
-   &lt;/div&gt;
- &lt;/div&gt;
----------------------------------------------------
-</code></pre></div></p>
-<p>以下が更新後の画面です、現時点で%%event tagが埋め込まれていないためそのまま%%event tagが表示されています</p>
-<p><img alt="Screenshot" src="../img/portal_1.png" /></p>
+.event {
+  padding-left: 48px;
+}   
+</code></pre></div>
+位置が以下のように調整できたことを確認してください
+<img alt="Screenshot" src="../img/portal_2.png" /></p>
 <h4 id="mainsh">main.sh</h4>
 <p>続いて21DOJOのmain.shにて%%event tagの変換処理をいれます、”#以下行を追加”とある処理を追加し、"#以下行をコメントアウト"と記載のある箇所はコメントアウトしてください。
 具体的な処理としてはdataboxの最新の1行目のエントリーをhead -1でサーチして、idを取得、データをeventファイルに書き出したのちsedで%%eventを上書しています
@@ -1375,7 +1362,7 @@ cat /var/www/descriptor/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&
 | $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
 </code></pre></div></p>
 <p>完成したポータルはこちらになります
-<img alt="Screenshot" src="../img/portal_2.png" /></p>
+<img alt="Screenshot" src="../img/portal_3.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>イベントが何も登録されていないときは"error: please input id"というメッセージが表示されるため、イベントを登録して下さい</p>
