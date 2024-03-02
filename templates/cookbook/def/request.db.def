@@ -70,7 +70,7 @@ col5_key_label="Status"
 col5_type="select"
 
 # only for select, checkbox
-col5_key_params="requested lending closed"
+col5_key_params="requested,lending,closed"
 
 # only for pdls
 col5_primary_databox=""
@@ -83,7 +83,7 @@ col5_required="yes"
 # col6
 #-------------------------------------------
 col6_key_name="book_resource_id"
-col6_key_label="book resource id"
+col6_key_label="book,resource,id"
 col6_type="pdls"
 
 # only for select, checkbox
