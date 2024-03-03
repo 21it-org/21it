@@ -2,4 +2,4 @@
 
 echo "Content-Type: text/html"
 echo ""
-cat ../descriptor/book_search.css.def
+cat /var/www/descriptor/book_search.css.def

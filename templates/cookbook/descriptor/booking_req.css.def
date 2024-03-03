@@ -11,9 +11,7 @@ body {
 @media screen and (min-width: 641px) {
   .container {
     margin: 0 auto;
-    padding-top:24px;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding: 38px 38px;
 }
 }
 
@@ -409,7 +407,6 @@ a {
   .form-box .description h1 {
     font-size: 180%;
     color: #434246;
-    font-style : italic;
 }
 }
 
@@ -417,7 +414,7 @@ a {
   .form-box .description h1 {
     font-size: 180%;
     color: #444444;
-    font-style : italic;
+    line-height: 1.0em;
 }
 }
 
@@ -431,7 +428,7 @@ a {
 
 .form-box .description p {
   font-size: 80%;
-  color: #c0c0c0;
+  color: #696969;
 }
 
 .form-box .log {
@@ -531,6 +528,7 @@ a {
     border: 1px solid #d3d3d3;
     flex: auto;
     border-radius: 4px;
+    background-color: #FDFEFE;
   }
 
   .form-box input[type="date"], 
@@ -555,6 +553,7 @@ a {
     border: 1px solid #d3d3d3;
     flex: auto;
     border-radius: 4px;
+    background-color: #FDFEFE;
   }
 
   .form-box input[type="date"],
@@ -663,25 +662,13 @@ a {
   cursor: hand;
 }
 
-.form-box .flex-button {
-  display:flex;
-  flex-wrap:wrap;
+.form-box button:hover {
+  background: #07ADBF;
 }
-
-.form-box .flex-button button {
-  flex: auto;
-  font-weight: bold;
-  text-align: center;
-  padding: 4px 8px;
-  border-style: none;
-  background: #20b2aa;
-  color: #f2f2f2;
-  text-transform: uppercase;
-  letter-spacing: .09em;
-  border-radius: 2px;
-  cursor: pointer;
-  cursor: hand;
-}
+  
+.form-box button:active {
+  background: #07ADAE;
+}   
 
 .form-box .action_links {
   text-align: left;

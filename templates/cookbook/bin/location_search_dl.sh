@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Target databox 
-databox=book.master
+# Target databox
+databox=book.res
 
 # load small-shell conf
 . /var/www/descriptor/.small_shell_conf
+
 
 # load query string param
 for param in `echo $@`

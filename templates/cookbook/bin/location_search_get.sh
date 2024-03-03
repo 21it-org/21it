@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # Target databox and keys
-databox=book.master
-keys=all
+databox=book.res
+#keys=all
+keys=hashid,name,location
 
 # load small-shell conf
 . /var/www/descriptor/.small_shell_conf
+
 
 # load query string param
 for param in `echo $@`
@@ -44,12 +46,10 @@ fi
 # SET BASE_COMMAND
 META="${small_shell_path}/bin/meta"
 DATA_SHELL="${small_shell_path}/bin/DATA_shell session:$session pin:$pin app:book_search"
-# add block1
-book_name=`$DATA_SHELL databox:book.master action:get key:name id:$id format:none | $AWK -F ":" '{print $2}'`
 
 # load permission
 if [ ! "$user_name" = "guest" ];then
-  permission=`$META get.attr:book_search/$user_name{permission}`
+  permission=`$META get.attr:location_search/$user_name{permission}`
 else
   permission="ro"
 fi
@@ -70,7 +70,6 @@ if [ ! "$duplicate" = "yes" ];then
   fi
 
 else
-
   # else means copying data
   if [ "$keys" = "all" ];then
     keys=`$META get.key:$databox{all}`
@@ -79,12 +78,13 @@ else
   for key in $keys
   do
     # gen %%data by conpying
+
     if [ "$primary_key" = "$key" ];then
       $DATA_SHELL databox:$databox \
       action:get id:new key:$key format:html_tag > /var/www/tmp/$session/dataset
     else
       data=`$DATA_SHELL databox:$databox \
-      action:get id:$id key:$key format:html_tag `
+      action:get id:$id key:$key format:html_tag ` 
       file_chk=`echo $data | grep "<div class=\"file_form\">" `
 
       if [ ! "$file_chk" ];then
@@ -98,46 +98,48 @@ else
   id=new
 fi
 
+
+
 # error check
-error_chk=`cat /var/www/tmp/$session/dataset | grep "^error:"`
+error_chk=`cat /var/www/tmp/$session/dataset | grep "^error: there is no primary_key:"`
 
 # form type check
 form_chk=`$META chk.form:$databox`
 
 # set view
 if [ "$error_chk" ];then
-  view="book_search_get_err.html.def"
+  echo "<h2>Oops please something must be wrong, please check  location_search_get.sh</h2>"
 
 elif [ "$permission"  = "ro" ];then
-  view="book_search_get_ro.html.def"
+  view="location_search_get_ro.html.def"
 
 elif [ "$form_chk" = "urlenc" ];then
   if [ "$id" = "new" ];then
-    view="book_search_get_new.html.def"
+    view="location_search_get_new.html.def"
   else
-    view="book_search_get_rw.html.def"
+    view="location_search_get_rw.html.def"
   fi
 elif [ "$form_chk" = "multipart" ];then
   if [ "$id" = "new" ];then
-    view="book_search_get_new_incf.html.def"
+    view="location_search_get_new_incf.html.def"
   else
-    view="book_search_get_rw_incf.html.def"
+    view="location_search_get_rw_incf.html.def"
   fi
 fi
 
 # render HTML
-cat ../descriptor/${view} | $SED "s/^ *</</g" \
-| $SED "/%%common_menu/r ../descriptor/common_parts/book_search_common_menu" \
+cat /var/www/descriptor/${view} | $SED -r "s/^( *)</</1" \
+| $SED "/%%common_menu/r /var/www/descriptor/common_parts/book_search_common_menu" \
 | $SED "/%%common_menu/d" \
-| $SED "/%%dataset/r ../tmp/$session/dataset" \
+| $SED "/%%dataset/r /var/www/tmp/$session/dataset" \
 | $SED "s/%%dataset//g"\
-| $SED "/%%history/r ../tmp/$session/history" \
+| $SED "/%%history/r /var/www/tmp/$session/history" \
 | $SED "s/%%history//g"\
 | $SED "s/%%id/$id/g" \
-| $SED "s/%%book_name/$book_name/g" \
 | $SED "s/%%pdls/session=$session\&pin=$pin\&req=get/g" \
 | $SED "s/%%session/session=$session\&pin=$pin/g" \
-| $SED "s/%%params/session=$session\&pin=$pin/g"
+| $SED "s/%%params/subapp=location_search\&session=$session\&pin=$pin/g"
+
 
 if [ "$session" ];then
   rm -rf /var/www/tmp/$session

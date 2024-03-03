@@ -23,14 +23,14 @@
 
       <div class="form-box">
        <div class="description">
-        <h1>#book_search.data</h1>
-        <p>id:%%id</p>
+        <h1>404 not found</h1>
        </div>
-       <form method="post" action="./book_search?%%params&req=set&id=%%id" enctype="multipart/form-data" onclick="document.charset='utf-8';">
-       <ul>
+       <pre>
         %%dataset
-       </ul>
-       <button class="button" type="submit">SET</button>
+       </pre>
+       <div class="action_links">
+       </div>
+      </div>
    </div>
    <script>
    const btn = document.querySelector('.even-btn-menu');
@@ -50,20 +50,11 @@
      }
    })
 
-   const formInputs = document.getElementsByClassName("file");
-   const length = formInputs.length;
-   for (let i = 0; i < length; i++) {
-     formInputs[i].onchange = function () {
-       const file = this.files[0].name;
-       const label = this.nextElementSibling;
-       if (!label.classList.contains("changed")) {
-         const span = document.createElement("span");
-         span.className = "filename";
-         this.parentNode.appendChild(span);
-         label.classList.add("changed");
-       }
-       label.nextElementSibling.innerHTML = file;
-     };
+   function del_confirmation(){
+     ret = confirm("Are you OK to delete this data ?");
+     if (ret == true){
+       location.href = "./book_search?%%params&req=del&id=%%id";
+     }
    }
 
    </script>

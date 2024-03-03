@@ -3,11 +3,11 @@
 echo "Content-Type: text/html"
 echo ""
 
-# load small-shell path
-. ../descriptor/.small_shell_path
+# load small-shell conf
+. /var/www/descriptor/.small_shell_conf
 
 # load remote addr
-remote_addr=`echo $REMOTE_ADDR | sed "s/:/-/g"`
+remote_addr=`echo $REMOTE_ADDR | $SED "s/:/-/g"`
 
 IP_whitelisting=no
 
@@ -17,7 +17,7 @@ if [ "$IP_whitelisting" = "yes" ];then
   if [ "$whitelist_chk" ];then
     for IP in $whitelist_chk
     do
-      IP=`echo $IP | sed "s/*//g"`
+      IP=`echo $IP | $SED "s/*//g"`
       if [[ ${remote_addr} == ${IP}* ]];then
         IP_chk_flag=yes
         break
@@ -32,18 +32,18 @@ if [ "$IP_whitelisting" = "yes" ];then
 fi
 
 # auth for small-shell databox
-authkey="%%authkey"
-auth_req=`sudo -u small-shell ${small_shell_path}/bin/extension_auth key_auth:${authkey} remote_addr:${remote_addr} app:booking_req`
-user_name=`echo $auth_req | awk -F "," '{print $1}' | awk -F ":" '{print $2}'`
-session=`echo $auth_req | awk -F "," '{print $2}' | awk -F ":" '{print $2}'`
-pin=`echo $auth_req | awk -F "," '{print $3}' | awk -F ":" '{print $2}'`
+authkey="Ym9va2luZ19yZXEuYXBwOmIzYmVjMmJlOTA5OWM4YzNhNzAzMDllZTc1YWUxNzM1MWYxMTU1NmYK"
+auth_req=`${small_shell_path}/bin/extension_auth key_auth:${authkey} remote_addr:${remote_addr} app:booking_req user_agent:booking_req`
+user_name=`echo $auth_req | $AWK -F "," '{print $1}' | $AWK -F ":" '{print $2}'`
+session=`echo $auth_req | $AWK -F "," '{print $2}' | $AWK -F ":" '{print $2}'`
+pin=`echo $auth_req | $AWK -F "," '{print $3}' | $AWK -F ":" '{print $2}'`
 
 
 param=`date +%s`
 param="$param:$RANDOM"
 count=1
 
-while [ -f ../tmp/${param} ]
+while [ -f /var/www/tmp/${param} ]
 do
  sleep 0.01
  count=`expr $count + 1`
@@ -55,13 +55,13 @@ done
 
 
 # parse QUERY_STRING
-echo $QUERY_STRING | php -r "echo urldecode(file_get_contents('php://stdin'));" | tr -d \$ | tr -d \` | sed "s/\&/\n/g" > ../tmp/${param}
-cat ../tmp/${param} | sed -e "s/=/=\"/1" | sed "s/$/\"/g" | sed "s/^\"//g" > ../tmp/${param}.load
-chmod 755 ../tmp/${param}.load
+echo $QUERY_STRING | $PHP -r "echo urldecode(file_get_contents('php://stdin'));" | tr -d \$ | tr -d \` | $SED "s/\&/\n/g" > /var/www/tmp/${param}
+cat /var/www/tmp/${param} | $SED -e "s/=/=\"/1" | $SED "s/$/\"/g" | $SED "s/^\"//g" > /var/www/tmp/${param}.load
+chmod 755 /var/www/tmp/${param}.load
 
 # load query string
-.  ../tmp/${param}.load
-rm  ../tmp/${param}*
+.  /var/www/tmp/${param}.load
+rm  /var/www/tmp/${param}*
 
 # dump POST data
 if [ "`echo $REQUEST_METHOD | grep -i "POST"`" ];then
@@ -76,10 +76,10 @@ if [ "`echo $REQUEST_METHOD | grep -i "POST"`" ];then
     method=urlenc
   fi
 
-  mkdir ../tmp/$session
+  mkdir /var/www/tmp/$session
   # dump posted data
-  dd bs=${CONTENT_LENGTH} of=../tmp/$session/input 2>/dev/null
-  ../bin/parse.sh $session $method
+  dd bs=${CONTENT_LENGTH} of=/var/www/tmp/$session/input 2>/dev/null
+  /var/www/bin/parse.sh $session $method
 
 fi
 
@@ -94,11 +94,13 @@ fi
 case "$req" in
 
   "get")
-    #../bin/booking_req_get.sh session:$session pin:$pin id:$id remote_addr:${remote_addr};;
-    ../bin/booking_req_get.sh session:$session pin:$pin id:$id remote_addr:${remote_addr} book_name:${book_name} ;;
+    # comment out original line
+    #/var/www/bin/booking_req_get.sh session:$session pin:$pin id:$id remote_addr:${remote_addr};;
+    # insert new line
+    /var/www/bin/booking_req_get.sh session:$session pin:$pin id:$id remote_addr:${remote_addr} book_name:${book_name} ;;
 
   "set")
-    ../bin/booking_req_set.sh session:$session pin:$pin id:$id remote_addr:${remote_addr};;
+    /var/www/bin/booking_req_set.sh session:$session pin:$pin id:$id remote_addr:${remote_addr};;
 
   *)
     echo "error: wrong request";;

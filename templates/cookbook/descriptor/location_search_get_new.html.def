@@ -23,18 +23,16 @@
 
       <div class="form-box">
        <div class="description">
-        <h1>#book.master.data</h1>
+        <h1>#book.res.data</h1>
         <p>id:%%id</p>
        </div>
+       <form method="post" action="./book_search?%%params&req=set&id=%%id" onclick="document.charset='utf-8';">
        <ul>
         %%dataset
        </ul>
-       <div class="action_links">
-        <!-- add following line -->
-         <a href="./booking_req?book_name=%%book_name"><button class="button">Reserve</button></a>
-         <span><a href="./book_search?%%session&subapp=location_search&req=table&table_command=%%book_name"><p>location table</p></a></span>
-       </div>
-      </div>
+       <button class="button" type="submit">SET</button>
+       </form>
+     </div>
    </div>
    <script>
    const btn = document.querySelector('.even-btn-menu');
@@ -53,13 +51,6 @@
        btn.innerHTML = '=';
      }
    })
-
-   function del_confirmation(){
-     ret = confirm("Are you OK to delete this data ?");
-     if (ret == true){
-       location.href = "./book_search?%%params&req=del&id=%%id";
-     }
-   }
 
    </script>
    </body>

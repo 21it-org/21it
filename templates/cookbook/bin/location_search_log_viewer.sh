@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Target databox and keys
-databox=book.master
-keys=all
+databox=book.res
+key=all
 
 # load small-shell conf
 . /var/www/descriptor/.small_shell_conf
+
 
 # load query string param
 for param in `echo $@`
@@ -38,7 +39,6 @@ DATA_SHELL="${small_shell_path}/bin/DATA_shell session:$session pin:$pin app:boo
 # -----------------
 
 # gen %%log contents
-
 if [ "$keys" = "all" ];then
   $DATA_SHELL databox:$databox \
   action:get id:$id type:log format:html_tag > /var/www/tmp/${session}_log/log
@@ -49,7 +49,7 @@ else
 fi
 
 # render HTML
-cat /var/www/descriptor/book_search_log_viewer.html.def | $SED -r "s/^( *)</</1" \
+cat /var/www/descriptor/location_search_log_viewer.html.def | $SED -r "s/^( *)</</1" \
 | $SED "/%%log/r /var/www/tmp/${session}_log/log" \
 | $SED "s/%%log//g"\
 | $SED "s/%%id/$id/g"

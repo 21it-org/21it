@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Target databox and keys
-databox=book.master
+databox=book.res
 
 # load small-shell conf
 . /var/www/descriptor/.small_shell_conf
@@ -35,9 +35,10 @@ if [ "$form_chk" = "multipart" ];then
   cat /var/www/tmp/$session/binary_file/file_name > /var/www/tmp/$session/$file_key 2>/dev/null
 fi
 
+
 # check posted param
 if [ -d /var/www/tmp/$session ];then
-  keys=`ls /var/www/tmp/$session | grep -v binary_file | $SED -z "s/\n/,/g" | $SED "s/,$//g"`
+  keys=`ls /var/www/tmp/$session | $SED -z "s/\n/,/g" | $SED "s/,$//g" | $SED "s/binary_file//g"`
 else
   echo "error: No param posted"
   exit 1
@@ -58,7 +59,7 @@ $DATA_SHELL databox:$databox action:set id:$id keys:$keys input_dir:/var/www/tmp
 error_chk=`grep "^error" /var/www/tmp/$session/result`
 
 if [ "$error_chk" ];then
-  cat /var/www/descriptor/book_search_set_err.html.def | $SED -r "s/^( *)</</1" \
+  cat /var/www/descriptor/location_search_set_err.html.def | $SED -r "s/^( *)</</1" \
   | $SED "/%%common_menu/r /var/www/descriptor/common_parts/book_search_common_menu" \
   | $SED "s/%%common_menu//g"\
   | $SED "/%%message/r /var/www/tmp/$session/result" \
@@ -72,7 +73,7 @@ else
   sleep $index_update_time
 
   # redirect to the table
-  echo "<meta http-equiv=\"refresh\" content=\"0; url=./book_search?session=$session&pin=$pin&req=table\">"
+  echo "<meta http-equiv=\"refresh\" content=\"0; url=./book_search?subapp=location_search&session=$session&pin=$pin&req=table\">"
 fi
 
 if [ "$session" ];then

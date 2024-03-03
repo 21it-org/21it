@@ -1,39 +1,49 @@
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>book_search portal</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-        <link rel="stylesheet" href="./book_search_css">
-    </head>
-    <body>
-    <div class="container">
-      <div class="flex-header">
-        <div class="left-header">
-          <h2><a href="./book_search?%%params&req=main">book_search</a></h2>
-        </div>
-        <div class="right-header">
-        <button class="even-btn-menu">=</button>
-        <nav>
-         <ul>
-         %%common_menu
-         </ul>
-        </nav>
-        </div>
-      </div>
-      <div class="main">
-      <div class="description">
-        <h1>Welcome to book_search APP. please search book and request for lending.</h1>
-        <pre>
-STEP1: Search book from table
+<head>
+<meta charset="UTF-8" />
+<title>book_search portal</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" href="./book_search_css">
+</head>
+<body>
+<div class="container">
+<div class="flex-header">
+<div class="left-header">
+         
+<h2><a href=" ./book_search?%%session&req=main">book_search</a></h2>
+</div>
+         
+<div class="right-header">
+<button class="even-btn-menu">=</button>
+<nav>
+<ul>
+<li><a href=" ./book_search?%%session&req=main">APP Portal</a></li>
+<li><a href=" ./book_search?%%session&req=table">Table</a></li>
+<li><a href=" ./book_search?%%session&req=table&subapp=location_search">Table@location_search</a></li>
+</nav>
+</ul>
+</div>
+</div>
+<div class="main">
+<div class="left-nav">
+          
+</div>
+<div class="description">
+          
+<h1>This is book search APP. you can search and request book for lending on this APP.</h1>
+<pre class="code">STEP1: Search book from table
 STEP2: Request from book page, then you can get your request link
-STEP3: Message will be updated once admin check your request on your link, then you can get book
-       </pre>
-        <br>
-        <a href="./book_search?%%params&req=table"><button class="button">Search</button></a>
-      </div>
-      </div>
-    </div>
-    <script>
+STEP3: Message will be updated once admin check your request on your link, then you can get the book when you come to office
+</pre>
+<a href="./book_search?%%session&req=table"><button class="button">Search</button></a>
+</div>
+</div>
+<div class="footer">
+        
+<p>powered by small-shell.org</p>
+</div>
+</div>
+<script>
     const btn = document.querySelector('.even-btn-menu');
     const nav = document.querySelector('nav');
 
@@ -51,7 +61,7 @@ STEP3: Message will be updated once admin check your request on your link, then 
       }
     })
 
-   </script>
-   </body>
+</script>
+</body>
 </html>
 

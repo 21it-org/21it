@@ -23,16 +23,14 @@
 
       <div class="form-box">
        <div class="description">
-        <h1>#book.res.data</h1>
+        <h1>#book_search.data</h1>
         <p>id:%%id</p>
        </div>
+       <form method="post" action="./book_search?%%params&req=set&id=%%id" enctype="multipart/form-data" onclick="document.charset='utf-8';">
        <ul>
         %%dataset
        </ul>
-       <div class="action_links">
-        <span><a href="./book_search?%%session&req=get&id=%%book_id"><p>Master data</p></a></span>
-       </div>
-      </div>
+       <button class="button" type="submit">SET</button>
    </div>
    <script>
    const btn = document.querySelector('.even-btn-menu');
@@ -52,11 +50,14 @@
      }
    })
 
-   function del_confirmation(){
-     ret = confirm("Are you OK to delete this data ?");
-     if (ret == true){
-       location.href = "./book_search?%%params&req=del&id=%%id";
-     }
+   const formInputs = document.getElementsByClassName("file");
+   const length = formInputs.length;
+   for (let i = 0; i < length; i++) {
+     formInputs[i].onchange = function () {
+       const file = this.files[0].name;
+       const label = this.nextElementSibling;
+       label.nextElementSibling.innerHTML = file;
+     };
    }
 
    </script>

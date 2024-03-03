@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Target databox and keys
-databox=book.master
-keys=all
+databox=book.res
+#keys=all
+keys=hashid,name,location
 
 # define default num of line per page
 num_of_line_per_page=12
@@ -43,7 +44,6 @@ do
   fi
 
 done
-
 
 # SET BASE_COMMAND
 META="${small_shell_path}/bin/meta"
@@ -132,16 +132,14 @@ fi
 #  Preprocedure
 # -----------------
 if [ "$filter_table" ];then
-  line_num=`$DATA_SHELL databox:$databox command:show_all[match=available{yes}][filter=${filter_table}][keys=$keys] format:none | wc -l | tr -d " "`
+  line_num=`$DATA_SHELL databox:$databox command:show_all[filter=${filter_table}][keys=$keys] format:none | wc -l | tr -d " "`
 
 elif [ "$sort_col" ];then
-  line_num=`$DATA_SHELL databox:$databox command:show_all[match=available{yes}][sort=${sort_option},${sort_col}] format:none | wc -l | tr -d " "`
+  line_num=`$DATA_SHELL databox:$databox command:show_all[sort=${sort_option},${sort_col}] format:none | wc -l | tr -d " "`
 
 else
-  # comment out original line
-  #line_num=`$META get.num:$databox`
-  # insert new line
-  line_num=`$DATA_SHELL databox:$databox command:show_all[match=available{yes}][sort=${sort_option},${sort_col}] format:none | wc -l | tr -d " "` 
+  line_num=`$META get.num:$databox`
+
 fi
 
 # calc pages
@@ -159,24 +157,23 @@ fi
 #-----------------------
 if [ "$filter_table" ];then
   $DATA_SHELL databox:$databox \
-  command:show_all[match=available{yes}][line=$line_start-$line_end][keys=$keys][filter=${filter_table}] > /var/www/tmp/$session/table &
+  command:show_all[line=$line_start-$line_end][keys=$keys][filter=${filter_table}] > /var/www/tmp/$session/table &
 
 elif [ "$sort_col" ];then
   $DATA_SHELL databox:$databox \
-  command:show_all[match=available{yes}][line=$line_start-$line_end][keys=$keys][sort=${sort_option},${sort_col}] > /var/www/tmp/$session/table &
+  command:show_all[line=$line_start-$line_end][keys=$keys][sort=${sort_option},${sort_col}] > /var/www/tmp/$session/table &
 else
-  $DATA_SHELL databox:$databox command:show_all[match=available{yes}][line=$line_start-$line_end][keys=$keys] > /var/www/tmp/$session/table &
+  $DATA_SHELL databox:$databox command:show_all[line=$line_start-$line_end][keys=$keys] > /var/www/tmp/$session/table &
 fi
 
 # gen %%tag contents
-$META get.tag:book_search{$databox} > /var/www/tmp/$session/tags
+$META get.tag:location_search{$databox} > /var/www/tmp/$session/tags
 for tag in `cat /var/www/tmp/$session/tags`
 do
  echo "<p><a href=\"./book_search?%%params&req=table&table_command=$tag\">#$tag&nbsp;</a></p>" > /var/www/tmp/$session/tag &
 done
 
 # load permission
-
 if [ ! "$user_name" = "guest" ];then
   permission=`$META get.attr:book_search/$user_name{permission}`
 else
@@ -184,14 +181,15 @@ else
 fi
 
 # gen %%page_link contents
-/var/www/bin/book_search_page_links.sh $page $pages "$table_command" $num_of_line_per_page > /var/www/tmp/$session/page_link &
+/var/www/bin/location_search_page_links.sh $page $pages "$table_command" $num_of_line_per_page > /var/www/tmp/$session/page_link &
 wait
 
 # error check
 err_chk=`grep "^error: " /var/www/tmp/$session/table`
 
 if [ "$err_chk" ];then
-  echo "<h2>Oops something must be wrong, please check book_search_table.sh, error message is $err_chk</h2>"
+  echo "<h2>Oops something must be wrong, please check location_search_table.sh, error message is $err_chk</h2>"
+
   if [ "$session" ];then
     rm -rf /var/www/tmp/$session
   fi
@@ -216,22 +214,22 @@ fi
 if [ "$line_num" = 0 ];then
   if [ "$err_chk" = "" -a "$filter_table" = "-" -a ! "$sort_col" ];then
 
-    view=book_search_table.html.def
+    view=location_search_table.html.def
     if [ ! "$permission" = "ro" ];then
-      echo "<h4><a href=\"./book_search?%%params&req=get&id=new\">+ ADD DATA</a></h4>" >> /var/www/tmp/$session/table
+      echo "<h4><a href=\"./book_search?&%%params&req=get&id=new\">+ ADD DATA</a></h4>" >> /var/www/tmp/$session/table
     else
       echo "<h4>= NO DATA</h4>" >> /var/www/tmp/$session/table
     fi
 
   elif [ "$sort_col" ];then
     echo "<h4>sort option $sort_option seems wrong</h4>" >> /var/www/tmp/$session/table
-    view=book_search_table.html.def
+    view=location_search_table.html.def
   else
     echo "<h4>= NO DATA</h4>" >> /var/www/tmp/$session/table
-    view=book_search_table.html.def
+    view=location_search_table.html.def
   fi
 else
-  view=book_search_table.html.def
+  view=location_search_table.html.def
 fi
 
 cat /var/www/descriptor/$view | $SED -r "s/^( *)</</1" \
@@ -241,7 +239,7 @@ cat /var/www/descriptor/$view | $SED -r "s/^( *)</</1" \
 | $SED "/%%table_menu/d"\
 | $SED "/%%table/r /var/www/tmp/$session/table" \
 | $SED "s/%%table//g"\
-| $SED "s/book.master/$databox/g"\
+| $SED "s/book.res/$databox/g"\
 | $SED "/%%page_link/r /var/www/tmp/$session/page_link" \
 | $SED "s/%%page_link//g"\
 | $SED "/%%tag/r /var/www/tmp/$session/tag" \
@@ -269,7 +267,8 @@ cat /var/www/descriptor/$view | $SED -r "s/^( *)</</1" \
 | $SED "s/{%%space}/ /g"\
 | $SED "s/.\/shell.app?/.\/book_search?/g"\
 | $SED "s/%%session/session=$session\&pin=$pin/g" \
-| $SED "s/%%params/session=$session\&pin=$pin\&databox=$databox/g" 
+| $SED "s/%%params/subapp=location_search\&session=$session\&pin=$pin\&databox=$databox/g"
+
 
 if [ "$session" ];then
   rm -rf /var/www/tmp/$session
