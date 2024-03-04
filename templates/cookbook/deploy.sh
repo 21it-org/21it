@@ -20,6 +20,9 @@ if [ ! -d $ROOT ];then
   exit 1
 fi
 
+# loal global conf
+. $ROOT/global.conf
+
 # load web base
 . $ROOT/web/base
 
@@ -46,13 +49,13 @@ done
 rand=$RANDOM
 for src in `ls ./descriptor | grep -v common_parts | xargs basename -a`
 do
-  cat ./descriptor/$src | sed "s/%%rand/$rand/g" > $cgidir/../descriptor/$src
+  cat ./descriptor/$src | $SED "s/%%rand/$rand/g" > $cgidir/../descriptor/$src
   chmod 755 $cgidir/../descriptor/$src
 done
 
 for src in `ls ./descriptor/common_parts | xargs basename -a`
 do
-  cat ./descriptor/common_parts/$src | sed "s/%%rand/$rand/g" > $cgidir/../descriptor/common_parts/$src
+  cat ./descriptor/common_parts/$src | $SED "s/%%rand/$rand/g" > $cgidir/../descriptor/common_parts/$src
   chmod 755 $cgidir/../descriptor/common_parts/$src
 done
 
@@ -62,7 +65,7 @@ for app in booking_req book_search
 do
 
   app_user_name=${app}.app
-  app_user_id=`echo "$app_user_name" | sha256sum | awk '{print $1}'`
+  app_user_id=`echo "$app_user_name" | $SHASUM | $AWK '{print $1}'`
 
   if [ ! -d $ROOT/users/${app}.${app_user_id} ];then
     mkdir $ROOT/users/${app}.${app_user_id}
@@ -79,16 +82,14 @@ do
     hash_gen_key="${RANDOM}.${RANDOM}.${RANDOM}.${RANDOM}.${RANDOM}"
   fi
 
-  hash=`echo "${app}:${app_user_name}:${hash_gen_key}" | sha256sum | awk '{print $1}'`
+  hash=`echo "${app}:${app_user_name}:${hash_gen_key}" | $SHASUM | $AWK '{print $1}'`
   echo "$hash" > $ROOT/users/${app}.${app_user_id}/hash
   chown -R small-shell:small-shell $ROOT/users/${app}.${app_user_id}
   chmod 700 $ROOT/users/${app}.${app_user_id}/hash
   authkey=`echo "${app_user_name}:${hash_gen_key}" | base64 -w 0`
-  cat ./cgi-bin/${app}| sed "s/%%authkey/$authkey/g" >  $cgidir/${app}
+  cat ./cgi-bin/${app}| $SED "s/%%authkey/$authkey/g" >  $cgidir/${app}
 
 done
-
-# update form APP
 
 # create databox
 for src in `ls ./def | xargs basename -a`
