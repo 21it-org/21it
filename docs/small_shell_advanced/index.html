@@ -1103,10 +1103,10 @@ databoxの指定までできると最終確認をもとめられますので、y
 <p>アプリケーションシェルの構造を理解して、スクラッチアプリを更新していきましょう。スクラッチアプリ作成時に以下のようにコードが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">APP shell</a>も参考にしてください</p>
 <div class="highlight"><pre><span></span><code>------------------------------------------------------------
 SCRATCH APP is successfully generated
-URL: http://localhost/21DOJO
+Access URL: http://localhost/21DOJO
 ------------------------------------------------------------
-Please update following codes freely
-by the way, you can also update portal page on 21DOJO.UI.md.def on Base APP using markdown
+Following is generated codes that you can update.
+You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 /var/www/cgi-bin/auth.21DOJO
 /var/www/cgi-bin/21DOJO
 /var/www/cgi-bin/21DOJO_css
@@ -1125,7 +1125,7 @@ by the way, you can also update portal page on 21DOJO.UI.md.def on Base APP usin
 </code></pre>
 <h3 id="url">URL構造</h3>
 <p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.$APPというプログラムへリダイレクトされ認証が処理されます</p>
-<pre><code>http://localhost/21DOJO --&gt; redirect --&gt; http://localhost/cgi-bin/auth.21DOJO
+<pre><code>htp://localhost/21DOJO --&gt; redirect --&gt; http://localhost/cgi-bin/auth.21DOJO
 </code></pre>
 <p>認証が成功した場合、コントローラーへ自動で接続されます。ログイン後のURLをブラウザからコピーしてみてみましょう、URLはsession情報やsessionを保証するpinコードを含んでいます。また、req=mainという記述も確認できると思いますが、これはmainページのリクエストを意味します</p>
 <pre><code>http://localhost/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
@@ -1136,7 +1136,7 @@ by the way, you can also update portal page on 21DOJO.UI.md.def on Base APP usin
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のactionスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="routing">Routing</h4>
 <p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase分をルーティングと呼んでいます</p>
-<div class="highlight"><pre><span></span><code>$ sudo tail -34 /var/www/cgi-bin/21DOJO
+<div class="highlight"><pre><span></span><code>$ sudo tail -48 /var/www/cgi-bin/21DOJO
 
 #----------------------------
 # routing to action scripts
@@ -1148,17 +1148,29 @@ case &quot;$req&quot; in
     /var/www/bin/21DOJO_main.sh session:$session pin:$pin user_name:$user_name remote_addr:${remote_addr};;
 
   &quot;get&quot;)
-    /var/www/bin/21DOJO_get.sh session:$session pin:$pin user_name:$user_name id:$id duplicate:$duplicate;;
+    # master param must be loaded on ./descriptor/.small-shell.conf
+    if [ ! &quot;$master&quot; ];then
+      /var/www/bin/21DOJO_get.sh session:$session pin:$pin user_name:$user_name id:$id duplicate:$duplicate
+    else
+      sync=`${small_shell_path}/bin/extension_auth app:21DOJO sync:${session}@${master}`
+      if [ &quot;$sync&quot; = &quot;synced&quot; ];then
+        redirect=yes
+      else
+        redirect=no
+      fi
+      /var/www/bin/21DOJO_get.sh session:$session pin:$pin user_name:$user_name id:$id duplicate:$duplicate redirect:$rediret
+    fi
+    ;;
 
   &quot;set&quot;)
-    /var/www/bin/21DOJO_set.sh session:$session pin:$pin user_name:$user_name id:$id;;
+    /var/www/bin/21DOJO_set.sh session:$session pin:$pin user_name:$user_name id:$id ;;
 
   &quot;del&quot;)
     /var/www/bin/21DOJO_del.sh databox:$databox session:$session pin:$pin id:$id ;;
 
   &quot;table&quot;)
     table_command=&quot;`echo $table_command | $SED &quot;s/ /{%%space}/g&quot;`&quot;
-    /var/www/bin/21DOJO_table.sh session:$session pin:$pin user_name:$user_name id:$id page:$page table_command:$table_command line:$line;;
+    /var/www/bin/21DOJO_table.sh session:$session pin:$pin user_name:$user_name id:$id page:$page table_command:$table_command line:$line ;;
 
   &quot;log_viewer&quot;)
     /var/www/bin/21DOJO_log_viewer.sh session:$session pin:$pin user_name:$user_name id:$id ;;
@@ -1166,10 +1178,14 @@ case &quot;$req&quot; in
   &quot;file&quot;)
     /var/www/bin/21DOJO_dl.sh session:$session pin:$pin user_name:$user_name id:$id ;;
 
+  # sub app routing section
+
   *)
     echo &quot;error: wrong request&quot;;;
 
 esac
+
+exit 0
 </code></pre></div>
 <h4 id="parse">Parse</h4>
 <p>ルーティングに至る前処理としてはsessionの妥当性の確認やクライアントからのリクエスト内容の解析などを行いますが、クライアントから送信(POST)された要求を解析するプログラムとしてparse.shを使用します。controllerに、例えばuser_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にuser_nameというファイルを作り、そこにPOSTされたユーザー名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
@@ -1178,12 +1194,12 @@ esac
 <div class="highlight"><pre><span></span><code>$ sudo tail -18 /var/www/bin/21DOJO_get.sh
 
 # render HTML
-cat ../descriptor/${view} | $SED &quot;s/^ *&lt;/&lt;/g&quot; \
-| $SED &quot;/%%common_menu/r ../descriptor/common_parts/21DOJO_common_menu&quot; \
+cat /var/www/descriptor/${view} | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
+| $SED &quot;/%%common_menu/r /var/www/descriptor/common_parts/21DOJO_common_menu&quot; \
 | $SED &quot;/%%common_menu/d&quot; \
-| $SED &quot;/%%dataset/r ../tmp/$session/dataset&quot; \
+| $SED &quot;/%%dataset/r /var/www/tmp/$session/dataset&quot; \
 | $SED &quot;s/%%dataset//g&quot;\
-| $SED &quot;/%%history/r ../tmp/$session/history&quot; \
+| $SED &quot;/%%history/r /var/www/tmp/$session/history&quot; \
 | $SED &quot;s/%%history//g&quot;\
 | $SED &quot;s/%%id/$id/g&quot; \
 | $SED &quot;s/%%pdls/session=$session\&amp;pin=$pin\&amp;req=get/g&quot; \
@@ -1191,7 +1207,7 @@ cat ../descriptor/${view} | $SED &quot;s/^ *&lt;/&lt;/g&quot; \
 | $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
 
 if [ &quot;$session&quot; ];then
-  rm -rf ../tmp/$session
+  rm -rf /var/www/tmp/$session
 fi
 
 exit 0
@@ -1481,7 +1497,7 @@ key:impression filters:良い,普通,悪い type:pie frequency:snapshot
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>genコマンドで登録されるジョブは自動でsmall-shell権限で実行されます</p>
+<p>genコマンドで登録されるジョブは自動でsmall-shellユーザー権限で実行されます</p>
 </div>
 <p>バッチスクリプトを指定すると最終確認が求められますので問題なければyesと入力しましょう
 <div class="highlight"><pre><span></span><code>job will be generated by following order, please check it
