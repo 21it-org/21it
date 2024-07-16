@@ -1089,10 +1089,10 @@
 <p>対話が始まりますが、ここではアプリケーションの名前は21DOJOとします、pass codeは任意の4桁の数字を入力しています
 <div class="highlight"><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
-app_name: 21DOJO
+APP Name: 21DOJO
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 1
-shared pass code: XXXX
-primary databox: events
+Shared Passcode: XXXX
+Primary databox: events
 </code></pre></div>
 前章同様、アプリはshared passを選択しますがもちろん他の認証方式も選択可能です。
 databoxの指定までできると最終確認をもとめられますので、yesと回答しましょう</p>
@@ -1230,22 +1230,22 @@ exit 0
 <p><img alt="Screenshot" src="../img/org_event.png" /></p>
 <p>keyの追加削除にはgenコマンドを使用します。不要なkeyをまずは消しましょう。
 <div class="highlight"><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -delcol
-databox_name: events
+Databox Name: events
 column&#39;s key name: description 
 Do you want to delete more column from dataset ? (yes | no) : no 
 </code></pre></div></p>
 <p>続いて必要なkeyを追加していきます
 <div class="highlight"><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -addcol
-databox_name: events
+Databox Name: events
 key(col7) name: url
 key (col7) label: イベントURL
-data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): url
-required to input each time? (yes | no): no
+Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): url
+Require to input each time? (yes | no): no
 Do you want to add more column to dataset ? (yes | no) : yes
 key(col8) name: detail
 key (col8) label: イベント詳細
-data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): textarea
-required to input each time? (yes | no): no
+Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): textarea
+Require to input each time? (yes | no): no
 Do you want to add more column to dataset ? (yes | no) : no
 </code></pre></div>
 最終確認が求められますので問題なければyesと解答してkeyの追加を完了しましょう。再度イベント登録画面にいくとフィールドが更新されています</p>
