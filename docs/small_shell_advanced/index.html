@@ -1438,11 +1438,11 @@ option=&quot;&quot;
 <h3 id="graph">Graph生成</h3>
 <p>pyshellを使うことで容易にGraph生成ができます、まずはsmall shell公式サイトを確認してpython及びlibraryのインストールをしてください。公式サイトはChromeの翻訳機能を使えば日本語での閲覧が可能です   </p>
 <p><a href="https://small-shell.org/python_tour/">pyshell</a></p>
-<p>公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではenv設定が適切に実施されpython3.9がインストールされていることを確認します
+<p>公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではenv設定が適切に実施されpython3.12がインストールされていることを確認します
 <div class="highlight"><pre><span></span><code>$ cat /usr/local/small-shell/util/pyshell/env | grep PYTHON
-PYTHON=&quot;/usr/local/bin/python3.9&quot;
-$ ls /usr/local/bin/python3.9
-/usr/local/bin/python3.9
+PYTHON=&quot;/usr/local/bin/python3.12&quot;
+$ ls /usr/local/bin/python3.12
+/usr/local/bin/python3.12
 </code></pre></div></p>
 <p>日本語を扱えるようにフォントをインストールしてフォント定義を変更しましょう
 <div class="highlight"><pre><span></span><code># フォントインストール
@@ -1453,7 +1453,7 @@ font_family=&quot;IPAexGothic&quot;
 --------
 
 # キャッシュの削除
-sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-v330.json
+sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-*.json
 </code></pre></div></p>
 <h4 id="snapshot-graph">Snapshot Graph</h4>
 <p>pyshell環境が適切に設定できていたら、utility scriptであるcountup.shを使ってスナップショットグラフを作成しましょう。スナップショットグラフとはpyshell実行時点のデータを集計し、記録したグラフです。スナップショット以外にデータ蓄積を前提としたhourly, daily, monthlyのグラフの作成が可能です。以下は先ほどアンケート集計のために作成したsurvey.boxを"良い"、"普通"、"悪い"でそれぞれデータを集計するコマンド例になります</p>
