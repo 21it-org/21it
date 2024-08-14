@@ -920,12 +920,13 @@ Subapp Databox: contact_list
 <h3 id="team-app-install">Team APP install</h3>
 <p>早速Team APPをインストールしましょう、git cloneした後deploy.shを実行するとDataBoxも自動生成されます
 <div class="highlight"><pre><span></span><code>cd $HOME
-git clone https://github.com/naruoken/small-shell-apps
+#git clone https://github.com/naruoken/small-shell-apps
 cd small-shell-apps/team_app
 sudo ./deploy.sh
 
 # small-shellのディレクトリpathに間違いなければenterを押してください
 small-shell root (/usr/local/small-shell): &lt;enter&gt;
+Do you want to enable IP whitelisting for this APP ? (yes | no): no
 </code></pre></div></p>
 <h3 id="team-app">Team APPユーザー追加</h3>
 <p>Team APPはBase APPのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではapp_testというユーザーを作成しています</p>
@@ -964,7 +965,7 @@ Is it OK? (yes | no): yes
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>primary_keyをhashidとすることで一意のデータを持つkeyを作る必要がありません</p>
+<p>primary_keyをhashidとすることでよりフラットにデータ管理ができます（primary_keyの値の重複など気にする必要がありません）</p>
 </div>
 <p><div class="highlight"><pre><span></span><code>Target Databox: survey.box
 primary_key(col1): hashid
@@ -984,8 +985,8 @@ option=&quot;required&quot;
 #column2
 name=&quot;generation&quot;
 label=&quot;世代&quot;
-type=&quot;radio&quot;
-params=&quot;10-20代 30-40代 50-60代 60代以上&quot;
+type=&quot;select&quot;
+params=&quot;10-20代,30-40代,50-60代,70歳以上&quot;
 option=&quot;required&quot;
 
 #column3
@@ -1043,7 +1044,7 @@ Target Databox: survey.box
 Description: xyzにつてのアンケートにお答えください
 IP_whitelisting: no
 Included keys: generation,impression,comment
-Access URL: http://localhost/cgi-bin/survey
+Access URL: http://localhost/survey
 
 -----------------------------------------------------------------
 
@@ -1051,8 +1052,8 @@ Is it OK? (yes | no): yes
 </code></pre></div>
 フォームが生成されますので、最終確認時にAccess URLとして記載のあったURLにアクセスしてみましょう。認証なしで入力フォームへアクセスでき、データの追加ができるはずですので試してください</p>
 <p><img alt="Screenshot" src="../img/survey.png" /></p>
-<p>BaseAPPで登録されたデータを見てみると、一意のIDも自動生成されていることが確認できます。hashidはBaseAPPのフォーム入力でも、外部のフォーム入力でも同じく自動で生成されます</p>
-<p><img alt="Screenshot" src="../img/survey_table.png" /></p>
+<p>BaseAPPで登録されたデータを見てみると、一意のIDも自動生成されていることが確認できます。
+<img alt="Screenshot" src="../img/survey_table.png" /></p>
 <h2 id="_15">その他操作</h2>
 <h3 id="scratch-apptag">Scratch APPへのtag追加</h3>
 <p>スクラッチアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>

@@ -377,6 +377,19 @@
     Base APP生成
   </a>
   
+    <nav class="md-nav" aria-label="Base APP生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    WEBアプリの日本語化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -720,6 +733,19 @@
     Base APP生成
   </a>
   
+    <nav class="md-nav" aria-label="Base APP生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    WEBアプリの日本語化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -948,7 +974,7 @@ sudo apt-get update
 # 各種ライブラリのインストール
 sudo apt-get install php
 sudo apt-get install npm
-sudo curl -o /usr/bin/jq -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 &amp;&amp; sudo chmod +x /usr/bin/jq
+sudo apt install jq
 </code></pre>
 <h5 id="small-shell">small shellのインストール</h5>
 <pre><code>cd /usr/local
@@ -972,6 +998,16 @@ curl: (7) Failed to connect to localhost port 80: Connection refused</p>
 <p>エラーが表示された場合は以下コマンドで手動でwebサーバを起動してください  <br />
 sudo node /var/www/app/index.js &amp;</p>
 </div>
+<h4 id="web">WEBアプリの日本語化</h4>
+<p>生成したWEBアプリを日本語対応させるために、以下追加パッケージをインストールしましょう</p>
+<pre><code>cd $HOME
+git clone https://github.com/naruoken/small-shell-apps
+cd small-shell-apps/dictionary/JP
+sudo ./deploy.sh
+
+# small-shellのディレクトリpathに間違いなければenterを押してください
+small-shell root (/usr/local/small-shell): &lt;enter&gt;
+</code></pre>
 <h3 id="base-app_2">Base APPユーザー作成</h3>
 <p>続いてBase APPへアクセスするためのユーザーを作成しましょう、あなたが管理者の場合アプリ利用者の人数分ユーザー作成をしてください。以下ではtestというユーザーを作成しています。</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.usr:test
@@ -1027,18 +1063,16 @@ key(col2) name: type
 key(col2) label: タイプ
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
 please define parameters using comma as separator: パソコン,モニター,アクセサリー,その他
-Require to input each time? (yes | no): yes ※必須項目はyesとしますDo you want to add column to dataset ? (yes | no): yes 
 
 key(col3) name: maker
 key(col3) label: メーカー
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
 please define parameters using comma as separator: メーカーA社,メーカーB社,メーカーC社,その他
-Require to input each time? (yes | no): yes
 
 key(col4) name: num
 key(col4) label: 在庫数
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): num
-Require to input each time? (yes | no): yes
+Require to input each time? (yes | no): yes ※必須項目はyesとします
 
 key(col5) name: note
 key(col5) label: 備考
@@ -1091,7 +1125,7 @@ Is it OK? (yes | no): yes
 <p>DataBoxが生成されたら早速BaseAPPをつうじてデータへアクセスしましょう。WSL環境の場合は以下URLでアクセスができます。ログインURLで再度鍵を選択してログインしてみましょう、データボックスが表示されていることでしょう</p>
 <p>http://localhost/base</p>
 <p><img alt="Screenshot" src="../img/databox.png" /></p>
-<p>早速+Addリンクからアイテムを登録しましょう
+<p>早速+データ追加リンクからアイテムを登録しましょう
 <img alt="Screenshot" src="../img/add_item.png" /></p>
 <h4 id="key">Keyの追加削除</h4>
 <p>データボックスにkeyを追加、削除したい場合もgenコマンドを利用します。追加、削除はそれぞれ以下オプションで実行してください。その後dialogが開始します
