@@ -19,7 +19,7 @@
     
     
       
-        <title>small-shell Advanced - 21it Docs</title>
+        <title>small-shell応用 - 21it Docs</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              small-shell Advanced
+              small-shell応用
             
           </span>
         </div>
@@ -198,7 +198,7 @@
   
     <li class="md-nav__item">
       <a href="../unix1/" class="md-nav__link">
-        Unix Basic 1
+        UNIX基礎#1
       </a>
     </li>
   
@@ -213,7 +213,7 @@
   
     <li class="md-nav__item">
       <a href="../unix2/" class="md-nav__link">
-        Unix Basic 2
+        UNIX基礎#2
       </a>
     </li>
   
@@ -228,7 +228,7 @@
   
     <li class="md-nav__item">
       <a href="../genshi_programing/" class="md-nav__link">
-        shell programing
+        shellプログラミング
       </a>
     </li>
   
@@ -243,7 +243,7 @@
   
     <li class="md-nav__item">
       <a href="../web/" class="md-nav__link">
-        WEB Basic
+        インターネット基礎
       </a>
     </li>
   
@@ -258,7 +258,7 @@
   
     <li class="md-nav__item">
       <a href="../small_shell1/" class="md-nav__link">
-        small-shell Basic 1
+        small-shell基礎#1
       </a>
     </li>
   
@@ -273,7 +273,7 @@
   
     <li class="md-nav__item">
       <a href="../small_shell2/" class="md-nav__link">
-        small-shell Basic 2
+        small-shell基礎#2
       </a>
     </li>
   
@@ -297,12 +297,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          small-shell Advanced
+          small-shell応用
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        small-shell Advanced
+        small-shell応用
       </a>
       
         
@@ -680,7 +680,7 @@
   
     <li class="md-nav__item">
       <a href="../digital_resilience/" class="md-nav__link">
-        Digital耐性
+        デジタル耐性
       </a>
     </li>
   
@@ -1104,7 +1104,7 @@ databoxの指定までできると最終確認をもとめられますので、y
 <p>アプリケーションシェルの構造を理解して、スクラッチアプリを更新していきましょう。スクラッチアプリ作成時に以下のようにコードが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">APP shell</a>も参考にしてください</p>
 <div class="highlight"><pre><span></span><code>------------------------------------------------------------
 SCRATCH APP is successfully generated
-Access URL: http://localhost/21DOJO
+Access URL: http://{サーバアドレス}/21DOJO
 ------------------------------------------------------------
 Following is generated codes that you can update.
 You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
@@ -1126,10 +1126,10 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 </code></pre>
 <h3 id="url">URL構造</h3>
 <p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.$APPというプログラムへリダイレクトされ認証が処理されます</p>
-<pre><code>htp://localhost/21DOJO --&gt; redirect --&gt; http://localhost/cgi-bin/auth.21DOJO
+<pre><code>htp://{サーバアドレス}/21DOJO --&gt; redirect --&gt; http://{サーバアドレス}/cgi-bin/auth.21DOJO
 </code></pre>
 <p>認証が成功した場合、コントローラーへ自動で接続されます。ログイン後のURLをブラウザからコピーしてみてみましょう、URLはsession情報やsessionを保証するpinコードを含んでいます。また、req=mainという記述も確認できると思いますが、これはmainページのリクエストを意味します</p>
-<pre><code>http://localhost/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
+<pre><code>http://{サーバアドレス}/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
 </code></pre>
 <h5 id="query_string">QUERY_STRING</h5>
 <p>QUERY_STRINGとはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY_STRINGをURLに連結していくことができます。</p>
@@ -1352,7 +1352,7 @@ keys=name,start,end,url,detail
 <p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みそのURLをQR codeにしましょう。URLにQUERY_STRINGを付加すれば認証画面なしで自動ログインが可能です</p>
 <h4 id="url_2">URLデザイン</h4>
 <p>以下はWSL環境でpass codeとして1234を設定したアプリにQUERY_STRINGだけでログインするためのURLの例です</p>
-<pre><code>http://localhost/cgi-bin/auth.21DOJO?app_pass=1234
+<pre><code>http://{サーバアドレス}/cgi-bin/auth.21DOJO?app_pass=1234
 </code></pre>
 <h3 id="_11">問い合わせフォーム更新</h3>
 <p>Team APP付属のInquiries DataBox及びInquiryフォームを利用ケースにあわせて更新しましょう</p>
@@ -1431,7 +1431,7 @@ option=&quot;&quot;
 --------
 </code></pre></div>
 <h6 id="_13">問い合わせフォーム</h6>
-<p>それでは問い合わせフォームにアクセスしてみましょう、WSLを使っている場合これまでどおりlocalhostへ接続します &gt; http://localhost/inquiry</p>
+<p>それでは問い合わせフォームにアクセスしてみましょう、サーバIPアドレス/inquiryへ接続します &gt; http://{サーバアドレス}/inquiry</p>
 <p><img alt="Screenshot" src="../img/inquiry.png" /></p>
 <p>問い合わせはTeam APP上でチケットして管理され、チャット形式でやりとりを継続できます
 <img alt="Screenshot" src="../img/ticket.png" /></p>

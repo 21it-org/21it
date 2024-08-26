@@ -19,7 +19,7 @@
     
     
       
-        <title>WEB Basic - 21it Docs</title>
+        <title>インターネット基礎 - 21it Docs</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              WEB Basic
+              インターネット基礎
             
           </span>
         </div>
@@ -198,7 +198,7 @@
   
     <li class="md-nav__item">
       <a href="../unix1/" class="md-nav__link">
-        Unix Basic 1
+        UNIX基礎#1
       </a>
     </li>
   
@@ -213,7 +213,7 @@
   
     <li class="md-nav__item">
       <a href="../unix2/" class="md-nav__link">
-        Unix Basic 2
+        UNIX基礎#2
       </a>
     </li>
   
@@ -228,7 +228,7 @@
   
     <li class="md-nav__item">
       <a href="../genshi_programing/" class="md-nav__link">
-        shell programing
+        shellプログラミング
       </a>
     </li>
   
@@ -252,12 +252,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          WEB Basic
+          インターネット基礎
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        WEB Basic
+        インターネット基礎
       </a>
       
         
@@ -348,8 +348,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#sample" class="md-nav__link">
-    sample
+  <a href="#_6" class="md-nav__link">
+    サンプルコード
   </a>
   
 </li>
@@ -381,7 +381,7 @@
   
     <li class="md-nav__item">
       <a href="../small_shell1/" class="md-nav__link">
-        small-shell Basic 1
+        small-shell基礎#1
       </a>
     </li>
   
@@ -396,7 +396,7 @@
   
     <li class="md-nav__item">
       <a href="../small_shell2/" class="md-nav__link">
-        small-shell Basic 2
+        small-shell基礎#2
       </a>
     </li>
   
@@ -411,7 +411,7 @@
   
     <li class="md-nav__item">
       <a href="../small_shell_advanced/" class="md-nav__link">
-        small-shell Advanced
+        small-shell応用
       </a>
     </li>
   
@@ -426,7 +426,7 @@
   
     <li class="md-nav__item">
       <a href="../digital_resilience/" class="md-nav__link">
-        Digital耐性
+        デジタル耐性
       </a>
     </li>
   
@@ -531,8 +531,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#sample" class="md-nav__link">
-    sample
+  <a href="#_6" class="md-nav__link">
+    サンプルコード
   </a>
   
 </li>
@@ -618,43 +618,35 @@ www-data   110   102  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
 www-data   113   102  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
 ubuntu     115     9  0 21:53 pts/0    00:00:00 grep --color=auto apache2
 </code></pre></div>
-<p>以上でWEBサーバは稼働したはずです。WindowsのWSLを使っている場合はlocalhostへ接続してみましょう、ubuntuのページが表示されるでしょう</p>
-<pre><code>http://localhost
-</code></pre>
-<p><img alt="Screenshot" src="../img/welcome.png" /></p>
 <h4 id="ip">IPアドレスの表示</h4>
-<p>ip addressコマンドもしくはifconfig -aコマンドでLinuxに付与されているIPアドレスを確認することもできます、
-以下例ではLinuxのIPアドレスは172.31.107.223を使っています
+<p>つづいてLinuxサーバのアドレスを確認しましょう。ip addressコマンドをうつとサーバのIPアドレスが表示されます。
+1:から始まる1つめのブロックに表示されているloというのはループバックアドレス（コンピュータ自身を表すアドレス）のためいったんスキップして、2ブロック目以降に表示されているinetに続く数字を確認してください。以下例では172.28.9.180がIPアドレスになります（環境毎に違うので都度確認してください）</p>
+<p>なお、2ブロック目がchromebookの場合5:などといった表記になっている場合がありますがその場合でもinet以降に続く数字がIPアドレスであることに変わりはありません</p>
 <div class="highlight"><pre><span></span><code>$ ip address
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
+    inet 10.255.255.254/32 brd 10.255.255.254 scope global lo
+       valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
-2: bond0: &lt;BROADCAST,MULTICAST,MASTER&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 7e:46:96:fc:8a:d2 brd ff:ff:ff:ff:ff:ff
-3: dummy0: &lt;BROADCAST,NOARP&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 36:2e:cd:a8:ea:01 brd ff:ff:ff:ff:ff:ff
-4: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 00:15:5d:09:2e:a4 brd ff:ff:ff:ff:ff:ff
-    inet 172.31.107.223/20 brd 172.31.111.255 scope global eth0
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:b6:39:77 brd ff:ff:ff:ff:ff:ff
+    inet 172.28.9.180/20 brd 172.28.15.255 scope global eth0
        valid_lft forever preferred_lft forever
-    inet6 fe80::215:5dff:fe09:2ea4/64 scope link
+    inet6 fe80::215:5dff:feb6:3977/64 scope link
        valid_lft forever preferred_lft forever
-5: tunl0@NONE: &lt;NOARP&gt; mtu 1480 qdisc noop state DOWN group default qlen 1000
-    link/ipip 0.0.0.0 brd 0.0.0.0
-6: sit0@NONE: &lt;NOARP&gt; mtu 1480 qdisc noop state DOWN group default qlen 1000
-    link/sit 0.0.0.0 brd 0.0.0.0
-</code></pre></div></p>
-<p>IPアドレスを利用する場合はURLに直接IPアドレスを入れてください</p>
-<pre><code>http://172.31.107.223
+</code></pre></div>
+<p>確認できたアドレスをブラウザに入力してWEBサーバの動作を確認してみましょう。Apacheのデフォルトページが表示されるはずです</p>
+<pre><code>http://172.28.9.180
 </code></pre>
+<p><img alt="Screenshot" src="../img/welcome.png" /></p>
 <h4 id="html">HTMLクッキング</h4>
 <p>サーバが立ち上がったら続いて、代表的なtagを使ってHTMLページを追加してみましょう</p>
 <pre><code>sudo nano /var/www/html/hello.html
 </code></pre>
-<h5 id="sample">sample</h5>
+<h5 id="_6">サンプルコード</h5>
 <p><div class="highlight"><pre><span></span><code>&lt;html&gt;
   &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot; /&gt;
@@ -669,8 +661,8 @@ ubuntu     115     9  0 21:53 pts/0    00:00:00 grep --color=auto apache2
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre></div>
-ページが作成できたら、さっそくアクセスしてみましょう、windows上でWSLをお使いの場合はlocalhostで接続が可能です</p>
-<pre><code>http://localhost/hello.html
+ページが作成できたら、さっそくアクセスしてみましょう、先程のURLの下に/hello.htmlと入力するとページが表示されます</p>
+<pre><code>http://{先ほど確認したIPアドレス}/hello.html
 </code></pre>
 <p>以下はよく使われるタグの説明です。その他、HTMLで表現できるtagは多くありますし、cssでスタイルを定義したりjavascriptで動きのあるページを作ることもできます。さらなる美しいサイトを作りたい場合はインターネット上で情報を集めてあなた独自のページを作ってみましょう</p>
 <div class="highlight"><pre><span></span><code>html    : htmlページであることを宣言

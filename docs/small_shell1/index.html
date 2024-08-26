@@ -19,7 +19,7 @@
     
     
       
-        <title>small-shell Basic 1 - 21it Docs</title>
+        <title>small-shell基礎#1 - 21it Docs</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              small-shell Basic 1
+              small-shell基礎#1
             
           </span>
         </div>
@@ -198,7 +198,7 @@
   
     <li class="md-nav__item">
       <a href="../unix1/" class="md-nav__link">
-        Unix Basic 1
+        UNIX基礎#1
       </a>
     </li>
   
@@ -213,7 +213,7 @@
   
     <li class="md-nav__item">
       <a href="../unix2/" class="md-nav__link">
-        Unix Basic 2
+        UNIX基礎#2
       </a>
     </li>
   
@@ -228,7 +228,7 @@
   
     <li class="md-nav__item">
       <a href="../genshi_programing/" class="md-nav__link">
-        shell programing
+        shellプログラミング
       </a>
     </li>
   
@@ -243,7 +243,7 @@
   
     <li class="md-nav__item">
       <a href="../web/" class="md-nav__link">
-        WEB Basic
+        インターネット基礎
       </a>
     </li>
   
@@ -267,12 +267,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          small-shell Basic 1
+          small-shell基礎#1
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        small-shell Basic 1
+        small-shell基礎#1
       </a>
       
         
@@ -584,7 +584,7 @@
   
     <li class="md-nav__item">
       <a href="../small_shell2/" class="md-nav__link">
-        small-shell Basic 2
+        small-shell基礎#2
       </a>
     </li>
   
@@ -599,7 +599,7 @@
   
     <li class="md-nav__item">
       <a href="../small_shell_advanced/" class="md-nav__link">
-        small-shell Advanced
+        small-shell応用
       </a>
     </li>
   
@@ -614,7 +614,7 @@
   
     <li class="md-nav__item">
       <a href="../digital_resilience/" class="md-nav__link">
-        Digital耐性
+        デジタル耐性
       </a>
     </li>
   
@@ -940,7 +940,7 @@
 
 <h1 id="small-shell-basic-1">small shell Basic 1</h1>
 <h2 id="_1">スモールシェル</h2>
-<p>small shellはshell{bash}だけでWEB applicationプログラムを書くことができるようにした、特異なフレームワークです。フレームワークというのはある一定の枠組みに従って進めると、一定のアウトプットがでるような一連の手続きのことを指します。手続きといっても、そう難しいものではなく、small shellにおいてはただコマンドを並べるだけであったり対話式のコマンドに答えるだけでWEB applicationができあがります。</p>
+<p>small shellはshell{bash}だけでWEBアプリケーションを書くことができるようにした、特異なフレームワークです。フレームワークというのはある一定の枠組みに従って進めると、一定のアウトプットがでるような一連の手続きのことを指します。手続きといっても、そう難しいものではなく、small shellにおいてはただコマンドを並べるだけであったり対話式のコマンドに答えるだけでWEB applicationができあがります。</p>
 <h3 id="_2">ジェネレーター</h3>
 <p>small shellでは"gen"コマンドによって様々なアプリケーションを生成することができますが、同時にデータを投入する箱も生成することができます。small shellでは主にアプリケーションをデータを管理するためのインターフェースとして扱いますが、テーブル型データの管理に特化したもっとも基本的なアプリのことをBaseAPPと呼び、カスタマイズなしで即座に利用することができます。</p>
 <div class="highlight"><pre><span></span><code>  ---------     ---------------------------
@@ -982,22 +982,14 @@ sudo git clone https://github.com/small-shell/small-shell.git
 sudo chown -R small-shell:small-shell /usr/local/small-shell
 </code></pre>
 <h3 id="base-app_1">Base APP生成</h3>
-<p>いよいよgenコマンドでBase APPを生成していきましょう、以下はwindows上にWSLとして構築したubuntu上でBase APPを生成する場合の例です。WSLとしてあくまでローカルに構築されているため、WEBサーバとしてはlocalhostを指定しましょう。なおsmall-shellのパッケージにはapache以外のWEBサーバが含まれるため、今回apacheは使用しません。もし前の章で起動したままの状態の場合は停止してください (停止例: service apache2 stop)</p>
-<div class="highlight"><pre><span></span><code># gen コマンド実行
-sudo /usr/local/small-shell/adm/gen -app
+<p>続いてgenコマンドでBase APPを生成していきましょう。以下の通り対話が始まりますので、それぞれ以下例にならって入力してください。なお、WEB server FQDN or IP addrという項目についてはip addressコマンドで確認したIPアドレスを入力する必要があるので注意してください。IPアドレスの確認については<a href="../web/#ip">IPアドレスの表示</a>を参照してください。
+以下例では先程確認したアドレスである172.28.9.180を入力しています</p>
+<div class="highlight"><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 1
 Type of server (1.small-shell WEB srv | 2.other WEB srv): 1
 Protocol (http | https): http
-WEB Server FQDN or IP addr (e.g. 192.168.10.1): localhost
+WEB Server FQDN or IP addr (e.g. 192.168.10.1): 172.28.9.180
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>WSLのubuntuはあくまでwindows PC上の簡易的なサーバ環境のため以下のようなエラーが表示される場合があります。
-System has not been booted with systemd as init system (PID 1). Can't operate.  <br />
-curl: (7) Failed to connect to localhost port 80: Connection refused</p>
-<p>エラーが表示された場合は以下コマンドで手動でwebサーバを起動してください  <br />
-sudo node /var/www/app/index.js &amp;</p>
-</div>
 <h4 id="web">WEBアプリの日本語化</h4>
 <p>生成したWEBアプリを日本語対応させるために、以下追加パッケージをインストールしましょう</p>
 <pre><code>cd $HOME
@@ -1015,7 +1007,7 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 <p>コマンドが正常に実行されると、作成したユーザー向けのinitialize URL(鍵の生成URL）が生成されますのでユーザーへURLを展開してください。ユーザーが initialize URLへ接続した際にアプリへのアクセスを可能にする鍵が生成されます。その際、管理者でも鍵の配列は予想することができません。以下はユーザーがinitialize URLへアクセスした際の画面です。"OPEN DATA_BOX WITH KEY"というボタンを押すとBase APPへ接続がされ、Base APPが管理するDATA BOXへのアクセスが可能になりますが、URLは一回アクセスすると無効になるので気をつけてください</p>
 <p><img alt="Screenshot" src="../img/initialize_key.png" /></p>
 <h3 id="base-app_3">Base APPログイン</h3>
-<p>OPEN DATA_BOX WITH KEYボタンを押すと、そのままログインフォームに鍵を選択することができますので、生成された鍵を選択してBase APPへログインしましょう。その際、Base APPのログインURLはブラウザのお気に入りに登録しておくことをお勧めします</p>
+<p>CONNECT APP WITH KEYボタンを押すと、そのままログインフォームに鍵を選択することができますので、生成された鍵を選択してBase APPへログインしましょう。その際、Base APPのログインURLはブラウザのお気に入りに登録しておくことをお勧めします</p>
 <p><img alt="Screenshot" src="../img/key_auth.png" /></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1122,8 +1114,9 @@ option=&quot;&quot;
 Is it OK? (yes | no): yes
 </code></pre></div></p>
 <h3 id="databox_1">DataBoxへのアクセス</h3>
-<p>DataBoxが生成されたら早速BaseAPPをつうじてデータへアクセスしましょう。WSL環境の場合は以下URLでアクセスができます。ログインURLで再度鍵を選択してログインしてみましょう、データボックスが表示されていることでしょう</p>
-<p>http://localhost/base</p>
+<p>DataBoxが生成されたら早速BaseAPPをつうじてデータへアクセスしましょう。/baseというパスでログイン可能です。ログインURLで再度鍵を選択してログインしてみましょう、データボックスが表示されていることでしょう
+以下例では先程確認したIPアドレスである172.28.9.180を使用しています</p>
+<p>http://172.28.9.180/base</p>
 <p><img alt="Screenshot" src="../img/databox.png" /></p>
 <p>早速+データ追加リンクからアイテムを登録しましょう
 <img alt="Screenshot" src="../img/add_item.png" /></p>
