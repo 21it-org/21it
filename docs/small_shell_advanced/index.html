@@ -1138,7 +1138,7 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 </code></pre>
 <h3 id="url">URL構造</h3>
 <p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.$APPというプログラムへリダイレクトされ認証が処理されます</p>
-<pre><code>htp://{サーバアドレス}/21DOJO --&gt; redirect --&gt; http://{サーバアドレス}/cgi-bin/auth.21DOJO
+<pre><code>http://{サーバアドレス}/21DOJO --&gt; redirect --&gt; http://{サーバアドレス}/cgi-bin/auth.21DOJO
 </code></pre>
 <p>認証が成功した場合、コントローラーへ自動で接続されます。ログイン後のURLをブラウザからコピーしてみてみましょう、URLはsession情報やsessionを保証するpinコードを含んでいます。また、req=mainという記述も確認できると思いますが、これはmainページのリクエストを意味します</p>
 <pre><code>http://{サーバアドレス}/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main

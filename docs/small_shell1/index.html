@@ -1016,22 +1016,15 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 <p>続いてBase APPへアクセスするためのユーザーを作成しましょう、あなたが管理者の場合アプリ利用者の人数分ユーザー作成をしてください。以下ではtestというユーザーを作成しています。</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.usr:test
 </code></pre>
-<p>コマンドが正常に実行されると、作成したユーザー向けのinitialize URL(鍵の生成URL）が生成されますのでユーザーへURLを展開してください。ユーザーが initialize URLへ接続した際にアプリへのアクセスを可能にする鍵が生成されます。その際、管理者でも鍵の配列は予想することができません。以下はユーザーがinitialize URLへアクセスした際の画面です。"OPEN DATA_BOX WITH KEY"というボタンを押すとBase APPへ接続がされ、Base APPが管理するDATA BOXへのアクセスが可能になりますが、URLは一回アクセスすると無効になるので気をつけてください</p>
+<p>コマンドが正常に実行されると、作成したユーザー向けのinitialize URL(鍵の生成URL）が生成されますのでユーザーへURLを展開してください。ユーザーが initialize URLへ接続した際にアプリへのアクセスを可能にする鍵が生成されます。その際、管理者でも鍵の配列は予想することができません。以下はユーザーがinitialize URLへアクセスした際の画面です。"CONNECT APP WITH KEY"というボタンを押すとBase APPへ接続できます。URLは一回アクセスすると無効になるので気をつけてください</p>
 <p><img alt="Screenshot" src="../img/initialize_key.png" /></p>
 <h3 id="base-app_3">Base APPログイン</h3>
-<p>CONNECT APP WITH KEYボタンを押すと、そのままログインフォームに鍵を選択することができますので、生成された鍵を選択してBase APPへログインしましょう。その際、Base APPのログインURLはブラウザのお気に入りに登録しておくことをお勧めします</p>
+<p>上記のとおり"CONNECT APP WITH KEY"ボタンをおすとログインフォームに飛びますが、ブラウザに保存された鍵が自動で入力されます。そのままBase APPへログインしましょう。その際、Base APPのログインURLはブラウザのお気に入りに登録しておくことをお勧めします</p>
 <p><img alt="Screenshot" src="../img/key_auth.png" /></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>鍵を選択してアクセスすると、"NO DATABOX, please create databox first"というメッセージが表示されるますが特に問題ありません。Base APPの管理対象となるDATA Boxがないために出ているワーニングですが、次章でData Boxを作成していけば解消します</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>small shellはMac OSでも動かすことができます、手順についてはsmall shell公式サイトをご確認ください  <br />
-<a href="https://www.small-shell.org/quick_start_Mac/">Quick Start</a></p>
-</div>
+<p>なお、現時点ではDataBoxを作成していないため利用できるデータがなく以下エラー画面が表示されます。一旦ブラウザを閉じてDataBoxの作成にすすみましょう。</p>
+<p><img alt="Screenshot" src="../img/ini_error.png" /></p>
 <h3 id="data">Data構造の検討</h3>
-<p>BaseAPPは基本的にはDataBoxを管理するためのアプリケーションですが、DataBoxが作成されていないと何も操作することができません。DataBoxを作成し、BaseAPPを通じてデータ管理をしていきましょう</p>
+<p>BaseAPPは基本的にはDataBoxを管理するためのアプリケーションですが、DataBoxは名前のとおりデータを入れるための箱といえます。箱をきちんと設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
 <h4 id="primary-key">Primary Key</h4>
 <p>DataBoxではkeyとvalueという概念でデータを管理します。データは複数のkeyで構成され、登録されたデータはそれぞれ他のデータと識別するための一意なkeyを持ちます。例として在庫データを管理するDataBoxを作成してみましょう。非常にざっくりとした情報にはなりますが、メーカーAのノートパソコンが10台あるという状態を表現するとき、それを名前と数という2つのkeyから構成されるデータとして扱うことができます。その際、このデータを一意で識別するのは"メーカーAのノートパソコン"という漠然とした名前でも構いません。それが名前として重複しない限り、データとして問題なく管理ができます。その際、item_nameを識別のためのkeyとするのは自然なことですがそのように識別のために使われるkeyをprimary_keyと呼びます。</p>
 <pre><code>#在庫データ
@@ -1130,7 +1123,7 @@ Is it OK? (yes | no): yes
 以下例では先程確認したIPアドレスである172.28.9.180を使用しています</p>
 <p>http://172.28.9.180/base</p>
 <p><img alt="Screenshot" src="../img/databox.png" /></p>
-<p>早速+データ追加リンクからアイテムを登録しましょう
+<p>早速+ADDボタンからアイテムを登録しましょう
 <img alt="Screenshot" src="../img/add_item.png" /></p>
 <h4 id="key">Keyの追加削除</h4>
 <p>データボックスにkeyを追加、削除したい場合もgenコマンドを利用します。追加、削除はそれぞれ以下オプションで実行してください。その後dialogが開始します
