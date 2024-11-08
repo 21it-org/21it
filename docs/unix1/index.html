@@ -1181,18 +1181,17 @@
 <h3 id="powershell">powershell起動</h3>
 <p>powershell(パワーシェル)を検索して管理者として実行しましょう
 <img alt="Screenshot" src="../img/power_shell.png" /></p>
+<p>「このアプリがデバイスに変更を加えることを許可しますか？」という確認があった場合は「はい」を選択して下さい。後続のインストール作業時にも同様の確認がされる場合がありますが、その際も「はい」を選択してください。</p>
 <h3 id="wsl">wslインストール</h3>
-<p>wslを以下コマンドにてインストールしましょう</p>
+<p>powershellが立ち上がったら、以下コマンドにてwslをインストールしましょう</p>
 <pre><code>wsl --install
 </code></pre>
+<p>(実行例)
+<img alt="Screenshot" src="../img/wsl_1.png" /></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Linuxのイメージとして1〜2GB程度の大容量ファイルをダウンロードしますので、予めネットワーク負荷が上がることに留意しておいてください。インストールには10分以上かかる場合があります</p>
 </div>
-<p><img alt="Screenshot" src="../img/wsl_1.png" /></p>
-<p>インストール中に以下のようなwarningが表示されることがありますが、その場合は「はい」をクリックして下さい</p>
-<p><img alt="Screenshot" src="../img/warn1.png" />
-<img alt="Screenshot" src="../img/warn2.png" /></p>
 <p>その後、windowsを再起動するとubuntu(ウブンツ）のターミナルが自動でたちあがるので、任意のusername(名前)とpassword(パスワード)を設定してください。
 なお、ubuntuというのは数あるLinuxの種類のうちの1つだと思っていただければと思います。</p>
 <p><img alt="Screenshot" src="../img/wsl_3.png" /> </p>
