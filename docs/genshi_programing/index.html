@@ -961,31 +961,38 @@ Hello
 $ echo "World
 World
 </code></pre>
-<p>上述の処理をスクリプト化すると以下code内の処理のようになります。手動実行していた処理が固められ、再生産可能な一定の処理になりました。ちなみに、冒頭1行はbashを使うという宣言に使われています</p>
-<pre><code>$ nano echo.sh
----code--
-#!/bin/bash
-echo "Hello"
-echo "World"
----------
-
-$ bash ./echo.sh
+<p>上述の処理をスクリプト化すると以下コードの処理のようになります。手動実行していた処理が固められ、まとめて実施が可能になります</p>
+<pre><code>$ nano echo.sh　#スクリプトファイル作成
+</code></pre>
+<p>nanoで開いた新規ファイルに以下echo.shのコードの内容を貼り付けて保存して下さい
+<div class="highlight"><span class="filename">echo.shのコード</span><pre><span></span><code>#!/bin/bash
+echo &quot;Hello&quot;
+echo &quot;World&quot;
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>冒頭1行目の#!/bin/bashという記載はbashスクリプトだという宣言になりますので必ずコピーして下さい。ちなみに2行目以降に使われる#(シャープ)から始まる行は、該当行がコメント扱いになり処理としては実行されません。#はコードにコメントを追記するために使われますので覚えておいて下さい</p>
+</div>
+<p>bashの引数としてファイルを指定して実行します</p>
+<pre><code>$ bash echo.sh
 Hello
 World
 </code></pre>
 <h2 id="_2">条件分岐</h2>
 <p>shell scriptは上述のとおり単に処理を並べて書いていくだけでも処理を自動化できますが、様々な条件のもと処理を分岐させ、パターンに応じた望ましい処理を展開することができます。以下例ではスクリプトに対してHelloというパラメーターが渡されると、Worldと返す分岐を作成しています。その際渡されるパラメーターはVALUEという変数に格納されています。変数やif文については後述します</p>
-<div class="highlight"><pre><span></span><code>#!/bin/bash
+<pre><code>nano hello.sh #スクリプトファイル作成
+</code></pre>
+<div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
 
 VALUE=$1
 if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
   echo &quot;World&quot;
 fi
 </code></pre></div>
-<p>実行すると以下のような結果になります
-<div class="highlight"><pre><span></span><code>$ bash ./hello.sh Hello
+<p>実行すると以下のような結果になります</p>
+<pre><code>$ bash hello.sh Hello
 World
-</code></pre></div></p>
+</code></pre>
 <h2 id="_3">引数と返値</h2>
 <p>スクリプト実行時に渡されるパラメーターを引数といいます、また、スクリプトを実行して返される値を返値といいます。上述のスクリプトではHelloが引数、Worldが返値となります</p>
 <h2 id="_4">変数</h2>
@@ -1149,25 +1156,23 @@ else
     処理B #条件式が偽りの場合に実行
 fi
 </code></pre>
-<p>本コースの冒頭で紹介した条件分岐の例にelse処理も加えて実行してみましょう
-<div class="highlight"><pre><span></span><code>nano hello.sh
---code--
-#!/bin/bash
-
+<p>本コースの冒頭で紹介した条件分岐の例にelse処理も加えて実行してみましょう</p>
+<pre><code>nano hello.sh　#スクリプトファイル作成
+</code></pre>
+<p><div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
 VALUE=$1
 if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
   echo &quot;World&quot;
 else
   echo &quot;Hello?&quot;
 fi
---------
 </code></pre></div>
-スクリプトができたら実行してみましょう、Helloという入力を渡さないと聞き返されます
-<div class="highlight"><pre><span></span><code>$ bash hello.sh
+スクリプトができたら実行してみましょう、Helloという入力を渡さないと聞き返されます</p>
+<pre><code>$ bash hello.sh
 Hello?
 $ bash hello.sh Hello
 World
-</code></pre></div></p>
+</code></pre>
 <h2 id="for">for文</h2>
 <p>for文を使うとリストを変数に格納しながら１つずつ処理することが可能です</p>
 <pre><code>for 変数 in リスト
@@ -1175,8 +1180,8 @@ do
 　処理 変数
 done
 </code></pre>
-<p>for文のリストにはコマンドの出力結果もつかえますので、たとえばディレクトリ内のファイル一覧を出力し、ファイルを１つずつ処理するという場合に便利です。以下例ではfor文を使ってファイルの名前に一律.txtを付与しています</p>
-<div class="highlight"><pre><span></span><code># ファイル作成
+<p>for文のリストにはコマンドの出力結果もつかえますので、たとえばディレクトリ内のファイル一覧を出力し、ファイルを１つずつ処理するという場合に便利です。以下例ではfor文を使ってファイルの名前に一律.txtを付与しています
+<div class="highlight"><pre><span></span><code># ディレクトリと対象ファイルを作成
 $ mkdir for_test
 $ touch ./for_test/fileA
 $ touch ./for_test/fileB
@@ -1184,25 +1189,22 @@ $ touch ./for_test/fileC
 $ touch ./for_test/fileD
 $ ls ./for_test
 fileA  fileB  fileC  fileD
-
-# スクリプト作成
-nano for_test.sh
---code--
-#!/bin/bash
-
+</code></pre></div></p>
+<pre><code>nano for_test.sh #スクリプトファイル作成
+</code></pre>
+<p><div class="highlight"><span class="filename">for_test.shのコード</span><pre><span></span><code>#!/bin/bash
 DIR=./for_test
 
 for file in `ls $DIR`
 do
   mv ${DIR}/${file} ${DIR}/${file}.txt
 done
---------
-
-# 実行 &amp; 結果確認
-$ bash ./for_test.sh 
+</code></pre></div>
+以下が実行結果になります。lsコマンドでファイルに.txt拡張子がつけられたことを確認して下さい
+<div class="highlight"><pre><span></span><code>$ bash for_test.sh 
 $ ls for_test
 fileA.txt  fileB.txt  fileC.txt  fileD.txt
-</code></pre></div>
+</code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Tips : 変数を{}で囲むとどこまでが変数かを示すことができます。lsの出力結果を$file変数に格納しているため、${file}としています</p>
@@ -1214,20 +1216,19 @@ do
   処理
 done
 </code></pre>
-<p>以下は1から10までカウントしながら出力するwhile文を使った処理の例です
-<div class="highlight"><pre><span></span><code>nano while_test.sh
---code--
-#!/bin/bash
-
+<p>以下は1から10までカウントしながら出力するwhile文を使った処理の例です</p>
+<pre><code>nano while_test.sh  #スクリプトファイル作成
+</code></pre>
+<p><div class="highlight"><span class="filename">while_test.shのコード</span><pre><span></span><code>#!/bin/bash
 count=0
 while [ $count -le 10 ]
 do
  echo $count
  ((count++))
 done
---------
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$ bash ./while_test.sh
+以下が実行結果になります
+<div class="highlight"><pre><span></span><code>$ bash while_test.sh
 1
 2
 3
@@ -1243,27 +1244,24 @@ done
 <p>readはコマンドラインでの入力値を読み取り、変数に格納します。</p>
 <pre><code>read 変数
 </code></pre>
-<p>以下は入力をinputという変数に格納して表示した例になります
-<div class="highlight"><pre><span></span><code>nano read_test.sh
---code--
-#!/bin/bash
-
+<p>以下は入力をinputという変数に格納して表示した例になります</p>
+<pre><code>nano read_test.sh  #スクリプトファイル作成
+</code></pre>
+<p><div class="highlight"><span class="filename">read_test.shのコード</span><pre><span></span><code>#!/bin/bash
 echo -n &quot;あなたの名前を入力してください: &quot;
 read name
 echo &quot;こんにちは$nameさん&quot;
---------
-</code></pre></div></p>
+</code></pre></div>
+以下が実行結果となります
 <div class="highlight"><pre><span></span><code>$ bash read_test.sh
 あなたの名前を入力してください: 田中(入力値)
 こんにちは田中さん
-</code></pre></div>
+</code></pre></div></p>
 <h2 id="_14">引数読み取り</h2>
 <p>$数字はスクリプトに渡されたパラメータを順番に変数に格納します、以下例では1-3までのパラメーターを読み取っています</p>
-<pre><code>$1,$2,$3,$4...
+<pre><code>nano param_test.sh  #スクリプトファイル作成
 </code></pre>
-<p><div class="highlight"><pre><span></span><code>nano param_test.sh
---code--
-#!/bin/bash
+<p><div class="highlight"><span class="filename">param_test.shのコード</span><pre><span></span><code>#!/bin/bash
 
 param1=$1
 param2=$2
@@ -1272,9 +1270,9 @@ param3=$3
 echo param1:$param1
 echo param2:$param2
 echo param3:$param3
---------
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$ bash ./param_test.sh aaa bbb ccc
+以下が実行結果になります
+<div class="highlight"><pre><span></span><code>$ bash param_test.sh aaa bbb ccc
 param1:aaa
 param2:bbb
 param3:ccc
@@ -1287,9 +1285,9 @@ param3:ccc
 esac
 </code></pre>
 <p>以下は与えられたパラメーターがAかBかそれ以外かで処理を分岐させた例になります、*は任意の文字列を意味するメタキャラクターですがここではA,Bに該当しなかった場合の処理として使われます</p>
-<p><div class="highlight"><pre><span></span><code>nano case_test.sh
---code--
-#!/bin/bash
+<pre><code>nano case_test.sh  #スクリプトファイル作成
+</code></pre>
+<p><div class="highlight"><span class="filename">case_test.shのコード</span><pre><span></span><code>#!/bin/bash
 echo -n &quot;AかBを選んでください: &quot;
 read input
 
@@ -1298,8 +1296,8 @@ case $input in
   B) echo &quot;不正解です&quot;;;
   *) echo &quot;AかBを入力してください&quot;;;
 esac
---------
 </code></pre></div>
+以下が実行結果となります
 <div class="highlight"><pre><span></span><code>$ bash case_test.sh
 AかBを選んでください: A
 正解です
@@ -1312,33 +1310,35 @@ do
 done &lt; ファイル名
 </code></pre>
 <p>以下はテキストをHTMLタグを付与した別ファイルにする例です</p>
-<div class="highlight"><pre><span></span><code>nano org.txt
---code--
-abc
+<pre><code>nano org.txt  #テキストファイル作成
+</code></pre>
+<p><div class="highlight"><span class="filename">org.txtファイル</span><pre><span></span><code>abc
 def
 efg
---------
-
-nano ch2html.sh
---code--
-#!/bin/bash
-
+</code></pre></div>
+次にスクリプトファイルを作成しましょう</p>
+<pre><code>nano ch2html.sh  #スクリプトファイル作成
+</code></pre>
+<div class="highlight"><span class="filename">ch2html.shのコード</span><pre><span></span><code>#!/bin/bash
 while read line
 do
   echo &quot;&lt;p&gt;$line&lt;/p&gt;&quot; &gt;&gt; ch2html.txt
 done &lt; org.txt
---------
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$ bash ./ch2html.sh
+<p>以下が実行結果になります、&lt;p>というHTMLタグが付与されたことを確認して下さい
+<div class="highlight"><pre><span></span><code>$ bash ch2html.sh
 $ cat ch2html.txt
 &lt;p&gt;abc&lt;/p&gt;
 &lt;p&gt;def&lt;/p&gt;
 &lt;p&gt;efg&lt;/p&gt;
-</code></pre></div>
+</code></pre></div></p>
 <h2 id="_16">実行権限の付与</h2>
 <p>実行権限を付与していないスクリプトは本来はそのままでは実行できません、これまでの例では"bash スクリプト"というかたちで実行してきたことで、ファイルの読み取りさえできれば内容をコマンドのbashに渡して処理してきました。直接ファイルを指定するだけで実行可能な状態にするためにはchmodコマンドで実行権限を付与しましょう。755の権限付与がプログラムとしては最適です。chmodコマンドの詳細はあらためて<a href="../unix1/#_14">パーミッション</a>にて確認してください</p>
-<div class="highlight"><pre><span></span><code>$ ./case_test.sh
--bash: ./case_test.sh: Permission denied
+<div class="highlight"><pre><span></span><code># PATHを指定してファイルを直接実行
+$ ./case_test.sh
+-bash: ./case_test.sh: Permission denied (実行失敗)
+
+# ファイルの直接実行のため権限を変更
 $ chmod 755 case_test.sh
 $ ./case_test.sh
 AかBを選んでください: A
@@ -1364,12 +1364,10 @@ AかBを入力してください
 <pre><code>bash -x スクリプト &gt; debug 2&gt;&amp;1
 </code></pre>
 <h2 id="_18">関数の利用</h2>
-<p>functionを用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です、ASCIIテキスト以外ではエラーを返します
-<div class="highlight"><pre><span></span><code>nano ascii_chk.sh
-
---code--
-#!/bin/bash
-
+<p>functionを用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です、ASCIIテキスト以外ではエラーを返します</p>
+<pre><code>nano ascii_chk.sh  #スクリプトファイル作成
+</code></pre>
+<p><div class="highlight"><span class="filename">ascii_chk.shのコード</span><pre><span></span><code>#!/bin/bash
 # ascii check
 function ascii_check(){
   input=$1
@@ -1387,7 +1385,6 @@ echo -n &quot;入力をしてください: &quot;
 read INPUT
 ascii_check $INPUT
 exit 0
----------
 </code></pre></div>
 関数を含んだスクリプトを実行してみましょう
 <div class="highlight"><pre><span></span><code>$ chmod 755 ascii_chk.sh
@@ -1449,7 +1446,7 @@ esac
 --------
 </code></pre></div>
 <p>想定がの入力値のCを入力されたためにエラーステータスを返します
-<div class="highlight"><pre><span></span><code>$ bash ./case_test.sh
+<div class="highlight"><pre><span></span><code>$ bash case_test.sh
 AかBを選んでください: C
 AかBを入力してください
 $ echo $?
