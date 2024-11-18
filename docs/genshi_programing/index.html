@@ -961,7 +961,7 @@ Hello
 $ echo &quot;World&quot;
 World
 </code></pre></div>
-<p>上述の処理をスクリプト化すると以下コードの処理のようになります。手動実行していた処理が固められ、まとめて実施が可能になります</p>
+<p>上述の処理をスクリプト化すると以下コードの処理のようになります。手動実行していた処理が固められ、まとめて実施が可能になります。それではスクリプトファイルをnanoコマンドで作成してきましょう</p>
 <pre><code>nano echo.sh
 </code></pre>
 <p>nanoで開いた新規ファイルに以下echo.shのコードの内容を貼り付けて保存して下さい
@@ -1098,8 +1098,8 @@ $ echo $?
 <p>ファイルが存在しないため異常値が返ってきます
 <div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ -f ./done ]
 $ echo $?
-0
-&gt; ファイルが存在するため異常(1)が返ってきます
+1
+&gt; ファイルが存在しないため異常(1)が返ってきます
 </code></pre></div></p>
 <h4 id="_9">空判定</h4>
 <p>変数が空(null)か、ファイルが空(0byte)かといった判定が可能です。空判定はコマンド実行結果を変数に格納して、結果の有無で分岐することができ便利です。</p>
@@ -1163,15 +1163,17 @@ $ echo $?
 <p>分岐に正規表現を利用することもできます、その場合[[ ]]で囲んでください</p>
 <pre><code>[[ 文字列A == 文字列B ]]
 </code></pre>
-<div class="highlight"><pre><span></span><code># 例：aからはじまりdで終わる任意の文字列であれば真
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 例：aからはじまりdで終わる任意の文字列であれば真
 [[ &quot;変数&quot; == a*d ]]
 
+# valueにabcを格納
 $ value=abc
 $ [[ &quot;$value&quot; == a*d ]]
 $ echo $?
 1 
 &gt; abcはaからはじまりcで終わるため異常終了(1)が返ってきます
 
+# valueに別のaから始まりdで終わる値を格納
 $ value=aaabbbcccddd
 $ [[ &quot;$value&quot; == a*d ]]
 $ echo $?
@@ -1354,7 +1356,8 @@ do
 done &lt; ファイル名
 </code></pre>
 <p>以下はテキストをHTMLタグを付与した別ファイルにする例です</p>
-<pre><code>nano org.txt  #テキストファイル作成
+<pre><code>#テキストファイル作成
+nano org.txt
 </code></pre>
 <p><div class="highlight"><span class="filename">org.txtファイル</span><pre><span></span><code>abc
 def
@@ -1379,7 +1382,7 @@ $ cat ch2html.txt
 </code></pre></div></p>
 <h2 id="_16">実行権限の付与</h2>
 <p>実行権限を付与していないスクリプトは本来はそのままでは実行できません、これまでの例では"bash スクリプト"というかたちで実行してきたことで、ファイルの読み取りさえできれば内容をコマンドのbashに渡して処理してきました。直接ファイルを指定するだけで実行可能な状態にするためにはchmodコマンドで実行権限を付与しましょう。755の権限付与がプログラムとしては最適です。chmodコマンドの詳細はあらためて<a href="../unix1/#_14">パーミッション</a>にて確認してください</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># PATHを指定してファイルを直接実行
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># PATHを指定してファイルを直接実行 (./は現在のディレクトリを意味する）
 $ ./case_test.sh
 -bash: ./case_test.sh: Permission denied (実行失敗)
 
@@ -1388,8 +1391,6 @@ $ chmod 755 case_test.sh
 $ ./case_test.sh
 AかBを選んでください: A
 正解です
-$ echo $?
-0
 </code></pre></div>
 <h2 id="_17">デバッグ</h2>
 <p>bash実行時に-xオプションを付与すると、スクリプトをデバッグモードで実行できます。これによりスクリプトの処理経過が可視化できます</p>
