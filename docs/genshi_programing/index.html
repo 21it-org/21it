@@ -288,7 +288,7 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    引数と返値
+    引数と返り値
   </a>
   
 </li>
@@ -674,7 +674,7 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    引数と返値
+    引数と返り値
   </a>
   
 </li>
@@ -955,14 +955,14 @@
 <p>shell(シェル)はコマンドラインインターフェースとして都度コマンド要求を処理することもできますが、処理を固めて自動化することもできます。もっとも簡単なプログラム、たとえば所定の文字を出力するだけのたった2行の処理を代表的なshellであるbash(バッシュ)を使って記述してみましょう。処理をファイルに書き出し固めることで、都度コマンドで打っていた仕事が再生産可能な仕事として、自動化されます。</p>
 <p><br>
 コマンドライン上でechoコマンドを実行した結果は以下のとおりです</p>
-<pre><code>$ echo "Hello"
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo &quot;Hello&quot;
 Hello
 
-$ echo "World
+$ echo &quot;World&quot;
 World
-</code></pre>
+</code></pre></div>
 <p>上述の処理をスクリプト化すると以下コードの処理のようになります。手動実行していた処理が固められ、まとめて実施が可能になります</p>
-<pre><code>$ nano echo.sh　#スクリプトファイル作成
+<pre><code>nano echo.sh
 </code></pre>
 <p>nanoで開いた新規ファイルに以下echo.shのコードの内容を貼り付けて保存して下さい
 <div class="highlight"><span class="filename">echo.shのコード</span><pre><span></span><code>#!/bin/bash
@@ -973,14 +973,15 @@ echo &quot;World&quot;
 <p class="admonition-title">Note</p>
 <p>冒頭1行目の#!/bin/bashという記載はbashスクリプトだという宣言になりますので必ずコピーして下さい。ちなみに2行目以降に使われる#(シャープ)から始まる行は、該当行がコメント扱いになり処理としては実行されません。#はコードにコメントを追記するために使われますので覚えておいて下さい</p>
 </div>
-<p>bashの引数としてファイルを指定して実行します</p>
-<pre><code>$ bash echo.sh
+<p>bashの引数としてファイルを指定して実行した結果は以下のとおりです、処理がまとまて実行され2行出力されることを確認して下さい。なお、引数については<a href="./#_3">引数と変数</a>を参照して下さい</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash echo.sh
 Hello
 World
-</code></pre>
+</code></pre></div>
 <h2 id="_2">条件分岐</h2>
 <p>shell scriptは上述のとおり単に処理を並べて書いていくだけでも処理を自動化できますが、様々な条件のもと処理を分岐させ、パターンに応じた望ましい処理を展開することができます。以下例ではスクリプトに対してHelloというパラメーターが渡されると、Worldと返す分岐を作成しています。その際渡されるパラメーターはVALUEという変数に格納されています。変数やif文については後述します</p>
-<pre><code>nano hello.sh #スクリプトファイル作成
+<pre><code>#スクリプトファイル作成
+nano hello.sh
 </code></pre>
 <div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
 
@@ -989,47 +990,62 @@ if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
   echo &quot;World&quot;
 fi
 </code></pre></div>
-<p>実行すると以下のような結果になります</p>
-<pre><code>$ bash hello.sh Hello
+<p>実行すると以下のような結果になります。Helloという引数を渡して実行するとWorldという返り値が返ってくることが確認できます</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash hello.sh Hello
 World
-</code></pre>
-<h2 id="_3">引数と返値</h2>
-<p>スクリプト実行時に渡されるパラメーターを引数といいます、また、スクリプトを実行して返される値を返値といいます。上述のスクリプトではHelloが引数、Worldが返値となります</p>
+</code></pre></div>
+<p>Helloを引数として渡していない場合は、何も返ってきません</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash hello.sh 
+$
+</code></pre></div>
+<h2 id="_3">引数と返り値</h2>
+<p>スクリプト実行時に渡されるパラメーターを引数(ひきすう)といいます、また、スクリプトを実行して返される値を返り値(かえりち)といいます。上述のスクリプトではHelloが引数、Worldが返り値となります</p>
 <h2 id="_4">変数</h2>
-<p>上記例でも条件分岐処理に利用されていますが、値を一時的に格納しておく変数を利用すると処理が円滑に記述できます。プログラム上で値が仮置きされる箱は変数と呼ばれ、様々な値を代入することができます。変数はコマンドライン上でも、script内でもいずれもで使うことができます。例えば、以下にて"test"という空の変数を定義しましょう</p>
-<pre><code>$ test=""
+<p>上記例でも条件分岐処理に利用されていますが、値を一時的に格納しておく箱として変数(へんすう)を利用すると処理が円滑に記述できます。変数はコマンドライン上でも、script内でもいずれもで使うことができます。例えば、以下にてtestという空の変数を定義しましょう</p>
+<pre><code>test=""
 </code></pre>
-<p>変数"test"の内容はechoコマンドで出力することができます,変数であることは$を頭につけることで宣言できます</p>
-<pre><code>$ echo $test
+<p>変数testの内容はechoコマンドで出力することができます。変数であることは$を頭につけることで宣言できます</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
 ! 空のため何も返ってこない
+</code></pre></div>
+<p>次に変数testに、値を入れて出力してみましょう。変数に格納する文字列は""(ダブルクオーテーション)で囲んでください</p>
+<pre><code>test="123"
 </code></pre>
-<p>次に変数"test"に、値を入れて出力してみましょう</p>
-<pre><code>$ test="123"
-$ echo $test
+<p>変数の中身を見てみましょう</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
 123
-</code></pre>
+</code></pre></div>
 <p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは``(バッククォート)で囲んでください。以下例ではdateコマンドの実行結果を格納しています。shellは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できますが、操作からscript化まで非常に簡単に移行でき、コマンドを用いた様々な分岐を作ることができます。これはshellの非常に有用な特徴であり、利点であるといえます</p>
-<pre><code>$ test="`date`"
-$ echo $test
-Fri Jan 21 21:33:03 JST 2022
+<pre><code>test=`date`
 </code></pre>
+<p>コマンド結果を格納した変数の中身を表示しましょう</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
+2024年 11月 18日 月曜日 10:03:23 JST
+</code></pre></div>
 <h2 id="_5">論理演算と判定</h2>
-<p>条件分岐のためには論理演算を多用します[]内で実行されてりる論理演算では、各種判定をおこない、結果に応じてif文やwhile文が分岐を制御します</p>
+<p>条件分岐のためには論理演算を多用します。[]内で実行される論理演算では、各種判定をおこない、結果に応じてif文やwhile文が分岐を制御します</p>
 <h4 id="_6">文字の比較</h4>
 <p>単純に右側と左側の文字列が同じであるかを判定する場合、単に=を使います。=の場合は同じ値である場合に真となり、!=はその逆の異なる値の場合に真とします</p>
 <pre><code>#同じ場合に真
 [ "文字列A" = "文字列B" ]
 </code></pre>
-<p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。$?は特殊な変数で直前の実行コマンドの実行結果が正常(0)であったか異常(1)であったかを表示します
-<div class="highlight"><pre><span></span><code>$ WORD_A=abc
-$ WORD_B=def
-$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+<p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。
+まずは変数にそれぞれ異なる値を格納しましょう</p>
+<pre><code>WORD_A="abc"
+WORD_B="def"
+</code></pre>
+<p>論理演算を実行します。$?は特殊な変数で直前の実行コマンドの実行結果が正常(0)であったか異常(1)であったかを表示します
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
 1
 &gt; WORD_AとBは違うため異常(1)が返ってきます
-
-$ WORD_B=abc
-$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+</code></pre></div></p>
+<p>次に、変数にそれぞれ同じ値を格納しましょう</p>
+<pre><code>WORD_A="abc"
+WORD_B="abc"
+</code></pre>
+<p>論理演算の実行結果が正常(0)になることが確認できます
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
 0
 &gt; WORD_AとBが同じため正常終了しています
@@ -1066,18 +1082,24 @@ $ echo $?
 # ディレクトリが存在する場合に真
 [ -d 対象ディレクトリPATH ]
 </code></pre>
-<p>以下はdoneというファイルがあるかどうかで結果がどう変わるかを示した例です
-<div class="highlight"><pre><span></span><code>$ [ -f ./done ]
-$ echo $?
-1 
-&gt; ファイルが存在しないため異常(1)が返ってきます
-
-#touchコマンドでファイルを作成
-$ touch done  
-$ [ -f ./done ]
+<p>以下はdoneというファイルがあるかどうかで結果がどう変わるかを示した例です。
+まずは、ファイルを作成しましょう</p>
+<pre><code>touch done
+</code></pre>
+<p>存在確認を実施すると正常値が返ってきます
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ -f ./done ]
 $ echo $?
 0
-&gt; ファイルが存在するため正常終了(0)が返ってきます
+&gt; ファイルが存在するため正常(0)が返ってきます
+</code></pre></div></p>
+<p>続いてdoneファイルを削除します</p>
+<pre><code>rm done
+</code></pre>
+<p>ファイルが存在しないため異常値が返ってきます
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ -f ./done ]
+$ echo $?
+0
+&gt; ファイルが存在するため異常(1)が返ってきます
 </code></pre></div></p>
 <h4 id="_9">空判定</h4>
 <p>変数が空(null)か、ファイルが空(0byte)かといった判定が可能です。空判定はコマンド実行結果を変数に格納して、結果の有無で分岐することができ便利です。</p>
@@ -1087,17 +1109,25 @@ $ echo $?
 # ファイルが空でない場合に真
 [ -s 対象ファイルPATH]
 </code></pre>
-<p>以下はos-releaseファイルで任意の文字を検索して結果が空だったかどうかを判定しています
-<div class="highlight"><pre><span></span><code>$ NULL_CHECK=`grep aaa /etc/os-release`
-$ [ &quot;$NULL_CHECK&quot; ]
+<p>以下はos-releaseファイルで任意の文字を検索して結果が空だったかどうかを判定しています。
+まずは変数に空の値を格納しましょう</p>
+<pre><code>NULL_CHECK=""
+</code></pre>
+<p>続いて論理演算を実行してみましょう
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ &quot;$NULL_CHECK&quot; ]
 $ echo $?
 1
 &gt; 変数が空のため異常(1)が返ってきます
-$ NULL_CHECK=`grep ubuntu /etc/os-release`
+</code></pre></div></p>
+<p>続いて変数に文字を格納します</p>
+<pre><code>NULL_CHECK="test"
+</code></pre>
+<p>変数が空ではないため正常終了します</p>
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ &quot;$NULL_CHECK&quot; ]
 $ echo $?
 0
 &gt; 変数に値が入っているため正常終了(0)が返ってきます
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="_10">否定</h4>
 <p>!を使うと、条件式の真と偽りが逆になります</p>
 <pre><code>#　文字列が異なる場合に真
@@ -1157,7 +1187,8 @@ else
 fi
 </code></pre>
 <p>本コースの冒頭で紹介した条件分岐の例にelse処理も加えて実行してみましょう</p>
-<pre><code>nano hello.sh　#スクリプトファイル作成
+<pre><code>#スクリプトファイル作成
+nano hello.sh
 </code></pre>
 <p><div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
 VALUE=$1
@@ -1168,11 +1199,12 @@ else
 fi
 </code></pre></div>
 スクリプトができたら実行してみましょう、Helloという入力を渡さないと聞き返されます</p>
-<pre><code>$ bash hello.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash hello.sh
 Hello?
+
 $ bash hello.sh Hello
 World
-</code></pre>
+</code></pre></div>
 <h2 id="for">for文</h2>
 <p>for文を使うとリストを変数に格納しながら１つずつ処理することが可能です</p>
 <pre><code>for 変数 in リスト
@@ -1181,34 +1213,42 @@ do
 done
 </code></pre>
 <p>for文のリストにはコマンドの出力結果もつかえますので、たとえばディレクトリ内のファイル一覧を出力し、ファイルを１つずつ処理するという場合に便利です。以下例ではfor文を使ってファイルの名前に一律.txtを付与しています
-<div class="highlight"><pre><span></span><code># ディレクトリと対象ファイルを作成
-$ mkdir for_test
-$ touch ./for_test/fileA
-$ touch ./for_test/fileB
-$ touch ./for_test/fileC
-$ touch ./for_test/fileD
-$ ls ./for_test
-fileA  fileB  fileC  fileD
-</code></pre></div></p>
-<pre><code>nano for_test.sh #スクリプトファイル作成
+<div class="highlight"><pre><span></span><code># ディレクトリとファイルを作成
+mkdir for_test
+touch ./for_test/fileA
+touch ./for_test/fileB
+touch ./for_test/fileC
+touch ./for_test/fileD
+</code></pre></div>
+続いてスクリプトファイルを作成します</p>
+<pre><code>#スクリプトファイル作成
+nano for_test.sh
 </code></pre>
-<p><div class="highlight"><span class="filename">for_test.shのコード</span><pre><span></span><code>#!/bin/bash
+<p>以下for_test.shのコードをコピーしてファイルを保存して下さい
+<div class="highlight"><span class="filename">for_test.shのコード</span><pre><span></span><code>#!/bin/bash
 DIR=./for_test
 
 for file in `ls $DIR`
 do
   mv ${DIR}/${file} ${DIR}/${file}.txt
 done
-</code></pre></div>
-以下が実行結果になります。lsコマンドでファイルに.txt拡張子がつけられたことを確認して下さい
-<div class="highlight"><pre><span></span><code>$ bash for_test.sh 
-$ ls for_test
-fileA.txt  fileB.txt  fileC.txt  fileD.txt
 </code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Tips : 変数を{}で囲むとどこまでが変数かを示すことができます。lsの出力結果を$file変数に格納しているため、${file}としています</p>
 </div>
+<p>以下が実行結果になります。lsコマンドでファイルに.txt拡張子がつけられたことを確認して下さい
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># スクリプト実行前の状態
+$ ls for_test
+fileA  fileB  fileC  fileD
+
+# スクリプト実行
+$ bash for_test.sh
+
+# 実行後のファイルの拡張子を確認 
+$ ls for_test
+fileA.txt  fileB.txt  fileC.txt  fileD.txt
+</code></pre></div></p>
 <h2 id="while">while文</h2>
 <p>while文は条件式が真の間、処理をループさせます</p>
 <pre><code>while [ 条件式 ]
@@ -1217,7 +1257,8 @@ do
 done
 </code></pre>
 <p>以下は1から10までカウントしながら出力するwhile文を使った処理の例です</p>
-<pre><code>nano while_test.sh  #スクリプトファイル作成
+<pre><code>#スクリプトファイル作成
+nano while_test.sh
 </code></pre>
 <p><div class="highlight"><span class="filename">while_test.shのコード</span><pre><span></span><code>#!/bin/bash
 count=0
@@ -1228,7 +1269,7 @@ do
 done
 </code></pre></div>
 以下が実行結果になります
-<div class="highlight"><pre><span></span><code>$ bash while_test.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash while_test.sh
 1
 2
 3
@@ -1245,7 +1286,8 @@ done
 <pre><code>read 変数
 </code></pre>
 <p>以下は入力をinputという変数に格納して表示した例になります</p>
-<pre><code>nano read_test.sh  #スクリプトファイル作成
+<pre><code>#スクリプトファイル作成
+nano read_test.sh
 </code></pre>
 <p><div class="highlight"><span class="filename">read_test.shのコード</span><pre><span></span><code>#!/bin/bash
 echo -n &quot;あなたの名前を入力してください: &quot;
@@ -1253,13 +1295,14 @@ read name
 echo &quot;こんにちは$nameさん&quot;
 </code></pre></div>
 以下が実行結果となります
-<div class="highlight"><pre><span></span><code>$ bash read_test.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash read_test.sh
 あなたの名前を入力してください: 田中(入力値)
 こんにちは田中さん
 </code></pre></div></p>
 <h2 id="_14">引数読み取り</h2>
 <p>$数字はスクリプトに渡されたパラメータを順番に変数に格納します、以下例では1-3までのパラメーターを読み取っています</p>
-<pre><code>nano param_test.sh  #スクリプトファイル作成
+<pre><code>#スクリプトファイル作成
+nano param_test.sh
 </code></pre>
 <p><div class="highlight"><span class="filename">param_test.shのコード</span><pre><span></span><code>#!/bin/bash
 
@@ -1272,7 +1315,7 @@ echo param2:$param2
 echo param3:$param3
 </code></pre></div>
 以下が実行結果になります
-<div class="highlight"><pre><span></span><code>$ bash param_test.sh aaa bbb ccc
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash param_test.sh aaa bbb ccc
 param1:aaa
 param2:bbb
 param3:ccc
@@ -1285,7 +1328,8 @@ param3:ccc
 esac
 </code></pre>
 <p>以下は与えられたパラメーターがAかBかそれ以外かで処理を分岐させた例になります、*は任意の文字列を意味するメタキャラクターですがここではA,Bに該当しなかった場合の処理として使われます</p>
-<pre><code>nano case_test.sh  #スクリプトファイル作成
+<pre><code>#スクリプトファイル作成
+nano case_test.sh
 </code></pre>
 <p><div class="highlight"><span class="filename">case_test.shのコード</span><pre><span></span><code>#!/bin/bash
 echo -n &quot;AかBを選んでください: &quot;
@@ -1298,7 +1342,7 @@ case $input in
 esac
 </code></pre></div>
 以下が実行結果となります
-<div class="highlight"><pre><span></span><code>$ bash case_test.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash case_test.sh
 AかBを選んでください: A
 正解です
 </code></pre></div></p>
@@ -1317,7 +1361,8 @@ def
 efg
 </code></pre></div>
 次にスクリプトファイルを作成しましょう</p>
-<pre><code>nano ch2html.sh  #スクリプトファイル作成
+<pre><code>#スクリプトファイル作成
+nano ch2html.sh
 </code></pre>
 <div class="highlight"><span class="filename">ch2html.shのコード</span><pre><span></span><code>#!/bin/bash
 while read line
@@ -1326,7 +1371,7 @@ do
 done &lt; org.txt
 </code></pre></div>
 <p>以下が実行結果になります、&lt;p>というHTMLタグが付与されたことを確認して下さい
-<div class="highlight"><pre><span></span><code>$ bash ch2html.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash ch2html.sh
 $ cat ch2html.txt
 &lt;p&gt;abc&lt;/p&gt;
 &lt;p&gt;def&lt;/p&gt;
@@ -1334,7 +1379,7 @@ $ cat ch2html.txt
 </code></pre></div></p>
 <h2 id="_16">実行権限の付与</h2>
 <p>実行権限を付与していないスクリプトは本来はそのままでは実行できません、これまでの例では"bash スクリプト"というかたちで実行してきたことで、ファイルの読み取りさえできれば内容をコマンドのbashに渡して処理してきました。直接ファイルを指定するだけで実行可能な状態にするためにはchmodコマンドで実行権限を付与しましょう。755の権限付与がプログラムとしては最適です。chmodコマンドの詳細はあらためて<a href="../unix1/#_14">パーミッション</a>にて確認してください</p>
-<div class="highlight"><pre><span></span><code># PATHを指定してファイルを直接実行
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># PATHを指定してファイルを直接実行
 $ ./case_test.sh
 -bash: ./case_test.sh: Permission denied (実行失敗)
 
@@ -1351,7 +1396,7 @@ $ echo $?
 <pre><code>bash -x スクリプト
 </code></pre>
 <p>以下は再びcase_test.shを使った例です
-<div class="highlight"><pre><span></span><code>$ bash -x case_test.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash -x case_test.sh
 + echo -n &#39;AかBを選んでください: &#39;
 AかBを選んでください: + read input
 C
@@ -1364,8 +1409,9 @@ AかBを入力してください
 <pre><code>bash -x スクリプト &gt; debug 2&gt;&amp;1
 </code></pre>
 <h2 id="_18">関数の利用</h2>
-<p>functionを用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です、ASCIIテキスト以外ではエラーを返します</p>
-<pre><code>nano ascii_chk.sh  #スクリプトファイル作成
+<p><b>function</b>を用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です、ASCIIテキスト以外ではエラーを返します</p>
+<pre><code>#スクリプトファイル作成
+nano ascii_chk.sh
 </code></pre>
 <p><div class="highlight"><span class="filename">ascii_chk.shのコード</span><pre><span></span><code>#!/bin/bash
 # ascii check
@@ -1387,7 +1433,7 @@ ascii_check $INPUT
 exit 0
 </code></pre></div>
 関数を含んだスクリプトを実行してみましょう
-<div class="highlight"><pre><span></span><code>$ chmod 755 ascii_chk.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ chmod 755 ascii_chk.sh
 $ ./ascii_chk.sh
 入力をしてください: test
 ASCII
@@ -1398,7 +1444,7 @@ ERROR
 <h2 id="tips">Tips</h2>
 <h3 id="awksed">awk,sedの多用</h3>
 <p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます、以下はwhile文で記述したファイル読み込み処理を1ラインで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます</p>
-<div class="highlight"><pre><span></span><code># sed
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># sed
 $ time cat org.txt | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
 &lt;p&gt;abc&lt;/p&gt;
 &lt;p&gt;def&lt;/p&gt;
@@ -1413,7 +1459,7 @@ $ time cat org.txt | awk &#39;{print &quot;&lt;p&gt;&quot;$1&quot;&lt;/p&gt;&quo
 </code></pre></div>
 <h3 id="_19">終了ステータス</h3>
 <p>$?は直前のコマンドが正常終了した場合に0を格納し、異常値だった場合に0以外を格納する特殊な変数です。以下例では一般ユーザーが/rootを閲覧してエラーになっていますが、終了ステータスは2が返されています
-<div class="highlight"><pre><span></span><code>$ ls /root
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls /root
 ls: cannot open directory &#39;/root&#39;: Permission denied
 $ echo $?
 2
@@ -1446,7 +1492,7 @@ esac
 --------
 </code></pre></div>
 <p>想定がの入力値のCを入力されたためにエラーステータスを返します
-<div class="highlight"><pre><span></span><code>$ bash case_test.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash case_test.sh
 AかBを選んでください: C
 AかBを入力してください
 $ echo $?
@@ -1456,20 +1502,26 @@ $ echo $?
 <p>パラメーター一覧が記載されたファイルを直接読み込み一度に変数をロードすることができます。このテクニックをスクリプトの冒頭に入れれば、外部環境ファイルを毎回読み込むことなどができます</p>
 <pre><code>. 設定ファイル
 </code></pre>
-<p>以下例ではparams.envという設定ファイルを作成し、読み込んでいます
-<div class="highlight"><pre><span></span><code>$ cat params.env
-param1=&quot;abc&quot;
+<p>以下例ではparams.envという設定ファイルを作成し、読み込みます</p>
+<pre><code>nano params.env
+</code></pre>
+<p>param.envの内容を貼り付けてファイルを保存して下さい
+<div class="highlight"><span class="filename">param.envの内容</span><pre><span></span><code>param1=&quot;abc&quot;
 param2=&quot;def&quot;
-
+</code></pre></div>
+以下実行結果となります
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># param.envの内容を読み込みロードします
 $ . params.env
+
+# param1変数の内容が格納されていることを確認します
 $ echo $param1
 abc
 </code></pre></div></p>
 <h3 id="_20">隠しファイル</h3>
 <p>ファイル名やディレクトリ名の先頭に.をつけると隠しファイルとして扱われます。隠しファイルの確認はls -aオプションで確認できます</p>
-<div class="highlight"><pre><span></span><code>/invisible$ touch .test
-/invisible$ ls
-/invisible$ ls -a
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ touch .test
+$ ls
+$ ls -a
 .  ..  .test
 </code></pre></div>
 <h3 id="sleep">sleep</h3>
@@ -1480,7 +1532,7 @@ abc
 <p>lsコマンドでリスト表示する際にディレクトリ名は無視してファイル名だけを抽出したい場合があります、そういう場合xargsコマンドとbasenameコマンドを組み合わせてください。</p>
 <pre><code>xargs basename -a
 </code></pre>
-<div class="highlight"><pre><span></span><code>$ ls /var/log/apache2/access.log
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls /var/log/apache2/access.log
 /var/log/apache2/access.log
 $ ls /var/log/apache2/access.log  | xargs basename -a
 access.log
@@ -1488,12 +1540,15 @@ access.log
 <p>grepコマンドでファイル名だけを表示したい場合は -l オプションを付けてください</p>
 <pre><code>grep -l
 </code></pre>
-<div class="highlight"><pre><span></span><code>$ grep ubuntu /etc/os-release
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># オプションなし実行
+$ grep ubuntu /etc/os-release
 ID=ubuntu
 HOME_URL=&quot;https://www.ubuntu.com/&quot;
 SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
 BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
 PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
+
+# ファイル名のみ抽出
 $ grep -l ubuntu /etc/os-release
 /etc/os-release
 </code></pre></div>
@@ -1509,7 +1564,7 @@ $ grep -l ubuntu /etc/os-release
 <p>コマンド変数内で組み立てて、実行することもできます</p>
 <pre><code>eval 変数
 </code></pre>
-<div class="highlight"><pre><span></span><code>$ ls_exe=&quot;ls /var/log&quot;
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls_exe=&quot;ls /var/log&quot;
 $ eval $ls_exe
 alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape  lastlog  unattended-upgrades  wtmp
 </code></pre></div>

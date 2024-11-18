@@ -1894,17 +1894,18 @@
 <pre><code>grep -i 検索ワード 対象ファイル
 </code></pre>
 <h4 id="and">パイプを使用したAND検索</h4>
-<p>処理結果にフィルターをかけてパイプ"|"でつなげることで、and検索をすることもできます、以下例をご確認下さい</p>
-<div class="highlight"><pre><span></span><code># 対象ファイルの作成
-$ nano test   
-------
-1.ab
+<p>処理結果にフィルターをかけてパイプ"|"でつなげることで、and検索をすることもできます、以下例をご確認下さい。
+まずはファイルを作成します</p>
+<pre><code>nano test
+</code></pre>
+<p>エディタでファイルを生成したら以下内容を貼り付けます</p>
+<div class="highlight"><span class="filename">testファイルの内容</span><pre><span></span><code>1.ab
 2.abc
 3.def
 4.efg
-------
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>#abというワードを含む行の抽出
+<p>作成したファイルに対してコマンド実行してみます</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>#abというワードを含む行の抽出
 $ cat test | grep ab
 1.ab
 2.abc
@@ -1917,20 +1918,19 @@ $ cat test | grep ab | grep c
 <p>grep -vは非常に有用なコマンドですが、指定文字を"含まない"行を表示することができます。これを用いることで任意の行をファイル内から除外して表示することができ、例えばリストから指定のIDを消したい場合などに有用です。</p>
 <pre><code>grep -v 検索ワード　対象ファイル
 </code></pre>
-<div class="highlight"><pre><span></span><code># 対象ファイルの作成
-$ nano list.csv
--------
-id,name
+<p>特定の文字を含まない例を実行するためファイルを作成します</p>
+<pre><code>nano list.csv
+</code></pre>
+<p>以下ファイルをコピーしてファイルに追記して保存して下さい</p>
+<div class="highlight"><span class="filename">list.csvファイルの内容</span><pre><span></span><code>id,name
 01,adam
 02,eve 
--------
-
-# id=01の行を除外して表示
+</code></pre></div>
+<p>ファイルの準備ができたらコマンド実行を試してみましょう。以下実行例となります</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># id=01の行を除外して表示
 $ cat list.csv | grep -v 01,
--------
 id,name
 02,eve
--------
 </code></pre></div>
 <h4 id="_6">さらに高度な検索</h4>
 <p>メタキャラクターを使用してさらに高度な検索をすることができます。詳しくは<a href="#meta-charactor">メタキャラクター</a>を参照してください</p>
@@ -1940,20 +1940,24 @@ id,name
 <p>以下例ではスペース区切りの2列目を取り出します、echoコマンドで"abc def ghr"という文字列を出力したものをパイプでawkコマンドに渡し、スペース区切りの2列目を抽出しています</p>
 <pre><code>awk '{print $列番号}'
 </code></pre>
-<div class="highlight"><pre><span></span><code># echoの結果
+<p>以下はechoコマンドを実行した例と、その実行結果をawkに渡して処理した例になります</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 1. echoの結果
 $ echo &quot;abc def ghr&quot;
 abc def ghr
 
-# パイプでawkコマンドに処理を渡す
+# 2. パイプでawkコマンドに処理を渡す
 $ echo &quot;abc def ghr&quot; | awk &#39;{print $2}&#39;
 def
 </code></pre></div>
-<p>awkはファイルを対象にして使うことができます, abc.txtというファイルを作ってawkで列抽出を試してみましょう</p>
-<div class="highlight"><pre><span></span><code>$ echo &quot;abc def ghr&quot; &gt; abc.txt
+<p>awkはファイルを対象にして使うことができます。abc.txtというファイルを作ってawkで列抽出を試してみましょう</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 1. echoの出力をファイルにしてファイルを作成
+$ echo &quot;abc def ghr&quot; &gt; abc.txt
 $ echo &quot;jkl mno pqr&quot; &gt;&gt; abc.txt
 $ cat abc.txt
 abc def ghr
 jkl mno pqr
+
+# 2. ファイルに対してawkコマンドを実行
 $ awk &#39;{print $2}&#39; abc.txt
 def
 mno
@@ -1962,60 +1966,70 @@ mno
 <p>-Fオプションで区切り文字を定義することができます、以下例ではカンマを区切り文字としてcsvの2列目を取り出します</p>
 <pre><code>awk -F "区切り文字" '{print $列番号}'
 </code></pre>
-<div class="highlight"><pre><span></span><code>$ echo &quot;abc,def,ghr&quot; | awk -F &quot;,&quot; &#39;{print $2}&#39;
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo &quot;abc,def,ghr&quot; | awk -F &quot;,&quot; &#39;{print $2}&#39;
 def
-$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $2}&#39;
+$ cat abc.txt | awk -F &quot;,&quot; &#39;{print $2}&#39;
 def
 mno
 </code></pre></div>
 <h4 id="_9">列組みなおし</h4>
-<p>以下例ではcsvファイルの列の並びを入れ替えて出力しています、各列の間に","を入れることでcsvを再構成しています
-<div class="highlight"><pre><span></span><code>$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;,&quot;$2&quot;,&quot;$1}&#39;
+<p>以下例ではcsvファイルの列の並びを入れ替えて出力しています、各列の間に","を入れることでcsvを再構成しています</p>
+<p>まずは対象ファイルを作成しましょう</p>
+<pre><code>nano abc.csv
+</code></pre>
+<p>以下内容を貼り付けてファイルを保存して下さい
+<div class="highlight"><span class="filename">abc.csvの内容</span><pre><span></span><code>abc,def,ghr
+jkl,mno,pqr
+</code></pre></div>
+列の組み換えを実行します
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cat abc.txt | awk -F &quot;,&quot; &#39;{print $3&quot;,&quot;$2&quot;,&quot;$1}&#39;
 ghr,def,abc
 pqr,mno,jkl
 </code></pre></div></p>
 <p>列と列の間の区切り文字を変えることもできます
-<div class="highlight"><pre><span></span><code>$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;:&quot;$2&quot;:&quot;$1}&#39;
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cat abc.csv | awk -F &quot;,&quot; &#39;{print $3&quot;:&quot;$2&quot;:&quot;$1}&#39;
 ghr:def:abc
 pqr:mno:jkl
 </code></pre></div></p>
 <h4 id="grep_1">grepとの組合わせ</h4>
-<p>以下のようなitem.csvというリストを作成します
-<div class="highlight"><pre><span></span><code>$ nano item.csv
------------------------------------------------
-item_name,category,description,price
+<p>以下のようなitem.csvというリストを作成します</p>
+<pre><code>nano item.csv
+</code></pre>
+<p>以下がitem.csvの内容になりますので、内容をコピーしてファイルを保存して下さい</p>
+<p><div class="highlight"><span class="filename">item.csvの内容</span><pre><span></span><code>item_name,category,description,price
 りんご,フルーツ,青森県産,100円
 みかん,フルーツ,愛媛県産,100円
 大根,野菜,,100円
------------------------------------------------
 </code></pre></div>
 フルーツカテゴリーの商品名だけ抜き出したい場合はgrepと組み合わせると簡単に処理を作ることができます
-<div class="highlight"><pre><span></span><code>$ cat item.csv | grep フルーツ | awk -F &quot;,&quot; &#39;{print $1}&#39;
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cat item.csv | grep フルーツ | awk -F &quot;,&quot; &#39;{print $1}&#39;
 りんご
 みかん
 </code></pre></div></p>
 <p>awkはそれ自体で1冊本が書けてしまうほど奥深いコマンドです、上記grepコマンドを使わずともawkコマンドだけでより高度なフィルター処理が可能です。awkコマンドについてはぜひご自身でその可能性を探ってみてください</p>
 <h3 id="sed">{ sed }</h3>
-<p>sed(セド)コマンドは文字列の変換コマンドとして使われます、以下はabcという文字列をdefという文字列に変換する例です</p>
+<p>sed(セド)コマンドは文字列の変換コマンドとして使われます</p>
 <pre><code>sed "s/変換文字/変換後文字/g"
 </code></pre>
-<div class="highlight"><pre><span></span><code># echo結果
+<p>以下はabcという文字列をdefという文字列に変換する例です</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 1.echo結果
 $ echo &quot;abc&quot;
 abc
 
-# パイプでsedコマンドに渡す
+# 2.echo出力をパイプでsedコマンドに渡す
 $ echo &quot;abc&quot; | sed &quot;s/abc/def/g&quot;
 def
 </code></pre></div>
 <h4 id="_10">削除処理</h4>
 <p>sedで特定文字列を削除する場合は変換文字を空にします。以下例ではabという文字を削除しています
-<div class="highlight"><pre><span></span><code>$ echo &quot;abc&quot; | sed &quot;s/ab//g&quot;
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo &quot;abc&quot; | sed &quot;s/ab//g&quot;
 c
 </code></pre></div></p>
 <h4 id="_11">改行処理</h4>
-<p>sedを利用して、改行を加えて見やすくしたり、逆に改行をなくして1列にして処理をしやすくしたrすることがあります。\nはUNIXの改行コードです</p>
-<div class="highlight"><pre><span></span><code># 対象ファイル
-$ nano abc.csv
+<p>sedを利用して、改行を加えて見やすくしたり、逆に改行をなくして1列にして処理をしやすくしたrすることがあります。\nはUNIXの改行コードです。
+先程作成したabc.csvファイルを使って改行処理を実行してみましょう</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの内容確認
+$ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
 
@@ -2033,8 +2047,8 @@ $ cat abc.csv  | sed &quot;s/,/\n/g&quot; | sed -z &quot;s/\n/ /g&quot;
 abc def ghr jkl mno pqr
 </code></pre></div>
 <h4 id="_12">行頭・行末への文字追加</h4>
-<p>メタキャラクターを使用してさらに高度な変換をすることができます。例えば行頭、行末に一括で特定の文字列を付与することができ、非常に便利です。行頭は^、行末は$で表すことができますが、メタキャラクタについては<a href="#meta-charactor">メタキャラクター</a>を参照してください</p>
-<div class="highlight"><pre><span></span><code># 対象ファイル
+<p>メタキャラクターを使用してさらに高度な変換をすることができます。例えば行頭、行末に一括で特定の文字列を付与することができ、非常に便利です。行頭は^、行末は$で表すことができます。その他メタキャラクタも多数ありますので、詳細については<a href="#meta-charactor">メタキャラクター</a>を参照してください。</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
 $ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
@@ -2057,7 +2071,7 @@ $ cat abc.csv | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&qu
 <h3 id="sort">{ sort }</h3>
 <p>sort(ソート)は並び替えを行うためのコマンドですが、パイプ"|"と組み合わせて使うことが多いです。先ほどのabc.csvを解体して並び替えてみましょう</p>
 <h4 id="_13">昇順、降順の並び替え</h4>
-<div class="highlight"><pre><span></span><code># 対象ファイル
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイル
 $ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
@@ -2070,7 +2084,6 @@ ghr
 jkl
 mno
 pqr
-
 
 # アルファベット降順にソート
 $ cat abc.csv | sed &quot;s/,/\n/g&quot; | sort -r
@@ -2088,7 +2101,7 @@ abc
 <h3 id="uniq">{ uniq }</h3>
 <p>uniq(ユニーク)は重複した行を集約するコマンドです、一般的にパイプでsortと一緒に使うことが多いです。以下例ではコマンドを組み合わせながら文字列を操作し、あえて重複を作った後、最後に重複を排除しています</p>
 <h4 id="_15">重複排除の例</h4>
-<div class="highlight"><pre><span></span><code># 対象ファイル
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
 $ nano abc.csv
 abc,def,ghr
 jkl,mno,pqr 
@@ -2148,7 +2161,7 @@ pqr
 <pre><code>wc -l
 </code></pre>
 <p>入力値の行数を出せるため例えば、検索した単語が含まれる行数を出すのに便利です</p>
-<div class="highlight"><pre><span></span><code># VERSIONという単語を含む行をカウント
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># VERSIONという単語を含む行をカウント
 $ cat /etc/os-release | grep VERSION | wc -l
 3
 </code></pre></div>
@@ -2157,7 +2170,7 @@ $ cat /etc/os-release | grep VERSION | wc -l
 <h4 id="n">N列抽出</h4>
 <pre><code>cut -f 列番号 -d "区切り文字"
 </code></pre>
-<div class="highlight"><pre><span></span><code># 対象ファイル
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
 $ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
@@ -2169,7 +2182,7 @@ mno
 </code></pre></div>
 <h4 id="n_1">N列目以降を抽出</h4>
 <p>列指定の際に列番号のあとに-を付けると何列目以降という指定が容易にできます</p>
-<div class="highlight"><pre><span></span><code>$ cat abc.csv | cut -f 2- -d &quot;,&quot;
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cat abc.csv | cut -f 2- -d &quot;,&quot;
 def,ghr
 mno,pqr
 </code></pre></div>
@@ -2179,13 +2192,13 @@ mno,pqr
 <h4 id="_17">文字列削除</h4>
 <pre><code>tr -d 削除文字
 </code></pre>
-<div class="highlight"><pre><span></span><code>$ echo &quot;abc&quot; | tr -d ab
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo &quot;abc&quot; | tr -d ab
 c
 </code></pre></div>
 <h3 id="nl">{ nl }</h3>
 <p>nl(エヌエル)は行頭に行番号を振ることができるコマンドです、cat等のコマンドと組み合わせて使うと便利です</p>
 <h4 id="_18">行番号の付与</h4>
-<div class="highlight"><pre><span></span><code>$ cat /etc/os-release
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cat /etc/os-release
 NAME=&quot;Ubuntu&quot;
 VERSION=&quot;20.04 LTS (Focal Fossa)&quot;
 ID=ubuntu
@@ -2221,7 +2234,7 @@ $ cat /etc/os-release | nl
 </code></pre>
 <p>以下はuniqでも使用した例ですが、最後に上位3行をheadで表示しています</p>
 <h4 id="_19">先頭から指定行数を表示</h4>
-<div class="highlight"><pre><span></span><code># 対象ファイル
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
 $ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr 
@@ -2295,12 +2308,11 @@ ghr
 <pre><code>diff 対象ファイルA 対象ファイルB
 </code></pre>
 <p>以下例ではuniqコマンドの例で作成したabc.csvとdouble.csvの差分を表示しています</p>
-<pre><code># 差分確認
-$ diff abc.csv double.csv 
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ diff abc.csv double.csv 
 2a3,4
 &gt; abc,def,ghr
 &gt; jkl,mno,pqr
-</code></pre>
+</code></pre></div>
 <h3 id="meta-charactor">Meta charactor</h3>
 <p>UNIX/Linuxのコマンドライン上で特別な意味をもった文字Meta charactor（メタキャラクター）を扱うことができます。この使用法はワイルドカードや正規表現と呼ばれますが、ここでは単純に特別な意味合いを持った文字と考えましょう、代表的なものを以下紹介します。メタキャラクターを使うことで、非常に柔軟な検索や文字変換、プログラムの際の条件分岐が行えるようになります。</p>
 <h4 id="_21">アスタリスク</h4>
