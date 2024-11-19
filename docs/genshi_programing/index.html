@@ -504,20 +504,41 @@
         
           <li class="md-nav__item">
   <a href="#_21" class="md-nav__link">
-    ファイル名のみ抽出
+    スクリプトの強制終了
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_22" class="md-nav__link">
-    実行結果の変数への格納
+    バックグラウンドでの実行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kill" class="md-nav__link">
+    プロセスのkill
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_23" class="md-nav__link">
+    ファイル名のみ抽出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    実行結果の変数への格納
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
     変数をコマンドとして実行
   </a>
   
@@ -531,14 +552,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
+  <a href="#_26" class="md-nav__link">
     別スクリプト呼び出し
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
+  <a href="#_27" class="md-nav__link">
+    スクリプトの定期実行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
     さらなる学習のために
   </a>
   
@@ -890,20 +918,41 @@
         
           <li class="md-nav__item">
   <a href="#_21" class="md-nav__link">
-    ファイル名のみ抽出
+    スクリプトの強制終了
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_22" class="md-nav__link">
-    実行結果の変数への格納
+    バックグラウンドでの実行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kill" class="md-nav__link">
+    プロセスのkill
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_23" class="md-nav__link">
+    ファイル名のみ抽出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    実行結果の変数への格納
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
     変数をコマンドとして実行
   </a>
   
@@ -917,14 +966,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
+  <a href="#_26" class="md-nav__link">
     別スクリプト呼び出し
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
+  <a href="#_27" class="md-nav__link">
+    スクリプトの定期実行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
     さらなる学習のために
   </a>
   
@@ -962,7 +1018,8 @@ $ echo &quot;World&quot;
 World
 </code></pre></div>
 <p>上述の処理をスクリプト化すると以下コードの処理のようになります。手動実行していた処理が固められ、まとめて実施が可能になります。それではスクリプトファイルをnanoコマンドで作成してきましょう</p>
-<pre><code>nano echo.sh
+<pre><code># スクリプトの作成
+nano echo.sh
 </code></pre>
 <p>nanoで開いた新規ファイルに以下echo.shのコードの内容を貼り付けて保存して下さい
 <div class="highlight"><span class="filename">echo.shのコード</span><pre><span></span><code>#!/bin/bash
@@ -1359,7 +1416,8 @@ done &lt; ファイル名
 <pre><code>#テキストファイル作成
 nano org.txt
 </code></pre>
-<p><div class="highlight"><span class="filename">org.txtファイル</span><pre><span></span><code>abc
+<p>org.txt(テキストファイル)の内容をファイルに転記して保存して下さい
+<div class="highlight"><span class="filename">org.txtファイル</span><pre><span></span><code>abc
 def
 efg
 </code></pre></div>
@@ -1373,7 +1431,7 @@ do
   echo &quot;&lt;p&gt;$line&lt;/p&gt;&quot; &gt;&gt; ch2html.txt
 done &lt; org.txt
 </code></pre></div>
-<p>以下が実行結果になります、&lt;p>というHTMLタグが付与されたことを確認して下さい
+<p>以下が実行結果になります、テキストファイルが新たに生成され、&lt;p>というHTMLタグが付与されたことを確認して下さい
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash ch2html.sh
 $ cat ch2html.txt
 &lt;p&gt;abc&lt;/p&gt;
@@ -1396,7 +1454,7 @@ AかBを選んでください: A
 <p>bash実行時に-xオプションを付与すると、スクリプトをデバッグモードで実行できます。これによりスクリプトの処理経過が可視化できます</p>
 <pre><code>bash -x スクリプト
 </code></pre>
-<p>以下は再びcase_test.shを使った例です
+<p>以下は再びcase_test.shを使った例ですが、コードの各ステップの処理が標準出力にデバッグ出力されるため、コード内で正常に処理できているか確認することができます
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash -x case_test.sh
 + echo -n &#39;AかBを選んでください: &#39;
 AかBを選んでください: + read input
@@ -1443,6 +1501,7 @@ $ ./ascii_chk.sh
 ERROR
 </code></pre></div></p>
 <h2 id="tips">Tips</h2>
+<p>スクリプト作成に際して便利な知識をTipsとして以下にまとめます</p>
 <h3 id="awksed">awk,sedの多用</h3>
 <p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます、以下はwhile文で記述したファイル読み込み処理を1ラインで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># sed
@@ -1529,7 +1588,36 @@ $ ls -a
 <p>処理を任意の秒数停止したい場合、sleepコマンドを使うと便利です</p>
 <pre><code>sleep 秒数
 </code></pre>
-<h3 id="_21">ファイル名のみ抽出</h3>
+<h3 id="_21">スクリプトの強制終了</h3>
+<p>実行中のスクリプトを停止したい場合、ctrl + cを押すことで停止することができます。以下は30秒sleepするスクリプトを途中停止する例です</p>
+<pre><code># スクリプトの作成
+nano sleep.sh
+</code></pre>
+<div class="highlight"><span class="filename">sleep.shの内容</span><pre><span></span><code>#!/bin/bash
+sleep 30
+exit 0
+</code></pre></div>
+<p>ファイルが作成できたら実行してみましょう、30秒応答がなくなりますので途中でctrl + cを入力して抜けてみましょう
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash sleep.sh
+ctrl + cで強制停止
+</code></pre></div></p>
+<h3 id="_22">バックグラウンドでの実行</h3>
+<p>上述のsleepを含むようなスクリプトは処理に時間がかかるため、処理を裏で動かして継続したい場合があります。そういった場合は&amp;をつけてバックグラウンドで実行することができます。以下実行例では15293というプロセスIDが付与され、背後で実行されていますがpsコマンドで動いていることを確認できます</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash sleep.sh &amp;
+[1] 15388
+
+# プロセスの確認
+$ ps -ef | grep 15388
+naruo      15388   12575  0 10:41 pts/2    00:00:00 bash sleep.sh
+</code></pre></div>
+<h3 id="kill">プロセスのkill</h3>
+<p>バックグラウンドで実行しているスクリプトや後述の自動実行しているプロセスを終了したい場合、killコマンドで終了することができます</p>
+<pre><code>kill プロセスID(PID)
+</code></pre>
+<p>上述のバックグラウンドで実行しているスクリプト(PID 15388)を終了させたい場合、以下のように終了します</p>
+<pre><code>kill 15388
+</code></pre>
+<h3 id="_23">ファイル名のみ抽出</h3>
 <p>lsコマンドでリスト表示する際にディレクトリ名は無視してファイル名だけを抽出したい場合があります、そういう場合xargsコマンドとbasenameコマンドを組み合わせてください。</p>
 <pre><code>xargs basename -a
 </code></pre>
@@ -1553,7 +1641,7 @@ PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy
 $ grep -l ubuntu /etc/os-release
 /etc/os-release
 </code></pre></div>
-<h3 id="_22">実行結果の変数への格納</h3>
+<h3 id="_24">実行結果の変数への格納</h3>
 <p>コマンド実行結果を変数に格納する方法はいくつかありますが、本コースの冒頭でご紹介した``(バッククォート)以外にもいくつかあります</p>
 <pre><code>#バッククォート
 変数=`実行コマンド`
@@ -1561,7 +1649,7 @@ $ grep -l ubuntu /etc/os-release
 #$()
 変数=$(実行コマンド)
 </code></pre>
-<h3 id="_23">変数をコマンドとして実行</h3>
+<h3 id="_25">変数をコマンドとして実行</h3>
 <p>コマンド変数内で組み立てて、実行することもできます</p>
 <pre><code>eval 変数
 </code></pre>
@@ -1591,9 +1679,11 @@ alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape
 </code></pre></div></p>
 <h3 id="tmp">tmpファイルの多用</h3>
 <p>処理を組み立てていく際にevalのように変数の中でコマンドを組み立てながら実行する方法もありますが、処理をテンポラリーファイルを作って過程を書き出しておくことであとからdebugが容易になります</p>
-<h3 id="_24">別スクリプト呼び出し</h3>
+<h3 id="_26">別スクリプト呼び出し</h3>
 <p>スクリプト内で別スクリプトを呼び出す際は単純にスクリプトをそのまま実行すれば良いです。呼び出すという意味ではコマンドとスクリプトは本質的にあまり変わりがありません</p>
-<h3 id="_25">さらなる学習のために</h3>
+<h3 id="_27">スクリプトの定期実行</h3>
+<p>cron(クーロン)を利用することでスクリプトを自動で定期実行することができます。small-shellを導入することでcronをより簡単に利用できるようになります</p>
+<h3 id="_28">さらなる学習のために</h3>
 <p>高度なプログラミング言語において、それぞれの処理をモジュール化し疎結合にする手法がとられます。この手法はオブジェクト指向と呼ばれ、プログラムを学ぶ上で必要性を理解できず挫折する契機にもなる手法でもあります。bashでは処理をオブジェクト指向を実現するためのクラスやインスタンスの生成といったことがそもそもできません。代わりにコマンドや外部スクリプトを組み合わせてモジュールとして使います。即席で平易であることがshellスクリプトの特徴ですが、その特性を最大限に活用して作ったフレームワークがsmall shellです。small shellを使うことで非常に簡単にWEBアプリケーションも作ることができますので、ぜひ<a href="../small_shell1/">small-shell Basic</a>もご確認ください</p>
 
 
