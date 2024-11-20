@@ -649,17 +649,17 @@ ubuntu     115     9  0 21:53 pts/0    00:00:00 grep --color=auto apache2
 <pre><code>http://{先ほど確認したIPアドレス}/hello.html
 </code></pre>
 <p>以下はよく使われるタグの説明です。その他、HTMLで表現できるtagは多くありますし、cssでスタイルを定義したりjavascriptで動きのあるページを作ることもできます。さらなる美しいサイトを作りたい場合はインターネット上で情報を集めてあなた独自のページを作ってみましょう</p>
-<div class="highlight"><pre><span></span><code>html    : htmlページであることを宣言
+<div class="highlight"><pre><span></span><code>html    : htmlページであることを宣言します
 head    : ヘッダー情報を記載します。上記例では言語コードとしてUTF-8を指定し、Titleを記載しています
-body    : htmlコンテンツを記載
-h1      : 見出し（大項目）
-h2      : 見出し（中項目）
-h3      : 見出し（小項目）
-hn      : 数字が上がるほど文字が小さくなります
+body    : ブラウザ上で表示されるコンテンツをbodyタグの中に記載します
+h1      : 見出し（大項目）を記載します
+h2      : 見出し（中項目）を記載します
+h3      : 見出し（小項目）を記載します
+hn      : 数字(n)が上がるほど文字が小さくなります
 a       : リンクを定義します &lt;a href=&quot;&quot;&gt;&lt;/a&gt;のタグを使いhrefにリンク先のURLを記載します
-p       : 本文を記載
-b       : 囲んだ文字を大文字にする
-br      : 改行
+p       : 本文を記載します
+b       : 囲んだ文字を大文字にします
+br      : 改行します
 </code></pre></div>
 <p>次章に進む前にapacheサーバは一旦停止しましょう　　　　</p>
 <pre><code>service apache2 stop

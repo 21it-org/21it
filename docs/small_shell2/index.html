@@ -393,15 +393,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    データボックスの追加
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    スクラッチアプリへのユーザー追加
+  </a>
   
 </li>
       
@@ -667,15 +667,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    データボックスの追加
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    スクラッチアプリへのユーザー追加
+  </a>
   
 </li>
       
@@ -819,6 +819,9 @@
 <h1 id="small-shell-basic-2">small shell Basic 2</h1>
 <h2 id="_1">スクラッチアプリ</h2>
 <p>前章で説明したBase APP(ベースアプリ)がカスタマイズができないtable型のデータ管理に特化したツールであるのに対し、カスタマイズが可能なアプリをsmall shellではScratch APP(スクラッチアプリ)と呼びます。Scratch APPはアプリをカスタマイズしながらチームで情報共有をより効果的におこなうことを目的に設計されていますが、カスタマイズ自体も段階的に行うことができます。いずれの段階でもScratch APPはチームでのデータ共有に貢献しますので、必ずしもコードの編集までできるようになる必要もありません。</p>
+<p>スクラッチアプリもgenコマンドでの作成となります</p>
+<pre><code>sudo /usr/lcal/small-shell/adm/gen -app
+</code></pre>
 <h3 id="_2">段階的カスタマイズ</h3>
 <div class="highlight"><pre><span></span><code>1. ポータルページを編集し、データとルール・手続きを同時にアプリに収容する
 2. 公開されているテンプレートをインポートしアプリとして利用する
@@ -828,7 +831,7 @@
 <p>portalというのは、入口といったような意味をもつ英語ですが、Scratch APPではログインした際に表示されるトップページのことを指します。Base APPではログインするとそのままtableが表示されますが、tableはDataBoxにはいっているデータを表示することはできてもデータそれ自体の位置づけを説明することができません。Scratch APPではポータルをトップページに表示することで、データの位置づけやそれを管理するルールや手続きを記述することができます。それはインターネット上のホームページのように有用な情報共有の方法を提供します</p>
 <h3 id="_4">アプリ生成</h3>
 <p>それでは早速アプリ生成を生成していきましょう、ちなみにScratch APPはBase APPのうえに生成されますので事前に前章を参照しBase APPを生成してください。以下はtestという名前の共有パスコード（４桁数字）で認証できるアプリを生成しています。primary databoxというのはアプリが管理するデータボックスですが、前章で生成したitem.dbを指定してみましょう
-<div class="highlight"><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
+<div class="highlight"><span class="filename">gen -app 実行例</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
 APP Name: test
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 1
@@ -915,23 +918,15 @@ Is it OK? (yes | no): yes
 </tr>
 </tbody>
 </table>
-<h3 id="_10">データボックスの追加</h3>
-<p>スクラッチアプリはgen dialogの際にprimary databoxとして定義したデータボックスのみを標準で管理しますが、subAPPを加えることでデータボックスを追加することができます。以下はsubtestというサブアプリを追加する例です。以下サブアプリではcontact_listというデータボックスを紐付けてみます。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>サブアプリは指定のスクラッチアプリに所属するという意味で@をつけて指定してください</p>
-</div>
-<p><div class="highlight"><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
-Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 2
-APP Name: subtest@test
-Subapp Databox: contact_list
-</code></pre></div>
-再度testアプリにログインするとsubアプリのテーブルが右メニューに追加されていることが確認できます</p>
+<h2 id="_10">スクラッチアプリへのユーザー追加</h2>
+<p>key認証を選択した場合、ユーザー毎に鍵を生成する必要があります。以下コマンドでユーザー毎の鍵生成URLを作成して下さい</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops app:&lt;アプリ&gt; add.usr:&lt;ユーザー名&gt;
+</code></pre>
 <h2 id="_11">テンプレートの利用</h2>
 <p>small shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam APPをインポートして使ってみましょう。Team APPではチームの共同作業に必要な機能をパッケージ化したsmall shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team APPに管理したいDataBoxを追加することもできます</p>
 <h3 id="team-app-install">Team APP install</h3>
 <p>早速Team APPをインストールしましょう、git cloneした後deploy.shを実行するとDataBoxも自動生成されます
-<div class="highlight"><pre><span></span><code>cd $HOME
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>cd $HOME
 #git clone https://github.com/naruoken/small-shell-apps
 cd small-shell-apps/team_app
 sudo ./deploy.sh
@@ -942,21 +937,21 @@ Do you want to enable IP whitelisting for this APP ? (yes | no): no
 </code></pre></div></p>
 <h3 id="team-app">Team APPユーザー追加</h3>
 <p>Team APPはBase APPのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではapp_testというユーザーを作成しています</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops app:team add.usr:app_test
-</code></pre>
+<div class="highlight"><span class="filename">app_testユーザーの追加例</span><pre><span></span><code>sudo /usr/local/small-shell/adm/ops app:team add.usr:app_test 
+</code></pre></div>
 <p>ユーザー生成後に、Initialize URL（鍵の初期化URL)が生成れるのでユーザーへURLを案内しましょう。Base APPと同じくInitialize URLへアクセスするとTeam APPへアクセスするための鍵とリンクが生成されます。Initialize URLは一回アクセスすると無効になるので気をつけてください</p>
 <h3 id="team-app_1">Team APPログイン</h3>
 <p>Team APPへログインして右上のeven(=)メニューをクリックするとメニューが展開します。各種機能をお試しください, Team eventやtaskをカレンダーに一元的に表示できるので便利です。Driveを使うとファイル共有も簡単に行えます</p>
 <p><img alt="Screenshot" src="../img/team_app_menu.png" /></p>
 <h3 id="_12">データボックスの追加</h3>
-<p>Teamで管理したいDataBoxを追加したい場合も、容易に追加ができます。Team APPのsubAPPとしてアプリケーションを追加しましょう、3.SCRATCH を選択してapp_nameを定義する際に@teamと付けることでTeam APP配下のsub APPという宣言が可能です。その後追加したいDataBoxを指定しましょう。以下ではitem.dbを追加します</p>
-<p><div class="highlight"><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
+<p>Teamで管理したいDataBoxを追加したい場合も、容易に追加ができます。Team APPのsubAPPとしてアプリケーションを追加しましょう、3.SCRATCH を選択してapp_nameを定義する際に@teamと付けることでTeam APP配下のsub APPという宣言が可能です。その後追加したいDataBoxを指定しましょう。以下ではitem.dbを追加します。Team APP以外のスクラッチアップでも同様に@をつけることでサブアプリの作成とデータボックスの追加が可能です</p>
+<p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
 APP Name: item@team
 Subapp Databox: item.db
 </code></pre></div>
 最終確認が問題なければyesと入力してください
-<div class="highlight"><pre><span></span><code>APP will be generated by following order, please check it
+<div class="highlight"><span class="filename">実行例(続き)</span><pre><span></span><code>APP will be generated by following order, please check it
 -----------------------------------------------------------------
 
 APP Type: 3.SCRATCH
@@ -979,12 +974,12 @@ Is it OK? (yes | no): yes
 <p class="admonition-title">Note</p>
 <p>primary_keyをhashidとすることでよりフラットにデータ管理ができます（primary_keyの値の重複など気にする必要がありません）</p>
 </div>
-<p><div class="highlight"><pre><span></span><code>Target Databox: survey.box
+<p><div class="highlight"><span class="filename">gen -databox 実行例(続き)</span><pre><span></span><code>Target Databox: survey.box
 primary_key(col1): hashid
 ! ここをhashidとしてください、その後は対話を続けてください
 </code></pre></div>
 対話結果例は以下のとおりです</p>
-<div class="highlight"><pre><span></span><code>Data box will be generated by following order, please check it
+<div class="highlight"><span class="filename">gen -databox 実行例(続き)</span><pre><span></span><code>Data box will be generated by following order, please check it
 -----------------------------------------------------------------
 
 Databox Name:survey.box
@@ -1033,21 +1028,21 @@ option=&quot;&quot;
 <p class="admonition-title">Note</p>
 <p>IP whitelistingは接続可能なIPアドレスを制限するかという確認ですが、いったんnoとして作成します</p>
 </div>
-<p><div class="highlight"><pre><span></span><code>Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 2
+<p><div class="highlight"><span class="filename">Form作成実行例</span><pre><span></span><code>Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 2
 Form Name: survey
 Target Databox: survey.box
 Description of the form : xyzにつてのアンケートにお答えください
 Do you want to enable IP whitelisting for this form? (yes | no): no
 </code></pre></div>
 その後、フォームに含むkeyを選びますが今回はすべてのkeyを追加しましょう
-<div class="highlight"><pre><span></span><code>Select key that must be included in the Form (generation | impression | comment) : generation
+<div class="highlight"><span class="filename">Form作成実行例続き</span><pre><span></span><code>Select key that must be included in the Form (generation | impression | comment) : generation
 Do you want to add more key to the Form? (yes | no): yes
 Select additional key that must be included in the Form (impression | comment) : impression
 Do you want to add more key to the form ? (yes | no): yes
 Select additional key that must be included in the Form (comment) : comment
 </code></pre></div>
 最終確認がありますので、問題なければyesと入力して下さい
-<div class="highlight"><pre><span></span><code>form will be generated by following order, please check it
+<div class="highlight"><span class="filename">Form作成実行例続き</span><pre><span></span><code>form will be generated by following order, please check it
 -----------------------------------------------------------------
 
 APP type: 2.FORM
