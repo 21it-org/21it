@@ -399,18 +399,12 @@
     URL構造
   </a>
   
-    <nav class="md-nav" aria-label="URL構造">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#query_string" class="md-nav__link">
-    QUERY_STRING
-  </a>
-  
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#query-string" class="md-nav__link">
+    QUERY STRING
+  </a>
   
 </li>
         
@@ -751,18 +745,12 @@
     URL構造
   </a>
   
-    <nav class="md-nav" aria-label="URL構造">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#query_string" class="md-nav__link">
-    QUERY_STRING
-  </a>
-  
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#query-string" class="md-nav__link">
+    QUERY STRING
+  </a>
   
 </li>
         
@@ -1008,12 +996,11 @@
 <p>Scratch APPを使って作成するアプリケーションのシナリオは以下のとおりです。対象地域で配られたチケットでアクセスできる21it.orgの公開アプリを作成します</p>
 <h5 id="web">WEBアプリシナリオ</h5>
 <pre><code>1. アプリへは対象地域で配られたチケット(QRコードもしくはShared Passコード)でアクセスする
-2. 正当なアクセスと判断された場合アプリは公開講義の詳細日時とオンライン参加のためのURLを表示する
-3. ユーザーはメニューから問い合わせをすることができる
-4. 管理者はTeam APPで問い合わせ管理やスケジュール管理をする
+2. 認証が成功した場合、アプリは公開講義の詳細日時とオンライン参加のためのURLを表示する
+3. 管理者はTeam APPで問い合わせ管理やスケジュール管理をする
 </code></pre>
 <h4 id="team-app">Team APPの生成</h4>
-<p>small shell BasicにてTeam APPはすでに作成済みかと思いますが、もし生成していない場合は前章を参照のうえ生成してください</p>
+<p>small shell BasicにてTeam APPはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team APPのinstall</a>を参照のうえ生成してください</p>
 <h2 id="_2">スクラッチアプリ生成</h2>
 <p>早速 Scratch APPを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。前提としてsmall shell Basicコースで作成したBase APPが作られている必要がありますのでBasicコースを参照して生成しておいてください。</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -app
@@ -1054,21 +1041,20 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 <pre><code>/var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
 /var/www/bin         # 応答処理をAction scriptとして記述、DataBoxへの接続や分岐処理をする
 /var/www/descriptor  # HTML及びCSSの定義を配置
-/var/www/html        # 静的なコンテンツを配置可能 (必須ではない）
 </code></pre>
 <h3 id="url">URL構造</h3>
-<p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.$APPというプログラムへリダイレクト(転送)され認証が処理されます</p>
+<p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.$APPというプログラムへサーバ側でリダイレクト(転送)され認証画面が表示されますのでアプリ生成時に設定したパスコードを入力してください。</p>
 <pre><code>http://{サーバアドレス}/21DOJO --&gt; 転送 --&gt; http://{サーバアドレス}/cgi-bin/auth.21DOJO
 </code></pre>
 <p>認証が成功した場合、コントローラーへ自動で接続されます。ログイン後のURLをブラウザからコピーしてみてみましょう、URLはsession情報やsessionを保証するpinコードを含んでいます。また、req=mainという記述も確認できると思いますが、これはmainページのリクエストを意味します</p>
 <div class="highlight"><span class="filename">コピーしたURL(例)</span><pre><span></span><code>http://{サーバアドレス}/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
 </code></pre></div>
-<h5 id="query_string">QUERY_STRING</h5>
-<p>QUERY_STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY_STRINGをURLに連結していくことができます。</p>
+<h3 id="query-string">QUERY STRING</h3>
+<p>QUERY STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY_STRINGをURLに連結していくことができます。</p>
 <h3 id="_5">コントローラー</h3>
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のactionスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="_6">ルーティング</h4>
-<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase分をルーティングと呼んでいます</p>
+<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase分をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY STRINGとして渡されたパラメーターを変数に格納して後続処理に渡します</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo tail -48 /var/www/cgi-bin/21DOJO
 
 #----------------------------
@@ -1121,8 +1107,11 @@ esac
 exit 0
 </code></pre></div>
 <h4 id="parse">Parse (パース)</h4>
-<p>ルーティングに至る前処理としてはsessionの妥当性の確認やクライアントからのリクエスト内容の解析などを行いますが、クライアントから送信(POST)された要求を解析するプログラムとして
-parse.shを使用します。controllerに、例えばuser_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にuser_nameというファイルを作り、そこにPOSTされたユーザー名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
+<p>ルーティングに至る前処理としてクライアントから送信(POST) された要求を解析するプログラムとしてparse.shを使用します。controllerに、例えばitem.dbのitem_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にitem_nameというファイルを作り、そこにPOSTされたアイテム名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>QUERY STRINGとPOSTはともにサーバにクライアントからデータを渡しますがそれぞれ方法が異なります。QUERY STRINGは前述のとおりURLに埋め込まれていますが、POSTデータは主にインプットフォームを通じてデータ送信されます</p>
+</div>
 <h3 id="_7">アクションスクリプト</h3>
 <p>コントローラーがルーティングを通じて呼び出すのがアクションスクリプトですが、ユーザーへの応答を返すのはアクションスクリプトになります。主な処理としてはDATA_shellへ接続してデータを抽出したうえで所定のHTML descriptorを読み込みそのまま返します。その際、%%tagについてsedで置き換えるという処理を行っています。例として21DOJO_get.shの中身を見てみましょう、いくつかの%%tagがありますがデータは主に%%datasetの中にsedで埋め込まれます</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo tail -18 /var/www/bin/21DOJO_get.sh
@@ -1283,7 +1272,7 @@ keys=name,start,end,url,detail
 ---------
 </code></pre></div>
 <h3 id="url_1">チケットURL整備</h3>
-<p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みそのURLをQR codeにしましょう。URLにQUERY_STRINGを付加すれば認証画面なしで自動ログインが可能です</p>
+<p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みアクセスしてみましょう、そうすることで認証画面なしで自動ログインが可能です</p>
 <h4 id="url_2">URLデザイン</h4>
 <p>以下はWSL環境でpass codeとして1234を設定したアプリにQUERY_STRINGだけでログインするためのURLの例です</p>
 <pre><code>http://{サーバアドレス}/cgi-bin/auth.21DOJO?app_pass=1234
