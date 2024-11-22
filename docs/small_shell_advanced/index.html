@@ -1050,7 +1050,7 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 <div class="highlight"><span class="filename">コピーしたURL(例)</span><pre><span></span><code>http://{サーバアドレス}/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
 </code></pre></div>
 <h3 id="query-string">QUERY STRING</h3>
-<p>QUERY STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY_STRINGをURLに連結していくことができます。</p>
+<p>QUERY STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY STRINGをURLに連結していくことができます。</p>
 <h3 id="_5">コントローラー</h3>
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のactionスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="_6">ルーティング</h4>
@@ -1274,7 +1274,7 @@ keys=name,start,end,url,detail
 <h3 id="url_1">チケットURL整備</h3>
 <p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みアクセスしてみましょう、そうすることで認証画面なしで自動ログインが可能です</p>
 <h4 id="url_2">URLデザイン</h4>
-<p>以下はWSL環境でpass codeとして1234を設定したアプリにQUERY_STRINGだけでログインするためのURLの例です</p>
+<p>以下はWSL環境でpass codeとして1234を設定したアプリにQUERY STRINGを利用してログインするためのURLの例です。アプリをインターネット公開している場合はこのURLをQRコード生成サイトなどでQRコード化すればスマホなどでアクセスと自動ログインが可能になります</p>
 <pre><code>http://{サーバアドレス}/cgi-bin/auth.21DOJO?app_pass=1234
 </code></pre>
 <h2 id="_12">その他の高度な機能</h2>
