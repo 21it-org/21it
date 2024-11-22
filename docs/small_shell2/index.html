@@ -448,33 +448,6 @@
       
         <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
-    フォームの利用の検討
-  </a>
-  
-    <nav class="md-nav" aria-label="フォームの利用の検討">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#box" class="md-nav__link">
-    アンケートBox作成
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    フォームの生成
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
     その他操作
   </a>
   
@@ -491,6 +464,33 @@
           <li class="md-nav__item">
   <a href="#initialize-url" class="md-nav__link">
     Initialize URLの再生成
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    フォームの利用の検討
+  </a>
+  
+    <nav class="md-nav" aria-label="フォームの利用の検討">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#box" class="md-nav__link">
+    アンケートBox作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    フォームの生成
   </a>
   
 </li>
@@ -722,33 +722,6 @@
       
         <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
-    フォームの利用の検討
-  </a>
-  
-    <nav class="md-nav" aria-label="フォームの利用の検討">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#box" class="md-nav__link">
-    アンケートBox作成
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    フォームの生成
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
     その他操作
   </a>
   
@@ -765,6 +738,33 @@
           <li class="md-nav__item">
   <a href="#initialize-url" class="md-nav__link">
     Initialize URLの再生成
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    フォームの利用の検討
+  </a>
+  
+    <nav class="md-nav" aria-label="フォームの利用の検討">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#box" class="md-nav__link">
+    アンケートBox作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    フォームの生成
   </a>
   
 </li>
@@ -925,7 +925,7 @@ Is it OK? (yes | no): yes
 <h2 id="_11">テンプレートの利用</h2>
 <p>small shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam APPをインポートして使ってみましょう。Team APPではチームの共同作業に必要な機能をパッケージ化したsmall shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team APPに管理したいDataBoxを追加することもできます</p>
 <h3 id="team-app-install">Team APP install</h3>
-<p>早速Team APPをインストールしましょう、git cloneした後deploy.shを実行するとDataBoxも自動生成されます
+<p>早速Team APPをインストールしましょう、git cloneした後deploy.shを実行するとアプリとDataBoxが自動生成されますが、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではcloneコマンドをコメントアウトしています。
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>cd $HOME
 #git clone https://github.com/naruoken/small-shell-apps
 cd small-shell-apps/team_app
@@ -934,6 +934,11 @@ sudo ./deploy.sh
 # small-shellのディレクトリpathに間違いなければenterを押してください
 small-shell root (/usr/local/small-shell): &lt;enter&gt;
 Do you want to enable IP whitelisting for this APP ? (yes | no): no
+
+# Team APPの日本語化
+cd $HOME/small-shell-apps/dictionary/JP
+small-shell root (/usr/local/small-shell): &lt;enter&gt;
+-&gt; 前ページで1度実行しているためメッセージが表示されますが無視して下さい
 </code></pre></div></p>
 <h3 id="team-app">Team APPユーザー追加</h3>
 <p>Team APPはBase APPのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではapp_testというユーザーを作成しています</p>
@@ -964,7 +969,22 @@ Sub APP Databox: item.db
 Is it OK? (yes | no): yes
 </code></pre></div>
 以上でTeam APPにデータボックスが追加されましたのでブラウザで確認をしてみましょう</p>
-<h2 id="_13">フォームの利用の検討</h2>
+<h2 id="_13">その他操作</h2>
+<h3 id="scratch-apptag">Scratch APPへのtag追加</h3>
+<p>スクラッチアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>
+<pre><code>    sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}} app:$app_name
+    例.)
+    sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
+</code></pre>
+<p><img alt="Screenshot" src="../img/app_tag.png" /></p>
+<h3 id="initialize-url">Initialize URLの再生成</h3>
+<p>Scratch APPの鍵生成URLを再生成する場合、app:オプションを指定する必要があります</p>
+<pre><code>    sudo /usr/local/small-shell/adm/ops initialize.usr:$user_name app:$app_name
+
+    # team APPを指定する場合
+    sudo /usr/local/small-shell/adm/ops initialize.usr:test app:team
+</code></pre>
+<h2 id="_14">フォームの利用の検討</h2>
 <p>アカウントを持たない外部ユーザーから所定の入力項目をもとにデータを収集し、DataBoxに格納するために外部Formの作成をすることができます。ここでは外部ユーザーからの意見収集のためのアンケートformの作成を例としてご説明します。</p>
 <h3 id="box">アンケートBox作成</h3>
 <p>初めに収集したいデータを格納するDataBoxを作成しましょう、ここでは架空の製品である"XYZ"についての感想をアンケートとして収集しましょう。その際一意となるkeyは特に想定されないため、primary_keyはhashidとします</p>
@@ -1019,7 +1039,7 @@ option=&quot;&quot;
 <p class="admonition-title">Warning</p>
 <p>対話モードの際にバックスペースを使って日本語を修正すると入力値が壊れるため、できるだけコピペなどで生成してください</p>
 </div>
-<h3 id="_14">フォームの生成</h3>
+<h3 id="_15">フォームの生成</h3>
 <p>DataBoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre>
@@ -1035,14 +1055,14 @@ Description of the form : xyzにつてのアンケートにお答えください
 Do you want to enable IP whitelisting for this form? (yes | no): no
 </code></pre></div>
 その後、フォームに含むkeyを選びますが今回はすべてのkeyを追加しましょう
-<div class="highlight"><span class="filename">Form作成実行例続き</span><pre><span></span><code>Select key that must be included in the Form (generation | impression | comment) : generation
+<div class="highlight"><span class="filename">Form作成実行例(続き)</span><pre><span></span><code>Select key that must be included in the Form (generation | impression | comment) : generation
 Do you want to add more key to the Form? (yes | no): yes
 Select additional key that must be included in the Form (impression | comment) : impression
 Do you want to add more key to the form ? (yes | no): yes
 Select additional key that must be included in the Form (comment) : comment
 </code></pre></div>
 最終確認がありますので、問題なければyesと入力して下さい
-<div class="highlight"><span class="filename">Form作成実行例続き</span><pre><span></span><code>form will be generated by following order, please check it
+<div class="highlight"><span class="filename">Form作成実行例(続き)</span><pre><span></span><code>form will be generated by following order, please check it
 -----------------------------------------------------------------
 
 APP type: 2.FORM
@@ -1061,21 +1081,6 @@ Is it OK? (yes | no): yes
 <p><img alt="Screenshot" src="../img/survey.png" /></p>
 <p>BaseAPPで登録されたデータを見てみると、一意のIDも自動生成されていることが確認できます。
 <img alt="Screenshot" src="../img/survey_table.png" /></p>
-<h2 id="_15">その他操作</h2>
-<h3 id="scratch-apptag">Scratch APPへのtag追加</h3>
-<p>スクラッチアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}} app:$app_name
-例.)
-sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
-</code></pre>
-<p><img alt="Screenshot" src="../img/app_tag.png" /></p>
-<h3 id="initialize-url">Initialize URLの再生成</h3>
-<p>Scratch APPの鍵生成URLを再生成する場合、app:オプションを指定する必要があります</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops initialize.usr:test app:$app_name
-
-# team APPを指定する場合
-sudo /usr/local/small-shell/adm/ops initialize.usr:test app:team
-</code></pre>
 <h2 id="_16">実環境の構築</h2>
 <p>small shellの学習環境として<a href="../unix1/">UnixBasic1</a>ではWSLをご紹介しましたが、WSLは外部からのアクセスができないためローカルでの学習にとどまります。アプリをネットワーク上でアクセス可能にするためには以下2つの方法をおすすめします。</p>
 <h4 id="mac">Macの利用</h4>

@@ -467,20 +467,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    選択式にしたデータの追加
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     テーブル
   </a>
   
@@ -488,49 +481,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     単純検索
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sort" class="md-nav__link">
-    sort
+  <a href="#_11" class="md-nav__link">
+    並び替え
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#line" class="md-nav__link">
-    line
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tag" class="md-nav__link">
-    Tag
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
-    コンソールによる分析
+    タグ
   </a>
   
-    <nav class="md-nav" aria-label="コンソールによる分析">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
-    ログ検索
+    行数指定
   </a>
   
 </li>
@@ -542,6 +515,26 @@
         
           <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
+    コンソールによる分析
+  </a>
+  
+    <nav class="md-nav" aria-label="コンソールによる分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    ログ検索
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
     ダウンロード / 一括更新
   </a>
   
@@ -803,20 +796,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    選択式にしたデータの追加
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     テーブル
   </a>
   
@@ -824,49 +810,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     単純検索
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sort" class="md-nav__link">
-    sort
+  <a href="#_11" class="md-nav__link">
+    並び替え
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#line" class="md-nav__link">
-    line
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tag" class="md-nav__link">
-    Tag
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
-    コンソールによる分析
+    タグ
   </a>
   
-    <nav class="md-nav" aria-label="コンソールによる分析">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
-    ログ検索
+    行数指定
   </a>
   
 </li>
@@ -878,6 +844,26 @@
         
           <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
+    コンソールによる分析
+  </a>
+  
+    <nav class="md-nav" aria-label="コンソールによる分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    ログ検索
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
     ダウンロード / 一括更新
   </a>
   
@@ -993,7 +979,7 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 <h3 id="_7">データ構造の検討</h3>
 <p>BaseAPPは基本的にはDataBox(データボックス)を管理するためのアプリケーションですが、DataBoxは名前のとおりデータを入れるための箱といえます。箱をきちんと設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
 <h4 id="keyvalue">KeyとValue</h4>
-<p>DataBoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataBoxを想定していますが、item_infoというkeyに対して、メーカーAのノートパソコンの情報が返されます。</p>
+<p>DataBoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataBoxを想定していますが、item_info(アイテム情報)というkeyに対して、"メーカーAのノートパソコン"の情報が返されます。</p>
 <pre><code>key   : item_info
 value : メーカーAのノートパソコン(在庫として10個ある)
 </code></pre>
@@ -1101,25 +1087,14 @@ sudo /usr/local/small-shell/adm/gen -addcol
 # 削除
 sudo /usr/local/small-shell/adm/gen -delcol
 </code></pre></div></p>
-<h4 id="_9">選択式にしたデータの追加</h4>
-<p>たとえばメーカーD社を追加登録したいとき、定義ファイルを編集して直接追加できます
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>#　編集
-sudo nano /usr/local/small-shell/databox/item.db/def/col3
-# paramsにメーカーD社をカンマ区切りで追加
-name=&quot;maker&quot;
-label=&quot;メーカー&quot;
-type=&quot;select&quot;
-params=&quot;メーカーA社,メーカーB社,メーカーC社,メーカーD社,その他&quot;
-option=&quot;required&quot;
-</code></pre></div></p>
-<h3 id="_10">テーブル</h3>
+<h3 id="_9">テーブル</h3>
 <p>ログイン後に表示されるテーブルではデータの検索やソートが非常に簡単に行うことができます。標準でAnd条件の検索が可能ですのでGoogle検索のような感覚でデータを探すことができます。</p>
-<h4 id="_11">単純検索</h4>
+<h4 id="_10">単純検索</h4>
 <p>単語をサーチボックスに入力してエンターを押すとフリーワード検索ができます
 <img alt="Screenshot" src="../img/search.png" /></p>
 <p>And検索ももちろん可能です
 <img alt="Screenshot" src="../img/andsearch.png" /></p>
-<h4 id="sort">sort</h4>
+<h4 id="_11">並び替え</h4>
 <p>Unixのsortコマンドを使ったsortもTable上で可能ですのでお試しください。sortの基本的なオプションは以下です</p>
 <pre><code># 自然な昇順並び替え
 sort -V Label名
@@ -1134,7 +1109,22 @@ sort -n Label名
 sort -nr Label名
 </code></pre>
 <p><img alt="Screenshot" src="../img/sort_table.png" /></p>
-<h4 id="line">line</h4>
+<h4 id="_12">タグ</h4>
+<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます。以下例ではメーカーAというワードでタグを作っていますが、タグをクリックするとitem.dbの中からメーカーAというワードを含んだデータが検索されます。add.tagで追加、del.tagで削除できます</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{word}
+(e.g.)
+sudo /usr/local/small-shell/adm/ops add.tag:item.db{メーカーB}
+sudo /usr/local/small-shell/adm/ops del.tag:item.db{メーカーB}
+</code></pre>
+<p><img alt="Screenshot" src="../img/tag_table.png" /></p>
+<p>さらにkeyを指定したフィルターを設定することもできます。その場合は databox{key{ワード}}として設定して下さい。以下例ではタグをクリックするとitem.dbの全フィールドではなく、typeを指定したうえでパソコンという値をもったデータを検索できます</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}}
+(e.g.)
+sudo /usr/local/small-shell/adm/ops add.tag:item.db{type{パソコン}}
+sudo /usr/local/small-shell/adm/ops del.tag:item.db{type{パソコン}}
+</code></pre>
+<p><img alt="Screenshot" src="../img/tag_key_table.png" /></p>
+<h4 id="_13">行数指定</h4>
 <p>Tableの行数を指定したい場合、#line:行数と検索バーに入力することで行数が指定できます。検索結果の表示行数を変えたい場合は検索ワードのあとにスペースをあけて#line:行数を指定してください</p>
 <pre><code>例：テーブルを20行にしたい場合の指定
 #line:20
@@ -1142,25 +1132,17 @@ sort -nr Label名
 例：検索結果を100行表示したい場合の指定
 検索ワード #line:100
 </code></pre>
-<h4 id="tag">Tag</h4>
-<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます、以下例ではメーカーAというワードでtagを作っています。add.tagで追加、del.tagで削除できます</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{word}
-(e.g.)
-sudo /usr/local/small-shell/adm/ops add.tag:item.db{メーカーA}
-sudo /usr/local/small-shell/adm/ops del.tag:item.db{メーカーA}
-</code></pre>
-<p><img alt="Screenshot" src="../img/tag_table.png" /></p>
-<h3 id="_12">コンソールによる分析</h3>
+<h3 id="_14">コンソールによる分析</h3>
 <p>メニューからコンソールへ遷移すると、高度なUnixコマンドとして紹介した各種コマンドを使った分析ができます。以下はDataBoxをパソコンというワードでgrepし、件数をwcで集計する例になります
 <div class="highlight"><pre><span></span><code>grep パソコン | wc -l
 </code></pre></div></p>
 <p><img alt="Screenshot" src="../img/console.png" /></p>
-<h4 id="_13">ログ検索</h4>
+<h4 id="_15">ログ検索</h4>
 <p>Consoleではログの検索を行うこともできます。ログ検索であることを明示するため検索実行時は#logを付与してください、以下は "メーカーAノートパソコン #log"と検索した例です
 <div class="highlight"><pre><span></span><code>P123 #log
 </code></pre></div></p>
 <p><img alt="Screenshot" src="../img/console_log.png" /></p>
-<h3 id="_14">ダウンロード / 一括更新</h3>
+<h3 id="_16">ダウンロード / 一括更新</h3>
 <p>DataBoxのデータをWEB上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してみましょう</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
