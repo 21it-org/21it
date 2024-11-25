@@ -979,9 +979,9 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 <h3 id="_7">データ構造の検討</h3>
 <p>BaseAPPは基本的にはDataBox(データボックス)を管理するためのアプリケーションですが、DataBoxは名前のとおりデータを入れるための箱といえます。箱をきちんと設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
 <h4 id="keyvalue">KeyとValue</h4>
-<p>DataBoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataBoxを想定していますが、item_info(アイテム情報)というkeyに対して、"メーカーAのノートパソコン"の情報が返されます。</p>
+<p>DataBoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataBoxを想定していますが、item_info(アイテム情報)という照会(key)に対して、"メーカーAのノートパソコン・・・・"という具体的な値(value)が返されます。</p>
 <pre><code>key   : item_info
-value : メーカーAのノートパソコン(在庫として10個ある)
+value : メーカーAのノートパソコン、在庫として10個ある
 </code></pre>
 <h4 id="_8">正規化とプライマリーキー</h4>
 <p>上記key valueの例ではvalueに様々な情報が含まれますが、複数のkeyで構成したほうが検索性があがるなどデータ管理がしやすくなります。データを複数のkeyで構造的に管理する際、そのデータを一意で識別するためのkeyをprimary key (プライマリーキー)と呼びます。通常primary keyはアイテム名といった一意となるものを設定します</p>
@@ -992,7 +992,7 @@ value : メーカーAのノートパソコン(在庫として10個ある)
 <p>item_infoを複数keyに厳密に分解していった例が以下となります</p>
 <div class="highlight"><span class="filename">keyの分割例(硬いデータ構造)</span><pre><span></span><code>keys  : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
 </code></pre></div>
-<p>上述のデータ構造までkeyを分割してしまうと、PC管理に限定したDataBoxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度の、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう</p>
+<p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataBoxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度の、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう</p>
 <div class="highlight"><span class="filename">フラットなkey分割</span><pre><span></span><code>#在庫データ
 keys   : item_name(primary_key), maker, type, num, note
 label : アイテム名(型番), メーカー, タイプ, 在庫数, メモ
