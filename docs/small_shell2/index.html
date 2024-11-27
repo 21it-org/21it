@@ -327,7 +327,7 @@
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    段階的カスタマイズ
+    アプリの段階的カスタマイズ
   </a>
   
 </li>
@@ -341,10 +341,10 @@
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    アプリ生成
+    スクラッチアプリ生成
   </a>
   
-    <nav class="md-nav" aria-label="アプリ生成">
+    <nav class="md-nav" aria-label="スクラッチアプリ生成">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -400,7 +400,7 @@
       
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
-    スクラッチアプリへのユーザー追加
+    アプリへのユーザー追加
   </a>
   
 </li>
@@ -475,10 +475,10 @@
       
         <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
-    フォームの利用の検討
+    フォーム利用の検討
   </a>
   
-    <nav class="md-nav" aria-label="フォームの利用の検討">
+    <nav class="md-nav" aria-label="フォーム利用の検討">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -601,7 +601,7 @@
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    段階的カスタマイズ
+    アプリの段階的カスタマイズ
   </a>
   
 </li>
@@ -615,10 +615,10 @@
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    アプリ生成
+    スクラッチアプリ生成
   </a>
   
-    <nav class="md-nav" aria-label="アプリ生成">
+    <nav class="md-nav" aria-label="スクラッチアプリ生成">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -674,7 +674,7 @@
       
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
-    スクラッチアプリへのユーザー追加
+    アプリへのユーザー追加
   </a>
   
 </li>
@@ -749,10 +749,10 @@
       
         <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
-    フォームの利用の検討
+    フォーム利用の検討
   </a>
   
-    <nav class="md-nav" aria-label="フォームの利用の検討">
+    <nav class="md-nav" aria-label="フォーム利用の検討">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -818,20 +818,21 @@
 
 <h1 id="small-shell-basic-2">small shell Basic 2</h1>
 <h2 id="_1">スクラッチアプリ</h2>
-<p>前章で説明したBase APP(ベースアプリ)がカスタマイズができないテーブル型のデータ管理に特化したツールであるのに対し、カスタマイズが可能なアプリをsmall shellではScratch APP(スクラッチアプリ)と呼びます。Scratch APPはアプリをカスタマイズしながらチームで情報共有をより効果的におこなうことを目的に設計されていますが、カスタマイズ自体も段階的に行うことができます。いずれの段階でもScratch APPはチームでのデータ共有に貢献しますので、必ずしもコードの編集までできるようになる必要もありません。</p>
+<p>前章で説明したBase APP(ベースアプリ)がカスタマイズができないテーブル型のデータ管理に特化したツールであるのに対し、カスタマイズが可能なアプリをsmall shellではScratch APP(スクラッチアプリ)と呼びます。Scratch APPはアプリをカスタマイズしながらチームで情報共有をより効果的におこなうことを目的に設計されていますが、カスタマイズ自体も段階的に行うことができます。いずれの段階でもScratch APPはチームでのデータ共有に貢献しますので、必ずしもコードの編集までできるようになる必要もありません</p>
+<h3 id="_2">アプリの段階的カスタマイズ</h3>
+<div class="highlight"><pre><span></span><code>1. データを管理するテーブルを生成する                               //small-shell基礎#1
+2. ポータルページを生成・編集し、データとドキュメントを同時にアプリに収納する  //本章で説明
+3. small shell frameworkを理解し、コードを直接編集しカスタマイズする   //small-shell応用
+</code></pre></div>
+<p>スクラッチアプリの利用以外にも、外部ユーザーからの問い合わせ受付のためのフォームアプリを作成したり、公開済みアプリをインポートしたりといったsmall-shellの利用方法もありますので本ページの後半で順次説明します</p>
+<h3 id="_3">ポータルの活用</h3>
+<p>portal(ポータル)というのは、入口といったような意味をもつ英語ですが、Scratch APPではログインした際に表示されるトップページのことを指します。Base APPではログインするとそのままテーブルが表示されますが、テーブルはDataBoxにはいっているデータを表示することはできてもデータそれ自体の位置づけを説明することができません。Scratch APPではポータルをトップページに表示することで、データの位置づけやそれを管理するルールや手続きを記述することができます。それはインターネット上のホームページのように有用な情報共有の方法を提供します</p>
+<h3 id="_4">スクラッチアプリ生成</h3>
+<p>それでは早速アプリ生成を生成していきましょう、ちなみにScratch APPはBase APPのうえに生成されますので事前に前章を参照しBase APPを生成してください。以下はtestという名前の共有パスコード（４桁数字）で認証できるアプリを生成しています。primary databoxというのはアプリが管理するデータボックスですが、前章で生成したitem.dbを指定してみましょう</p>
 <p>スクラッチアプリもgenコマンドでの作成となります</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre>
-<h3 id="_2">段階的カスタマイズ</h3>
-<div class="highlight"><pre><span></span><code>1. データを管理するテーブルを生成する(small-shell基礎#1で説明済み)
-2. ポータルページを生成・編集し、データとドキュメントを同時にアプリに収容する
-3. small shell frameworkを理解し、コードを直接編集しカスタマイズする
-</code></pre></div>
-<h3 id="_3">ポータルの活用</h3>
-<p>portalというのは、入口といったような意味をもつ英語ですが、Scratch APPではログインした際に表示されるトップページのことを指します。Base APPではログインするとそのままtableが表示されますが、tableはDataBoxにはいっているデータを表示することはできてもデータそれ自体の位置づけを説明することができません。Scratch APPではポータルをトップページに表示することで、データの位置づけやそれを管理するルールや手続きを記述することができます。それはインターネット上のホームページのように有用な情報共有の方法を提供します</p>
-<h3 id="_4">アプリ生成</h3>
-<p>それでは早速アプリ生成を生成していきましょう、ちなみにScratch APPはBase APPのうえに生成されますので事前に前章を参照しBase APPを生成してください。以下はtestという名前の共有パスコード（４桁数字）で認証できるアプリを生成しています。primary databoxというのはアプリが管理するデータボックスですが、前章で生成したitem.dbを指定してみましょう
-<div class="highlight"><span class="filename">gen -app 実行例</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
+<div class="highlight"><span class="filename">gen -app 実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
 APP Name: test
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 1
@@ -852,7 +853,7 @@ Shared Passcode: ****
 -----------------------------------------------------------------
 
 Is it OK? (yes | no): yes
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="_5">認証方式</h4>
 <p>Scratch APPでは以下認証方式が実装可能です</p>
 <ul>
@@ -918,18 +919,22 @@ Is it OK? (yes | no): yes
 </tr>
 </tbody>
 </table>
-<h2 id="_10">スクラッチアプリへのユーザー追加</h2>
+<h2 id="_10">アプリへのユーザー追加</h2>
 <p>key認証を選択した場合、ユーザー毎に鍵を生成する必要があります。以下コマンドでユーザー毎の鍵生成URLを作成して下さい</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops app:&lt;アプリ&gt; add.usr:&lt;ユーザー名&gt;
 </code></pre>
 <h2 id="_11">テンプレートの利用</h2>
 <p>small shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam APPをインポートして使ってみましょう。Team APPではチームの共同作業に必要な機能をパッケージ化したsmall shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team APPに管理したいDataBoxを追加することもできます</p>
 <h3 id="team-app-install">Team APP install</h3>
-<p>早速Team APPをインストールしましょう、git cloneした後deploy.shを実行するとアプリとDataBoxが自動生成されますが、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではcloneコマンドをコメントアウトしています。
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>cd $HOME
-#git clone https://github.com/naruoken/small-shell-apps
-cd small-shell-apps/team_app
-sudo ./deploy.sh
+<p>早速Team APPをインストールしましょう、git cloneした後deploy.shを実行するとアプリとDataBoxが自動生成されますが、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではcloneコマンドをコメントアウトしています。</p>
+<p>テンプレートのダウンロードはgit cloneコマンドでおこないます</p>
+<pre><code>git clone https://github.com/naruoken/small-shell-apps
+</code></pre>
+<p>なお、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではcloneコマンドをコメントアウトしています
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME
+$ #git clone https://github.com/naruoken/small-shell-apps
+$ cd small-shell-apps/team_app
+$ sudo ./deploy.sh
 
 # small-shellのディレクトリpathに間違いなければenterを押してください
 small-shell root (/usr/local/small-shell): &lt;enter&gt;
@@ -947,10 +952,12 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 <p>ユーザー生成後に、Initialize URL（鍵の初期化URL)が生成れるのでユーザーへURLを案内しましょう。Base APPと同じくInitialize URLへアクセスするとTeam APPへアクセスするための鍵とリンクが生成されます。Initialize URLは一回アクセスすると無効になるので気をつけてください</p>
 <h3 id="team-app_1">Team APPログイン</h3>
 <p>Team APPへログインして右上のeven(=)メニューをクリックするとメニューが展開します。各種機能をお試しください, Team eventやtaskをカレンダーに一元的に表示できるので便利です。Driveを使うとファイル共有も簡単に行えます</p>
+<div class="highlight"><span class="filename">Team APPログインURL</span><pre><span></span><code>http]//{サーバアドレス}/team
+</code></pre></div>
 <p><img alt="Screenshot" src="../img/team_app_menu.png" /></p>
 <h3 id="_12">データボックスの追加</h3>
 <p>Teamで管理したいDataBoxを追加したい場合も、容易に追加ができます。Team APPのsubAPPとしてアプリケーションを追加しましょう、3.SCRATCH を選択してapp_nameを定義する際に@teamと付けることでTeam APP配下のsub APPという宣言が可能です。その後追加したいDataBoxを指定しましょう。以下ではitem.dbを追加します。Team APP以外のスクラッチアップでも同様に@をつけることでサブアプリの作成とデータボックスの追加が可能です</p>
-<p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
+<p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
 APP Name: item@team
 Subapp Databox: item.db
@@ -967,8 +974,16 @@ Sub APP Databox: item.db
 -----------------------------------------------------------------
 
 Is it OK? (yes | no): yes
-</code></pre></div>
-以上でTeam APPにデータボックスが追加されましたのでブラウザで確認をしてみましょう</p>
+</code></pre></div></p>
+<p>Team APPにデータボックスが追加されましたのでブラウザでメニューを確認をしてみましょう</p>
+<p><img alt="Screenshot" src="../img/team_menu_update.png" /></p>
+<p>もしメニューの文言を更新したい場合は、Team APPについてはportal編集機能がありませんので直接ファイルを編集して更新してください</p>
+<pre><code>nano /var/www/descriptor/common_parts/team_common_menu
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>インポートしたアプリについては諸々編集権限がないため細かいカスタマイズを行うには直接編集が必要になりますが、1から生成したスクラッチアプリであればBase APPでメニュー含めて更新可能です。スクラッチアプリについてはsmall-shell基礎#2をご確認ください</p>
+</div>
 <h2 id="_13">その他操作</h2>
 <h3 id="scratch-apptag">Scratch APPへのtag追加</h3>
 <p>スクラッチアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>
@@ -985,7 +1000,7 @@ sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
 # team APPを指定する場合
 sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test
 </code></pre>
-<h2 id="_14">フォームの利用の検討</h2>
+<h2 id="_14">フォーム利用の検討</h2>
 <p>アカウントを持たない外部ユーザーから所定の入力項目をもとにデータを収集し、DataBoxに格納するために外部Formの作成をすることができます。ここでは外部ユーザーからの意見収集のためのアンケートformの作成を例としてご説明します。</p>
 <h3 id="box">アンケートBox作成</h3>
 <p>初めに収集したいデータを格納するDataBoxを作成しましょう、ここでは架空の製品である"XYZ"についての感想をアンケートとして収集しましょう。その際一意となるkeyは特に想定されないため、primary_keyはhashidとします</p>
