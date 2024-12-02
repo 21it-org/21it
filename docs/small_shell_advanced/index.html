@@ -992,17 +992,17 @@
 
 <h1 id="small-shell-advanced">small shell Advanced</h1>
 <h2 id="_1">アプリ開発</h2>
-<p>small shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。Application Shellの基本構造を理解することで、生成したScratch APPにLinuxコマンドでそのまま処理を追加でき、データを結合、加工することができます。本コースではScratch APPの生成とカスタマイズの流れをご説明します。それでは早速Scratch APPを生成してApplication Shellの構造を読み解いていきましょう。</p>
-<p>Scratch APPを使って作成するアプリケーションのシナリオは以下のとおりです。対象地域で配られたチケットでアクセスできる21it.orgの公開アプリを作成します</p>
+<p>small shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。Application Shellの基本構造を理解することで、生成したScratch APPにLinuxコマンドでそのまま処理を追加でき、データを結合、加工することができます。本コースではScratch APPの生成とカスタマイズの流れをご説明します。それでは早速Scratch APPを生成してApplication Shellの構造を読み解いていきましょう</p>
+<p>Scratch APPを使って作成するアプリケーションのシナリオは以下のとおりです</p>
 <h5 id="web">WEBアプリシナリオ</h5>
 <pre><code>1. アプリへはパスコードもしくは専用URL(QRコード化も可能)でアクセスする
 2. 認証が成功した場合、アプリはイベントの詳細情報を表示する
 3. 管理者はTeam APPでイベント管理をする
 </code></pre>
 <h4 id="team-app">Team APPの生成</h4>
-<p>small shell BasicにてTeam APPはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team APPのinstall</a>を参照のうえ生成してください</p>
+<p>small shell基礎#2にてTeam APPはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team APPのinstall</a>を参照のうえ生成してください</p>
 <h2 id="_2">スクラッチアプリ生成</h2>
-<p>早速 Scratch APPを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。前提としてsmall shell Basicコースで作成したBase APPが作られている必要がありますのでBasicコースを参照して生成しておいてください。</p>
+<p>早速 Scratch APPを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。前提としてsmall-shell基礎#1で作成したBase APPが作られている必要がありますのでsmall-shell基礎#1を参照して生成しておいてください。</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre>
 <p>対話が始まりますが、ここではアプリケーションの名前は21DOJOとします、pass codeは任意の4桁の数字を入力しています
@@ -1021,36 +1021,21 @@ databoxの指定までできると最終確認をもとめられますので、y
 <p><img alt="Screenshot" src="../img/21login.png" /></p>
 <h2 id="app-shell">APP shell基本構造</h2>
 <p>アプリケーションシェルの構造を理解して、スクラッチアプリを更新していきましょう。スクラッチアプリ作成時に以下のようにコードが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">APP shell</a>も参考にしてください</p>
-<div class="highlight"><span class="filename">実行例(続き)</span><pre><span></span><code>------------------------------------------------------------
-SCRATCH APP is successfully generated
-Access URL: http://{サーバアドレス}/21DOJO
-------------------------------------------------------------
-Following is generated codes that you can update.
-You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
-/var/www/cgi-bin/auth.21DOJO
-/var/www/cgi-bin/21DOJO
-/var/www/cgi-bin/21DOJO_css
-/var/www/bin/21DOJO_del.sh  /var/www/bin/21DOJO_get.sh         /var/www/bin/21DOJO_main.sh    /var/www/bin/21DOJO_set.sh
-/var/www/bin/21DOJO_dl.sh   /var/www/bin/21DOJO_log_viewer.sh  /var/www/bin/21DOJO_page_links.sh  /var/www/bin/21DOJO_table.sh
-/var/www/descriptor/21DOJO_auth_form.html.def  /var/www/descriptor/21DOJO_get_new_incf.html.def  /var/www/descriptor/21DOJO_get_rw_incf.html.def  /var/www/descriptor/21DOJO_main.html.incmd.def
-/var/www/descriptor/21DOJO_get_err.html.def    /var/www/descriptor/21DOJO_get_ro.html.def    /var/www/descriptor/21DOJO_log_viewer.html.def   /var/www/descriptor/21DOJO_set_err.html.def
-/var/www/descriptor/21DOJO_get_new.html.def    /var/www/descriptor/21DOJO_get_rw.html.def    /var/www/descriptor/21DOJO_main.html.def     /var/www/descriptor/21DOJO_table.html.def
-</code></pre></div>
 <h3 id="_4">ディレクトリ構造</h3>
 <p>コードは3つのディレクトリに格納されます、以下のとおり1.cgi-bin 2.bin 3.descriptorにコードが格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のアクションスクリプトを呼び出し、アクションスクリプトがdescription配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
-<pre><code>/var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
-/var/www/bin         # 応答処理をAction scriptとして記述、DataBoxへの接続や分岐処理をする
-/var/www/descriptor  # HTML及びCSSの定義を配置
+<pre><code>1. /var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
+2. /var/www/bin         # 応答処理をAction scriptとして記述、DataBoxへの接続や分岐処理をする
+3. /var/www/descriptor  # HTML及びCSSの定義を配置
 </code></pre>
 <h3 id="url">URL構造</h3>
-<p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.$APPというプログラムへサーバ側でリダイレクト(転送)され認証画面が表示されますのでアプリ生成時に設定したパスコードを入力してください。</p>
+<p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.21DOJOというプログラムへサーバ側でリダイレクト(転送)され認証画面が表示されますのでアプリ生成時に設定したパスコードを入力してください</p>
 <pre><code>http://{サーバアドレス}/21DOJO --&gt; 転送 --&gt; http://{サーバアドレス}/cgi-bin/auth.21DOJO
 </code></pre>
 <p>認証が成功した場合、コントローラーへ自動で接続されます。ログイン後のURLをブラウザからコピーしてみてみましょう、URLはsession情報やsessionを保証するpinコードを含んでいます。また、req=mainという記述も確認できると思いますが、これはmainページのリクエストを意味します</p>
 <div class="highlight"><span class="filename">コピーしたURL(例)</span><pre><span></span><code>http://{サーバアドレス}/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
 </code></pre></div>
 <h3 id="query-string">QUERY STRING</h3>
-<p>QUERY STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY STRINGをURLに連結していくことができます。</p>
+<p>QUERY STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY STRINGをURLに連結していくことができます</p>
 <h3 id="_5">コントローラー</h3>
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のactionスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="_6">ルーティング</h4>
@@ -1107,7 +1092,7 @@ esac
 exit 0
 </code></pre></div>
 <h4 id="parse">Parse (パース)</h4>
-<p>ルーティングに至る前処理としてクライアントから送信(POST) された要求を解析するプログラムとしてparse.shを使用します。controllerに、例えばitem.dbのitem_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にitem_nameというファイルを作り、そこにPOSTされたアイテム名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
+<p>ルーティングに至る前処理としてクライアントから送信(POST) された要求を解析するプログラムとしてparse.shが使用されます。controllerに、例えばitem.dbのitem_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にitem_nameというファイルを作り、そこにPOSTされたアイテム名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>QUERY STRINGとPOSTはともにサーバにクライアントからデータを渡しますがそれぞれ方法が異なります。QUERY STRINGは前述のとおりURLに埋め込まれていますが、POSTデータは主にインプットフォームを通じてデータ送信されます</p>
@@ -1148,7 +1133,7 @@ exit 0
 <h2 id="_8">アプリのカスタマイズ</h2>
 <p>大枠の構造を理解いただいたところで、さっそくアプリのカスタマイズを行っていきましょう。</p>
 <h3 id="key">keyの再定義</h3>
-<p>まずは、今回の目的に応じてDataBoxを拡張しましょう、Team APPのデフォルトのevents定義だと以下のとおり表記が英語だったりURLが追加できなかったりするため、genコマンドで再定義しましょう</p>
+<p>まずは今回の目的に応じてDataBoxを拡張しましょう。Team APPのデフォルトのevents定義から今回作成したアプリに適した小ンテンツになるよう、genコマンドで再定義していきましょう</p>
 <h6 id="_9">新規イベント登録画面</h6>
 <p><img alt="Screenshot" src="../img/org_event.png" /></p>
 <p>keyの追加削除にはgenコマンドを使用します。不要なkeyをまずは消しましょう。
@@ -1171,19 +1156,20 @@ Data Type (text | select | radio | checkbox | email | num | tel | date | date-ti
 Require to input each time? (yes | no): no
 Do you want to add more column to dataset ? (yes | no) : no
 </code></pre></div>
-最終確認が求められますので問題なければyesと解答してkeyの追加を完了しましょう。再度イベント登録画面にいくとフィールドが更新されています</p>
+最終確認が求められますので問題なければyesと解答してkeyの追加を完了しましょう。genコマンドが完了次第、再度イベント登録画面にいくとフィールドが更新されていることを確認しましょう。その後、テスト用のeventを登録してください</p>
 <h6 id="_10">更新後のイベント追加画面</h6>
 <p><img alt="Screenshot" src="../img/new_event.png" /></p>
 <h3 id="_11">ポータルのアップデート</h3>
 <p>続いて21DOJOへのログイン時に最初に表示されるポータルページに最新のイベント情報が出てくるようにしましょう</p>
 <h4 id="html">HTML編集</h4>
-<p>今回のポータルページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。一度descriptionを全て消して、以下を貼り付けて更新してください。
+<p>今回のポータルページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。Base APPログイン後、21DOJO.md.defデータボックスを選択して定義を更新しましょう。
+以下の通りdescriptionを全て消して以下を貼り付けて更新してください。
 <img alt="Screenshot" src="../img/update_portal.png" /></p>
 <div class="highlight"><span class="filename">サンプルHTMLコード</span><pre><span></span><code>&lt;div class=&quot;flex-box&quot;&gt;
   &lt;div class=&quot;potal-description&quot;&gt;
-    &lt;h1&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h1&gt;
-    &lt;h1&gt;記載のURLからご参加いただければと思います&lt;/h1&gt;
-    &lt;a href=&quot;./21DOJO?e81cc0f25cc930a2e7a8e0f01bfe57cfe2f5491ee77c1e015a943a5fdabdb844&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
+    &lt;h2&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h2&gt;
+    &lt;h2&gt;記載のURLからご参加いただければと思います&lt;/h2&gt;
+    &lt;a href=&quot;./21DOJO?%%params&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
   &lt;/div&gt;
   &lt;div class=&quot;event&quot;&gt;
     &lt;div class=&quot;app-form&quot;&gt;
@@ -1258,19 +1244,24 @@ cat /var/www/descriptor/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&
 successfully set attr peremission 21DOJO/21DOJO.app{ro}&quot;
 </code></pre></div>
 <h3 id="key_1">閲覧keyの制限</h3>
-<p>管理目的以外で使用しないkeyは21DOJOアプリからは閲覧できないようkeys=allをコメントアウトして閲覧可能なkeyを制限しましょう</p>
+<p>管理目的以外で使用しないkeyは21DOJOアプリからは閲覧できないようkeys=allをコメントアウトして閲覧可能なkeyを制限しましょう。</p>
+<p>以下はkey制限前のテーブルイメージです
+<img alt="Screenshot" src="../img/before_key_edit.png" /></p>
+<p>keyを制限するため、/bin配下のアクションスクリプトを編集します
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>sudo nano /var/www/bin/21DOJO_table.sh
 --対象コード--
 #keys=all
 keys=name,start,end,url,detail
 ---------
-</code></pre></div>
+</code></pre></div></p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>sudo nano /var/www/bin/21DOJO_get.sh
 --対象コード--
 #keys=all
 keys=name,start,end,url,detail
 ---------
 </code></pre></div>
+<p>コード編集後にkeyが制限されたことを確認してください
+<img alt="Screenshot" src="../img/after_key_edit.png" /></p>
 <h3 id="url_1">チケットURL整備</h3>
 <p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みアクセスしてみましょう、そうすることで認証画面なしで自動ログインが可能です</p>
 <h4 id="url_2">URLデザイン</h4>
