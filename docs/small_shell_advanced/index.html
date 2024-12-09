@@ -1003,8 +1003,8 @@
 <p>small shell基礎#2にてTeam APPはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team APPのinstall</a>を参照のうえ生成してください</p>
 <h2 id="_2">スクラッチアプリ生成</h2>
 <p>早速 Scratch APPを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。前提としてsmall-shell基礎#1で作成したBase APPが作られている必要がありますのでsmall-shell基礎#1を参照して生成しておいてください。</p>
-<pre><code>sudo /usr/local/small-shell/adm/gen -app
-</code></pre>
+<div class="highlight"><span class="filename">生成コマンド</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
+</code></pre></div>
 <p>対話が始まりますが、ここではアプリケーションの名前は21DOJOとします、pass codeは任意の4桁の数字を入力しています
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
@@ -1017,12 +1017,30 @@ Do you want to enable IP whitelisting for this APP? (yes | no): no
 前章同様、アプリはshared passを選択しますがもちろん他の認証方式も選択可能です。
 databoxの指定までできると最終確認をもとめられますので、yesと回答しましょう</p>
 <h4 id="_3">ログイン画面の確認</h4>
-<p>アプリケーションが生成されたのでアクセスしてみましょう</p>
+<p>アプリケーションが生成されたのでアクセスしてみましょう  <br />
+(アクセスURLはスクラッチアプリ生成後に出力されます)</p>
 <p><img alt="Screenshot" src="../img/21login.png" /></p>
 <h2 id="app-shell">APP shell基本構造</h2>
-<p>アプリケーションシェルの構造を理解して、スクラッチアプリを更新していきましょう。スクラッチアプリ作成時に以下のようにコードが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">APP shell</a>も参考にしてください</p>
+<p>アプリケーションシェルの構造を理解して、スクラッチアプリを更新していきましょう。スクラッチアプリ作成時に以下のようにコードを含むファイルが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">APP shell</a>も参考にしてください</p>
+<div class="highlight"><span class="filename">生成されたファイル</span><pre><span></span><code>------------------------------------------------------------
+SCRATCH APP is successfully generated
+Access URL: http://{サーバアドレス}/21DOJO
+------------------------------------------------------------
+Following is generated codes that you can update.
+You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
+/var/www/cgi-bin/auth.21DOJO
+/var/www/cgi-bin/21DOJO
+/var/www/cgi-bin/21DOJO_css
+/var/www/bin/21DOJO_del.sh      /var/www/bin/21DOJO_get.sh             /var/www/bin/21DOJO_main.sh            /var/www/bin/21DOJO_set.sh
+/var/www/bin/21DOJO_dl.sh       /var/www/bin/21DOJO_log_viewer.sh  /var/www/bin/21DOJO_page_links.sh  /var/www/bin/21DOJO_table.sh
+/var/www/descriptor/21DOJO_auth_form.html.def     /var/www/descriptor/21DOJO_get_new_master_failed.html.def  /var/www/descriptor/21DOJO_log_viewer.html.def
+/var/www/descriptor/21DOJO_del_err.html.def       /var/www/descriptor/21DOJO_get_ro.html.def                 /var/www/descriptor/21DOJO_main.html.def
+/var/www/descriptor/21DOJO_get_err.html.def       /var/www/descriptor/21DOJO_get_rw.html.def                 /var/www/descriptor/21DOJO_main.html.incmd.def
+/var/www/descriptor/21DOJO_get_new.html.def       /var/www/descriptor/21DOJO_get_rw_incf.html.def            /var/www/descriptor/21DOJO_set_err.html.def
+/var/www/descriptor/21DOJO_get_new_incf.html.def  /var/www/descriptor/21DOJO_get_rw_master_failed.html.def   /var/www/descriptor/21DOJO_table.html.def
+</code></pre></div>
 <h3 id="_4">ディレクトリ構造</h3>
-<p>コードは3つのディレクトリに格納されます、以下のとおり1.cgi-bin 2.bin 3.descriptorにコードが格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のアクションスクリプトを呼び出し、アクションスクリプトがdescription配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
+<p>コードは以下のとおり1.cgi-bin 2.bin 3.descriptorに格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のアクションスクリプトを呼び出し、アクションスクリプトがdescription配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
 <pre><code>1. /var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
 2. /var/www/bin         # 応答処理をAction scriptとして記述、DataBoxへの接続や分岐処理をする
 3. /var/www/descriptor  # HTML及びCSSの定義を配置
@@ -1035,11 +1053,11 @@ databoxの指定までできると最終確認をもとめられますので、y
 <div class="highlight"><span class="filename">コピーしたURL(例)</span><pre><span></span><code>http://{サーバアドレス}/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
 </code></pre></div>
 <h3 id="query-string">QUERY STRING</h3>
-<p>QUERY STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数とmainという値として展開します、また&amp;を付けることで複数のQUERY STRINGをURLに連結していくことができます</p>
+<p>QUERY STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数に格納されるmainという値として展開します、また&amp;を付けることで複数のQUERY STRINGをURLに連結していくことができます</p>
 <h3 id="_5">コントローラー</h3>
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のactionスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="_6">ルーティング</h4>
-<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase分をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY STRINGとして渡されたパラメーターを変数に格納して後続処理に渡します</p>
+<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase文をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY STRINGとして渡されたパラメーターを変数に格納して後続処理に渡します</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo tail -48 /var/www/cgi-bin/21DOJO
 
 #----------------------------
@@ -1092,14 +1110,19 @@ esac
 exit 0
 </code></pre></div>
 <h4 id="parse">Parse (パース)</h4>
-<p>ルーティングに至る前処理としてクライアントから送信(POST) された要求を解析するプログラムとしてparse.shが使用されます。controllerに、例えばitem.dbのitem_nameをPOSTした場合、controllerは/var/www/tmp/$session配下にitem_nameというファイルを作り、そこにPOSTされたアイテム名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
+<p>ルーティングに至る前処理としてクライアントから送信(POST) された要求を解析するプログラムとしてparse.shが使用されます。controllerに、例えばitem.dbというデータボックスの主keyであるitem_nameの値をPOSTした場合、controllerは/var/www/tmp/$session配下にitem_nameというファイルを作り、そこにPOSTされたアイテム名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>QUERY STRINGとPOSTはともにサーバにクライアントからデータを渡しますがそれぞれ方法が異なります。QUERY STRINGは前述のとおりURLに埋め込まれていますが、POSTデータは主にインプットフォームを通じてデータ送信されます</p>
+<p>QUERY STRINGとPOSTはともにサーバにクライアントからデータを渡しますがそれぞれ方法が異なります。QUERY STRINGは前述のとおりURLに埋め込まれていますが、POSTデータは主にフォームを通じてデータ送信されます</p>
 </div>
 <h3 id="_7">アクションスクリプト</h3>
-<p>コントローラーがルーティングを通じて呼び出すのがアクションスクリプトですが、ユーザーへの応答を返すのはアクションスクリプトになります。主な処理としてはDATA_shellへ接続してデータを抽出したうえで所定のHTML descriptorを読み込みそのまま返します。その際、%%tagについてsedで置き換えるという処理を行っています。例として21DOJO_get.shの中身を見てみましょう、いくつかの%%tagがありますがデータは主に%%datasetの中にsedで埋め込まれます</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo tail -18 /var/www/bin/21DOJO_get.sh
+<p>コントローラーがルーティングを通じて呼び出すのがアクションスクリプトですが、ユーザーへの応答を返すのはアクションスクリプトになります。主な処理としてはデータシェルへ接続して特定のidを持つデータを抽出したうえで所定のHTML descriptorのHTMLファイルに動的な情報を埋め込んで返します。その際、動的情報の埋め込みとしては%%タグ(印)をsedで置き換えるという処理を行っています。    </p>
+<p>データシェルへの接続部分はget.shの中の以下処理となります
+<div class="highlight"><span class="filename">DATA_shellへの接続とデータの抽出</span><pre><span></span><code>$ grep DATA_SHELL /var/www/bin/21DOJO_get.sh | grep html
+    $DATA_SHELL databox:$databox action:get id:$id keys:$keys format:html_tag &gt; /var/www/tmp/$session/dataset
+</code></pre></div></p>
+<p>また、HTMLを還す際は以下のようにsedで%%datasetタグの中に上記で抽出した情報を埋め込みます</p>
+<div class="highlight"><span class="filename">タグへの情報の埋め込み</span><pre><span></span><code>$ sudo tail -18 /var/www/bin/21DOJO_get.sh
 
 # render HTML
 cat /var/www/descriptor/${view} | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
@@ -1121,8 +1144,8 @@ fi
 exit 0
 </code></pre></div>
 <h3 id="html-descriptor">HTML descriptor</h3>
-<p>アクションスクリプトが呼び出しているHTML descriptorも見てみましょう。get用のActoin scriptはget関連のHTMLディスクリプターを呼び出しますが、%%datasetの前後4行を抽出すると以下のようになっています。基本的には純粋なHTMLに所定のtagを埋め込みデータ変換しながらクライアントに要求を返すというのがsmall shellの基本的な処理ロジックになります
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cat /var/www/descriptor/21DOJO_get_rw.html.def  | grep -2 %%dataset | sed -r &quot;s/^(.*)&lt;/&lt;/g&quot;
+<p>アクションスクリプトが呼び出しているHTML descriptorも見てみましょう。HTMLの以下%%dataset部分にアクションスクリプトがデータを埋め込みます
+<div class="highlight"><span class="filename">HTML内の%%datasetタグ</span><pre><span></span><code>$ cat /var/www/descriptor/21DOJO_get_rw.html.def  | grep -2 %%dataset | sed -r &quot;s/^(.*)&lt;/&lt;/g&quot;
 
 &lt;form method=&quot;post&quot; action=&quot;./21DOJO?%%params&amp;req=set&amp;id=%%id&quot; onclick=&quot;document.charset=&#39;utf-8&#39;;&quot;&gt;
 &lt;ul&gt;
@@ -1133,7 +1156,7 @@ exit 0
 <h2 id="_8">アプリのカスタマイズ</h2>
 <p>大枠の構造を理解いただいたところで、さっそくアプリのカスタマイズを行っていきましょう。</p>
 <h3 id="key">keyの再定義</h3>
-<p>まずは今回の目的に応じてDataBoxを拡張しましょう。Team APPのデフォルトのevents定義から今回作成したアプリに適した小ンテンツになるよう、genコマンドで再定義していきましょう</p>
+<p>まずは今回の目的に応じてDataBoxを拡張しましょう。Team APPのデフォルトのevents定義から今回作成したアプリに適したコンテンツになるよう、genコマンドで再定義していきましょう</p>
 <h6 id="_9">新規イベント登録画面</h6>
 <p><img alt="Screenshot" src="../img/org_event.png" /></p>
 <p>keyの追加削除にはgenコマンドを使用します。不要なkeyをまずは消しましょう。
@@ -1178,7 +1201,7 @@ Do you want to add more column to dataset ? (yes | no) : no
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre></div>
-<p>以下が更新後の画面です、現時点で%%event tagが埋め込まれていないためそのまま%%event tagが表示されています、またeventの位置があまりよくないためcssをつかって位置を調整しましょう
+<p>以下が更新後の画面です、現時点で%%eventタグが埋め込まれていないためそのまま%%eventタグが表示されています、またeventの位置があまりよくないためcssをつかって位置を調整しましょう
 <img alt="Screenshot" src="../img/portal_1.png" /></p>
 <p>アプリ毎のcss定義については直接編集が可能です</p>
 <pre><code>sudo nano /var/www/descriptor/21DOJO.css.def
@@ -1196,7 +1219,7 @@ Do you want to add more column to dataset ? (yes | no) : no
 位置が以下のように調整できたことを確認してください
 <img alt="Screenshot" src="../img/portal_2.png" /></p>
 <h4 id="mainsh">main.sh</h4>
-<p>続いて21DOJOのmain.shにて%%event tagの変換処理をいれます、”#以下行を追加”とある処理を追加し、"#以下行をコメントアウト"と記載のある箇所はコメントアウトしてください。
+<p>続いて21DOJOのmain.shにて%%eventタグの変換処理をいれます。”#以下行を追加”とある処理を追加し、"#以下行をコメントアウト"と記載のある箇所はコメントアウトしてください。
 具体的な処理としてはdataboxの最新の1行目のエントリーをhead -1でサーチして、idを取得、データをeventファイルに書き出したのちsedで%%eventを上書しています
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo nano /var/www/bin/21DOJO_main.sh
 
@@ -1308,6 +1331,8 @@ $ sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-*.json
 <h4 id="graph_2">Graphの削除</h4>
 <p>Graphを削除したい場合は、統計データを蓄積しているstatisticsディレクトリで直接データを消してください</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls /usr/local/small-shell/util/statistics/graph
+countup_s_20241202_db_survey.box_impression_filtered.png　countup_s_20241202_db_survey.box{2024-12-02_調査結果}impression_filtered.pn
+
 $ sudo rm /usr/local/small-shell/util/statistics/graph/countup_s_20241202_db_survey.box_impression_filtered.png
 $ sudo rm /usr/local/small-shell/util/statistics/rawdata/countup_s_20241202_db_survey.box_impression_filtered.csv
 </code></pre></div>
