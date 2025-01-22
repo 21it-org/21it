@@ -1122,6 +1122,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      パッケージを管理する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ssh" class="md-nav__link">
     <span class="md-ellipsis">
       SSHでログインする
@@ -1131,7 +1140,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_55" class="md-nav__link">
+  <a href="#_56" class="md-nav__link">
     <span class="md-ellipsis">
       オートメーション
     </span>
@@ -1187,7 +1196,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_56" class="md-nav__link">
+  <a href="#_57" class="md-nav__link">
     <span class="md-ellipsis">
       体系的な学習
     </span>
@@ -2185,6 +2194,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      パッケージを管理する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ssh" class="md-nav__link">
     <span class="md-ellipsis">
       SSHでログインする
@@ -2194,7 +2212,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_55" class="md-nav__link">
+  <a href="#_56" class="md-nav__link">
     <span class="md-ellipsis">
       オートメーション
     </span>
@@ -2250,7 +2268,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_56" class="md-nav__link">
+  <a href="#_57" class="md-nav__link">
     <span class="md-ellipsis">
       体系的な学習
     </span>
@@ -2918,6 +2936,21 @@ set nocindent
 <p>sudoのオプションとして他のユーザーにsudoすることもできます、後述のsmall-shellプログラムでは頻繁にsmall-shellユーザー権限での実行を行いますがその際は、sudoに-uオプションをつけて実行します</p>
 <pre><code>sudo -u small-shell #特定ユーザー権限でのコマンド実行
 </code></pre>
+<h3 id="_55">パッケージを管理する</h3>
+<p>Debian系(ubuntuなど)のLinuxではaptコマンドを用いてインストールされているソフトウェア（パッケージ）を管理できます。以下はソフトウェアのリストをアップデートして、ソフトウェアをインストール or アンインストールする例です</p>
+<pre><code># リストアップデート
+sudo apt update
+sudo apt list
+
+# インストール
+sudo apt install パッケージ名
+
+# アンインストール
+sudo apt uninstall パッケージ名
+
+# インストールされているパッケージのリストを表示
+sudo apt list --installed
+</code></pre>
 <h3 id="ssh">SSHでログインする</h3>
 <p>クラウド環境のLinuxにログインする場合、ssh(エスエスエイチ)プロトコルを使ってLinuxにログインしましょう。localにインストールしているubuntuで以下コマンドを実行してください</p>
 <pre><code>ssh -l ユーザー名 サーバIP
@@ -2926,7 +2959,7 @@ set nocindent
 <p class="admonition-title">Note</p>
 <p>クラウド環境でLinuxを使う場合はパスワード認証は極力使わず、証明書認証を使いましょう。併せてクラウド管理コンソールなどで特定のIPアドレスからの接続のみ許可することを推奨します</p>
 </div>
-<h3 id="_55">オートメーション</h3>
+<h3 id="_56">オートメーション</h3>
 <p>Unix/Linuxで処理の自動化を行う際にcron(クーロン)を使います。cron自体は非常にすぐれたツールですが、エンジニア以外には少し使い勝手が難しい部分もあります。後述のsmall shellを利用することで、登録や結果の確認が容易になりますのでぜひsmall shell応用コースで登録方法を確認してください</p>
 <h2 id="web">Web系コマンド</h2>
 <p>Web系システムの開発を行う際に、以下コマンドを知っていると非常に有用です。それぞれ奥深いコマンドですので、ここで使い方を網羅的に説明することは避けますが、APIを使う場合はcurlを、jsonフォーマットを扱う際はjqを、というように覚えておいてもらえると良いと思います。</p>
@@ -2939,7 +2972,7 @@ wget https://21it.org
 <p>curl(カール)もwgetと同様にWEBページを取得するコマンドですが、多用なオプションを有するため、例えば他サイトのAPIと連携する際に利用することができます。curlを使ったAPI実装例が豊富に紹介されています。ぜひ自分で一度curlコマンドを調べてみて使ってみてください    </p>
 <h3 id="jq">{jq}</h3>
 <p>jq(ジェイキュー)はWEB上でのデータ交換の際に使われるjsonフォーマットのデータを扱うためのコマンドです。コマンドラインで容易にjsonデータを解析できるためWEBサイトの開発の際に便利に使えます。curlとjqを組み合併せることで他サイトとの連携が容易に実装できます。こちらもプログラムを開発をするなかで身に着けるのが良いでしょう</p>
-<h2 id="_56">体系的な学習</h2>
+<h2 id="_57">体系的な学習</h2>
 <p>Linuxについてより深く、体系的に理解したい場合はLPICの教材などで学習することをお勧めします。LPIC1相当の知識があればLinuxを扱うには十分だといえます</p>
 
 
