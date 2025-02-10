@@ -2734,42 +2734,39 @@ ghr
 <p>UNIX/Linuxのコマンドライン上で特別な意味をもった文字Meta charactor（メタキャラクター）を扱うことができます。この使用法はワイルドカードや正規表現と呼ばれますが、ここでは単純に特別な意味合いを持った文字と考えましょう、代表的なものを以下紹介します。メタキャラクターを使うことで、非常に柔軟な検索や文字変換、プログラムの際の条件分岐が行えるようになります。</p>
 <h4 id="_21">アスタリスク</h4>
 <p>"*"は任意の文字列を意味しますが、例えばHello Woldという文字列は、アスタリスクを用いて以下のような表現に置き換えられます</p>
-<pre><code>Hello World (メタ文字なし)
+<div class="highlight"><span class="filename">アスタリスク使用例</span><pre><span></span><code>Hello World (メタ文字なし)
 
 使用例 
 grep H* test.txt  　 # test.txt内でHから始まる任意の文字列を検索、Hello Wolrdを含む行もヒット
 grep H*d test.txt  　# test.txt内でHから始まりdで終わる任意の文字列で、Hello Worldむ行もヒット
-grep Hello *    　   # Helloという単語を含むすべての"ファイル"を検索（対象ファイル自体をアスタリスクにしています）
-</code></pre>
+grep Hello *    　   # Helloという単語を含むすべての&quot;ファイル&quot;を検索（対象ファイル自体をアスタリスクにしています）
+</code></pre></div>
 <h4 id="_22">行頭</h4>
 <p>"^"ハットはUNIXのメタ文字としては行の最初を意味します、これを使うことで例えば文章の最初がHelloではじまる行などを容易に検索でき、非常に便利です。検索例などは後続のセクションでご確認いただけます</p>
-<pre><code>使用例 
-grep ^Hello test.txt　# test.txt内で行頭がHelloから始まる行を検索
-</code></pre>
+<div class="highlight"><span class="filename">行頭の指定例</span><pre><span></span><code>grep ^Hello test.txt　# test.txt内で行頭がHelloから始まる行を検索
+</code></pre></div>
 <h4 id="_23">行末</h4>
 <p>"$"をパラメーターの最後に記載した場合行末という意味を持ちます。単体で使う場合や最後に持ってきた場合行末を意味するようになります（パラメーターの最初につけると変数という別の意味を持ってきますので注意して下さい)</p>
-<pre><code>使用例
-grep World$ test.txt #test.txt内でWorldという文字列で終わる行を検索
-</code></pre>
+<div class="highlight"><span class="filename">行末の指定例</span><pre><span></span><code>grep World$ test.txt #test.txt内でWorldという文字列で終わる行を検索
+</code></pre></div>
 <h4 id="_24">任意の一文字</h4>
 <p>"."は正規表現を使うコマンドでは任意の位置文字を表します</p>
-<pre><code>使用例
-grep H.llo test.txt #Hの次の文字は任意となりHelloもヒットします
-</code></pre>
+<div class="highlight"><span class="filename">使用例</span><pre><span></span><code>grep H.llo test.txt #Hの次の文字は任意となりHelloもヒットします
+</code></pre></div>
 <h4 id="_25">無効化</h4>
 <p>各メタ文字に\をつけることで、その意味合いを無効化することができます</p>
-<pre><code>\* (メタキャラクターとしてのアスタリスクの無効化、アスタリスクは単なる文字に戻ります)
-</code></pre>
+<div class="highlight"><span class="filename">無効化例</span><pre><span></span><code>\* (メタキャラクターとしてのアスタリスクの無効化、アスタリスクは単なる文字に戻ります)
+</code></pre></div>
 <h3 id="_26">その他の特殊文字</h3>
 <h4 id="_27">改行</h4>
 <p>Unixでは改行コードは\nを使用します、これに対してwindowsの改行コードは\r\nです、windowファイルをunix/linuxにコピーする場合改行コードの変換をしましょう</p>
-<pre><code>\n
-</code></pre>
+<div class="highlight"><span class="filename">改行コード</span><pre><span></span><code>\n
+</code></pre></div>
 <h4 id="_28">文字区切り</h4>
 <p>""を使うことで、どこまでが文字列かをコマンドに対して明示することができるようになります。スペースを含む単語を検索したい場合などに便利です</p>
-<pre><code>使用例 (""をつけない場合スペースを含むためエラーになります）
-grep "Hello World" test.txt #test.txt内でHello Worldという単語を含む行を検索
-</code></pre>
+<div class="highlight"><span class="filename">ダブルクオート使用例</span><pre><span></span><code>grep &quot;Hello World&quot; test.txt #test.txt内でHello Worldという単語を含む行を検索
+(&quot;&quot;をつけない場合スペースを含むためエラーになります）
+</code></pre></div>
 <h2 id="vi">高度なエディター (vi)</h2>
 <p>vi(ブイアイ)は高度なコマンドライン機能を持ったエディタで、Unix/Linuxでは非常に歴史あるエディタです。慣れると非常に高いパフォーマンスを発揮する一方で、習得には少し訓練を要します。nanoで十分という方は読み飛ばしていただいて構いませんが、挑戦できる方はぜひ手を動かして試してみてください。以下はtest.txtというファイルをviで編集する例です</p>
 <pre><code>vi test.txt
@@ -2784,14 +2781,14 @@ grep "Hello World" test.txt #test.txt内でHello Worldという単語を含む�
 <p>viを最初に起動するとコマンドモードになります、test.txtにはまだ何も記載されていないと思いますので早速インサートモードへ移行しましょう</p>
 <h4 id="_32">インサートモードへ移行</h4>
 <p>インサートモードに移行するためにはコマンドモードでiとうつか、oと打つのが通常です。iと打った場合はカーソルのある行を直接編集できるようになります。また、oと打った場合は行の追加になります</p>
-<pre><code>#編集
+<div class="highlight"><pre><span></span><code>#編集
 i
 
 #行の挿入
 o
-</code></pre>
+</code></pre></div>
 <p>インサートモードへ移行して、1行目にabcという文字をファイルに追記し、2行目にdefという文字を追記しましょう</p>
-<pre><code>1. vi test.txt
+<div class="highlight"><pre><span></span><code>1. vi test.txt
 2. iとうつ
 3. abcを追記してEnter
 4. defという文字を追記
@@ -2801,7 +2798,7 @@ vi test.txt
 abc
 def
 --------
-</code></pre>
+</code></pre></div>
 <h4 id="_33">コマンドモードへ移行</h4>
 <p>文字が追記できたらコマンドモードへ戻りましょう、Escapeキーを打つことでコマンドモードへ戻ることができます。</p>
 <pre><code>Esc

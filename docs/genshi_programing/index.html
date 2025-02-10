@@ -1259,9 +1259,8 @@ $ echo &quot;World&quot;
 World
 </code></pre></div>
 <p>上述の処理をスクリプト化すると以下コードの処理のようになります。手動実行していた処理が固められ、まとめて実施が可能になります。それではスクリプトファイルをnanoコマンドで作成してきましょう</p>
-<pre><code># スクリプトの作成
-nano echo.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano echo.sh
+</code></pre></div>
 <p>nanoで開いた新規ファイルに以下echo.shのコードの内容を貼り付けて保存して下さい
 <div class="highlight"><span class="filename">echo.shのコード</span><pre><span></span><code>#!/bin/bash
 echo &quot;Hello&quot;
@@ -1278,9 +1277,8 @@ World
 </code></pre></div>
 <h2 id="_2">条件分岐</h2>
 <p>shell scriptは上述のとおり単に処理を並べて書いていくだけでも処理を自動化できますが、様々な条件のもと処理を分岐させ、パターンに応じた望ましい処理を展開することができます。以下例ではスクリプトに対してHelloというパラメーターが渡されると、Worldと返す分岐を作成しています。その際渡されるパラメーターはVALUEという変数に格納されています。変数やif文については後述します</p>
-<pre><code>#スクリプトファイル作成
-nano hello.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano hello.sh
+</code></pre></div>
 <div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
 
 VALUE=$1
@@ -1324,9 +1322,8 @@ $
 <p>条件分岐のためには論理演算を多用します。[]内で実行される論理演算では、各種判定をおこない、結果に応じてif文やwhile文が分岐を制御します</p>
 <h4 id="_6">文字の比較</h4>
 <p>単純に右側と左側の文字列が同じであるかを判定する場合、単に=を使います。=の場合は同じ値である場合に真となり、!=はその逆の異なる値の場合に真とします</p>
-<pre><code>#同じ場合に真
-[ "文字列A" = "文字列B" ]
-</code></pre>
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>[ &quot;文字列A&quot; = &quot;文字列B&quot; ]
+</code></pre></div>
 <p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。
 まずは変数にそれぞれ異なる値を格納しましょう</p>
 <pre><code>WORD_A="abc"
@@ -1354,7 +1351,7 @@ $ echo $?
 </div>
 <h4 id="_7">数値の比較</h4>
 <p>数値どうしの判定に際してはいくつか使用可能なオプションがあります、以下をご確認ください。ちなみにshellの変数には特に何も意識せず変数には数値も文字も入れられます</p>
-<pre><code># equal, 同じ値の場合に真
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># equal, 同じ値の場合に真
 [ 数値A -eq 数値B ]
 
 # equalの逆、異なる値の場合に真
@@ -1371,15 +1368,15 @@ $ echo $?
 
 # greater than or equal, 左側の数値が右側の数値と同値かそれより大きければ真
 [ 数値A -ge 数値B ]
-</code></pre>
+</code></pre></div>
 <h4 id="_8">存在判定</h4>
 <p>ファイルやディレクトリの存在有無で分岐することも可能です、例えば全行程の処理が終わった場合にフラグファイルを作成し、そのファイルが存在すれば後工程に進むといったプログラムを書くことができます</p>
-<pre><code># ファイルが存在する場合に真
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># ファイルが存在する場合に真
 [ -f 対象ファイルPATH ]
 
 # ディレクトリが存在する場合に真
 [ -d 対象ディレクトリPATH ]
-</code></pre>
+</code></pre></div>
 <p>以下はdoneというファイルがあるかどうかで結果がどう変わるかを示した例です。
 まずは、ファイルを作成しましょう</p>
 <pre><code>touch done
@@ -1401,12 +1398,12 @@ $ echo $?
 </code></pre></div></p>
 <h4 id="_9">空判定</h4>
 <p>変数が空(null)か、ファイルが空(0byte)かといった判定が可能です。空判定はコマンド実行結果を変数に格納して、結果の有無で分岐することができ便利です。</p>
-<pre><code># 変数が空(null)ではない場合に真
-[ "変数" ]
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># 変数が空(null)ではない場合に真
+[ &quot;変数&quot; ]
 
 # ファイルが空でない場合に真
 [ -s 対象ファイルPATH]
-</code></pre>
+</code></pre></div>
 <p>以下はos-releaseファイルで任意の文字を検索して結果が空だったかどうかを判定しています。
 まずは変数に空の値を格納しましょう</p>
 <pre><code>NULL_CHECK=""
@@ -1428,39 +1425,39 @@ $ echo $?
 </code></pre></div>
 <h4 id="_10">否定</h4>
 <p>!を使うと、条件式の真と偽りが逆になります</p>
-<pre><code>#　文字列が異なる場合に真
-[ "文字列A" != "文字列B" ]
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>#　文字列が異なる場合に真
+[ &quot;文字列A&quot; != &quot;文字列B&quot; ]
 
 # 数値が異なる値の場合に真
 [ ! 数値A -eq 数値B ]
 
 # 変数が空(null)
-[ ! "変数" ]
+[ ! &quot;変数&quot; ]
 
 # 空ファイルの判定
 [ ! -s 対象ファイルPATH ]
-</code></pre>
+</code></pre></div>
 <h3 id="_11">高度な分岐</h3>
 <h4 id="or">or条件</h4>
 <p>-oオプションを使うとor条件として機能させることができます、or条件は2つ以上でも記述可能です</p>
-<pre><code>#条件式AもしくはBが成立すれば真
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>#条件式AもしくはBが成立すれば真
 [ 条件式A -o 条件式B ]
 
 #条件式AもしｋはB,Cが成立すれば真
 [ 条件式A -o 条件式B -o 条件式C ]
-</code></pre>
+</code></pre></div>
 <h4 id="and">and条件</h4>
 <p>-aオプションを使うとand条件として機能させることができます、and条件は2つ以上でも記述可能です</p>
-<pre><code>#条件式A及びBが成立すれば真
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>#条件式A及びBが成立すれば真
 [ 条件式A -a 条件式B ]
 
 #条件式A,B,Cが成立すれば真
 [ 条件式A -a 条件式B -a 条件式C ]
-</code></pre>
+</code></pre></div>
 <h4 id="_12">正規表現の利用</h4>
 <p>分岐に正規表現を利用することもできます、その場合[[ ]]で囲んでください</p>
-<pre><code>[[ 文字列A == 文字列B ]]
-</code></pre>
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>[[ 文字列A == 文字列B ]]
+</code></pre></div>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 例：aからはじまりdで終わる任意の文字列であれば真
 [[ &quot;変数&quot; == a*d ]]
 
@@ -1480,16 +1477,15 @@ $ echo $?
 </code></pre></div>
 <h2 id="if">if文</h2>
 <p>それでは早速プログラミングを組み上げていきましょう。if文による条件分岐は通常以下のように記載されます。以下例では文字列Aと文字列Bが同一であった場合、処理Aが実行されます。処理を柔軟にするため文字列Aは変数を使うのが良いでしょう</p>
-<pre><code>if [ "文字列A" = "文字列B" ];then
+<div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>if [ &quot;文字列A&quot; = &quot;文字列B&quot; ];then
     処理A #条件式が真の場合に実行
 else
     処理B #条件式が偽りの場合に実行
 fi
-</code></pre>
+</code></pre></div>
 <p>本コースの冒頭で紹介した条件分岐の例にelse処理も加えて実行してみましょう</p>
-<pre><code>#スクリプトファイル作成
-nano hello.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano hello.sh
+</code></pre></div>
 <p><div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
 VALUE=$1
 if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
@@ -1507,24 +1503,22 @@ World
 </code></pre></div>
 <h2 id="for">for文</h2>
 <p>for文を使うとリストを変数に格納しながら１つずつ処理することが可能です</p>
-<pre><code>for 変数 in リスト
+<div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>for 変数 in リスト
 do
-　処理 変数
+　　処理 変数
 done
-</code></pre>
+</code></pre></div>
 <p>for文のリストにはコマンドの出力結果もつかえますので、たとえばディレクトリ内のファイル一覧を出力し、ファイルを１つずつ処理するという場合に便利です。以下例ではfor文を使ってファイルの名前に一律.txtを付与しています
-<div class="highlight"><pre><span></span><code># ディレクトリとファイルを作成
-mkdir for_test
+<div class="highlight"><span class="filename">ディレクトリとファイルを作成</span><pre><span></span><code>mkdir for_test
 touch ./for_test/fileA
 touch ./for_test/fileB
 touch ./for_test/fileC
 touch ./for_test/fileD
 </code></pre></div>
 続いてスクリプトファイルを作成します</p>
-<pre><code>#スクリプトファイル作成
-nano for_test.sh
-</code></pre>
-<p>以下for_test.shのコードをコピーしてファイルを保存して下さい
+<p><div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano for_test.sh
+</code></pre></div>
+以下for_test.shのコードをコピーしてファイルを保存して下さい
 <div class="highlight"><span class="filename">for_test.shのコード</span><pre><span></span><code>#!/bin/bash
 DIR=./for_test
 
@@ -1551,15 +1545,14 @@ fileA.txt  fileB.txt  fileC.txt  fileD.txt
 </code></pre></div></p>
 <h2 id="while">while文</h2>
 <p>while文は条件式が真の間、処理をループさせます</p>
-<pre><code>while [ 条件式 ]
+<div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>while [ 条件式 ]
 do
   処理
 done
-</code></pre>
+</code></pre></div>
 <p>以下は1から10までカウントしながら出力するwhile文を使った処理の例です</p>
-<pre><code>#スクリプトファイル作成
-nano while_test.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano while_test.sh
+</code></pre></div>
 <p><div class="highlight"><span class="filename">while_test.shのコード</span><pre><span></span><code>#!/bin/bash
 count=0
 while [ $count -le 10 ]
@@ -1586,9 +1579,8 @@ done
 <pre><code>read 変数
 </code></pre>
 <p>以下は入力をinputという変数に格納して表示した例になります</p>
-<pre><code>#スクリプトファイル作成
-nano read_test.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトファイル作成</span><pre><span></span><code>nano read_test.sh
+</code></pre></div>
 <p><div class="highlight"><span class="filename">read_test.shのコード</span><pre><span></span><code>#!/bin/bash
 echo -n &quot;あなたの名前を入力してください: &quot;
 read name
@@ -1601,9 +1593,8 @@ echo &quot;こんにちは$nameさん&quot;
 </code></pre></div></p>
 <h2 id="_14">引数読み取り</h2>
 <p>$数字はスクリプトに渡されたパラメータを順番に変数に格納します、以下例では1-3までのパラメーターを読み取っています</p>
-<pre><code>#スクリプトファイル作成
-nano param_test.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトファイル作成</span><pre><span></span><code>nano param_test.sh
+</code></pre></div>
 <p><div class="highlight"><span class="filename">param_test.shのコード</span><pre><span></span><code>#!/bin/bash
 
 param1=$1
@@ -1622,15 +1613,14 @@ param3:ccc
 </code></pre></div></p>
 <h2 id="case">case</h2>
 <p>case文は変数の値がマッチした場合の処理をそれぞれ記述できます</p>
-<pre><code>case 変数 in
+<p><div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>case 変数 in
   パターン1) 処理;;
   パターン2) 処理;;      
 esac
-</code></pre>
-<p>以下は与えられたパラメーターがAかBかそれ以外かで処理を分岐させた例になります、*は任意の文字列を意味するメタキャラクターですがここではA,Bに該当しなかった場合の処理として使われます</p>
-<pre><code>#スクリプトファイル作成
-nano case_test.sh
-</code></pre>
+</code></pre></div>
+以下は与えられたパラメーターがAかBかそれ以外かで処理を分岐させた例になります、*は任意の文字列を意味するメタキャラクターですがここではA,Bに該当しなかった場合の処理として使われます</p>
+<div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano case_test.sh
+</code></pre></div>
 <p><div class="highlight"><span class="filename">case_test.shのコード</span><pre><span></span><code>#!/bin/bash
 echo -n &quot;AかBを選んでください: &quot;
 read input
@@ -1648,24 +1638,22 @@ AかBを選んでください: A
 </code></pre></div></p>
 <h2 id="_15">ファイルの読み込み処理</h2>
 <p>While文を使ってファイルを1行ずつ読み込むといった処理ができます</p>
-<pre><code>while read 変数
+<div class="highlight"><span class="filename">whileによる読み込み</span><pre><span></span><code>while read 変数
 do
   処理
 done &lt; ファイル名
-</code></pre>
+</code></pre></div>
 <p>以下はテキストをHTMLタグを付与した別ファイルにする例です</p>
-<pre><code>#テキストファイル作成
-nano org.txt
-</code></pre>
-<p>org.txt(テキストファイル)の内容をファイルに転記して保存して下さい
+<p><div class="highlight"><span class="filename">テキストファイル作成</span><pre><span></span><code>nano org.txt
+</code></pre></div>
+org.txt(テキストファイル)の内容をファイルに転記して保存して下さい
 <div class="highlight"><span class="filename">org.txtファイル</span><pre><span></span><code>abc
 def
 efg
 </code></pre></div>
 次にスクリプトファイルを作成しましょう</p>
-<pre><code>#スクリプトファイル作成
-nano ch2html.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトファイル作成</span><pre><span></span><code>nano ch2html.sh
+</code></pre></div>
 <div class="highlight"><span class="filename">ch2html.shのコード</span><pre><span></span><code>#!/bin/bash
 while read line
 do
@@ -1710,9 +1698,8 @@ AかBを入力してください
 </code></pre>
 <h2 id="_18">関数の利用</h2>
 <p><b>function</b>を用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です、ASCIIテキスト以外ではエラーを返します</p>
-<pre><code>#スクリプトファイル作成
-nano ascii_chk.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトファイル作成</span><pre><span></span><code>nano ascii_chk.sh
+</code></pre></div>
 <p><div class="highlight"><span class="filename">ascii_chk.shのコード</span><pre><span></span><code>#!/bin/bash
 # ascii check
 function ascii_check(){
@@ -1802,7 +1789,7 @@ $ echo $?
 <pre><code>exit 1
 </code></pre>
 <p>先ほどcaseで作成したスクリプトに終了コードを付与してみましょう</p>
-<div class="highlight"><pre><span></span><code>nano case_test.sh
+<div class="highlight"><span class="filename">ファイルへ追記</span><pre><span></span><code>nano case_test.sh
 --code--
 #!/bin/bash
 echo -n &quot;AかBを選んでください: &quot;
@@ -1859,9 +1846,8 @@ $ ls -a
 </code></pre>
 <h3 id="_22">スクリプトの強制終了</h3>
 <p>実行中のスクリプトを停止したい場合、ctrl + cを押すことで停止することができます。以下は30秒sleepするスクリプトを途中停止する例です</p>
-<pre><code># スクリプトの作成
-nano sleep.sh
-</code></pre>
+<div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano sleep.sh
+</code></pre></div>
 <div class="highlight"><span class="filename">sleep.shの内容</span><pre><span></span><code>#!/bin/bash
 sleep 30
 exit 0

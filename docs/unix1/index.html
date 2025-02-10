@@ -495,7 +495,7 @@
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      ディレクトリを作る
+      ファイルを作成する
     </span>
   </a>
   
@@ -504,7 +504,7 @@
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      対象をコピーする
+      ファイルを削除する
     </span>
   </a>
   
@@ -513,7 +513,7 @@
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      対象を移動する
+      ディレクトリを作る
     </span>
   </a>
   
@@ -522,7 +522,7 @@
           <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      空ファイルを作成する
+      ディレクトリを削除する
     </span>
   </a>
   
@@ -531,7 +531,7 @@
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      ファイルを削除する
+      対象をコピーする
     </span>
   </a>
   
@@ -540,7 +540,7 @@
           <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
-      ディレクトリを削除する
+      対象を移動する
     </span>
   </a>
   
@@ -1179,7 +1179,7 @@
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      ディレクトリを作る
+      ファイルを作成する
     </span>
   </a>
   
@@ -1188,7 +1188,7 @@
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      対象をコピーする
+      ファイルを削除する
     </span>
   </a>
   
@@ -1197,7 +1197,7 @@
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      対象を移動する
+      ディレクトリを作る
     </span>
   </a>
   
@@ -1206,7 +1206,7 @@
           <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      空ファイルを作成する
+      ディレクトリを削除する
     </span>
   </a>
   
@@ -1215,7 +1215,7 @@
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      ファイルを削除する
+      対象をコピーする
     </span>
   </a>
   
@@ -1224,7 +1224,7 @@
           <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
-      ディレクトリを削除する
+      対象を移動する
     </span>
   </a>
   
@@ -1550,16 +1550,16 @@ ubuntu起動後は <a href="./#linux_1">Linuxの構造</a>に進んでくださ�
 ls -l
 </code></pre>
 <p>以下はUNIXの一般的なディレクトリ構成になります、ちなみにディレクトリとは箱のようなもので、箱の中に箱やファイルが入っている状態がlsで確認できると思っていただければと思います。なお、/区切りで表示されるディレクトリ構造をディレクトリPATHとも呼びます</p>
-<pre><code>|-root  (始点)
-   |-/lib           
-   |-/etc
-   |-/sbin
-   |-/bin
-   |-/tmp
-   |-/usr/local
-   |-/home
-   |-/var
-</code></pre>
+<div class="highlight"><span class="filename">ディレクトリ構造</span><pre><span></span><code>    |-root  (始点)
+       |-/lib           
+       |-/etc
+       |-/sbin
+       |-/bin
+       |-/tmp
+       |-/usr/local
+       |-/home
+       |-/var 
+</code></pre></div>
 <p>また、続いてsudo suとwhoamiと打ってみてください。rootと結果が返ってくると思います。これはLinuxにおける特権ユーザーであるrootユーザーになっているということを意味します。rootとはファイルシステムの起点を表すと同時に、ただ一つの特権ユーザーを表す二重の意味を持った非常に重要な概念なのです。sudoの際のパスワードはwsl作成時に設定したパスワードを入力してください</p>
 <pre><code>sudo su
 whoami
@@ -1569,18 +1569,17 @@ whoami
 <pre><code>uname -a
 </code></pre>
 <p>とコマンドライン上で打ってみてください。カーネルのバージョンが表示されるはずです。カーネルとはオペレーティングシステム(OS)のコアであり、主にハードウェア(CPUやメモリなど）の制御を行います。OSに対する命令は基本的にはすべてコマンドプロンプト上でコマンドとして実行しますが、そのコマンドプロンプト上で応答をかえしているプログラムがシェルと呼ばれます</p>
-<pre><code># IMAGE
-コマンド &lt;-&gt; コマンドラインインターフェース (シェル) &lt;-&gt; カーネル (ハードウェア制御)
-</code></pre>
+<div class="highlight"><span class="filename">IMAGE</span><pre><span></span><code>コマンド &lt;-&gt; コマンドラインインターフェース (シェル) &lt;-&gt; カーネル (ハードウェア制御)
+</code></pre></div>
 <h2 id="_2">基本操作</h2>
 <p>以下ではLinuxの基本的な操作をご説明します、基本的にはターミナル（コマンドプロンプト)上での操作になりますが、本ページで説明されているコマンドをそのままコピーしてペーストすると簡単です。その際、ブラウザ上でのテキストのコピーの方法とLinux端末上でのコピー&amp;ペーストの方法が若干異なりますのでご認識下さい。</p>
-<pre><code># ブラウザ上でのコピー
+<div class="highlight"><span class="filename">copy & past</span><pre><span></span><code># ブラウザ上でのコピー
 コピー: ctrl + c
 
 # Linux端末上でのコピーとペースト
 コピー: ctrl + shift + c
 ペースト: ctrl + shift + v
-</code></pre>
+</code></pre></div>
 <h3 id="root">root(ルート)になる</h3>
 <p>Linux上で作業をする際に、特権ユーザーになって作業することがあります。その際、特権ユーザーへの昇格のためには主にsu(エスユー)コマンドを使います。パスワードを求められますが、suコマンドの場合rootのパスワードを入力する必要があります</p>
 <pre><code>su
@@ -1620,14 +1619,14 @@ $ pwd
 </code></pre>
 <h3 id="pathpath">相対PATHと絶対PATH</h3>
 <p>ディレクトリやファイルを指定する際、相対PATHと絶対PATHの二通りの指定方法があります。カレントディレクトリからの経路を記述するのが相対PATHで、rootからの階層を全て記述するのが絶対パスとなりますが、いずれも有効な指定方法になります。以下は/home/ubuntu配下にtestというディレクトリがある場合の指定例です。まだディレクトリを作成していないのでエラーになりますが実行してみてください</p>
-<pre><code>#絶対PATHでの指定
+<div class="highlight"><span class="filename">PATH指定例</span><pre><span></span><code>#絶対PATHでの指定
 ls /home/test_user/test_dir
 cd /home/test_user/test_dir
 
 #相対PATHでの指定（/home/test_userがカレントディレクトリの場合）
 ls ./test_dir
 cd test_dir
-</code></pre>
+</code></pre></div>
 <h3 id="_6">ファイルを開く</h3>
 <p>ファイルの中身を表示する方法はいくつかありますが、主にcat(キャット), more(モアー) ,less(レス)などを使うことが多いです。catはファイルを一度に表示し、moreやlessは少しずつ表示することができます</p>
 <pre><code>cat 対象ファイル
@@ -1635,65 +1634,125 @@ more 対象ファイル
 less 対象ファイル
 </code></pre>
 <p>例としてOSバージョンファイルを開いてみましょう</p>
-<pre><code># 絶対PATHでの表示
-cat /etc/os-release
-</code></pre>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 絶対PATHでの表示
+$ cat /etc/os-release
+PRETTY_NAME=&quot;Ubuntu 24.04.1 LTS&quot;
+NAME=&quot;Ubuntu&quot;
+VERSION_ID=&quot;24.04&quot;
+VERSION=&quot;24.04.1 LTS (Noble Numbat)&quot;
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL=&quot;https://www.ubuntu.com/&quot;
+SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
+BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
+PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+</code></pre></div>
 <h3 id="_7">ファイルを検索する</h3>
 <p>特定の名前のファイルを検索する場合、findというコマンドを使います</p>
 <pre><code>find ディレクトリ -name 対象ファイル
 </code></pre>
 <p>以下は/var配下でlastlogという名前のファイルを検索しています</p>
-<pre><code>find /var -name lastlog
-</code></pre>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo find /var -name lastlog
+[sudo] naruo のパスワード: 
+/var/log/lastlog
+</code></pre></div>
 <h3 id="_8">文字を検索する</h3>
 <p>特定の文字がファイル内に含まれるか検索したい場合、grepを使うことができます</p>
 <pre><code>grep 検索ワード 対象ファイル
 </code></pre>
 <p>例としてos-releaseファイルに含まれるVERSIONという文字を検索してみましょう、grepコマンドによりVERSIONという文字が含まれる行が出力されます</p>
-<pre><code>grep VERSION /etc/os-release
-</code></pre>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ grep VERSION /etc/os-release
+VERSION_ID=&quot;24.04&quot;
+VERSION=&quot;24.04.1 LTS (Noble Numbat)&quot;
+VERSION_CODENAME=noble
+</code></pre></div>
 <p>大文字と小文字を区別しない場合-iオプションをつけましょう</p>
 <pre><code>grep -i version /etc/os-release
 </code></pre>
-<h3 id="_9">ディレクトリを作る</h3>
-<p>編集権限のあるディレクトリであれば、ディレクトリを新規で作成することもできます。-pオプションをつけると複数階層のディレクトリを一括で作成することができます。ちなみに、$HOMEというのはログインユーザーのホームディレクトリを指す特別な命令で、/区切りでディレクトリを指定せずに移動することができます。HOMEディレクトリ配下では基本的に自由にファイルやディレクトリを作成することができます</p>
-<pre><code>cd $HOME
-mkdir -p ./layer1/layer2
-</code></pre>
-<h3 id="_10">対象をコピーする</h3>
-<p>ファイルやディレクトリをコピーする場合cpコマンドを使ってください</p>
-<p><div class="highlight"><pre><span></span><code>cp 対象ファイル コピー後の名前
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>cp 対象ディレクトリ コピー後の名前
-</code></pre></div></p>
-<p>cpに-rオプションをつけるとディレクトリ全体をコピーできます</p>
-<pre><code>cp -r 対象ディレクトリ名 コピー後の名前
-</code></pre>
-<h3 id="_11">対象を移動する</h3>
-<p>コピーではなくmvコマンドによって名前変更することもできます</p>
-<p><div class="highlight"><pre><span></span><code>mv 対象ファイル名　変更後の名前
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>mv 対象ファイル名 移動後のPATH
-</code></pre></div></p>
-<h3 id="_12">空ファイルを作成する</h3>
+<h3 id="_9">ファイルを作成する</h3>
 <p>中身のないファイルを作成する際にはtouchコマンドを使うのが一般的です</p>
 <pre><code>touch ファイル名
 </code></pre>
-<h3 id="_13">ファイルを削除する</h3>
+<div class="highlight"><span class="filename">実行例(ホームディレクトリに移動してファイルを作成し、確認する)</span><pre><span></span><code>$ cd $HOME
+$ touch test
+$ ls test
+test
+</code></pre></div>
+<h3 id="_10">ファイルを削除する</h3>
 <p>rm(リムーブ)コマンドを使うことでファイルやディレクトリを消すことができます</p>
 <pre><code>rm ファイル名
 </code></pre>
 <p>-iオプションを付けることで消す際に最終確認が可能です。</p>
 <pre><code>rm -i ファイル名
 </code></pre>
-<h3 id="_14">ディレクトリを削除する</h3>
+<p>以下は先程作成したファイルを確認して、その後削除する例です
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME
+$ ls test
+test
+$ rm test
+$ ls test
+</code></pre></div></p>
+<h3 id="_11">ディレクトリを作る</h3>
+<p>編集権限のあるディレクトリであれば、ディレクトリを新規で作成することもできます。-pオプションをつけると複数階層のディレクトリを一括で作成することができます。ちなみに、$HOMEというのはロ&gt;</p>
+<pre><code>cd $HOME
+mkdir -p ./layer1/layer2
+</code></pre>
+<p>以下はホームディレクトリでディレクトリを作成する例です
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME
+$ mkdir test_dir
+$ mkdir -p ./layer1/layer2
+$ ls 
+layer1  test_dir
+</code></pre></div></p>
+<h3 id="_12">ディレクトリを削除する</h3>
 <p>rmにまた、-rオプションをつけることで再帰的に消すことができます、-fオプションを着けると強制的に消すことができます</p>
 <pre><code>rm -r ディレクトリ名
 rm -rf ディレクトリ名 #再帰的に強制削除
 </code></pre>
-<p>ディレクトリを消す場合はrmdir(メークディア)コマンドも使うことができます</p>
+<p>ディレクトリを消す場合はrmdir(リムーブディア)コマンドも使うことができます</p>
 <pre><code>rmdir ディレクトリ名
 </code></pre>
+<p>以下は先程作成したディレクトリを削除する例です
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME
+$ ls test_dir
+test_dir
+$ rm -r test_dir
+$ ls test_dir
+</code></pre></div></p>
+<h3 id="_13">対象をコピーする</h3>
+<p>ファイルやディレクトリをコピーする場合cpコマンドを使ってください</p>
+<p><div class="highlight"><pre><span></span><code>cp 対象ファイル コピー後の名前
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>cp 対象ディレクトリ コピー後の名前
+</code></pre></div></p>
+<p>以下はホームディレクトリでtestファイルを作成し、test_cpというファイルにコピーする例です
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME
+$ touch test
+$ ls test
+test
+$ cp test test_cp
+$ ls 
+test test_cp
+</code></pre></div>
+cpに-rオプションをつけるとディレクトリ全体をコピーできます</p>
+<pre><code>cp -r 対象ディレクトリ名 コピー後の名前
+</code></pre>
+<h3 id="_14">対象を移動する</h3>
+<p>コピーではなくmvコマンドによって名前変更することもできます</p>
+<p><div class="highlight"><pre><span></span><code>mv 対象ファイル名　変更後の名前
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>mv 対象ファイル名 移動後のPATH
+</code></pre></div></p>
+<p>以下は先程作成したtest_cpファイルをmvしてtest_mvファイルにする例です
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME
+$ ls test
+test test_cp
+$ mv test_cp test_mv
+test test_mv
+</code></pre></div></p>
 <h3 id="_15">ファイルシステムを確認する</h3>
 <p>ファイルシステムの構成や使用量を確認する場合、df(ディーエフ)コマンドを使ってください。df -hオプションを付けることで人が読みやすいフォーマットにすることができます。ちなみにファイルシステムとはディレクトリやファイルを内包する大きな箱で、その機構全体をファイルシステムと呼んでいると思っていただければと思います</p>
 <pre><code>df -h
@@ -1703,8 +1762,8 @@ rm -rf ディレクトリ名 #再帰的に強制削除
 <pre><code>du -h .
 </code></pre>
 <h3 id="_16">パーミッション</h3>
-<p>パーミッションとは、ファイルやディレクトリに設定された属性で、所有者に対する権限、所有者所属グループに対する権限、それ以外のユーザーに対する権限の3つの権限をもちます。参考程度に以下を確認いただければと思います</p>
-<pre><code># 権限
+<p>パーミッションとは、ファイルやディレクトリに設定された属性で、所有者に対する権限、所有者所属グループに対する権限、それ以外のユーザーに対する権限の3つの権限をもちます。参考程度に以下を確認いただければと思います。</p>
+<div class="highlight"><span class="filename">アルファベット略称による権限定義</span><pre><span></span><code># 権限
 r - read only #読み取りのみ
 w - read and write #編集可能
 x - exec #実行権限
@@ -1713,35 +1772,29 @@ x - exec #実行権限
 +4 - r
 +2 - w
 +1 - x
-</code></pre>
+</code></pre></div>
 <p>パーミッションと所有権はchmod(チェンジモド)及びchown(チェンジオウン)コマンドにより変更できます。また、権限はls -lオプションで確認することができます。その際、ls -lの結果は、所有者に対する権限、所有者所属グループに対する権限、それ以外のユーザーに対する権限の順に表示されます</p>
 <pre><code>chown
 chmod
 ls -l
 </code></pre>
 <p>以下は"test"ファイルの権限を所有者とへは全権限を、所有者と同一グループ所属するユーザーには読み取りと書き込み権限を、それ以外のユーザーには読み取り権限のみを付与する例です</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ chmod 764 test
+<div class="highlight"><span class="filename">実行例(ファイルを作成し権限を変更)</span><pre><span></span><code>$ touch test
+$ chmod 764 test
 $ ls -l test
 -rwxrw-r-- 1 test_user test_user 0 Jan 22 19:30 test
-</code></pre></div>
-<p>また、以下はtest_dirの所有者を変更し、所有者以外を一律読み取り権限のみとする例です。(ログインユーザーがtest_userだった場合の例です）</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ chown -R test_user:test_user test_dir
-$ chmod -R 744 test_dir/
-$ ls -ld test_dir/
-drwxr--r-- 2 test_user test_user 4096 Jan 22 19:31 test_dir/
 </code></pre></div>
 <h2 id="_17">入出力</h2>
 <h3 id="_18">文字を出力させる</h3>
 <p>文字はecho(エコー)コマンドで出力することができます、以下は"Hello Wold"を出力した例になります</p>
-<pre><code>$ echo "Hello World"
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo &quot;Hello World&quot;
 Hello World
-</code></pre>
+</code></pre></div>
 <h3 id="_19">ファイルに書き出す</h3>
 <p>出力はコマンドラインに出すこともできれば、ファイルに書き出すこともできます。リダイレクトを使用すればコマンドラインから出力先を変えることができます。</p>
-<pre><code># リダイレクト
-&gt; ファイル上書
+<div class="highlight"><span class="filename">リダイレクト</span><pre><span></span><code>&gt; ファイル上書
 &gt;&gt; ファイル追記
-</code></pre>
+</code></pre></div>
 <p>以下はechoの出力先をファイルに変えた例です</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo &quot;Hello World&quot; &gt; echo.txt
 $ cat echo.txt
@@ -1760,9 +1813,9 @@ Hello World
 </code></pre></div>
 <h3 id="_20">各種出力</h3>
 <p>上記例は標準出力をファイルに向けている例になりますが、標準以外のエラー出力もファイルに向ける場合は 2&gt; or 2&gt;&gt; を利用してください</p>
-<pre><code>2&gt; エラー上書
+<div class="highlight"><span class="filename">リダイレクト</span><pre><span></span><code>2&gt; エラー上書
 2&gt;&gt; エラー追記
-</code></pre>
+</code></pre></div>
 <p>以下はエラー出力をファイル書き出しをしている例になります。存在しないディレクトリをlsしています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls /abc
 ls: cannot access &#39;/abc&#39;: No such file or directory
