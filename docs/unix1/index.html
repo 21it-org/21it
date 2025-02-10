@@ -1618,24 +1618,15 @@ $ pwd
 <pre><code>cd ./任意のディレクトリ
 </code></pre>
 <h3 id="pathpath">相対PATHと絶対PATH</h3>
-<p>ディレクトリやファイルを指定する際、相対PATHと絶対PATHの二通りの指定方法があります。カレントディレクトリからの経路を記述するのが相対PATHで、rootからの階層を全て記述するのが絶対パスとなりますが、いずれも有効な指定方法になります。以下は/home/ubuntu配下にtestというディレクトリがある場合の指定例です。まだディレクトリを作成していないのでエラーになりますが実行してみてください</p>
-<div class="highlight"><span class="filename">PATH指定例</span><pre><span></span><code>#絶対PATHでの指定
-ls /home/test_user/test_dir
-cd /home/test_user/test_dir
-
-#相対PATHでの指定（/home/test_userがカレントディレクトリの場合）
-ls ./test_dir
-cd test_dir
-</code></pre></div>
+<p>ディレクトリやファイルを指定する際、相対PATHと絶対PATHの二通りの指定方法があります。カレントディレクトリからの経路を記述するのが相対PATHで、rootからの階層を全て記述するのが絶対パスとなりますが、いずれも有効な指定方法になります</p>
 <h3 id="_6">ファイルを開く</h3>
 <p>ファイルの中身を表示する方法はいくつかありますが、主にcat(キャット), more(モアー) ,less(レス)などを使うことが多いです。catはファイルを一度に表示し、moreやlessは少しずつ表示することができます</p>
 <pre><code>cat 対象ファイル
 more 対象ファイル
 less 対象ファイル
 </code></pre>
-<p>例としてOSバージョンファイルを開いてみましょう</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 絶対PATHでの表示
-$ cat /etc/os-release
+<p>例としてOSバージョンファイルを絶対PATHで開いてみましょう</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cat /etc/os-release
 PRETTY_NAME=&quot;Ubuntu 24.04.1 LTS&quot;
 NAME=&quot;Ubuntu&quot;
 VERSION_ID=&quot;24.04&quot;
@@ -1650,6 +1641,16 @@ PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy
 UBUNTU_CODENAME=noble
 LOGO=ubuntu-logo
 </code></pre></div>
+<p>相対PATHで開く場合の例は以下となります。cdで/etcに移動してos-releaseファイルを開いています。なを、"./"はカレントディレクトリを意味しますが、こちらは省略することも可能です
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd /etc
+$ cat ./os-release
+*出力ファイルは上記と同じ*
+</code></pre></div></p>
+<p>カレントディレクトリ省略した場合の実行例は以下です
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd /etc
+$ cat os-release
+*出力結果は上記と同じ*
+</code></pre></div></p>
 <h3 id="_7">ファイルを検索する</h3>
 <p>特定の名前のファイルを検索する場合、findというコマンドを使います</p>
 <pre><code>find ディレクトリ -name 対象ファイル
