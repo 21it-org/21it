@@ -1092,11 +1092,7 @@
 </ul>
 <h2 id="_5">クイックスタート</h2>
 <h3 id="os-setup">OS setup</h3>
-<p>small shellをインストールする前にLinux OSの基本設定から始めましょう、ここでは必要なOSユーザーを作成し、必要ライブラリを事前にインストールします。<a href="../unix1/">unix basic1</a>で作成したWSL上のubuntuを学習環境として利用してください。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>windows WSLのlinuxやchromebook上のlinuxはPCのデスクトップ環境からしかアクセスできないため、インターネットや他のPCから生成したアプリにアクセスすることはできませんがご了承下さい。インターネット上でのアプリ公開やチームでのアプリ利用についてはsmall-shellの公開講座で別途ご説明します。</p>
-</div>
+<p>small shellをインストールする前にLinux OSの基本設定から始めましょう、ここでは必要なOSユーザーを作成し、必要ライブラリを事前にインストールします</p>
 <h5 id="_6">環境設定</h5>
 <pre><code># OSへのユーザーの追加
 sudo useradd -s /sbin/nologin small-shell
@@ -1151,6 +1147,10 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 <p><img alt="Screenshot" src="../img/initialize_key.png" /></p>
 <h3 id="base-app_3">Base APPログイン</h3>
 <p>上記のとおり"CONNECT APP WITH KEY"ボタンをおすとログインフォームに飛びますが、ブラウザに保存された鍵が自動で入力されます。そのままBase APPへログインしましょう。その際、Base APPのログインURLはブラウザのお気に入りに登録しておくことをお勧めします</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>windows WSLのlinuxやchromebook上のlinuxはPCのデスクトップ環境からしかアクセスできないため、インターネットや他のPCから生成したアプリにアクセスすることはできませんがご了承下さい。インターネット上でのアプリ公開やチームでのアプリ利用についてはsmall-shellの公開講座で別途ご説明します。</p>
+</div>
 <p><img alt="Screenshot" src="../img/key_auth.png" /></p>
 <p>なお、現時点ではDataBoxを作成していないため利用できるデータがなく以下エラー画面が表示されます。一旦ブラウザを閉じてDataBoxの作成にすすみましょう。</p>
 <p><img alt="Screenshot" src="../img/ini_error.png" /></p>
