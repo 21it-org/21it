@@ -1162,7 +1162,8 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 value : メーカーAのノートパソコン、在庫として10個ある
 </code></pre></div>
 <h4 id="_8">正規化とプライマリーキー</h4>
-<p>上記key valueの例ではvalueに様々な情報が含まれますが、複数のkeyで構成したほうが検索性があがるなどデータ管理がしやすくなります。データを複数のkeyで構造的に管理する際、そのデータを一意で識別するためのkeyをprimary key (プライマリーキー)と呼びます。通常primary keyはアイテム名といった一意となるものを設定しますが、このようなキーを主キーと呼びます。</p>
+<p>上記key valueの例ではvalueに様々な情報が含まれますが、フリーワード入力のようなかたちになるため、入力時の抜け漏れや検索時の情報の探しにくさなどに繋がります。そのため、目的に応じて複数のkeyを定義し、必須入力のkeyなどを場合によっては強制することでデータ管理が適切にできるようになります。    </p>
+<p>また、データを複数のkeyで構造的に管理する際、そのデータを一意で識別するためのkeyをprimary key (プライマリーキー)と呼びます。通常primary keyはアイテム名といった一意となるものを設定しますが、このようなキーを主キーと呼びます。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>一意となるkeyが選定できない場合などはhashidをprimary keyとして設定することができます。その場合はシステム側で自動で一意となるvalueをhashidに設定します。hashidの設定例は<a href="../small_shell2/#box">アンケートの収集</a>で紹介されていますので、そちらを参照下さい。</p>
@@ -1170,10 +1171,10 @@ value : メーカーAのノートパソコン、在庫として10個ある
 <p>item_infoを複数keyに厳密に分解していった例が以下となります</p>
 <div class="highlight"><span class="filename">keyの分割例(硬いデータ構造)</span><pre><span></span><code>keys  : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
 </code></pre></div>
-<p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataBoxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度の、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう</p>
+<p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataBoxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度の、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう。なお、*がついているkeyは必須入力のとします</p>
 <div class="highlight"><span class="filename">フラットなkey分割</span><pre><span></span><code>#在庫データ
 keys   : item_name(primary_key), maker, type, num, note
-label : アイテム名(型番), メーカー, タイプ, 在庫数, メモ
+label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 </code></pre></div>
 <h3 id="databox">DataBox生成</h3>
 <p>データ構造を比較的緩めなものにすると決まったところで、さっそくDataBoxを生成していきましょう、再びgenコマンドで簡単に生成できます。DataBox自体の名前はわかりやすくitem.dbとして、在庫管理のために使ってみましょう</p>
