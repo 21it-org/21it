@@ -1138,13 +1138,13 @@ Do you want to continue? [Y/n] y    </p>
 <pre><code>which curl; which  bc; which cron; which php; which npm; which jq
 </code></pre>
 <h5 id="small-shell">small shellのインストール</h5>
-<p>続いて、以下コマンドでgitからsmall-shellをダウンロードしてインストールしましょう</p>
+<p>続いて、以下コマンドでGitHubからsmall-shellをダウンロードしてインストールしましょう</p>
 <pre><code>cd /usr/local
 sudo git clone https://github.com/small-shell/small-shell.git
 sudo chown -R small-shell:small-shell /usr/local/small-shell
 </code></pre>
 <h3 id="base-app_1">Base APP生成</h3>
-<p>続いてgenコマンドでBase APPを生成していきましょう。以下の通り対話が始まりますので、それぞれ以下例にならって入力してください。なお、WEB server FQDN or IP addrという項目についてはip addressコマンドで確認したIPアドレスを入力する必要があるので注意してください。IPアドレスの確認については<a href="../web/#ip">IPアドレスの表示</a>を参照してください。
+<p>small-shellがインストールできたら、genコマンドでBase APPを生成していきましょう。以下の通り対話が始まりますので、それぞれ以下例にならって入力してください。なお、WEB server FQDN or IP addrという項目についてはip addressコマンドで確認したIPアドレスを入力する必要があるので注意してください。IPアドレスの確認については<a href="../web/#ip">IPアドレスの表示</a>を参照してください。
 以下例では172.28.9.180をIPアドレスとして入力しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 1
