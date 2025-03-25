@@ -408,9 +408,24 @@
           <li class="md-nav__item">
   <a href="#kernel" class="md-nav__link">
     <span class="md-ellipsis">
-      カーネル(kernel)とシェル
+      カーネル(kernel)
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="カーネル(kernel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      シェル(shell)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1101,9 +1116,24 @@
           <li class="md-nav__item">
   <a href="#kernel" class="md-nav__link">
     <span class="md-ellipsis">
-      カーネル(kernel)とシェル
+      カーネル(kernel)
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="カーネル(kernel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      シェル(shell)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1586,13 +1616,14 @@ ls -l
 <p class="admonition-title">Note</p>
 <p>sudoコマンド実行の際にパスワードが聞かれた場合、一般ユーザーのパスワードを入力してください</p>
 </div>
-<h3 id="kernel">カーネル(kernel)とシェル</h3>
+<h3 id="kernel">カーネル(kernel)</h3>
 <p>次にログインしているLinuxのカーネルバージョンを確認してみましょう</p>
 <pre><code>uname -a
 </code></pre>
-<p>とコマンドライン上で打ってみてください。カーネルのバージョンが表示されるはずです。カーネルとはオペレーティングシステム(OS)のコアであり、主にハードウェア(CPUやメモリなど）の制御を行います。OSに対する命令は基本的にはすべてターミナル上でコマンドとして実行しますが、そのターミナル上で応答をかえしているプログラムがシェルと呼ばれます</p>
-<div class="highlight"><span class="filename">IMAGE</span><pre><span></span><code>コマンド &lt;-&gt; コマンドラインインターフェース (シェル) &lt;-&gt; カーネル (ハードウェア制御)
-</code></pre></div>
+<p>とコマンドライン上で打ってみてください。カーネルのバージョンが表示されるはずです。カーネルとはオペレーティングシステム(OS)のコアであり、主にハードウェア(CPUやメモリなど）の制御を行います。</p>
+<h4 id="shell">シェル(shell)</h4>
+<p>OSに対する命令は基本的にはすべてターミナル上でコマンドとして実行しますが、そのターミナル上で応答をかえしているプログラムがシェルと呼ばれます。ターミナル画面上で$が常に表示されていると思いますが、$はシェルのプロンプト記号で、シェルが入力を待っていることを示しています</p>
+<p><img alt="Screenshot" src="../img/shell.png" /></p>
 <h2 id="_2">基本操作</h2>
 <p>以下ではLinuxの基本的な操作をご説明します、基本的にはターミナル上での操作になりますが、本ページで説明されているコマンドをそのままコピーしてペーストすると簡単です。その際、ブラウザ上でのテキストのコピーの方法とLinux端末上でのコピー&amp;ペーストの方法が若干異なりますのでご認識下さい。</p>
 <div class="highlight"><span class="filename">copy & past</span><pre><span></span><code># ブラウザ上でのコピー
