@@ -983,7 +983,7 @@ Is it OK? (yes | no): yes
 <p>Scratch APPでは以下認証方式が実装可能です</p>
 <ul>
 <li>[shared pass] 共用パスコードでアクセス</li>
-<li>[user key] user毎のkeyでアクセス</li>
+<li>[user key] ユーザー毎に鍵を発行してアクセス</li>
 <li>[other] 認証方式を自分で定義</li>
 <li>[none] アプリへのアクセスに認証が不要</li>
 </ul>
@@ -1077,12 +1077,12 @@ small-shell root (/usr/local/small-shell): &lt;enter&gt;
 </code></pre></div></p>
 <h3 id="team-app">Team APPユーザー追加</h3>
 <p>Team APPはBase APPのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではteam APPにtestというユーザーを作成しています</p>
-<div class="highlight"><span class="filename">testユーザーの追加例</span><pre><span></span><code>sudo /usr/local/small-shell/adm/ops app:team add.usr:test 
+<div class="highlight"><span class="filename">testユーザーの追加例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops app:team add.usr:test 
 </code></pre></div>
 <p>ユーザー生成後に、Initialize URL（鍵の初期化URL)が生成れるのでユーザーへURLを案内しましょう。Base APPと同じくInitialize URLへアクセスするとTeam APPへアクセスするための鍵とリンクが生成されます。Initialize URLは一回アクセスすると無効になるので気をつけてください</p>
 <h3 id="team-app_1">Team APPログイン</h3>
 <p>Team APPへログインして右上のeven(=)メニューをクリックするとメニューが展開します。各種機能をお試しください, Team eventやtaskをカレンダーに一元的に表示できるので便利です。Driveを使うとファイル共有も簡単に行えます</p>
-<div class="highlight"><span class="filename">Team APPログインURL</span><pre><span></span><code>http]//{サーバアドレス}/team
+<div class="highlight"><span class="filename">Team APPログインURL</span><pre><span></span><code>http://{サーバアドレス}/team
 </code></pre></div>
 <p><img alt="Screenshot" src="../img/team_app_menu.png" /></p>
 <h3 id="_13">データボックスの追加</h3>
@@ -1108,8 +1108,8 @@ Is it OK? (yes | no): yes
 <p>Team APPにデータボックスが追加されましたのでブラウザでメニューを確認をしてみましょう</p>
 <p><img alt="Screenshot" src="../img/team_menu_update.png" /></p>
 <p>もしメニューの文言を更新したい場合は、Team APPについてはportal編集機能がありませんので直接ファイルを編集して更新してください</p>
-<pre><code>nano /var/www/descriptor/common_parts/team_common_menu
-</code></pre>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ nano /var/www/descriptor/common_parts/team_common_menu 
+</code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>インポートしたアプリについては諸々編集権限がないため細かいカスタマイズを行うには直接編集が必要になりますが、1から生成したスクラッチアプリであればBase APPでメニュー含めて更新可能です。スクラッチアプリについてはsmall-shell基礎#2をご確認ください</p>
@@ -1118,29 +1118,28 @@ Is it OK? (yes | no): yes
 <h3 id="scratch-apptag">Scratch APPへのtag追加</h3>
 <p>スクラッチアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}} app:$app_name
-
-# statusがon-goingなタスクをフィルターするtagを追加
-sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
 </code></pre>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># statusがon-goingなタスクをフィルターするtagを追加
+$ sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
+</code></pre></div>
 <p><img alt="Screenshot" src="../img/app_tag.png" /></p>
 <h3 id="initialize-url">Initialize URLの再生成</h3>
 <p>Scratch APPの鍵生成URLを再生成する場合、app:オプションを指定する必要があります</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops app:&lt;アプリ&gt; initialize.usr:&lt;ユーザー名&gt;
-
-# team APPを指定する場合
-sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test
 </code></pre>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># team APPを指定する場合
+$ sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test
+</code></pre></div>
 <h2 id="_15">フォーム利用の検討</h2>
 <p>アカウントを持たない外部ユーザーから所定の入力項目をもとにデータを収集し、DataBoxに格納するために外部Formの作成をすることができます。ここでは外部ユーザーからの意見収集のためのアンケートformの作成を例としてご説明します。</p>
 <h3 id="box">アンケートBox作成</h3>
 <p>初めに収集したいデータを格納するDataBoxを作成しましょう、ここでは架空の製品である"XYZ"についての感想をアンケートとして収集しましょう。その際一意となるkeyは特に想定されないため、primary_keyはhashidとします</p>
-<pre><code>sudo /usr/local/small-shell/adm/gen -databox
-</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>primary_keyをhashidとすることでよりフラットにデータ管理ができます（primary_keyの値の重複など気にする必要がありません）</p>
 </div>
-<p><div class="highlight"><span class="filename">gen -databox 実行例(続き)</span><pre><span></span><code>Target Databox: survey.box
+<p><div class="highlight"><span class="filename">gen -databox 実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -databox
+Target Databox: survey.box
 primary_key(col1): hashid
                     ↑ ここをhashidとしてください、その後は対話を続けてください
 </code></pre></div>
@@ -1186,29 +1185,27 @@ option=&quot;&quot; # &lt;- requiredはNoで回答
 <p>対話モードの際にバックスペースを使って日本語を修正すると入力値が壊れるため、できるだけコピペなどで生成してください</p>
 </div>
 <h3 id="_16">フォームの生成</h3>
-<p>DataBoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます</p>
-<pre><code>sudo /usr/local/small-shell/adm/gen -app
-</code></pre>
-<p>アプリケーションタイプとして2.FORMを選択し、名前は仮にsurveyとしましょう。DataBoxとしては先ほど作成したsurvey.boxを指定します</p>
+<p>DataBoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます。アプリケーションタイプとして2.FORMを選択し、名前は仮にsurveyとしましょう。DataBoxとしては先ほど作成したsurvey.boxを指定します</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>IP whitelistingは接続可能なIPアドレスを制限するかという確認ですが、いったんnoとして作成します</p>
 </div>
-<p><div class="highlight"><span class="filename">Form作成実行例</span><pre><span></span><code>Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 2
+<p><div class="highlight"><span class="filename">Form作成実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
+Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 2
 Form Name: survey
 Target Databox: survey.box
-Description of the form : xyzにつてのアンケートにお答えください
-Do you want to enable IP whitelisting for this form? (yes | no): no
+Description of the Form : xyzにつてのアンケートにお答えください
+Do you want to enable IP whitelisting for this Form? (yes | no): no
 </code></pre></div>
 その後、フォームに含むkeyを選びますが今回はすべてのkeyを追加しましょう
-<div class="highlight"><span class="filename">Form作成実行例(続き)</span><pre><span></span><code>Select key that must be included in the Form (generation | impression | comment) : generation
-Do you want to add more key to the Form? (yes | no): yes
-Select additional key that must be included in the Form (impression | comment) : impression
-Do you want to add more key to the form ? (yes | no): yes
-Select additional key that must be included in the Form (comment) : comment
+<div class="highlight"><span class="filename">Form作成実行例(続き)</span><pre><span></span><code>Select key that must be in the Form (generation | impression | comment) : generation
+Add more keys to the Form? (yes | no): yes
+Select additional key that must be in the Form (impression | comment) : impression
+Add more keys to the Form ? (yes | no): yes
+Select additional key that must be in the Form (comment) : comment
 </code></pre></div>
 最終確認がありますので、問題なければyesと入力して下さい
-<div class="highlight"><span class="filename">Form作成実行例(続き)</span><pre><span></span><code>form will be generated by following order, please check it
+<div class="highlight"><span class="filename">Form作成実行例(続き)</span><pre><span></span><code>Form will be generated by following order, please check it
 -----------------------------------------------------------------
 
 APP type: 2.FORM
