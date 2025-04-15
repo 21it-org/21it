@@ -1154,10 +1154,10 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 </code></pre></div>
 <p>なお、上記データがWEBアプリ上で表示される際には、各keyが列となり、テーブル型のデータとして表示されることになります</p>
 <h3 id="databox">DataBox生成</h3>
-<p>データ構造を比較的緩めなものにすると決まったところで、さっそくDataBoxを生成していきましょう、以下の通りgenコマンドで簡単に生成できます。DataBox自体の名前はわかりやすくitem.dbとして、在庫管理のために使ってみましょう</p>
+<p>データ構造を比較的緩めなものにすると決まったところで、さっそくDataBoxを生成していきましょう、以下の通りgenコマンドで簡単に生成できます。</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -databox
 </code></pre>
-<p>対話例は以下のとおりです。Add more column to thd databox？と聞かれた際にnoと答えると対話が終了しデータボックスが生成されます, またrequired to input each time?と聞かれてyesと答えると必須の入力項目としてBaseAPPで扱われます。通常のフィールドはフリーワードが登録できるtext、ある程度固定値にして検索性を高めたいフィールドにはselectを選択して固定値を指定しましょう</p>
+<p>コマンド実行後に対話が始まりますが、以下実行例のとおり入力してみてください。DataBox自体の名前はわかりやすくitem.dbとして、在庫管理のために使ってみましょう。Add more column to thd databox？と聞かれた際にnoと答えると対話が終了しデータボックスが生成されます, またrequired to input each time?と聞かれてyesと答えると必須の入力項目としてBaseAPPで扱われます。通常のフィールドはフリーワードが登録できるtext、ある程度固定値にして検索性を高めたいフィールドにはselectを選択して固定値を指定しましょう</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>対話を途中で抜けたい場合はCtrlとcを同時に押して抜けてください</p>
@@ -1231,7 +1231,10 @@ option=&quot;&quot;
 Is it OK? (yes | no): yes
 </code></pre></div></p>
 <h3 id="base-app_1">Base APP生成</h3>
-<p>続いて、genコマンドでBase APPを生成していきましょう。以下の通り対話が始まりますので、それぞれ以下例にならって入力してください。なお、WEB server FQDN or IP addrという項目についてはip addressコマンドで確認したIPアドレスを入力する必要があるので注意してください。IPアドレスの確認については<a href="../web/#ip">IPアドレスの表示</a>を参照してください。
+<p>続いて、genコマンドでBase APPを生成していきましょう。アプリケーションの生成もgenコマンドで実行します</p>
+<pre><code>sudo /usr/local/small-shell/adm/gen -app
+</code></pre>
+<p>コマンド実行後に対話が始まりますので、それぞれ以下例にならって入力してください。なお、WEB server FQDN or IP addrという項目についてはip addressコマンドで確認したIPアドレスを入力する必要があ[&gt;
 以下例では172.28.9.180をIPアドレスとして入力しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 1
