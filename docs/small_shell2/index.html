@@ -1136,7 +1136,7 @@ $ sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test
 <p>初めに収集したいデータを格納するDataBoxを作成しましょう、ここでは架空の製品である"XYZ"についての感想をアンケートとして収集しましょう。その際一意となるkeyは特に想定されないため、primary_keyはhashidとします</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>primary_keyをhashidとすることでよりフラットにデータ管理ができます（primary_keyの値の重複など気にする必要がありません）</p>
+<p>primary_keyをhashidとすることで一意となるkeyを指定せずに、IDをシステム側で自動生成させることが可能です</p>
 </div>
 <p><div class="highlight"><span class="filename">gen -databox 実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -databox
 Target Databox: survey.box

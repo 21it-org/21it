@@ -1142,7 +1142,7 @@ value : メーカーAのノートパソコン、在庫として10個ある
 <p>また、データを複数のkeyで構造的に管理する際、そのデータを一意で識別するためのkeyをprimary key (プライマリーキー)と呼びます。通常primary keyはアイテム名といった一意となるものを設定しますが、このようなキーを主キーと呼びます。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>一意となるkeyが選定できない場合などはhashidをprimary keyとして設定することができます。その場合はシステム側で自動で一意となるvalueをhashidに設定します。hashidの設定例は<a href="../small_shell2/#box">アンケートの収集</a>で紹介されていますので、そちらを参照下さい。</p>
+<p>一意となるkeyが選定できない場合はprimary_keyを指定せず、システム側で自動生成される値とすることができます。自動生成の設定例は<a href="../small_shell2/#box">アンケートの収集</a>で紹介されていますので、そちらを参照下さい。</p>
 </div>
 <p>item_infoを複数keyに厳密に分解していった例が以下となります</p>
 <div class="highlight"><span class="filename">keyの分割例(硬いデータ構造)</span><pre><span></span><code>keys  : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
