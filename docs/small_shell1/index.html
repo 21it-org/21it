@@ -1149,7 +1149,7 @@ value : メーカーAのノートパソコン、在庫として10個ある
 </code></pre></div>
 <p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataBoxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度の、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう。なお、*がついているkeyは必須入力のとします</p>
 <div class="highlight"><span class="filename">フラットなkey分割</span><pre><span></span><code>#在庫データ
-keys   : item_name(primary_key), maker, type, num, note
+keys   : item_name(primary_key), maker, item_type, stock_num, note
 label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 </code></pre></div>
 <p>なお、上記データがWEBアプリ上で表示される際には、各keyが列となり、テーブル型のデータとして表示されることになります</p>
@@ -1168,8 +1168,13 @@ primary_key(col1): item_name
 primary_key label: アイテム名(型番)
 Add more column to the databox? (yes | no): yes ※データボックスに列(key)を追加しますかという意味です、以降もyesと答えてください
 
-key(col2) name: type
-key(col2) label: タイプ
+key(col2) name: maker
+key(col2) label: メーカー
+Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
+please define parameters using comma as separator: メーカーA社,メーカーB社,メーカーC社,その他
+
+key(col3) name: item_type
+key(col3) label: タイプ
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
 please define parameters using comma as separator: パソコン,モニター,アクセサリー,その他
 
@@ -1178,7 +1183,7 @@ key(col3) label: メーカー
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
 please define parameters using comma as separator: メーカーA社,メーカーB社,メーカーC社,その他
 
-key(col4) name: num
+key(col4) name: stock_num
 key(col4) label: 在庫数
 data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): num
 Require to input each time? (yes | no): yes ※必須項目はyesとします
@@ -1201,21 +1206,21 @@ type=&quot;text&quot;
 option=&quot;required&quot;
 
 #column2
-name=&quot;type&quot;
-label=&quot;タイプ&quot;
-type=&quot;select&quot;
-params=&quot;パソコン,モニター,アクセサリー,その他&quot;
-option=&quot;required&quot;
-
-#column3
 name=&quot;maker&quot;
 label=&quot;メーカー&quot;
 type=&quot;select&quot;
 params=&quot;メーカーA社,メーカーB社,メーカーC社,その他&quot;
 option=&quot;required&quot;
 
+#column3
+name=&quot;item_type&quot;
+label=&quot;タイプ&quot;
+type=&quot;select&quot;
+params=&quot;パソコン,モニター,アクセサリー,その他&quot;
+option=&quot;required&quot;
+
 #column4
-name=&quot;num&quot;
+name=&quot;stock_num&quot;
 label=&quot;在庫数&quot;
 type=&quot;number&quot;
 option=&quot;required&quot;
@@ -1301,18 +1306,18 @@ sort -nr Label名
 </code></pre>
 <p><img alt="Screenshot" src="../img/sort_table.png" /></p>
 <h4 id="_13">タグ</h4>
-<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます。以下例ではメーカーAというワードでタグを作っていますが、タグをクリックするとitem.dbの中からメーカーAというワードを含んだデータが検索されます。add.tagで追加、del.tagで削除できます</p>
+<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます。以下例ではメーカーBというワードでタグを作っていますが、タグをクリックするとitem.dbの中からメーカーBというワードを含んだデータが検索されます。add.tagで追加、del.tagで削除できます</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{word}
 (e.g.)
 sudo /usr/local/small-shell/adm/ops add.tag:item.db{メーカーB}
 sudo /usr/local/small-shell/adm/ops del.tag:item.db{メーカーB}
 </code></pre>
 <p><img alt="Screenshot" src="../img/tag_table.png" /></p>
-<p>さらにkeyを指定したフィルターを設定することもできます。その場合は databox{key{ワード}}として設定して下さい。以下例ではタグをクリックするとitem.dbの全フィールドではなく、typeを指定したうえでパソコンという値をもったデータを検索できます</p>
+<p>さらにkeyを指定したフィルターを設定することもできます。その場合は databox{key{ワード}}として設定して下さい。以下例ではタグをクリックするとitem.dbの全フィールドではなく、item_typeとしてモニターという値をもったデータのみを検索できます</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}}
 (e.g.)
-sudo /usr/local/small-shell/adm/ops add.tag:item.db{type{パソコン}}
-sudo /usr/local/small-shell/adm/ops del.tag:item.db{type{パソコン}}
+sudo /usr/local/small-shell/adm/ops add.tag:item.db{item_type{モニター}}
+sudo /usr/local/small-shell/adm/ops del.tag:item.db{item_type{モニター}}
 </code></pre>
 <p><img alt="Screenshot" src="../img/tag_key_table.png" /></p>
 <h4 id="_14">行数指定</h4>
