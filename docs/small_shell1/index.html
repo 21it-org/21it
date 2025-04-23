@@ -1258,7 +1258,7 @@ Is it OK? (yes | no): yes
 <p>続いて、genコマンドでBase APPを生成していきましょう。アプリケーションの生成もgenコマンドで実行します</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre>
-<p>コマンド実行後に対話が始まりますので、それぞれ以下例にならって入力してください。なお、WEB server FQDN or IP addrという項目については<a href="../web/#IP">IPアドレスの表示</a>で確認したIPアドレスを入力する必要があります。
+<p>コマンド実行後に対話が始まりますので、それぞれ以下例にならって入力してください。なお、WEB server FQDN or IP addrという項目については<a href="../web/#ip">IPアドレスの表示</a>で確認したIPアドレスを入力する必要があります。
 以下例では172.28.9.180をIPアドレスとして入力しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 1
@@ -1268,11 +1268,8 @@ WEB Server FQDN or IP addr (e.g. 192.168.10.1): 172.28.9.180
 </code></pre></div>
 <h4 id="web">WEBアプリの日本語化</h4>
 <p>生成したWEBアプリを日本語対応させるため、以下追加パッケージをインストールしましょう</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME;git clone https://github.com/naruoken/small-shell-apps
-$ cd small-shell-apps/dictionary/JP;sudo ./deploy.sh
-
-# small-shellのディレクトリpathに間違いなければenterを押してください
-small-shell root (/usr/local/small-shell): &lt;enter&gt;
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME;git clone https://github.com/naruoken/small-shell-apps;cd small-shell-apps/dictionary/JP;sudo ./deploy.sh
+small-shell root (/usr/local/small-shell): ※特に何も入力せず、ENTERを押してください
 </code></pre></div>
 <h3 id="base-app_2">Base APPユーザー作成</h3>
 <p>続いてBase APPへアクセスするためのユーザーを作成しましょう、"ops"コマンドを使用することでユーザー作成ができます。あなたが管理者の場合アプリ利用者の人数分ユーザー作成をしてください。以下ではtestというユーザーを作成しています。</p>
