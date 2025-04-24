@@ -1060,20 +1060,20 @@ Is it OK? (yes | no): yes
 <p>テンプレートのダウンロードはgit cloneコマンドでおこないます</p>
 <pre><code>git clone https://github.com/naruoken/small-shell-apps
 </code></pre>
-<p>なお、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではcloneコマンドをコメントアウトしています
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME
-$ #git clone https://github.com/naruoken/small-shell-apps
-$ cd small-shell-apps/team_app
-$ sudo ./deploy.sh
+<p>なお、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではエラーが表示されています
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># ダウンロード
+$ cd $HOME; git clone https://github.com/naruoken/small-shell-apps
+※前ページでの日本語化パッケージインストールの際にgit cloneをしているため以下エラーが表示される可能性があります
+fatal: destination path &#39;small-shell-apps&#39; already exists and is not an empty directory.
 
-# small-shellのディレクトリpathに間違いなければenterを押してください
+# Team APPのインストール
+$ cd $HOME/small-shell-apps/team_app; sudo ./deploy.sh
 small-shell root (/usr/local/small-shell): &lt;enter&gt;
 Do you want to enable IP whitelisting for this APP ? (yes | no): no
 
 # Team APPの日本語化
-$ cd $HOME/small-shell-apps/dictionary/JP
+$ cd $HOME/small-shell-apps/dictionary/JP; sudo ./deploy.sh
 small-shell root (/usr/local/small-shell): &lt;enter&gt;
--&gt; 前ページで1度実行しているためメッセージが表示されますが無視して下さい
 </code></pre></div></p>
 <h3 id="team-app">Team APPユーザー追加</h3>
 <p>Team APPはBase APPのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではteam APPにtestというユーザーを作成しています</p>
