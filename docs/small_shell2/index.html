@@ -535,7 +535,49 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEBドキュメントの生成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WEBドキュメントの生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodatabox" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoDataboxアプリの生成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドキュメントの編集
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドキュメントのエクスポート
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       その他操作
     </span>
@@ -568,7 +610,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       フォーム利用の検討
     </span>
@@ -587,7 +629,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
       フォームの生成
     </span>
@@ -601,7 +643,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
+  <a href="#_19" class="md-nav__link">
     <span class="md-ellipsis">
       実環境の構築
     </span>
@@ -852,7 +894,49 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEBドキュメントの生成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WEBドキュメントの生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodatabox" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoDataboxアプリの生成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドキュメントの編集
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドキュメントのエクスポート
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       その他操作
     </span>
@@ -885,7 +969,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       フォーム利用の検討
     </span>
@@ -904,7 +988,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
       フォームの生成
     </span>
@@ -918,7 +1002,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
+  <a href="#_19" class="md-nav__link">
     <span class="md-ellipsis">
       実環境の構築
     </span>
@@ -1114,7 +1198,52 @@ Is it OK? (yes | no): yes
 <p class="admonition-title">Note</p>
 <p>インポートしたアプリについては諸々編集権限がないため細かいカスタマイズを行うには直接編集が必要になりますが、1から生成したスクラッチアプリであればBase APPでメニュー含めて更新可能です。スクラッチアプリについてはsmall-shell基礎#2をご確認ください</p>
 </div>
-<h2 id="_14">その他操作</h2>
+<h2 id="web">WEBドキュメントの生成</h2>
+<p>small-shellをアプリケーションの生成・実行環境として利用する代わりに、WEBドキュメントの生成ツールとして利用することもできます。たとえば、WLSやChromebook上のLinuxで作成したドキュメントをエクスポートして、電子ファイルとしてメールやチャットなどで共有することが可能になります。以下はWEBドキュメントを生成し、電子ファイルとしてダウンロードしてローカル保存するまでの例となります</p>
+<h4 id="nodatabox">NoDataboxアプリの生成</h4>
+<p>まずはdataboxを持たないスクラッチアプリを生成します、アプリ生成の際はDataboxをnoneとしてください。以下例ではアプリケーション名をgenDocとしています</p>
+<p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
+Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
+APP Name: genDoc
+Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 4
+Primary Databox: none
+Do you want to enable IP whitelisting for this APP? (yes | no): no
+</code></pre></div>
+上記対話の後、最終確認をyesとするとアプリケーションが生成されますので、生成されたAccess RLへアクセスしてみましょう。IPアドレスが前頁からの例のとおり172.28.9.180であった場合は、http://172.28.9.180/genDocになります。標準のポータル画面が表示されていると思いますが、DataBoxをクリックするとエラーになりますが想定どおりの挙動となります。</p>
+<h4 id="_14">ドキュメントの編集</h4>
+<p>BaseAPPにログイン後にgenDoc.UI.md.defを選択してページの編集をしていきましょう
+<img alt="Screenshot" src="../img/genDoc_table.png" /></p>
+<p>以下段取りでページを編集しています
+<div class="highlight"><pre><span></span><code>1. ヘッダーの右上のメニュー(right menu)を消す
+2. 左上のgenDocと記述をManualに変更
+3. フッター(footer)も消す
+4. Descriptionにマークダウンでドキュメントを記述
+5. イメージをアップロードしimgタグを挿入
+</code></pre></div></p>
+<p>なお、イメージをアップロードして挿入する方法については<a href="./#_10">イメージのアップロード</a>を参考にしてください。
+以下はマークダウンの<a href="https://docs.google.com/document/d/1FaaikX_BeI1GOL2YUzvfg4_8BqYjMG2Fwbrof2xm_e0/edit?usp=sharing">サンプル</a>を利用して編集・生成した画面になります。なお、電源アイコンのサンプルはフリー素材のサイトなどから入手してください</p>
+<p><img alt="Screenshot" src="../img/genDoc_page.png" />
+<img alt="Screenshot" src="../img/genDoc.png" /></p>
+<h4 id="_15">ドキュメントのエクスポート</h4>
+<p>dist.shを使い、ドキュメントを電子ファイルとしてエクスポートします</p>
+<pre><code>sudo /usr/local/small-shell/util/scripts/dist.sh $APP
+</code></pre>
+<p>以下は実行例となりますが、最終行にダウンロードURLが表示されるのでダウンロードして電子ファイルとして保管・共有してください</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/util/scripts/dist.sh genDoc
+genDoc/
+genDoc/電源のアイコン素材.png
+genDoc/index.html
+genDoc/genDoc.css
+============================================================
+APP is successfully exported, download linnk is here
+http://172.28.9.180/genDoc.tar.gz
+============================================================
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ダウンロードファイルは圧縮されていますので解凍して利用してください</p>
+</div>
+<h2 id="_16">その他操作</h2>
 <h3 id="scratch-apptag">Scratch APPへのtag追加</h3>
 <p>スクラッチアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}} app:$app_name
@@ -1130,7 +1259,7 @@ $ sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># team APPを指定する場合
 $ sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test
 </code></pre></div>
-<h2 id="_15">フォーム利用の検討</h2>
+<h2 id="_17">フォーム利用の検討</h2>
 <p>アカウントを持たない外部ユーザーから所定の入力項目をもとにデータを収集し、DataBoxに格納するために外部Formの作成をすることができます。ここでは外部ユーザーからの意見収集のためのアンケートformの作成を例としてご説明します。</p>
 <h3 id="box">アンケートBox作成</h3>
 <p>初めに収集したいデータを格納するDataBoxを作成しましょう、ここでは架空の製品である"XYZ"についての感想をアンケートとして収集しましょう。その際一意となるkeyは特に想定されないため、primary_keyはhashidとします</p>
@@ -1184,7 +1313,7 @@ option=&quot;&quot; # &lt;- requiredはNoで回答
 <p class="admonition-title">Warning</p>
 <p>対話モードの際にバックスペースを使って日本語を修正すると入力値が壊れるため、できるだけコピペなどで生成してください</p>
 </div>
-<h3 id="_16">フォームの生成</h3>
+<h3 id="_18">フォームの生成</h3>
 <p>DataBoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます。アプリケーションタイプとして2.FORMを選択し、名前は仮にsurveyとしましょう。DataBoxとしては先ほど作成したsurvey.boxを指定します</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1224,7 +1353,7 @@ Is it OK? (yes | no): yes
 <p><img alt="Screenshot" src="../img/survey.png" /></p>
 <p>BaseAPPで登録されたデータを見てみると、一意のIDも自動生成されていることが確認できます。
 <img alt="Screenshot" src="../img/survey_table.png" /></p>
-<h2 id="_17">実環境の構築</h2>
+<h2 id="_19">実環境の構築</h2>
 <p>small shellの学習環境として<a href="../unix1/">UnixBasic1</a>ではWSLとChromebookをご紹介しましたが、WSL,chromebookはともに外部からのアクセスができないためローカルでの学習にとどまります。アプリをネットワーク上でアクセス可能にするためには、クラウドの利用をする必要があります。クラウドサービスとしてはAWSやVPSを利用することが考えられますが、インターネットへのサーバ公開に際してはセキュリティ対策が必要になりますので予め注意してください。サーバに関する専門知識をつけた上で運用することをおすすめします</p>
 
 
