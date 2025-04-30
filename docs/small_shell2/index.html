@@ -1267,7 +1267,7 @@ Is it OK? (yes | no): yes
 <h2 id="web">WEBドキュメントの生成</h2>
 <p>small-shellをアプリケーションの生成・実行環境として利用する代わりに、WEBドキュメントの生成ツールとして利用することもできます。たとえば、WLSやChromebook上のLinuxで作成したドキュメントをエクスポートして、電子ファイルとしてメールやチャットなどで共有することが可能になります。以下はWEBドキュメントを生成し、電子ファイルとしてダウンロードしてローカル保存するまでの例となります</p>
 <h4 id="nodatabox">NoDataboxアプリの生成</h4>
-<p>まずはdataboxを持たないスクラッチアプリを生成します、アプリ生成の際はDataboxをnoneとしてください。以下例ではアプリケーション名をgenDocとしています</p>
+<p>まずはDataboxを持たないスクラッチアプリを生成します、アプリ生成の際はDataboxをnoneとしてください。以下例ではアプリケーション名をgenDocとしています</p>
 <p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
 APP Name: genDoc
@@ -1306,7 +1306,7 @@ http://172.28.9.180/genDoc.tar.gz
 ============================================================
 </code></pre></div>
 <h4 id="_16">ドキュメントの表示</h4>
-<p>上記ダウンロードURLからファイルをダウンロードすることで、ローカルの電子ファイルとして開くことができます</p>
+<p>上記ダウンロードURLにアクセスしてファイルをダウンロードすることで、ローカルの電子ファイルとして開くことができます</p>
 <h5 id="windows">windowsの例</h5>
 <p>ダウンロードしたファイルはフォルダごと圧縮されていますので、ダブルクリックすることで展開していってください
 <img alt="Screenshot" src="../img/win_open_1.png" />
