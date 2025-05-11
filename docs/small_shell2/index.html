@@ -578,6 +578,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="ドキュメントの表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      WINDOWSの例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chromebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHROMEBOOKの例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -946,6 +970,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="ドキュメントの表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      WINDOWSの例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chromebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHROMEBOOKの例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1246,24 +1294,30 @@ Do you want to enable IP whitelisting for this APP? (yes | no): no
 <img alt="Screenshot" src="../img/genDoc.png" /></p>
 <h4 id="_15">ドキュメントのエクスポート</h4>
 <p>dist.shを使い、ドキュメントを電子ファイルとしてエクスポートします</p>
-<pre><code>sudo /usr/local/small-shell/util/scripts/dist.sh $APP
+<pre><code>sudo /usr/local/small-shell/util/scripts/dist.sh $APP $EXPORT_DIR
 </code></pre>
-<p>以下は実行例となりますが、最終行にダウンロードURLが表示されるのでダウンロードして電子ファイルとして保管・共有してください</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/util/scripts/dist.sh genDoc
+<p>以下は実行例となりますが、HOMEディレクトリを指定することでデスクトップPCからもアクセス可能なディレクトリに作成されます</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/util/scripts/dist.sh genDoc $HOME
 genDoc/
 genDoc/電源のアイコン素材.png
 genDoc/index.html
 genDoc/genDoc.css
 ============================================================
-APP is successfully exported, download linnk is here
-http://172.28.9.180/genDoc.tar.gz
+APP is successfully exported to your directory
+PATH: /home/ubuntu/genDoc.tar.gz
 ============================================================
 </code></pre></div>
 <h4 id="_16">ドキュメントの表示</h4>
-<p>上記ダウンロードURLにアクセスしてファイルをダウンロードすることで、ローカルの電子ファイルとして開くことができます</p>
-<p>ダウンロードしたファイルはフォルダごと圧縮されていますので、ダブルクリックすることで展開していき、index.htmlというファイルをダブルクリックしてドキュメントを表示してください</p>
-<p><img alt="Screenshot" src="../img/win_open_1.png" />
+<h5 id="windows">WINDOWSの例</h5>
+<p>Linux &gt; Ubuntu &gt; home &gt; ユーザー名配下に圧縮ファイルが出来上がっていますのでダブルクリックして展開してください
+<img alt="Screenshot" src="../img/win_open_1.png" /></p>
+<p>index.htmlというファイルが見つかりますのでダブルクリックして表示してください
 <img alt="Screenshot" src="../img/win_open_2.png" /></p>
+<h5 id="chromebook">CHROMEBOOKの例</h5>
+<p>Linuxファイル配下に圧縮ファイルが出来上がっていますのでダブルクリックして展開してください
+<img alt="Screenshot" src="../img/chromebook_open_1.png" /></p>
+<p>index.htmlというファイルが見つかりますのでダブルクリックして表示してください
+<img alt="Screenshot" src="../img/chromebook_open_2.png" /></p>
 <h2 id="_17">その他操作</h2>
 <h3 id="scratch-apptag">Scratch APPへのtag追加</h3>
 <p>スクラッチアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>
