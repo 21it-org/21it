@@ -1156,31 +1156,30 @@ Is it OK? (yes | no): yes
 </div>
 <p><img alt="Screenshot" src="../img/test.UI.md.def.png" /></p>
 <h4 id="_9">ポータルページ編集</h4>
-<p>Base APPで直接ポータルページをデータとして編集していきましょう、それぞれのフィールドを入力してpushボタンを押すとポータル画面が更新されます。
-<img alt="Screenshot" src="../img/edit_page.png" /></p>
+<p>Base APPで直接ポータルページをデータとして編集していきましょう、それぞれのフィールドを入力してSETボタンを押してポータル画面をリロードするとページが更新されます。</p>
 <table>
 <thead>
 <tr>
 <th>フィールド</th>
 <th>記法</th>
-<th>アウトプット</th>
+<th>詳細</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Description</td>
-<td>markdown or HTML</td>
+<td>Markdown or HTML</td>
 <td>ポータルのメインページを記述します。markdownとHTMLどちらも併用できるため柔軟なページ編集が可能です</td>
 </tr>
 <tr>
-<td>YAML for right menu of header</td>
-<td>yaml</td>
-<td>右メニュー"="に入れるリンクをyamlで定義します。yaml例は初期値としてあらかじめフィールドに入っていますので参考にしてください。ちなみに値をすべて消すと"="メニュー自体を消せます</td>
+<td>YAML for navbar-right-menu</td>
+<td>YAML</td>
+<td>ナビゲーションバーの"="に入れるテキストリンクをyamlで定義します。yaml例は初期値としてあらかじめフィールドに入っていますので参考にしてください。ちなみに値をすべて消すと"="メニュー自体を消せます</td>
 </tr>
 <tr>
-<td>YAML for left menu of header</td>
-<td>yaml</td>
-<td>左寄せのメニューバーに入れるリンクをyamlで定義します。yaml例は右メニュー同様あらかじめフィールドに入っています</td>
+<td>YAML for navbar-left-links</td>
+<td>YAML</td>
+<td>ナビゲーションバーの左に入れるテキストリンクをyamlで定義します。yaml例は初期値としてあらかじめフィールドに入っています</td>
 </tr>
 <tr>
 <td>Logo</td>
@@ -1194,6 +1193,8 @@ Is it OK? (yes | no): yes
 </tr>
 </tbody>
 </table>
+<p>各フィールドに該当する部分は以下のとおりです
+<img alt="Screenshot" src="../img/component.png" /></p>
 <h4 id="_10">イメージのアップロード</h4>
 <p>ロゴやイメージをアップロードしてスクラッチアップに追加したい場合、Base APP上のDataBoxのimages.dbにファイルをアップロードしてimgタグを取得して上記ポータルページのDescriptionもしくはlogoフィールドに貼り付けて下さい
 <img alt="Screenshot" src="../img/images.db.png" /></p>
@@ -1282,16 +1283,15 @@ Do you want to enable IP whitelisting for this APP? (yes | no): no
 <p>BaseAPPにログイン後にgenDoc.UI.md.defを選択してページの編集をしていきましょう
 <img alt="Screenshot" src="../img/genDoc_table.png" /></p>
 <p>以下段取りでページを編集しています
-<div class="highlight"><pre><span></span><code>1. ヘッダーの右上のメニュー(right menu)を消す
-2. 左上のgenDocと記述をManualに変更
+<div class="highlight"><pre><span></span><code>1. ナビゲーションバーの右メニュー(navbar-right-menu)を消す
+2. 左上のgenDocという記述をManualに変更
 3. フッター(footer)も消す
 4. Descriptionにマークダウンでドキュメントを記述
 5. イメージをアップロードしimgタグを挿入
 </code></pre></div></p>
-<p>なお、イメージをアップロードして挿入する方法については<a href="./#_10">イメージのアップロード</a>を参考にしてください。
+<p>なお、ポータルの編集方法については<a href="./#_9">ポータルの編集</a>を、イメージをアップロードして挿入する方法については<a href="./#_10">イメージのアップロード</a>を参考にしてください。
 以下はマークダウンの<a href="https://docs.google.com/document/d/1FaaikX_BeI1GOL2YUzvfg4_8BqYjMG2Fwbrof2xm_e0/edit?usp=sharing">サンプル</a>を利用して編集・生成した画面になります。なお、電源アイコンのサンプルはフリー素材のサイトなどから入手してください</p>
-<p><img alt="Screenshot" src="../img/genDoc_page.png" />
-<img alt="Screenshot" src="../img/genDoc.png" /></p>
+<p><img alt="Screenshot" src="../img/genDoc.png" /></p>
 <h4 id="_15">ドキュメントのエクスポート</h4>
 <p>dist.shを使い、ドキュメントを電子ファイルとしてエクスポートします</p>
 <pre><code>sudo /usr/local/small-shell/util/scripts/dist.sh $APP $EXPORT_DIR
