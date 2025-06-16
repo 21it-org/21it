@@ -1120,7 +1120,7 @@ value : メーカーAのノートパソコン、在庫として10個ある
 <p>また、データを複数のkeyで構造的に管理する際、そのデータを一意で識別するためのkeyをprimary key (プライマリーキー)と呼びます。通常primary keyはアイテム名といった一意となるものを設定しますが、このようなキーを主キーと呼びます。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>一意となるkeyが選定できない場合はprimary_keyを指定せず、システム側で自動生成される値とすることができます。自動生成の設定例は<a href="../small_shell2/#box">アンケートの収集</a>で紹介されていますので、そちらを参照下さい。</p>
+<p>一意となるkeyが選定できない場合はPrimary Keyを指定せず、システム側で自動生成される値とすることができます。自動生成の設定例は<a href="../small_shell2/#box">アンケートの収集</a>で紹介されていますので、そちらを参照下さい。</p>
 </div>
 <p>item_infoを複数keyに厳密に分解していった例が以下となります</p>
 <div class="highlight"><span class="filename">keyの分割例(硬いデータ構造)</span><pre><span></span><code>keys  : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
@@ -1149,23 +1149,23 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 ※はコメントですので入力しないでください
 
 Databox Name: item.db ※item DataBoxという意味でitem.dbとしていますが英数字のフリーワードで設定できます
-primary_key(col1): item_name
-primary_key label: アイテム名(型番)
+Primary Key(col1): item_name
+Primary Key Label: アイテム名(型番)
 Add more columns to the databox? (yes | no): yes ※データボックスに列(key)を追加しますかという意味です、以降もyesと答えてください
 
-key(col2) name: maker
-key(col2) label: メーカー
+Key(col2) Name: maker
+Key(col2) Label: メーカー
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
-please define parameters using comma as separator: メーカーA社,メーカーB社,メーカーC社,その他
+Please list the values, separated by commas: メーカーA社,メーカーB社,メーカーC社,その他
 
 key(col3) name: item_type
 key(col3) label: タイプ
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
-please define parameters using comma as separator: パソコン,モニター,アクセサリー,その他
+Please list the values, separated by commas: パソコン,モニター,アクセサリー,その他
 
-key(col4) name: stock_num
-key(col4) label: 在庫数
-data type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): num
+Key(col4) Name: stock_num
+Key(col4) Label: 在庫数
+Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): num
 Set this as required? (yes | no): yes ※必須項目はyesとします
 
 key(col5) name: note
