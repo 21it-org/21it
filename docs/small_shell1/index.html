@@ -1149,27 +1149,27 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 ※はコメントですので入力しないでください
 
 Databox Name: item.db ※item DataBoxという意味でitem.dbとしていますが英数字のフリーワードで設定できます
-Primary Key(col1): item_name
+Primary Key Name: item_name
 Primary Key Label: アイテム名(型番)
 Add more columns to the databox? (yes | no): yes ※データボックスに列(key)を追加しますかという意味です、以降もyesと答えてください
 
-Key(col2) Name: maker
-Key(col2) Label: メーカー
+Col2 Key Name: maker
+Col2 Key Label: メーカー
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
 Please list the values, separated by commas: メーカーA社,メーカーB社,メーカーC社,その他
 
-key(col3) name: item_type
-key(col3) label: タイプ
+Col3 Key Name: item_type
+Col3 Key Label: タイプ
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): select
 Please list the values, separated by commas: パソコン,モニター,アクセサリー,その他
 
-Key(col4) Name: stock_num
-Key(col4) Label: 在庫数
+Col4 Key Name: stock_num
+Col4 Key Label: 在庫数
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): num
 Set this as required? (yes | no): yes ※必須項目はyesとします
 
-key(col5) name: note
-key(col5) label: 備考
+Col5 Key Name: note
+Col5 Key Label: 備考
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file | pdls | mls): text
 Set this as required? (yes | no): no
 Add more columns to the databox? (yes | no) : no
