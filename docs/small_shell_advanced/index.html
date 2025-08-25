@@ -1231,7 +1231,7 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 /var/www/descriptor/21DOJO_get_new_incf.html.def  /var/www/descriptor/21DOJO_get_rw_master_failed.html.def   /var/www/descriptor/21DOJO_table.html.def
 </code></pre></div>
 <h3 id="_4">ディレクトリ構造</h3>
-<p>コードは以下のとおり1.cgi-bin 2.bin 3.descriptorに格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のアクションスクリプトを呼び出し、アクションスクリプトがdescription配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
+<p>コードは以下のとおり1.cgi-bin 2.bin 3.descriptorに格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のアクションスクリプトを呼び出し、アクションスクリプトがdescriptor配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
 <pre><code>1. /var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
 2. /var/www/bin         # 応答処理をAction scriptとして記述、DataBoxへの接続や分岐処理をする
 3. /var/www/descriptor  # HTML及びCSSの定義を配置
@@ -1377,7 +1377,7 @@ Add more columns to dataset ? (yes | no) : no
 <p>続いて21DOJOへのログイン時に最初に表示されるポータルページに最新のイベント情報が出てくるようにしましょう</p>
 <h4 id="html">HTML編集</h4>
 <p>今回のポータルページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。Base APPログイン後、21DOJO.md.defデータボックスを選択して定義を更新しましょう。
-以下の通りdescriptionを全て消して以下を貼り付けて更新してください。
+以下の通りBodyを全て消して以下を貼り付けて更新してください。
 <img alt="Screenshot" src="../img/update_portal.png" /></p>
 <div class="highlight"><span class="filename">サンプルHTMLコード</span><pre><span></span><code>&lt;div class=&quot;flex-box&quot;&gt;
   &lt;div class=&quot;potal-description&quot;&gt;
