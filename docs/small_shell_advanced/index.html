@@ -1432,6 +1432,8 @@ $DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail form
 #| $SED &quot;/%%common_menu/r /var/www/descriptor/common_parts/21DOJO_common_menu&quot; \
 #| $SED &quot;s/%%common_menu//g&quot;\
 #| $SED &quot;/%%events/r /var/www/tmp/$session/events&quot; \
+#| $SED &quot;/%%event_add_btn/r /var/www/tmp/$session/event_add_btn&quot; \
+#| $SED &quot;s/%%event_add_btn//g&quot;\
 #| $SED &quot;s/%%user/$user_name/g&quot; \
 #| $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
 #| $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
