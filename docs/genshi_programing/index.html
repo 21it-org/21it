@@ -673,15 +673,6 @@
           <li class="md-nav__item">
   <a href="#_27" class="md-nav__link">
     <span class="md-ellipsis">
-      別スクリプト呼び出し
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_28" class="md-nav__link">
-    <span class="md-ellipsis">
       スクリプトの定期実行
     </span>
   </a>
@@ -689,7 +680,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_29" class="md-nav__link">
+  <a href="#_28" class="md-nav__link">
     <span class="md-ellipsis">
       さらなる学習のために
     </span>
@@ -1203,15 +1194,6 @@
           <li class="md-nav__item">
   <a href="#_27" class="md-nav__link">
     <span class="md-ellipsis">
-      別スクリプト呼び出し
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_28" class="md-nav__link">
-    <span class="md-ellipsis">
       スクリプトの定期実行
     </span>
   </a>
@@ -1219,7 +1201,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_29" class="md-nav__link">
+  <a href="#_28" class="md-nav__link">
     <span class="md-ellipsis">
       さらなる学習のために
     </span>
@@ -1912,33 +1894,11 @@ $ grep -l ubuntu /etc/os-release
 $ eval $ls_exe
 alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape  lastlog  unattended-upgrades  wtmp
 </code></pre></div>
-<p>後続のsmall shellのmetaコマンドではevalを使って変数内で組み立てたコマンドを実行していますので参考にして下さい
-<div class="highlight"><pre><span></span><code>  if [ &quot;$type&quot; = &quot;json&quot; ];then
-    header=`grep &quot;^name=&quot; $ROOT/databox/${databox}/def/col*  | sort -V |  awk -F&quot;=&quot; &#39;{print $2}&#39; | sed &quot;s/\&quot;//g&quot; \
-            | sed &quot;s/ //g&quot; | sed -z &quot;s/\n/,/g&quot; | sed &quot;s/,$//&quot;`
-
-    JQ=&quot;echo \$header | jq -R &#39;split(\&quot;,\&quot;) | {&quot;
-    count=0
-    for col in `ls $ROOT/databox/${databox}/def/col* | sort -V | xargs basename -a`
-    do
-      if [ $count -eq 0 ];then
-        JQ=&quot;${JQ}\&quot;$col\&quot;: .[$count]&quot;
-      else
-        JQ=&quot;${JQ}, \&quot;$col\&quot;: .[$count]&quot;
-      fi
-      ((count += 1))
-    done
-    JQ=&quot;${JQ}}&#39;&quot;
-    eval $JQ
-  fi
-</code></pre></div></p>
 <h3 id="tmp">tmpファイルの多用</h3>
 <p>処理を組み立てていく際にevalのように変数の中でコマンドを組み立てながら実行する方法もありますが、処理をテンポラリーファイルを作って過程を書き出しておくことであとからdebugが容易になります</p>
-<h3 id="_27">別スクリプト呼び出し</h3>
-<p>スクリプト内で別スクリプトを呼び出す際は単純にスクリプトをそのまま実行すれば良いです。呼び出すという意味ではコマンドとスクリプトは本質的にあまり変わりがありません</p>
-<h3 id="_28">スクリプトの定期実行</h3>
+<h3 id="_27">スクリプトの定期実行</h3>
 <p>cron(クーロン)を利用することでスクリプトを自動で定期実行することができます。small-shellを導入することでcronをより簡単に利用できるようになります</p>
-<h3 id="_29">さらなる学習のために</h3>
+<h3 id="_28">さらなる学習のために</h3>
 <p>高度なプログラミング言語において、それぞれの処理をモジュール化し疎結合にする手法がとられます。この手法はオブジェクト指向と呼ばれ、プログラムを学ぶ上で必要性を理解できず挫折する契機にもなる手法でもあります。bashでは処理をオブジェクト指向を実現するためのクラスやインスタンスの生成といったことがそもそもできません。代わりにコマンドや外部スクリプトを組み合わせてモジュールとして使います。即席で平易であることがshellスクリプトの特徴ですが、その特性を最大限に活用して作ったフレームワークがsmall shellです。small shellを使うことで非常に簡単にWebアプリケーションも作ることができますので、ぜひ<a href="../small_shell1/">small-shell Basic</a>もご確認ください</p>
 
 

@@ -486,7 +486,7 @@
           <li class="md-nav__item">
   <a href="#web" class="md-nav__link">
     <span class="md-ellipsis">
-      WEBアプリの日本語化
+      Webアプリの日本語化
     </span>
   </a>
   
@@ -880,7 +880,7 @@
           <li class="md-nav__item">
   <a href="#web" class="md-nav__link">
     <span class="md-ellipsis">
-      WEBアプリの日本語化
+      Webアプリの日本語化
     </span>
   </a>
   
@@ -1057,15 +1057,15 @@
 
 <h1 id="small-shell-basic-1">small shell Basic 1</h1>
 <h2 id="_1">スモールシェル</h2>
-<p>small shell(スモールシェル)はshellだけでWEBアプリケーションを書くことができるようにした、特異なフレームワークです。フレームワークというのはある一定の枠組みに従って進めると、一定のアウトプットがでるような一連の手続きのことを指します。手続きといっても、そう難しいものではなく、small shellにおいてはただコマンドを並べるだけであったり対話式のコマンドに答えるだけでWEBアプリケーションができあがります。</p>
+<p>small shell(スモールシェル)はshellだけでWebアプリケーションを書くことができるようにした、特異なフレームワークです。フレームワークというのはある一定の枠組みに従って進めると、一定のアウトプットがでるような一連の手続きのことを指します。手続きといっても、そう難しいものではなく、small shellにおいてはただコマンドを並べるだけであったり対話式のコマンドに答えるだけでWebアプリケーションができあがります。</p>
 <h3 id="_2">ジェネレーター</h3>
-<p>small shellでは"gen"コマンドによって様々なアプリケーションを生成することができますが、同時にデータを投入する箱も生成することができます。WEBアプリケーションがユーザーとの接続点となり、データの箱へのアクセスを提供するというのが基本的な構造になります。</p>
+<p>small shellでは"gen"コマンドによって様々なアプリケーションを生成することができますが、同時にデータを投入する箱も生成することができます。Webアプリケーションがユーザーとの接続点となり、データの箱へのアクセスを提供するというのが基本的な構造になります。</p>
 <div class="highlight"><span class="filename">IMAGE</span><pre><span></span><code>  ---------     ---------------------------
- | WEB APP | - | DATA BOX = データを入れる箱 |
+ | Web APP | - | DATA BOX = データを入れる箱 |
   ---------     ---------------------------
 </code></pre></div>
 <h2 id="base-app">Base APPの利用シナリオ</h2>
-<p>Base APP(ベースアプリ）は即席で生成できるsmall-shellの標準WEBアプリケーションですが、WEBアプリケーション自体の特性であるデータの共有のしやすさや、オープンで共同作業をしやすいという性質を持ちます。その点においてチームによるデータ管理を行う際、Excel等のスプレッドシートよりも優れているといえるでしょう。Base APPはAnd検索が可能で、Unix Basic 2コースでご紹介した高度なUnixコマンド群を使ったデータ分析も可能です。Formを用いることで外部からのデータ収集や依頼受付などもすることができます。本章ではBase APPを利用してデータを扱う方法を説明します。なお、以下高度な連携の実装については<a href="https://small-shell.org">公式ホームページ</a>を参照ください。公式サイトは英語ですので、適時翻訳ツールで翻訳いただければと思います。</p>
+<p>Base APP(ベースアプリ）は即席で生成できるsmall-shellの標準Webアプリケーションですが、Webアプリケーション自体の特性であるデータの共有のしやすさや、オープンで共同作業をしやすいという性質を持ちます。その点においてチームによるデータ管理を行う際、Excel等のスプレッドシートよりも優れているといえるでしょう。Base APPはAnd検索が可能で、Unix Basic 2コースでご紹介した高度なUnixコマンド群を使ったデータ分析も可能です。Formを用いることで外部からのデータ収集や依頼受付などもすることができます。本章ではBase APPを利用してデータを扱う方法を説明します。なお、以下高度な連携の実装については<a href="https://small-shell.org">公式ホームページ</a>を参照ください。公式サイトは英語ですので、適時翻訳ツールで翻訳いただければと思います。</p>
 <h4 id="_3">標準機能</h4>
 <ul>
 <li>容易なデータ共有と同時編集</li>
@@ -1130,7 +1130,7 @@ value : メーカーAのノートパソコン、在庫として10個ある
 keys   : item_name(primary_key), maker, item_type, stock_num, note
 label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 </code></pre></div>
-<p>なお、上記データがWEBアプリ上で表示される際には、各keyが列となり、テーブル型のデータとして表示されることになります</p>
+<p>なお、上記データがWebアプリ上で表示される際には、各keyが列となり、テーブル型のデータとして表示されることになります</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>重複などを排除し、テーブルの構造を厳密にしていく作業を一般的には正規化と呼びます。key分割という呼称はsmall-shellの独自の呼び方になります。データ構造をシステム設計の観点で最適化する正規化に対して、small-shellでは目的(上記例ではアイテム情報の管理)から要素を分解して必須の項目を定義するという作業によりフォーカスしているためkey分割という呼び方をしています。このような要素への分割と必須項目の定義自体はどんなシステムにおいても必要になる作業といえます</p>
@@ -1219,16 +1219,16 @@ Is it OK? (yes | no): yes
 <p>続いて、genコマンドでBase APPを生成していきましょう。アプリケーションの生成もgenコマンドで実行します</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre>
-<p>コマンド実行後に対話が始まりますので、それぞれ以下例にならって入力してください。なお、WEB server FQDN or IP addrという項目については<a href="../web/#ip">IPアドレスの表示</a>で確認したIPアドレスを入力する必要があります。
+<p>コマンド実行後に対話が始まりますので、それぞれ以下例にならって入力してください。なお、Web server FQDN or IP addrという項目については<a href="../web/#ip">IPアドレスの表示</a>で確認したIPアドレスを入力する必要があります。
 以下例では172.28.9.180をIPアドレスとして入力しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 1
-Type of server (1.small-shell WEB srv | 2.other WEB srv): 1
+Type of server (1.small-shell Web srv | 2.other Web srv): 1
 Protocol (http | https): http
-WEB Server FQDN or IP addr (e.g. 192.168.10.1): 172.28.9.180
+Web Server FQDN or IP addr (e.g. 192.168.10.1): 172.28.9.180
 </code></pre></div>
-<h4 id="web">WEBアプリの日本語化</h4>
-<p>生成したWEBアプリを日本語対応させるため、以下追加パッケージをインストールしましょう</p>
+<h4 id="web">Webアプリの日本語化</h4>
+<p>生成したWebアプリを日本語対応させるため、以下追加パッケージをインストールしましょう</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME;git clone https://github.com/naruoken/small-shell-apps;cd small-shell-apps/dictionary/JP;sudo ./deploy.sh
 small-shell root (/usr/local/small-shell): ※特に何も入力せず、ENTERを押してください
 </code></pre></div>
@@ -1316,7 +1316,7 @@ sudo /usr/local/small-shell/adm/ops del.tag:item.db{item_type{モニター}}
 </code></pre></div></p>
 <p><img alt="Screenshot" src="../img/console_log.png" /></p>
 <h3 id="_15">ダウンロード / 一括更新</h3>
-<p>DataBoxのデータをWEB上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してみましょう</p>
+<p>DataBoxのデータをWeb上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してみましょう</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>primary keyをhashidとした場合で、新規データをファイルimportにより登録したい場合hashidの値は一律newとしてください、その後自動採番されます</p>
