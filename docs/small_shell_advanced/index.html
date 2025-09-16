@@ -1203,7 +1203,6 @@ APP Name: 21DOJO
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 1
 Shared Passcode: XXXX
 Primary Databox: events
-Do you want to enable IP whitelisting for this APP? (yes | no): no
 </code></pre></div>
 前章同様、アプリはshared passを選択しますがもちろん他の認証方式も選択可能です。
 databoxの指定までできると最終確認をもとめられますので、yesと回答しましょう</p>
@@ -1264,7 +1263,7 @@ case &quot;$req&quot; in
     if [ ! &quot;$master&quot; ];then
       /var/www/bin/21DOJO_get.sh session:$session pin:$pin user_name:$user_name id:$id duplicate:$duplicate databox:$databox
     else
-      sync=`${small_shell_path}/bin/extension_auth app:21DOJO sync:${session}@${master}`
+      sync=$(${small_shell_path}/bin/extension_auth app:21DOJO sync:${session}@${master})
       if [ &quot;$sync&quot; = &quot;synced&quot; ];then
         redirect=yes
       else
@@ -1281,7 +1280,7 @@ case &quot;$req&quot; in
     /var/www/bin/21DOJO_del.sh session:$session pin:$pin user_name:$user_name id:$id databox:$databox ;;
 
   &quot;table&quot;)
-    table_command=&quot;`echo $table_command | $SED &quot;s/ /{%%space}/g&quot;`&quot;
+    table_command=&quot;$(echo $table_command | $SED &quot;s/ /{%%space}/g&quot;)&quot;
     /var/www/bin/21DOJO_table.sh session:$session pin:$pin user_name:$user_name id:$id page:$page table_command:$table_command line:$line ;;
 
   &quot;log_viewer&quot;)
@@ -1420,7 +1419,7 @@ META=&quot;${small_shell_path}/bin/meta&quot;
 DATA_SHELL=&quot;${small_shell_path}/bin/DATA_shell session:$session pin:$pin app:21DOJO&quot;
 
 # 以下行を追加
-id=`$DATA_SHELL databox:events command:head_-1 format:none | $AWK -F &quot;,&quot; &#39;{print $1}&#39;`
+id=$($DATA_SHELL databox:events command:head_-1 format:none | $AWK -F &quot;,&quot; &#39;{print $1}&#39;)
 $DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail format:html_tag &gt; ../tmp/$session/event
 
 # -----------------

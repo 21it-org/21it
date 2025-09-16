@@ -1293,8 +1293,8 @@ $
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
 123
 </code></pre></div>
-<p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは``(バッククォート)で囲んでください。以下例ではdateコマンドの実行結果を格納しています。shellは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できますが、操作からscript化まで非常に簡単に移行でき、コマンドを用いた様々な分岐を作ることができます。これはshellの非常に有用な特徴であり、利点であるといえます</p>
-<pre><code>test=`date`
+<p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは$()で囲んでください。以下例ではdateコマンドの実行結果を格納しています。shellは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できますが、操作からscript化まで非常に簡単に移行でき、コマンドを用いた様々な分岐を作ることができます。これはshellの非常に有用な特徴であり、利点であるといえます</p>
+<pre><code>test=$(date)
 </code></pre>
 <p>コマンド結果を格納した変数の中身を表示しましょう</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
@@ -1504,7 +1504,7 @@ touch ./for_test/fileD
 <div class="highlight"><span class="filename">for_test.shのコード</span><pre><span></span><code>#!/bin/bash
 DIR=./for_test
 
-for file in `ls $DIR`
+for file in $(ls $DIR)
 do
   mv ${DIR}/${file} ${DIR}/${file}.txt
 done
@@ -1879,13 +1879,17 @@ $ grep -l ubuntu /etc/os-release
 /etc/os-release
 </code></pre></div>
 <h3 id="_25">実行結果の変数への格納</h3>
-<p>コマンド実行結果を変数に格納する方法はいくつかありますが、本コースの冒頭でご紹介した``(バッククォート)以外にもいくつかあります</p>
-<pre><code>#バッククォート
-変数=`実行コマンド`
-
-#$()
+<p>コマンド実行結果を変数に格納する方法はいくつかありますが、$()を利用した方法と`(バッククォート)を利用した方法があります。一般的に$()を利用する方法が推奨されていると考えてください</p>
+<pre><code>#$()を利用した方法 ※推奨
 変数=$(実行コマンド)
+
+#``を利用した方法
+変数=`実行コマンド`
 </code></pre>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls_exe=$(ls /var/log)
+$ echo $ls_exe
+alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape  lastlog  unattended-upgrades  wtmp
+</code></pre></div>
 <h3 id="_26">変数をコマンドとして実行</h3>
 <p>コマンド変数内で組み立てて、実行することもできます</p>
 <pre><code>eval 変数
