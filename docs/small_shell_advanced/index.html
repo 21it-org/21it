@@ -516,16 +516,16 @@
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      アクションスクリプト
+      スクリプト
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#html-descriptor" class="md-nav__link">
+  <a href="#htmldef" class="md-nav__link">
     <span class="md-ellipsis">
-      HTML descriptor
+      HTML(.def)
     </span>
   </a>
   
@@ -933,16 +933,16 @@
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      アクションスクリプト
+      スクリプト
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#html-descriptor" class="md-nav__link">
+  <a href="#htmldef" class="md-nav__link">
     <span class="md-ellipsis">
-      HTML descriptor
+      HTML(.def)
     </span>
   </a>
   
@@ -1223,17 +1223,17 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 /var/www/cgi-bin/21DOJO_css
 /var/www/bin/21DOJO_del.sh      /var/www/bin/21DOJO_get.sh             /var/www/bin/21DOJO_main.sh            /var/www/bin/21DOJO_set.sh
 /var/www/bin/21DOJO_dl.sh       /var/www/bin/21DOJO_log_viewer.sh  /var/www/bin/21DOJO_page_links.sh  /var/www/bin/21DOJO_table.sh
-/var/www/descriptor/21DOJO_auth_form.html.def     /var/www/descriptor/21DOJO_get_new_master_failed.html.def  /var/www/descriptor/21DOJO_log_viewer.html.def
-/var/www/descriptor/21DOJO_del_err.html.def       /var/www/descriptor/21DOJO_get_ro.html.def                 /var/www/descriptor/21DOJO_main.html.def
-/var/www/descriptor/21DOJO_get_err.html.def       /var/www/descriptor/21DOJO_get_rw.html.def                 /var/www/descriptor/21DOJO_main.html.incmd.def
-/var/www/descriptor/21DOJO_get_new.html.def       /var/www/descriptor/21DOJO_get_rw_incf.html.def            /var/www/descriptor/21DOJO_set_err.html.def
-/var/www/descriptor/21DOJO_get_new_incf.html.def  /var/www/descriptor/21DOJO_get_rw_master_failed.html.def   /var/www/descriptor/21DOJO_table.html.def
+/var/www/def/21DOJO_auth_form.html.def     /var/www/def/21DOJO_get_new_master_failed.html.def  /var/www/def/21DOJO_log_viewer.html.def
+/var/www/def/21DOJO_del_err.html.def       /var/www/def/21DOJO_get_ro.html.def                 /var/www/def/21DOJO_main.html.def
+/var/www/def/21DOJO_get_err.html.def       /var/www/def/21DOJO_get_rw.html.def                 /var/www/def/21DOJO_main.html.incmd.def
+/var/www/def/21DOJO_get_new.html.def       /var/www/def/21DOJO_get_rw_incf.html.def            /var/www/def/21DOJO_set_err.html.def
+/var/www/def/21DOJO_get_new_incf.html.def  /var/www/def/21DOJO_get_rw_master_failed.html.def   /var/www/def/21DOJO_table.html.def
 </code></pre></div>
 <h3 id="_4">ディレクトリ構造</h3>
-<p>コードは以下のとおり1.cgi-bin 2.bin 3.descriptorに格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のアクションスクリプトを呼び出し、アクションスクリプトがdescriptor配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
+<p>コードは以下のとおり1.cgi-bin 2.bin 3.defに格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のスクリプトを呼び出し、スクリプトがdef配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
 <pre><code>1. /var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
 2. /var/www/bin         # 応答処理をAction scriptとして記述、DataBoxへの接続や分岐処理をする
-3. /var/www/descriptor  # HTML及びCSSの定義を配置
+3. /var/www/def  # HTML及びCSSの定義を配置
 </code></pre>
 <h3 id="url">URL構造</h3>
 <p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.21DOJOというプログラムへサーバ側でリダイレクト(転送)され認証画面が表示されますのでアプリ生成時に設定したパスコードを入力してください</p>
@@ -1259,7 +1259,7 @@ case &quot;$req&quot; in
     /var/www/bin/21DOJO_main.sh session:$session pin:$pin user_name:$user_name ;;
 
   &quot;get&quot;)
-    # if its replica host, master definition will be in ./descriptor/.small-shell.conf
+    # if its replica host, master definition will be in ./def/.small-shell.conf
     if [ ! &quot;$master&quot; ];then
       /var/www/bin/21DOJO_get.sh session:$session pin:$pin user_name:$user_name id:$id duplicate:$duplicate databox:$databox
     else
@@ -1304,8 +1304,8 @@ exit 0
 <p class="admonition-title">Note</p>
 <p>QUERY STRINGとPOSTはともにサーバにクライアントからデータを渡しますがそれぞれ方法が異なります。QUERY STRINGは前述のとおりURLに埋め込まれていますが、POSTデータは主にフォームを通じてデータ送信されます</p>
 </div>
-<h3 id="_7">アクションスクリプト</h3>
-<p>コントローラーがルーティングを通じて呼び出すのがアクションスクリプトですが、ユーザーへの応答を返すのはアクションスクリプトになります。主な処理としてはデータシェルへ接続して特定のidを持つデータを抽出したうえで所定のHTML descriptorのHTMLファイルに動的な情報を埋め込んで返します。その際、動的情報の埋め込みとしては%%タグ(印)をsedで置き換えるという処理を行っています。    </p>
+<h3 id="_7">スクリプト</h3>
+<p>コントローラーがルーティングを通じて呼び出すのがbin配下のスクリプトですが、ユーザーへの応答を返すのはこちらのスクリプトになります。主な処理としてはデータシェルへ接続して特定のidを持つデータを抽出したうえで所定のHTML defのHTMLファイルに動的な情報を埋め込んで返します。その際、動的情報の埋め込みとしては%%タグ(印)をsedで置き換えるという処理を行っています。    </p>
 <p>データシェルへの接続部分はget.shの中の以下処理となります
 <div class="highlight"><span class="filename">DATA_shellへの接続とデータの抽出</span><pre><span></span><code>$ grep DATA_SHELL /var/www/bin/21DOJO_get.sh | grep html
     $DATA_SHELL databox:$databox action:get id:$id keys:$keys format:html_tag &gt; /var/www/tmp/$session/dataset
@@ -1313,8 +1313,8 @@ exit 0
 <p>また、HTMLを還す際は以下のようにsedで%%datasetタグの中に上記で抽出した情報を埋め込みます</p>
 <div class="highlight"><span class="filename">タグへの情報の埋め込み</span><pre><span></span><code>$ sudo tail -20 /var/www/bin/21DOJO_get.sh
 # render HTML
-cat /var/www/descriptor/${view} | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
-| $SED &quot;/%%common_menu/r /var/www/descriptor/common_parts/21DOJO_common_menu&quot; \
+cat /var/www/def/${view} | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
+| $SED &quot;/%%common_menu/r /var/www/def/common_parts/21DOJO_common_menu&quot; \
 | $SED &quot;/%%common_menu/d&quot; \
 | $SED &quot;s/%%user/$user_name/g&quot;\
 | $SED &quot;/%%dataset/r /var/www/tmp/$session/dataset&quot; \
@@ -1333,9 +1333,9 @@ fi
 
 exit 0
 </code></pre></div>
-<h3 id="html-descriptor">HTML descriptor</h3>
-<p>アクションスクリプトが呼び出しているHTML descriptorも見てみましょう。HTMLの以下%%dataset部分にアクションスクリプトがデータを埋め込みます
-<div class="highlight"><span class="filename">HTML内の%%datasetタグ</span><pre><span></span><code>$ cat /var/www/descriptor/21DOJO_get_rw.html.def  | grep -2 %%dataset | sed -r &quot;s/^(.*)&lt;/&lt;/g&quot;
+<h3 id="htmldef">HTML(.def)</h3>
+<p>bin配下のスクリプトが呼び出しているHTMLの定義も見てみましょう。HTMLの以下%%dataset部分にスクリプトがデータを埋め込みます
+<div class="highlight"><span class="filename">HTML内の%%datasetタグ</span><pre><span></span><code>$ cat /var/www/def/21DOJO_get_rw.html.def  | grep -2 %%dataset | sed -r &quot;s/^(.*)&lt;/&lt;/g&quot;
 
 &lt;form method=&quot;post&quot; action=&quot;./21DOJO?%%params&amp;req=set&amp;id=%%id&quot; onclick=&quot;document.charset=&#39;utf-8&#39;;&quot;&gt;
 &lt;ul&gt;
@@ -1394,7 +1394,7 @@ Add more columns to dataset ? (yes | no) : no
 <p>以下が更新後の画面です、現時点で%%eventタグが埋め込まれていないためそのまま%%eventタグが表示されています、またeventの位置があまりよくないためcssをつかって位置を調整しましょう
 <img alt="Screenshot" src="../img/portal_1.png" /></p>
 <p>アプリ毎のcss定義については直接編集が可能です</p>
-<pre><code>sudo nano /var/www/descriptor/21DOJO.css.def
+<pre><code>sudo nano /var/www/def/21DOJO.css.def
 </code></pre>
 <p>nanoでファイルを開いたら以下コードを一番下に貼り付けましょう、ctrl + Vでページを進むことができます
 <div class="highlight"><span class="filename">追加コード</span><pre><span></span><code>.flex-box {
@@ -1427,8 +1427,8 @@ $DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail form
 # -----------------
 
 # 以下行をコメントアウト
-#cat /var/www/descriptor/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
-#| $SED &quot;/%%common_menu/r /var/www/descriptor/common_parts/21DOJO_common_menu&quot; \
+#cat /var/www/def/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
+#| $SED &quot;/%%common_menu/r /var/www/def/common_parts/21DOJO_common_menu&quot; \
 #| $SED &quot;s/%%common_menu//g&quot;\
 #| $SED &quot;/%%events/r /var/www/tmp/$session/events&quot; \
 #| $SED &quot;/%%event_add_btn/r /var/www/tmp/$session/event_add_btn&quot; \
@@ -1438,8 +1438,8 @@ $DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail form
 #| $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
 
 # 以下行を追加
-cat /var/www/descriptor/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
-| $SED &quot;/%%common_menu/r /var/www/descriptor/common_parts/21DOJO_common_menu&quot; \
+cat /var/www/def/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
+| $SED &quot;/%%common_menu/r /var/www/def/common_parts/21DOJO_common_menu&quot; \
 | $SED &quot;s/%%common_menu//g&quot;\
 | $SED &quot;s/%%user_name/$user_name/g&quot; \
 | $SED &quot;/%%event/r ../tmp/$session/event&quot; \
@@ -1462,7 +1462,7 @@ successfully set attr peremission 21DOJO/21DOJO.app{ro}&quot;
 <p>管理目的以外で使用しないkeyは21DOJOアプリからは閲覧できないようkeys=allをコメントアウトして閲覧可能なkeyを制限しましょう。</p>
 <p>以下はkey制限前のテーブルイメージです
 <img alt="Screenshot" src="../img/before_key_edit.png" /></p>
-<p>keyを制限するため、/bin配下のアクションスクリプトを編集します
+<p>keyを制限するため、/bin配下のスクリプトを編集します
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>sudo nano /var/www/bin/21DOJO_table.sh
 --対象コード--
 #keys=all
