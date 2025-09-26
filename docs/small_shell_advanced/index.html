@@ -422,11 +422,11 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      スクラッチアプリ生成
+      カスタムアプリ生成
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="スクラッチアプリ生成">
+    <nav class="md-nav" aria-label="カスタムアプリ生成">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -839,11 +839,11 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      スクラッチアプリ生成
+      カスタムアプリ生成
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="スクラッチアプリ生成">
+    <nav class="md-nav" aria-label="カスタムアプリ生成">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1183,8 +1183,8 @@
 
 <h1 id="small-shell-advanced">small shell Advanced</h1>
 <h2 id="_1">アプリ開発</h2>
-<p>small shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。Application Shellの基本構造を理解することで、生成したScratch APPにLinuxコマンドでそのまま処理を追加でき、データを結合、加工することができます。本コースではScratch APPの生成とカスタマイズの流れをご説明します。それでは早速Scratch APPを生成してApplication Shellの構造を読み解いていきましょう</p>
-<p>Scratch APPを使って作成するアプリケーションのシナリオは以下のとおりです</p>
+<p>small shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。Application Shellの基本構造を理解することで、生成したCustom APPにLinuxコマンドでそのまま処理を追加でき、データを結合、加工することができます。本コースではCustom APPの生成とカスタマイズの流れをご説明します。それでは早速Custom APPを生成してApplication Shellの構造を読み解いていきましょう</p>
+<p>Custom APPを使って作成するアプリケーションのシナリオは以下のとおりです</p>
 <h5 id="web">Webアプリシナリオ</h5>
 <pre><code>1. アプリへはパスコードもしくは専用URL(QRコード化も可能)でアクセスする
 2. 認証が成功した場合、アプリはイベントの詳細情報を表示する
@@ -1192,13 +1192,13 @@
 </code></pre>
 <h4 id="team-app">Team APPの生成</h4>
 <p>small shell基礎#2にてTeam APPはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team APPのinstall</a>を参照のうえ生成してください</p>
-<h2 id="_2">スクラッチアプリ生成</h2>
-<p>早速 Scratch APPを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。前提としてsmall-shell基礎#1で作成したBase APPが作られている必要がありますのでsmall-shell基礎#1を参照して生成しておいてください。</p>
+<h2 id="_2">カスタムアプリ生成</h2>
+<p>早速Custom APPを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。前提としてsmall-shell基礎#1で作成したBase APPが作られている必要がありますのでsmall-shell基礎#1を参照して生成しておいてください。</p>
 <div class="highlight"><span class="filename">生成コマンド</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre></div>
 <p>対話が始まりますが、ここではアプリケーションの名前は21DOJOとします、pass codeは任意の4桁の数字を入力しています
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
-Type of APP (1.BASE | 2.FORM | 3.SCRATCH): 3
+Type of APP (1.BASE | 2.FORM | 3.CUSTOM): 3
 APP Name: 21DOJO
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 1
 Shared Passcode: XXXX
@@ -1208,12 +1208,12 @@ Primary Databox: events
 databoxの指定までできると最終確認をもとめられますので、yesと回答しましょう</p>
 <h4 id="_3">ログイン画面の確認</h4>
 <p>アプリケーションが生成されたのでアクセスしてみましょう  <br />
-(アクセスURLはスクラッチアプリ生成後に出力されます)</p>
+(アクセスURLはカスタムアプリ生成後に出力されます)</p>
 <p><img alt="Screenshot" src="../img/21login.png" /></p>
 <h2 id="app-shell">APP shell基本構造</h2>
-<p>アプリケーションシェルの構造を理解して、スクラッチアプリを更新していきましょう。スクラッチアプリ作成時に以下のようにコードを含むファイルが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">APP shell</a>も参考にしてください</p>
+<p>アプリケーションシェルの構造を理解して、カスタムアプリを更新していきましょう。カスタムアプリ作成時に以下のようにコードを含むファイルが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">APP shell</a>も参考にしてください</p>
 <div class="highlight"><span class="filename">生成されたファイル</span><pre><span></span><code>------------------------------------------------------------
-SCRATCH APP is successfully generated
+Custom APP is successfully generated
 Access URL: http://{サーバアドレス}/21DOJO
 ------------------------------------------------------------
 Following is generated codes that you can update.
