@@ -1505,11 +1505,11 @@ font_family=&quot;IPAexGothic&quot;
 $ sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-*.json
 </code></pre></div></p>
 <h4 id="snapshot-graph">Snapshot Graph</h4>
-<p>pyshell環境が適切に設定できていたら、utility scriptであるcountup.shを使ってスナップショットグラフを作成しましょう。スナップショットグラフとはpyshell実行時点のデータを集計し、記録したグラフです。スナップショット以外にデータ蓄積を前提としたhourly, daily, monthlyのグラフの作成が可能です。以下はsmall-shell基礎#1でアンケート集計のために作成したsurvey.boxを"良い"、"普通"、"悪い"でそれぞれデータを集計するコマンド例になります</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.box key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+<p>pyshell環境が適切に設定できていたら、utility scriptであるcountup.shを使ってスナップショットグラフを作成しましょう。スナップショットグラフとはpyshell実行時点のデータを集計し、記録したグラフです。スナップショット以外にデータ蓄積を前提としたhourly, daily, monthlyのグラフの作成が可能です。以下はsmall-shell基礎#1でアンケート集計のために作成したsurvey.dbを"良い"、"普通"、"悪い"でそれぞれデータを集計するコマンド例になります</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.db key:impression filters:良い,普通,悪い type:pie frequency:snapshot
 </code></pre></div>
 <p>タイトルを入れたい場合はtitleも入力してください、ここではタイトルにスペースを使わず"2024-12-02_調査結果"としています
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.box key:impression filters:良い,普通,悪い title:2024-12-02_調査結果 type:pie frequency:snapshot
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.db key:impression filters:良い,普通,悪い title:2024-12-02_調査結果 type:pie frequency:snapshot
 </code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1523,10 +1523,10 @@ $ sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-*.json
 <h4 id="graph_2">Graphの削除</h4>
 <p>Graphを削除したい場合は、統計データを蓄積しているstatisticsディレクトリで直接データを消してください</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls /usr/local/small-shell/util/statistics/graph
-countup_s_20241202_db_survey.box_impression_filtered.png　countup_s_20241202_db_survey.box{2024-12-02_調査結果}impression_filtered.pn
+countup_s_20241202_db_survey.db_impression_filtered.png　countup_s_20241202_db_survey.db{2024-12-02_調査結果}impression_filtered.pn
 
-$ sudo rm /usr/local/small-shell/util/statistics/graph/countup_s_20241202_db_survey.box_impression_filtered.png
-$ sudo rm /usr/local/small-shell/util/statistics/rawdata/countup_s_20241202_db_survey.box_impression_filtered.csv
+$ sudo rm /usr/local/small-shell/util/statistics/graph/countup_s_20241202_db_survey.db_impression_filtered.png
+$ sudo rm /usr/local/small-shell/util/statistics/rawdata/countup_s_20241202_db_survey.db_impression_filtered.csv
 </code></pre></div>
 <h3 id="_13">定期ジョブの登録</h3>
 <p>定期ジョブを用いて、提携処理を自動で実行することができます。ここではグラフを定期取得するためのジョブを登録しましょう、small shellでは対話を通じたcronへのジョブ登録が可能です</p>
@@ -1541,7 +1541,7 @@ Date  [ any | 1-31 ]: any
 Hour  [ any | 0-23 ]: 0
 Min   [ any | 0-59 ]: 0
 Week  [ any | mon - sun ]: any
-Exec command or batch script: /usr/local/small-shell/util/scripts/countup.sh databox:survey.box key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+Exec command or batch script: /usr/local/small-shell/util/scripts/countup.sh databox:survey.db key:impression filters:良い,普通,悪い type:pie frequency:snapshot
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1558,7 +1558,7 @@ hour: any
 date: any
 month: any
 week: any
-exec_command: /usr/local/small-shell/util/scripts/countup.sh databox:survey.box key:impression filters:良い,普通,悪い type:pie frequency:snapshot
+exec_command: /usr/local/small-shell/util/scripts/countup.sh databox:survey.db key:impression filters:良い,普通,悪い type:pie frequency:snapshot
 
 -----------------------------------------------------------------
 Is it OK ? (yes | no): yes
