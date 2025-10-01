@@ -1245,7 +1245,7 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 <h3 id="query-string">QUERY STRING</h3>
 <p>QUERY STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall shelフレームワーク上でreqという変数に格納されるmainという値として展開します、また&amp;を付けることで複数のQUERY STRINGをURLに連結していくことができます</p>
 <h3 id="_5">コントローラー</h3>
-<p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のactionスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
+<p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="_6">ルーティング</h4>
 <p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase文をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY STRINGとして渡されたパラメーターを変数に格納して後続処理に渡します</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo tail -48 /var/www/cgi-bin/21DOJO
