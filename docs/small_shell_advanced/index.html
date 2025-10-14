@@ -1216,7 +1216,7 @@ databoxの指定までできると最終確認をもとめられますので、y
 Custom APP is successfully generated
 Access URL: http://{サーバアドレス}/21DOJO
 ------------------------------------------------------------
-Following is generated codes that you can update.
+Here is the generated code that you can modify.
 You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 /var/www/cgi-bin/auth.21DOJO
 /var/www/cgi-bin/21DOJO
@@ -1232,14 +1232,14 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 <h3 id="_4">ディレクトリ構造</h3>
 <p>コードは以下のとおり1.cgi-bin 2.bin 3.defに格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のスクリプトを呼び出し、スクリプトがdef配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
 <pre><code>1. /var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
-2. /var/www/bin         # 応答処理をAction scriptとして記述、DataBoxへの接続や分岐処理をする
-3. /var/www/def  # HTML及びCSSの定義を配置
+2. /var/www/bin         # 応答処理をスクリプトで記述、DataBoxへの接続や分岐処理をする
+3. /var/www/def  # HTMLの定義を配置
 </code></pre>
 <h3 id="url">URL構造</h3>
-<p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.21DOJOというプログラムへサーバ側でリダイレクト(転送)され認証画面が表示されますのでアプリ生成時に設定したパスコードを入力してください</p>
+<p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.21DOJOというプログラムへサーバ側でリダイレクト（転送）されていますので、実体としてはauth.21DOJO（認証プログラム）へ接続していると考えてください</p>
 <pre><code>http://{サーバアドレス}/21DOJO --&gt; 転送 --&gt; http://{サーバアドレス}/cgi-bin/auth.21DOJO
 </code></pre>
-<p>認証が成功した場合、コントローラーへ自動で接続されます。ログイン後のURLをブラウザからコピーしてみてみましょう、URLはsession情報やsessionを保証するpinコードを含んでいます。また、req=mainという記述も確認できると思いますが、これはmainページのリクエストを意味します</p>
+<p>認証プログラムにて認証が成功した場合、コントローラーへ自動で接続されます。ログイン後のURLをブラウザからコピーしてみてみましょう、URLはsession情報やsessionを保証するpinコードを含んでいます。また、req=mainという記述も確認できると思いますが、これはmainページのリクエストを意味します</p>
 <div class="highlight"><span class="filename">コピーしたURL(例)</span><pre><span></span><code>http://{サーバアドレス}/cgi-bin/21DOJO?session=26a289bf7eedac7dfe4e26aa33a912bd36745e158c3592728446f9e57cf1b117&amp;pin=13913&amp;req=main
 </code></pre></div>
 <h3 id="query-string">QUERY STRING</h3>
@@ -1247,10 +1247,10 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 <h3 id="_5">コントローラー</h3>
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="_6">ルーティング</h4>
-<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase文をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY STRINGとして渡されたパラメーターを変数に格納して後続処理に渡します</p>
+<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase文をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY STRINGとして渡されたパラメーターをcase文で分岐して実行する後続のスクリプトに渡します</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo tail -48 /var/www/cgi-bin/21DOJO
 #----------------------------
-# routing to action scripts
+# routing to bin scripts
 #----------------------------
 
 case &quot;$req&quot; in
@@ -1369,7 +1369,27 @@ Data Type (text | select | radio | checkbox | email | num | tel | date | date-ti
 Set this as required? (yes | no): no
 Add more columns to dataset ? (yes | no) : no
 </code></pre></div>
-最終確認が求められますので問題なければyesと解答してkeyの追加を完了しましょう。genコマンドが完了次第、再度イベント登録画面にいくとフィールドが更新されていることを確認しましょう。その後、テスト用のeventを登録してください</p>
+最終確認が求められますので問題なければyesと解答してkeyの追加を完了しましょう。
+<div class="highlight"><pre><span></span><code>Column will be added to the dataset, please check it
+-----------------------------------------------------------------
+
+Databox Name:events
+#key(col7)
+name=&quot;url&quot;
+label=&quot;イベントURL&quot;
+type=&quot;url&quot;
+option=&quot;&quot;
+
+#key(col8)
+name=&quot;detail&quot;
+label=&quot;イベント詳細&quot;
+type=&quot;textarea&quot;
+option=&quot;&quot;
+
+-----------------------------------------------------------------
+Is it OK? (yes | no): yes
+</code></pre></div>
+genコマンドが完了次第、再度イベント登録画面にいくとフィールドが更新されていることを確認しましょう。その後、テスト用のeventを登録してください</p>
 <h6 id="_10">更新後のイベント追加画面</h6>
 <p><img alt="Screenshot" src="../img/new_event.png" /></p>
 <h3 id="_11">ポータルのアップデート</h3>
@@ -1394,7 +1414,7 @@ Add more columns to dataset ? (yes | no) : no
 <p>以下が更新後の画面です、現時点で%%eventタグが埋め込まれていないためそのまま%%eventタグが表示されています、またeventの位置があまりよくないためcssをつかって位置を調整しましょう
 <img alt="Screenshot" src="../img/portal_1.png" /></p>
 <p>アプリ毎のcss定義については直接編集が可能です</p>
-<pre><code>sudo nano /var/www/def/21DOJO.css.def
+<pre><code>sudo nano /var/www/html/21DOJO.css
 </code></pre>
 <p>nanoでファイルを開いたら以下コードを一番下に貼り付けましょう、ctrl + Vでページを進むことができます
 <div class="highlight"><span class="filename">追加コード</span><pre><span></span><code>.flex-box {
@@ -1420,7 +1440,7 @@ DATA_SHELL=&quot;${small_shell_path}/bin/DATA_shell session:$session pin:$pin ap
 
 # 以下行を追加
 id=$($DATA_SHELL databox:events command:head_-1 format:none | $AWK -F &quot;,&quot; &#39;{print $1}&#39;)
-$DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail format:html_tag &gt; ../tmp/$session/event
+$DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail format:html_tag &gt; /var/www/tmp/$session/event
 
 # -----------------
 # render HTML
@@ -1442,7 +1462,7 @@ cat /var/www/def/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
 | $SED &quot;/%%common_menu/r /var/www/def/common_parts/21DOJO_common_menu&quot; \
 | $SED &quot;s/%%common_menu//g&quot;\
 | $SED &quot;s/%%user_name/$user_name/g&quot; \
-| $SED &quot;/%%event/r ../tmp/$session/event&quot; \
+| $SED &quot;/%%event/r /var/www/tmp/$session/event&quot; \
 | $SED &quot;s/%%event//g&quot; \
 | $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
 | $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
@@ -1481,7 +1501,7 @@ keys=name,start,end,url,detail
 <p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みアクセスしてみましょう、そうすることで認証画面なしで自動ログインが可能です</p>
 <h4 id="url_2">URLデザイン</h4>
 <p>以下はpass codeとして1234を設定したアプリにQUERY STRINGを利用してログインするためのURLの例です。アプリをインターネット公開している場合はこのURLをQRコード生成サイトなどでQRコード化すればスマホなどでアクセスと自動ログインが可能になります</p>
-<pre><code>http://{サーバアドレス}/cgi-bin/auth.21DOJO?app_pass=1234
+<pre><code>http://{サーバアドレス}/cgi-bin/auth.21DOJO?received_pass=1234
 </code></pre>
 <h2 id="_12">その他の高度な機能</h2>
 <h3 id="graph">Graph生成</h3>
@@ -1589,9 +1609,9 @@ LATEST STATUS OF JOB
 2022-03-30 21:27:53 del_session successfully completed
 2022-04-19 20:22:18 gen_survey_graph successfully completed
 </code></pre></div>
-e-cronを用いるとさらに高度なジョブの登録や、他のホストとのメッセージ交換やデータ交換ができるようになります。詳細はsmall shell公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron tour</a>をご確認ください。chromeで翻訳して閲覧することをお勧めします。</p>
+e-cronを用いるとさらに高度なジョブの登録や、他のホストとのメッセージ交換やデータ交換ができるようになります。詳細はsmall shell公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron</a>をご確認ください。chromeで翻訳して閲覧することをお勧めします。</p>
 <h2 id="_15">さらなる学習のために</h2>
-<p><a href="https://small-shell.org/">small shell</a>公式サイトにはより詳細で高度なドキュメントが公開されていますので是非読み解いて下さい。次章では21世紀のデジタル化社会を生きる上で必要不可欠な耐性として考慮されるDigital耐性についてご説明します</p>
+<p><a href="https://small-shell.org/">small shell</a>公式サイトにはより詳細なドキュメントが公開されていますので是非読み解いて下さい。次章では21世紀を生きる上で今後不可欠となるであろうデジタル耐性について解説していきます。</p>
 
 
 
