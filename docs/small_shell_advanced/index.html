@@ -456,7 +456,7 @@
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      ディレクトリ構造
+      コードの配置
     </span>
   </a>
   
@@ -873,7 +873,7 @@
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      ディレクトリ構造
+      コードの配置
     </span>
   </a>
   
@@ -1229,12 +1229,16 @@ You can also update portal page on Base APP #21DOJO.UI.md.def using markdown.
 /var/www/def/21DOJO_get_new.html.def       /var/www/def/21DOJO_get_rw_incf.html.def            /var/www/def/21DOJO_set_err.html.def
 /var/www/def/21DOJO_get_new_incf.html.def  /var/www/def/21DOJO_get_rw_master_failed.html.def   /var/www/def/21DOJO_table.html.def
 </code></pre></div>
-<h3 id="_4">ディレクトリ構造</h3>
+<h3 id="_4">コードの配置</h3>
 <p>コードは以下のとおり1.cgi-bin 2.bin 3.defに格納されますが、処理の順序も同様の並びとなります。クライアントから要求があるとcgi-bin配下のコントローラーが要求を受け付け、bin配下のスクリプトを呼び出し、スクリプトがdef配下のHTML定義を読み込みながら応答をクライアントに返すという順序で処理がされます</p>
-<pre><code>1. /var/www/cgi-bin     # アプリケーション全体をコントロールするcontrollerプログラムを配置
-2. /var/www/bin         # 応答処理をスクリプトで記述、DataBoxへの接続や分岐処理をする
-3. /var/www/def  # HTMLの定義を配置
+<pre><code>1. /var/www/cgi-bin # アプリケーション全体をコントロールするcontrollerプログラムを配置
+2. /var/www/bin # 内部処理を記述したスクリプトを配置、コマンドの実行やDataBoxの呼び出しなどを記述
+3. /var/www/def # フロントエンドの表示を定義したHTMLを配置 (ブラウザの表示などを定義)
 </code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>カスタムアプリで編集するのは、主にbin配下の内部処理のスクリプトとdef配下のフロントエンドのHTML定義になります</p>
+</div>
 <h3 id="url">URL構造</h3>
 <p>先ほど作成した21DOJOアプリのアクセス用URLは/21DOJOとなっているはずですが、これはauth.21DOJOというプログラムへサーバ側でリダイレクト（転送）されていますので、実体としてはauth.21DOJO（認証プログラム）へ接続していると考えてください</p>
 <pre><code>http://{サーバアドレス}/21DOJO --&gt; 転送 --&gt; http://{サーバアドレス}/cgi-bin/auth.21DOJO
