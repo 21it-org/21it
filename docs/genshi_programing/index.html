@@ -1311,26 +1311,32 @@ $
 <pre><code>WORD_A="abc"
 WORD_B="def"
 </code></pre>
-<p>論理演算を実行します。$?は特殊な変数で直前の実行コマンドの実行結果が正常(0)であったか異常(1)であったかを表示します
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+<p>論理演算を実行します。実行結果が正常か異常かについては$?変数を使うことで確認できます</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>$?変数は直前の処理結果が正常終了であれば0を表示し、異常終了であれば異常として0以外の数値を返します</p>
+</div>
+<p><div class="highlight"><span class="filename">論理演算の実行例(イコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
 1
 &gt; WORD_AとBは違うため異常(1)が返ってきます
-</code></pre></div></p>
-<p>次に、変数にそれぞれ同じ値を格納しましょう</p>
+</code></pre></div>
+次に、変数にそれぞれ同じ値を格納しましょう</p>
 <pre><code>WORD_A="abc"
 WORD_B="abc"
 </code></pre>
 <p>論理演算の実行結果が正常(0)になることが確認できます
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+<div class="highlight"><span class="filename">論理演算の実行例(イコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
 0
-&gt; WORD_AとBが同じため正常終了しています
+&gt; WORD_AとBが同じため正常終了(0)が返されます
 </code></pre></div></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>本来の論理演算では真は1とされ、偽は0とされるべきです。上述の例が逆になっているのは$?変数が直前の処理結果が正常終了であれば0として、異常終了であれば1とするためです。論理演算が真(1)であった場合は、処理が正常に終了したとみなされ結果は(0)と表現されます。</p>
-</div>
+<p>ちなみに、以下の通りNotイコール判定をする場合は、異常終了になります
+<div class="highlight"><span class="filename">論理演算の実行例(Notイコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; != &quot;$WORD_B&quot; ]
+$ echo $?
+1
+&gt; !=(Not equal)での判定にした場合は、逆に異常(1)が返ってきます
+</code></pre></div></p>
 <h4 id="_7">数値の比較</h4>
 <p>数値どうしの判定に際してはいくつか使用可能なオプションがあります、以下をご確認ください。ちなみにshellの変数には特に何も意識せず変数には数値も文字も入れられます</p>
 <div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># equal, 同じ値の場合に真
