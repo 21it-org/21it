@@ -1331,7 +1331,7 @@ $ echo $?
 0
 &gt; WORD_AとBが同じため正常終了(0)が返されます
 </code></pre></div></p>
-<p>ちなみに、以下の通りNotイコール判定をする場合は、異常終了になります
+<p>なお、以下の通りNotイコール判定をする場合は異常終了になります
 <div class="highlight"><span class="filename">論理演算の実行例(Notイコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; != &quot;$WORD_B&quot; ]
 $ echo $?
 1
@@ -1542,7 +1542,7 @@ done
 <div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano while_test.sh
 </code></pre></div>
 <p><div class="highlight"><span class="filename">while_test.shのコード</span><pre><span></span><code>#!/bin/bash
-count=0
+count=1
 while [ $count -le 10 ]
 do
  echo $count
@@ -1747,7 +1747,7 @@ $ cat hello.txt | sed -z &quot;s/\n//g&quot;
 HelloWorld
 </code></pre></div></p>
 <h3 id="awksed">awk,sedの多用</h3>
-<p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます、以下はwhile文で記述したファイル読み込み処理を1ラインで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます</p>
+<p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます、以下は<a href="#_15">ファイルの読み込み処理</a>で作成したファイル読み込み処理を1ラインで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># sed
 $ time cat org.txt | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
 &lt;p&gt;abc&lt;/p&gt;
@@ -1762,7 +1762,7 @@ $ time cat org.txt | awk &#39;{print &quot;&lt;p&gt;&quot;$1&quot;&lt;/p&gt;&quo
 &lt;p&gt;efg&lt;/p&gt;
 </code></pre></div>
 <h3 id="_20">終了ステータス</h3>
-<p>$?は直前のコマンドが正常終了した場合に0を格納し、異常値だった場合に0以外を格納する特殊な変数です。以下例では一般ユーザーが/rootを閲覧してエラーになっていますが、終了ステータスは2が返されています
+<p>論理演算の実行例の際にも使用しましたが、$?変数は直前のコマンドの終了ステータスを格納することができます。正常終了した場合に0を格納し、異常値だった場合に0以外のエラーコードを返すため、このエラーコードを数値判定することで分岐処理などを作ることができます。以下例では一般ユーザーが/rootを閲覧してエラーになっていますが、終了ステータスは2が返されています
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls /root
 ls: cannot open directory &#39;/root&#39;: Permission denied
 $ echo $?
