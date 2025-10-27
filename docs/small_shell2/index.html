@@ -1289,10 +1289,10 @@ Primary Databox: none
 以下はマークダウンの<a href="https://docs.google.com/document/d/1FaaikX_BeI1GOL2YUzvfg4_8BqYjMG2Fwbrof2xm_e0/edit?usp=sharing">サンプル</a>を利用して編集・生成した画面になります。なお、電源アイコンのサンプルはフリー素材のサイトなどから入手してください</p>
 <p><img alt="Screenshot" src="../img/genDoc.png" /></p>
 <h4 id="_15">ドキュメントのエクスポート</h4>
-<p>dist.shを使い、ドキュメントを電子ファイルとしてエクスポートします</p>
+<p>dist.shを利用することで、ドキュメントを電子ファイルとしてエクスポートすることができます</p>
 <pre><code>sudo /usr/local/small-shell/util/scripts/dist.sh $APP $EXPORT_DIR
 </code></pre>
-<p>以下は実行例となりますが、HOMEディレクトリを指定することでデスクトップPCからもアクセス可能なディレクトリに作成されます</p>
+<p>以下は実行例となりますが、アプリケーションとしてgenDocを指定し、ディレクトリとしてはHOMEディレクトリを指定するかたちでエクスポートを実行しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/util/scripts/dist.sh genDoc $HOME
 genDoc/
 genDoc/電源のアイコン素材.png
