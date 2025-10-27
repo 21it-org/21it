@@ -1675,11 +1675,10 @@ AかBを選んでください: A
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash -x case_test.sh
 + echo -n &#39;AかBを選んでください: &#39;
 AかBを選んでください: + read input
-C
+A
 + case $input in
-+ echo AかBを入力してください
-AかBを入力してください
-+ exit 1
++ echo 正解です
+正解です
 </code></pre></div></p>
 <p>処理結果が長い場合は、debugファイルに書き出して中身を確認しましょう</p>
 <pre><code>bash -x スクリプト &gt; debug 2&gt;&amp;1
@@ -1769,14 +1768,7 @@ $ echo $?
 2
 </code></pre></div></p>
 <h3 id="exit">exit</h3>
-<p>スクリプト自体が正常終了だったかどうかを確認するために最後に終了コードを設定しましょう</p>
-<p>0を返す場合は正常終了を表します、scriptの処理の最後に記述しましょう</p>
-<pre><code>exit 0
-</code></pre>
-<p>1を返す場合は異常終了であることを通知できます</p>
-<pre><code>exit 1
-</code></pre>
-<p>先ほどcaseで作成したスクリプトに終了コードを付与してみましょう</p>
+<p>exitを記述することで、スクリプトを明示的に終了することができます。また、exitの後に数字を付与することで、終了ステータスとして返すことができます。
 <div class="highlight"><span class="filename">ファイルへ追記</span><pre><span></span><code>nano case_test.sh
 --code--
 #!/bin/bash
@@ -1794,8 +1786,8 @@ case $input in
      exit 1;;
 esac
 --------
-</code></pre></div>
-<p>想定がの入力値のCを入力されたためにエラーステータスを返します
+</code></pre></div></p>
+<p>AかBどちらかを入力されるべきところで、Cを入力されたためにエラーステータスを返します
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash case_test.sh
 AかBを選んでください: C
 AかBを入力してください
@@ -1838,7 +1830,6 @@ $ ls -a
 </code></pre></div>
 <div class="highlight"><span class="filename">sleep.shの内容</span><pre><span></span><code>#!/bin/bash
 sleep 30
-exit 0
 </code></pre></div>
 <p>ファイルが作成できたら実行してみましょう、30秒応答がなくなりますので途中でctrl + cを入力して抜けてみましょう
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash sleep.sh
@@ -1905,7 +1896,7 @@ $ eval $ls_exe
 alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape  lastlog  unattended-upgrades  wtmp
 </code></pre></div>
 <h3 id="tmp">tmpファイルの多用</h3>
-<p>処理を組み立てていく際にevalのように変数の中でコマンドを組み立てながら実行する方法もありますが、処理をテンポラリーファイルを作って過程を書き出しておくことであとからdebugが容易になります</p>
+<p>処理を組み立てていく際にevalのように変数の中でコマンドを組み立てながら実行する方法もありますが、処理をテンポラリーファイルを作って過程を書き出しておくことであとからデバッグが容易になります</p>
 <h3 id="_27">スクリプトの定期実行</h3>
 <p>cron(クーロン)を利用することでスクリプトを自動で定期実行することができます。small-shellを導入することでcronをより簡単に利用できるようになります</p>
 <h3 id="_28">さらなる学習のために</h3>
