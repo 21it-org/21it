@@ -582,7 +582,7 @@
   <a href="#team-app-install" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Team APP install
+        Team App install
       
     </span>
   </a>
@@ -593,7 +593,7 @@
   <a href="#team-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Team APPユーザー追加
+        Team Appユーザー追加
       
     </span>
   </a>
@@ -604,7 +604,7 @@
   <a href="#team-app_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Team APPログイン
+        Team Appログイン
       
     </span>
   </a>
@@ -732,7 +732,7 @@
   <a href="#custom-apptag" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom APPへのtag追加
+        Custom Appへのtag追加
       
     </span>
   </a>
@@ -1048,7 +1048,7 @@
   <a href="#team-app-install" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Team APP install
+        Team App install
       
     </span>
   </a>
@@ -1059,7 +1059,7 @@
   <a href="#team-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Team APPユーザー追加
+        Team Appユーザー追加
       
     </span>
   </a>
@@ -1070,7 +1070,7 @@
   <a href="#team-app_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Team APPログイン
+        Team Appログイン
       
     </span>
   </a>
@@ -1198,7 +1198,7 @@
   <a href="#custom-apptag" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom APPへのtag追加
+        Custom Appへのtag追加
       
     </span>
   </a>
@@ -1290,7 +1290,7 @@
 
 <h1 id="small-shell-basic-2">small shell Basic 2</h1>
 <h2 id="_1">カスタムアプリ</h2>
-<p>前章で説明したBase APP(ベースアプリ)がカスタマイズができないテーブル型のデータ管理に特化したツールであるのに対し、カスタマイズが可能なアプリをsmall shellではCustom APP(カスタムアプリ)と呼びます。Custom APPはアプリをカスタマイズしながらチームで情報共有をより効果的におこなうことを目的に設計されていますが、カスタマイズ自体も段階的に行うことができます。いずれの段階でもCustom APPはチームでのデータ共有に貢献しますので、必ずしもコードの編集までできるようになる必要もありません</p>
+<p>前章で説明したBase App(ベースアプリ)がカスタマイズができないテーブル型のデータ管理に特化したツールであるのに対し、カスタマイズが可能なアプリをsmall shellではCustom App(カスタムアプリ)と呼びます。Custom Appはアプリをカスタマイズしながらチームで情報共有をより効果的におこなうことを目的に設計されていますが、カスタマイズ自体も段階的に行うことができます。いずれの段階でもCustom Appはチームでのデータ共有に貢献しますので、必ずしもコードの編集までできるようになる必要もありません</p>
 <h3 id="_2">アプリの段階的カスタマイズ</h3>
 <div class="highlight"><span class="filename">STEP</span><pre><span></span><code>1. データを管理するテーブルを生成する                               //small-shell基礎#1
 2. ポータルページを生成・編集し、データとドキュメントを同時にアプリに収納する  //本章で説明
@@ -1298,24 +1298,24 @@
 </code></pre></div>
 <p>カスタムアプリの利用以外にも、外部ユーザーからの問い合わせ受付のためのフォームアプリを作成したり、公開済みアプリをインポートしたりといったsmall-shellの利用方法もありますので本ページの後半で順次説明します</p>
 <h3 id="_3">ポータルの活用</h3>
-<p>portal(ポータル)というのは、入口といったような意味をもつ英語ですが、Custom APPではログインした際に表示されるトップページのことを指します。Base APPではログインするとそのままテーブルが表示されますが、テーブルはDataBoxにはいっているデータを表示することはできてもデータそれ自体の位置づけを説明することができません。Custom APPではポータルをトップページに表示することで、データの位置づけやそれを管理するルールや手続きを記述することができます。それはインターネット上のホームページのように有用な情報共有の方法を提供します</p>
+<p>portal(ポータル)というのは、入口といったような意味をもつ英語ですが、Custom Appではログインした際に表示されるトップページのことを指します。Base Appではログインするとそのままテーブルが表示されますが、テーブルはDataBoxにはいっているデータを表示することはできてもデータそれ自体の位置づけを説明することができません。Custom Appではポータルをトップページに表示することで、データの位置づけやそれを管理するルールや手続きを記述することができます。それはインターネット上のホームページのように有用な情報共有の方法を提供します</p>
 <h3 id="_4">カスタムアプリ生成</h3>
-<p>それでは早速アプリ生成を生成していきましょう、ちなみにCustom APPはBase APPのうえに生成されますので事前に前章を参照しBase APPを生成してください。以下はtestという名前の共有パスコード（４桁数字）で認証できるアプリを生成しています。primary databoxというのはアプリが管理するデータボックスですが、前章で生成したitem.dbを指定してみましょう</p>
+<p>それでは早速アプリ生成を生成していきましょう、ちなみにCustom AppはBase Appのうえに生成されますので事前に前章を参照しBase Appを生成してください。以下はtestという名前の共有パスコード（４桁数字）で認証できるアプリを生成しています。primary databoxというのはアプリが管理するデータボックスですが、前章で生成したitem.dbを指定してみましょう</p>
 <p>カスタムアプリもgenコマンドでの作成となります</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre>
 <div class="highlight"><span class="filename">gen -app 実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
-Type of APP (1.BASE | 2.FORM | 3.CUSTOM): 3
-APP Name: test
+Type of App (1.BASE | 2.FORM | 3.CUSTOM): 3
+App Name: test
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 1
 Shared Passcode: ****
 Primary databox: item.db
 
-The APP will be generated in the following order. Please check it.
+The App will be generated in the following order. Please check it.
 -----------------------------------------------------------------
 
-APP Type: 3.CUSTOM
-APP Name: test
+App Type: 3.CUSTOM
+App Name: test
 Authentication: shared_pass
 Access URL: http://***.***.***.****/test
 Shared Passcode: ****
@@ -1324,7 +1324,7 @@ Shared Passcode: ****
 Is that OK? (yes | no): yes
 </code></pre></div>
 <h4 id="_5">認証方式</h4>
-<p>Custom APPでは以下認証方式が実装可能です</p>
+<p>Custom Appでは以下認証方式が実装可能です</p>
 <ul>
 <li>[shared pass] 共用パスコードでアクセス</li>
 <li>[user key] ユーザー毎に鍵を発行してアクセス</li>
@@ -1333,7 +1333,7 @@ Is that OK? (yes | no): yes
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>user keyについてはアプリ毎にユーザーを作成のうえkeyを初期化URLで生成する必要があります。アプリとして<a href="./#team-app">Team APP</a>を利用する際の例を参考にしてください</p>
+<p>user keyについてはアプリ毎にユーザーを作成のうえkeyを初期化URLで生成する必要があります。アプリとして<a href="./#team-app">Team App</a>を利用する際の例を参考にしてください</p>
 </div>
 <h3 id="_6">ログイン画面の確認</h3>
 <p>アプリケーションが正常に生成されているはずですので、上記genコマンドの対話にて表示されたAccess URLへアクセスしshared pass (4桁数字)を入力してください
@@ -1342,15 +1342,15 @@ Is that OK? (yes | no): yes
 <p>認証が成功するとデフォルトのポータルページが表示されます。このデフォルトのポータルページはマークダウンの文法を含んだテンプレートとしてそのまま利用可能です</p>
 <p><img alt="Screenshot" src="../img/default_page.png" /></p>
 <h3 id="_8">マークダウン</h3>
-<p>マークダウンはHTMLをより即席で生成するための文法ですが、small shellではポータルページの編集に用いることができます。マークダウンの編集はBase APP上で行うことができます。
+<p>マークダウンはHTMLをより即席で生成するための文法ですが、small shellではポータルページの編集に用いることができます。マークダウンの編集はBase App上で行うことができます。
 文法はデフォルトページに表示されていますので記述例をコピーしてつかっていただくのが効率的です。文法の詳細はこちらもご確認ください<a href="https://www.21it.org/markdown_ja.html">Markdown</a>    </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>ポータルはアプリ毎に定義されますので、 Base APPのテーブル左メニューから"アプリ名.UI.md.def"を選択のうえ編集してください。以下はtestアプリの編集ページリンクです</p>
+<p>ポータルはアプリ毎に定義されますので、 Base Appのテーブル左メニューから"アプリ名.UI.md.def"を選択のうえ編集してください。以下はtestアプリの編集ページリンクです</p>
 </div>
 <p><img alt="Screenshot" src="../img/test.UI.md.def.png" /></p>
 <h4 id="_9">ポータルページ編集</h4>
-<p>Base APPで直接ポータルページをデータとして編集していきましょう、それぞれのフィールドを入力してSETボタンを押してポータル画面をリロードするとページが更新されます。</p>
+<p>Base Appで直接ポータルページをデータとして編集していきましょう、それぞれのフィールドを入力してSETボタンを押してポータル画面をリロードするとページが更新されます。</p>
 <table>
 <thead>
 <tr>
@@ -1390,7 +1390,7 @@ Is that OK? (yes | no): yes
 <p>各フィールドに該当する部分は以下のとおりです
 <img alt="Screenshot" src="../img/component.png" /></p>
 <h4 id="_10">イメージのアップロード</h4>
-<p>ロゴやイメージをアップロードしてカスタムアップに追加したい場合、Base APP上のDataBoxのimages.dbにファイルをアップロードしてimgタグを取得して上記ポータルページのBodyもしくはlogoフィールドに貼り付けて下さい
+<p>ロゴやイメージをアップロードしてカスタムアップに追加したい場合、Base App上のDataBoxのimages.dbにファイルをアップロードしてimgタグを取得して上記ポータルページのBodyもしくはlogoフィールドに貼り付けて下さい
 <img alt="Screenshot" src="../img/images.db.png" /></p>
 <p>以下はアップロードしたロゴファイルのimageタグをコピーする例です
 <img alt="Screenshot" src="../img/scratch_app_logo.png" /></p>
@@ -1399,80 +1399,80 @@ Is that OK? (yes | no): yes
 <pre><code>sudo /usr/local/small-shell/adm/ops app:&lt;アプリ&gt; add.usr:&lt;ユーザー名&gt;
 </code></pre>
 <h2 id="_12">テンプレートの利用</h2>
-<p>small shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam APPをインポートして使ってみましょう。Team APPではチームの共同作業に必要な機能をパッケージ化したsmall shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team APPに管理したいDataBoxを追加することもできます</p>
-<h3 id="team-app-install">Team APP install</h3>
-<p>早速Team APPをインストールしましょう、git cloneした後deploy.shを実行するとアプリとDataBoxが自動生成されますが、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではcloneコマンドをコメントアウトしています。</p>
+<p>small shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam Appをインポートして使ってみましょう。Team Appではチームの共同作業に必要な機能をパッケージ化したsmall shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team Appに管理したいDataBoxを追加することもできます</p>
+<h3 id="team-app-install">Team App install</h3>
+<p>早速Team Appをインストールしましょう、git cloneした後deploy.shを実行するとアプリとDataBoxが自動生成されますが、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではcloneコマンドをコメントアウトしています。</p>
 <p>テンプレートのダウンロードはgit cloneコマンドでおこないます</p>
 <pre><code>git clone https://github.com/naruoken/small-shell-apps
 </code></pre>
 <p>なお、small-shell-appsパッケージは前ページでの日本語化の際にすでにgit cloneをしているため以下実行例ではエラーが表示されています
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># ダウンロード
-$ cd $HOME; git clone https://github.com/naruoken/small-shell-apps
+$ cd /var/tmp; git clone https://github.com/naruoken/small-shell-apps
 ※前ページでの日本語化パッケージインストールの際にgit cloneをしているため以下エラーが表示される可能性があります
 fatal: destination path &#39;small-shell-apps&#39; already exists and is not an empty directory.
 
-# Team APPのインストール
-$ cd $HOME/small-shell-apps/team_app; sudo ./deploy.sh
+# Team Appのインストール
+$ cd /var/tmp/small-shell-apps/team_app; sudo ./deploy.sh
 small-shell root (/usr/local/small-shell): ※特に何も入力せず、ENTERを押してください
 
-# Team APPの日本語化
-$ cd $HOME/small-shell-apps/dictionary/JP; sudo ./deploy.sh
+# Team Appの日本語化
+$ cd /var/tmp/small-shell-apps/dictionary/JP; sudo ./deploy.sh
 small-shell root (/usr/local/small-shell): ※特に何も入力せず、ENTERを押してください
 </code></pre></div></p>
-<h3 id="team-app">Team APPユーザー追加</h3>
-<p>Team APPはBase APPのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではteam APPにtestというユーザーを作成しています</p>
+<h3 id="team-app">Team Appユーザー追加</h3>
+<p>Team AppはBase Appのユーザーを引き継ぎませんので、deploy.shのインストラクションに従って作成しましょう。以下ではteam Appにtestというユーザーを作成しています</p>
 <div class="highlight"><span class="filename">testユーザーの追加例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops app:team add.usr:test 
 </code></pre></div>
-<p>ユーザー生成後に、Initialize URL（鍵の初期化URL)が生成れるのでユーザーへURLを案内しましょう。Base APPと同じくInitialize URLへアクセスするとTeam APPへアクセスするための鍵とリンクが生成されます。Initialize URLは一回アクセスすると無効になるので気をつけてください</p>
-<h3 id="team-app_1">Team APPログイン</h3>
-<p>Team APPへログインして右上のeven(=)メニューをクリックするとメニューが展開します。各種機能をお試しください, Team eventやtaskをカレンダーに一元的に表示できるので便利です。Driveを使うとファイル共有も簡単に行えます</p>
-<div class="highlight"><span class="filename">Team APPログインURL</span><pre><span></span><code>http://{サーバアドレス}/team
+<p>ユーザー生成後に、Initialize URL（鍵の初期化URL)が生成れるのでユーザーへURLを案内しましょう。Base Appと同じくInitialize URLへアクセスするとTeam Appへアクセスするための鍵とリンクが生成されます。Initialize URLは一回アクセスすると無効になるので気をつけてください</p>
+<h3 id="team-app_1">Team Appログイン</h3>
+<p>Team Appへログインして右上のeven(=)メニューをクリックするとメニューが展開します。各種機能をお試しください, Team eventやtaskをカレンダーに一元的に表示できるので便利です。Driveを使うとファイル共有も簡単に行えます</p>
+<div class="highlight"><span class="filename">Team AppログインURL</span><pre><span></span><code>http://{サーバアドレス}/team
 </code></pre></div>
 <p><img alt="Screenshot" src="../img/team_app_menu.png" /></p>
 <h3 id="_13">データボックスの追加</h3>
-<p>Teamで管理したいDataBoxを追加したい場合も、容易に追加ができます。Team APPのsubAPPとしてアプリケーションを追加しましょう、3.CUSTOM を選択してapp_nameを定義する際に@teamと付けることでTeam APP配下のsub APPという宣言が可能です。その後追加したいDataBoxを指定しましょう。以下ではitem.dbを追加します。Team APP以外のカスタムアップでも同様に@をつけることでサブアプリの作成とデータボックスの追加が可能です</p>
+<p>Teamで管理したいDataBoxを追加したい場合も、容易に追加ができます。Team Appのサブアプリとしてアプリケーションを追加しましょう、3.CUSTOM を選択してapp_nameを定義する際に@teamと付けることでTeam App配下のsub Appという宣言が可能です。その後追加したいDataBoxを指定しましょう。以下ではitem.dbを追加します。Team App以外のカスタムアップでも同様に@をつけることでサブアプリの作成とデータボックスの追加が可能です</p>
 <p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
-Type of APP (1.BASE | 2.FORM | 3.CUSTOM): 3
-APP Name: item@team
+Type of App (1.BASE | 2.FORM | 3.CUSTOM): 3
+App Name: item@team
 Subapp Databox: item.db
 </code></pre></div>
 最終確認が問題なければyesと入力してください
-<div class="highlight"><span class="filename">実行例(続き)</span><pre><span></span><code>APP will be generated by following order, please check it
+<div class="highlight"><span class="filename">実行例(続き)</span><pre><span></span><code>App will be generated by following order, please check it
 -----------------------------------------------------------------
 
-APP Type: 3.CUSTOM
-APP Name: item
-Parent APP: team
-Sub APP Databox: item.db
+App Type: 3.CUSTOM
+App Name: item
+Parent App: team
+Sub App Databox: item.db
 
 -----------------------------------------------------------------
 
 Is it OK? (yes | no): yes
 </code></pre></div></p>
-<p>Team APPにデータボックスが追加されましたのでブラウザでメニューを確認をしてみましょう</p>
+<p>Team Appにデータボックスが追加されましたのでブラウザでメニューを確認をしてみましょう</p>
 <p><img alt="Screenshot" src="../img/team_menu_update.png" /></p>
-<p>もしメニューの文言を更新したい場合は、Team APPについてはportal編集機能がありませんので直接ファイルを編集して更新してください</p>
+<p>もしメニューの文言を更新したい場合は、Team Appについてはportal編集機能がありませんので直接ファイルを編集して更新してください</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ nano /var/www/def/common_parts/team_common_menu 
 ※item.dbに関するメニューを更新する場合は以下行のitem.db Tableという文言を修正
 &lt;li&gt;&lt;a href=&quot;./team?%%session&amp;subapp=item&amp;req=table&quot;&gt;&lt;p style=&quot;text-transform: capitalize;&quot;&gt;item.db Table&lt;/p&gt;&lt;/a&gt;&lt;/li&gt;
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>インポートしたアプリについては諸々編集権限がないため細かいカスタマイズを行うには直接編集が必要になりますが、1から生成したカスタムアプリであればBase APPでメニュー含めて更新可能です。カスタムアプリについてはsmall-shell基礎#2をご確認ください</p>
+<p>インポートしたアプリについては諸々編集権限がないため細かいカスタマイズを行うには直接編集が必要になりますが、1から生成したカスタムアプリであればBase Appでメニュー含めて更新可能です。カスタムアプリについてはsmall-shell基礎#2をご確認ください</p>
 </div>
 <h2 id="web">Webドキュメントの生成</h2>
 <p>small-shellをアプリケーションの生成・実行環境として利用する代わりに、Webドキュメントの生成ツールとして利用することもできます。たとえば、WLSやChromebook上のLinuxで作成したドキュメントをエクスポートして、電子ファイルとしてメールやチャットなどで共有することが可能になります。以下はWebドキュメントを生成し、電子ファイルとしてダウンロードしてローカル保存するまでの例となります</p>
 <h4 id="nodatabox">NoDataboxアプリの生成</h4>
-<p>まずはDataboxを持たないカスタムアプリを生成します、アプリ生成の際はDataboxをnoneとしてください。以下例ではアプリケーション名をgenDocとしています。なお、上述カスタムアプリの項目でも説明していますが、各種アプリケーションはBase APPをベースレイヤーとしてその機能を一部参照するかたちで生成されますので、まずはBaseAPPを生成しておいてください。</p>
+<p>まずはDataboxを持たないカスタムアプリを生成します、アプリ生成の際はDataboxをnoneとしてください。以下例ではアプリケーション名をgenDocとしています。なお、上述カスタムアプリの項目でも説明していますが、各種アプリケーションはBase Appをベースレイヤーとしてその機能を一部参照するかたちで生成されますので、まずはBaseAppを生成しておいてください。</p>
 <p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
-Type of APP (1.BASE | 2.FORM | 3.CUSTOM): 3
-APP Name: genDoc
+Type of App (1.BASE | 2.FORM | 3.CUSTOM): 3
+App Name: genDoc
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 4
 Primary Databox: none
 </code></pre></div>
 上記対話の後、最終確認をyesとするとアプリケーションが生成されますので、生成されたAccess URLへアクセスしてみましょう。IPアドレスが前頁からの例のとおり172.28.9.180であった場合は、http://172.28.9.180/genDocになります。標準のポータル画面が表示されていると思いますが、DataBoxをクリックするとエラーになりますが想定どおりの挙動となります。</p>
 <h4 id="_14">ドキュメントの編集</h4>
-<p>BaseAPPにログイン後にgenDoc.UI.md.defを選択してページの編集をしていきましょう
+<p>BaseAppにログイン後にgenDoc.UI.md.defを選択してページの編集をしていきましょう
 <img alt="Screenshot" src="../img/genDoc_table.png" /></p>
 <p>以下段取りでページを編集しています
 <div class="highlight"><pre><span></span><code>1. ナビゲーションバーの右メニュー(navbar-right-menu)を消す
@@ -1486,7 +1486,7 @@ Primary Databox: none
 <p><img alt="Screenshot" src="../img/genDoc.png" /></p>
 <h4 id="_15">ドキュメントのエクスポート</h4>
 <p>dist.shを利用することで、ドキュメントを電子ファイルとしてエクスポートすることができます</p>
-<pre><code>sudo /usr/local/small-shell/util/scripts/dist.sh $APP $EXPORT_DIR
+<pre><code>sudo /usr/local/small-shell/util/scripts/dist.sh $App $EXPORT_DIR
 </code></pre>
 <p>以下は実行例となりますが、アプリケーションとしてgenDocを指定し、ディレクトリとしてはHOMEディレクトリを指定するかたちでエクスポートを実行しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/util/scripts/dist.sh genDoc $HOME
@@ -1495,7 +1495,7 @@ genDoc/電源のアイコン素材.png
 genDoc/index.html
 genDoc/genDoc.css
 ============================================================
-APP is successfully exported to your directory
+App is successfully exported to your directory
 PATH: /home/ubuntu/genDoc.tar.gz
 ============================================================
 </code></pre></div>
@@ -1512,7 +1512,7 @@ PATH: /home/ubuntu/genDoc.tar.gz
 <p>index.htmlというファイルが見つかりますのでダブルクリックして表示してください
 <img alt="Screenshot" src="../img/chromebook_open_2.png" /></p>
 <h2 id="_17">その他操作</h2>
-<h3 id="custom-apptag">Custom APPへのtag追加</h3>
+<h3 id="custom-apptag">Custom Appへのtag追加</h3>
 <p>カスタムアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}} app:$app_name
 </code></pre>
@@ -1521,10 +1521,10 @@ $ sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
 </code></pre></div>
 <p><img alt="Screenshot" src="../img/app_tag.png" /></p>
 <h3 id="initialize-url">Initialize URLの再生成</h3>
-<p>Custom APPの鍵生成URLを再生成する場合、app:オプションを指定する必要があります</p>
+<p>Custom Appの鍵生成URLを再生成する場合、app:オプションを指定する必要があります</p>
 <pre><code>sudo /usr/local/small-shell/adm/ops app:&lt;アプリ&gt; initialize.usr:&lt;ユーザー名&gt;
 </code></pre>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># team APPを指定する場合
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># team Appを指定する場合
 $ sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test
 </code></pre></div>
 <h2 id="_18">フォーム利用の検討</h2>
@@ -1584,7 +1584,7 @@ option=&quot;&quot; &lt;- Set this as required ?をNoで回答
 <h3 id="_19">フォームの生成</h3>
 <p>DataBoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます。アプリケーションタイプとして2.FORMを選択し、名前は仮にsurveyとしましょう。DataBoxとしては先ほど作成したsurvey.dbを指定します</p>
 <p><div class="highlight"><span class="filename">Form作成実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
-Type of APP (1.BASE | 2.FORM | 3.CUSTOM): 2
+Type of App (1.BASE | 2.FORM | 3.CUSTOM): 2
 Form Name: survey
 Target Databox: survey.db
 Description of the Form : xyzにつてのアンケートにお答えください
@@ -1600,7 +1600,7 @@ Select additional key that must be in the Form (comment) : comment
 <div class="highlight"><span class="filename">Form作成実行例(続き)</span><pre><span></span><code>Form will be generated by following order, please check it
 -----------------------------------------------------------------
 
-APP type: 2.FORM
+App type: 2.FORM
 Form Name: survey
 Target Databox: survey.db
 Description: xyzにつてのアンケートにお答えください
@@ -1613,7 +1613,7 @@ Is it OK? (yes | no): yes
 </code></pre></div>
 フォームが生成されますので、最終確認時にAccess URLとして記載のあったURLにアクセスしてみましょう。認証なしで入力フォームへアクセスでき、データの追加ができるはずですので試してください</p>
 <p><img alt="Screenshot" src="../img/survey.png" /></p>
-<p>BaseAPPで登録されたデータを見てみると、一意のIDも自動生成されていることが確認できます。
+<p>BaseAppで登録されたデータを見てみると、一意のIDも自動生成されていることが確認できます。
 <img alt="Screenshot" src="../img/survey_table.png" /></p>
 <h2 id="_20">実環境の構築</h2>
 <p>small shellの学習環境として<a href="../unix1/">UNIX基礎#1</a>ではWSLとChromebookをご紹介しましたが、WSL,chromebookはともに外部からのアクセスができないためローカルでの学習にとどまります。アプリをネットワーク上でアクセス可能にするためには、クラウドの利用をする必要があります。クラウドサービスとしてはAWSやVPSを利用することが考えられますが、インターネットへのサーバ公開に際してはセキュリティ対策が必要になりますので予め注意してください。サーバに関する専門知識をつけた上で運用することをおすすめします</p>

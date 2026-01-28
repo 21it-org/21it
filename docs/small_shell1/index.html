@@ -432,12 +432,12 @@
   <a href="#base-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base APPの利用シナリオ
+        Base Appの利用シナリオ
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Base APPの利用シナリオ">
+    <nav class="md-nav" aria-label="Base Appの利用シナリオ">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -555,12 +555,12 @@
   <a href="#base-app_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base APP生成
+        Base App生成
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Base APP生成">
+    <nav class="md-nav" aria-label="Base App生成">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -583,7 +583,7 @@
   <a href="#base-app_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base APPユーザー作成
+        Base Appユーザー作成
       
     </span>
   </a>
@@ -594,7 +594,7 @@
   <a href="#base-app_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base APPログイン
+        Base Appログイン
       
     </span>
   </a>
@@ -903,12 +903,12 @@
   <a href="#base-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base APPの利用シナリオ
+        Base Appの利用シナリオ
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Base APPの利用シナリオ">
+    <nav class="md-nav" aria-label="Base Appの利用シナリオ">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1026,12 +1026,12 @@
   <a href="#base-app_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base APP生成
+        Base App生成
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Base APP生成">
+    <nav class="md-nav" aria-label="Base App生成">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1054,7 +1054,7 @@
   <a href="#base-app_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base APPユーザー作成
+        Base Appユーザー作成
       
     </span>
   </a>
@@ -1065,7 +1065,7 @@
   <a href="#base-app_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Base APPログイン
+        Base Appログイン
       
     </span>
   </a>
@@ -1250,11 +1250,11 @@
 <h3 id="_2">ジェネレーター</h3>
 <p>small shellでは"gen"コマンドによって様々なアプリケーションを生成することができますが、同時にデータを投入する箱も生成することができます。Webアプリケーションがユーザーとの接続点となり、データの箱へのアクセスを提供するというのが基本的な構造になります。</p>
 <div class="highlight"><span class="filename">IMAGE</span><pre><span></span><code>  ---------     ---------------------------
- | Web APP | - | DATA BOX = データを入れる箱 |
+ | Web App | - | DATA BOX = データを入れる箱 |
   ---------     ---------------------------
 </code></pre></div>
-<h2 id="base-app">Base APPの利用シナリオ</h2>
-<p>Base APP(ベースアプリ）は即席で生成できるsmall-shellの標準Webアプリケーションですが、Webアプリケーション自体の特性であるデータの共有のしやすさや、オープンで共同作業をしやすいという性質を持ちます。その点においてチームによるデータ管理を行う際、Excel等のスプレッドシートよりも優れているといえるでしょう。Base APPはAnd検索が可能で、Unix Basic 2コースでご紹介した高度なUnixコマンド群を使ったデータ分析も可能です。Formを用いることで外部からのデータ収集や依頼受付などもすることができます。本章ではBase APPを利用してデータを扱う方法を説明します。なお、以下高度な連携の実装については<a href="https://small-shell.org">公式ホームページ</a>を参照ください。公式サイトは英語ですので、適時翻訳ツールで翻訳いただければと思います。</p>
+<h2 id="base-app">Base Appの利用シナリオ</h2>
+<p>Base App(ベースアプリ）は即席で生成できるsmall-shellの標準Webアプリケーションですが、Webアプリケーション自体の特性であるデータの共有のしやすさや、オープンで共同作業をしやすいという性質を持ちます。その点においてチームによるデータ管理を行う際、Excel等のスプレッドシートよりも優れているといえるでしょう。Base AppはAnd検索が可能で、Unix Basic 2コースでご紹介した高度なUnixコマンド群を使ったデータ分析も可能です。Formを用いることで外部からのデータ収集や依頼受付などもすることができます。本章ではBase Appを利用してデータを扱う方法を説明します。なお、以下高度な連携の実装については<a href="https://small-shell.org">公式ホームページ</a>を参照ください。公式サイトは英語ですので、適時翻訳ツールで翻訳いただければと思います。</p>
 <h4 id="_3">標準機能</h4>
 <ul>
 <li>容易なデータ共有と同時編集</li>
@@ -1298,7 +1298,7 @@ sudo git clone https://github.com/small-shell/small-shell.git
 sudo chown -R small-shell:small-shell /usr/local/small-shell
 </code></pre>
 <h3 id="_6">データ構造の検討</h3>
-<p>BaseAPPは基本的にはDataBox(データボックス)を管理するためのアプリケーションですが、DataBoxは名前のとおりデータを入れるための箱といえます。箱の構造を設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
+<p>BaseAppは基本的にはDataBox(データボックス)を管理するためのアプリケーションですが、DataBoxは名前のとおりデータを入れるための箱といえます。箱の構造を設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
 <h4 id="keyvalue">KeyとValue</h4>
 <p>DataBoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataBoxを想定していますが、item_info(アイテム情報)というkey照会に対して、"メーカーAのノートパソコン・・・・"という具体的な値(value)が返されます。</p>
 <div class="highlight"><span class="filename">key value例</span><pre><span></span><code>key   : item_info
@@ -1332,7 +1332,7 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 <p>データ構造を比較的緩めなものにすると決まったところで、さっそくDataBoxを生成していきましょう、以下の通りgenコマンドで簡単に生成できます。</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -databox
 </code></pre>
-<p>コマンド実行後に対話が始まりますが、以下実行例のとおり入力してみてください。DataBox自体の名前はわかりやすくitem.db(dbはdataboxの略)として、在庫管理のために使ってみましょう。Add more columns to thd databox？と聞かれた際にnoと答えると対話が終了しデータボックスが生成されます。またSet this as required?と聞かれてyesと答えると必須の入力項目としてBaseAPPで扱われます。通常のフィールドはフリーワードが登録できるtext、ある程度固定値にして入力値をコントロールしたいフィールドにはselectを選択して固定値を指定しましょう</p>
+<p>コマンド実行後に対話が始まりますが、以下実行例のとおり入力してみてください。DataBox自体の名前はわかりやすくitem.db(dbはdataboxの略)として、在庫管理のために使ってみましょう。Add more columns to thd databox？と聞かれた際にnoと答えると対話が終了しデータボックスが生成されます。またSet this as required?と聞かれてyesと答えると必須の入力項目としてBaseAppで扱われます。通常のフィールドはフリーワードが登録できるtext、ある程度固定値にして入力値をコントロールしたいフィールドにはselectを選択して固定値を指定しましょう</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>対話を途中で抜けたい場合はctrlボタンとcボタンを同時に押して抜けてください</p>
@@ -1407,38 +1407,38 @@ option=&quot;&quot;
 -----------------------------------------------------------------
 Is that OK? (yes | no): yes
 </code></pre></div></p>
-<h3 id="base-app_1">Base APP生成</h3>
-<p>続いて、genコマンドでBase APPを生成していきましょう。アプリケーションの生成もgenコマンドで実行します</p>
+<h3 id="base-app_1">Base App生成</h3>
+<p>続いて、genコマンドでBase Appを生成していきましょう。アプリケーションの生成もgenコマンドで実行します</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre>
 <p>コマンド実行後に対話が始まりますので、それぞれ以下例にならって入力してください。なお、Web server FQDN or IP addrという項目については<a href="../web/#ip">IPアドレスの表示</a>で確認したIPアドレスを入力する必要があります。
 以下例では172.28.9.180をIPアドレスとして入力しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
-Type of APP (1.BASE | 2.FORM | 3.CUSTOM): 1
-Type of server (1.small-shell Web srv | 2.other Web srv): 1
+Type of App (1.BASE | 2.FORM | 3.CUSTOM): 1
+Type of Server (1.small-shell Web srv | 2.other Web srv): 1
 Protocol (http | https): http
 Web Server FQDN or IP addr (e.g. 192.168.10.1): 172.28.9.180
 </code></pre></div>
 <h4 id="web">Webアプリの日本語化</h4>
 <p>生成したWebアプリを日本語対応させるため、以下追加パッケージをインストールしましょう</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd $HOME;git clone https://github.com/naruoken/small-shell-apps;cd small-shell-apps/dictionary/JP;sudo ./deploy.sh
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ cd /var/tmp;git clone https://github.com/naruoken/small-shell-apps;cd small-shell-apps/dictionary/JP;sudo ./deploy.sh
 small-shell root (/usr/local/small-shell): ※特に何も入力せず、ENTERを押してください
 </code></pre></div>
-<h3 id="base-app_2">Base APPユーザー作成</h3>
-<p>続いてBase APPへアクセスするためのユーザーを作成しましょう、"ops"コマンドを使用することでユーザー作成ができます。あなたが管理者の場合アプリ利用者の人数分ユーザー作成をしてください。以下ではtestというユーザーを作成しています。</p>
+<h3 id="base-app_2">Base Appユーザー作成</h3>
+<p>続いてBase Appへアクセスするためのユーザーを作成しましょう、"ops"コマンドを使用することでユーザー作成ができます。あなたが管理者の場合アプリ利用者の人数分ユーザー作成をしてください。以下ではtestというユーザーを作成しています。</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops add.usr:test
 </code></pre></div>
-<p>コマンドが正常に実行されると、作成したユーザー向けのinitialize URL(鍵の生成URL）が生成されますのでユーザーへURLを展開してください。ユーザーが initialize URLへ接続した際にアプリへのアクセスを可能にする鍵が生成されます。その際、管理者でも鍵の配列は予想することができません。以下はユーザーがinitialize URLへアクセスした際の画面です。"CONNECT APP WITH KEY"というボタンを押すとBase APPへ接続できます。URLは一回アクセスすると無効になるので気をつけてください</p>
+<p>コマンドが正常に実行されると、作成したユーザー向けのinitialize URL(鍵の生成URL）が生成されますのでユーザーへURLを展開してください。ユーザーが initialize URLへ接続した際にアプリへのアクセスを可能にする鍵が生成されます。その際、管理者でも鍵の配列は予想することができません。以下はユーザーがinitialize URLへアクセスした際の画面です。"CONNECT App WITH KEY"というボタンを押すとBase Appへ接続できます。URLは一回アクセスすると無効になるので気をつけてください</p>
 <p><img alt="Screenshot" src="../img/initialize_key.png" /></p>
-<h3 id="base-app_3">Base APPログイン</h3>
-<p>上記のとおり"CONNECT APP WITH KEY"ボタンをおすとログインフォームに飛びますが、ブラウザに保存された鍵が自動で入力されます</p>
+<h3 id="base-app_3">Base Appログイン</h3>
+<p>上記のとおり"CONNECT App WITH KEY"ボタンをおすとログインフォームに飛びますが、ブラウザに保存された鍵が自動で入力されます</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>windows WSLのlinuxやchromebook上のlinuxはPCのデスクトップ環境からしかアクセスできないため、インターネットや他のPCから生成したアプリにアクセスすることはできませんがご了承下さい。インターネット上でのアプリ公開やチームでのアプリ利用についてはsmall-shellの公開講座で別途ご説明します。</p>
 </div>
 <p><img alt="Screenshot" src="../img/key_auth.png" /></p>
 <h3 id="url">ログインURL</h3>
-<p>鍵生成後はInitialize URLを経由せず、直接Base APPへログインしてください。Base APPへは/baseというパスでログイン可能です。以下例では先程Base APPに設定したIPアドレスである172.28.9.180を使用しています</p>
+<p>鍵生成後はInitialize URLを経由せず、直接Base Appへログインしてください。Base Appへは/baseというパスでログイン可能です。以下例では先程Base Appに設定したIPアドレスである172.28.9.180を使用しています</p>
 <p>http://172.28.9.180/base</p>
 <h3 id="_7">データの追加</h3>
 <p>ログインができたら早速+ADDボタンからデータボックスにアイテムを登録しましょう</p>
@@ -1514,10 +1514,10 @@ sudo /usr/local/small-shell/adm/ops del.tag:item.db{item_type{モニター}}
 <p>primary keyをhashidとした場合で、新規データをファイルimportにより登録したい場合hashidの値は一律newとしてください、その後自動採番されます</p>
 </div>
 <h3 id="initialize-url">Initialize URLの再生成</h3>
-<p>鍵は基本的にブラウザに自動保存されますが、もしも鍵をなくしてしまったりBase APPのURLがわからなくなった場合は再度鍵を生成しましょう。以下はtestユーザーの鍵生成URLを再作成している例です</p>
+<p>鍵は基本的にブラウザに自動保存されますが、もしも鍵をなくしてしまったりBase AppのURLがわからなくなった場合は再度鍵を生成しましょう。以下はtestユーザーの鍵生成URLを再作成している例です</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops initialize.usr:test
 </code></pre></div>
-<p>以上がBaseAPPをもちいたデータ管理方法についての説明になりますが、次章以降ではさらに多機能なアプリを生成する方法や、情報をまとめてポータル（ホームページのようなもの）で管理する方法をご説明します</p>
+<p>以上がBaseAppをもちいたデータ管理方法についての説明になりますが、次章以降ではさらに多機能なアプリを生成する方法や、情報をまとめてポータル（ホームページのようなもの）で管理する方法をご説明します</p>
 
 
 
