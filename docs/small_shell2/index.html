@@ -1325,7 +1325,7 @@ Is that OK? (yes | no): yes
 </div>
 <p><img alt="Screenshot" src="../img/test.UI.md.def.png" /></p>
 <h4 id="_8">メインページ編集</h4>
-<p>Base Appで直接ページを編集していきましょう、それぞれのフィールドを入力してSETボタンを押してポータル画面をリロードするとページが更新されます。</p>
+<p>Base Appで直接ページを編集していきましょう、それぞれのフィールドを入力してSETボタンを押してメインページをリロードするとページが更新されます。</p>
 <table>
 <thead>
 <tr>
@@ -1365,7 +1365,7 @@ Is that OK? (yes | no): yes
 <p>各フィールドに該当する部分は以下のとおりです
 <img alt="Screenshot" src="../img/component.png" /></p>
 <h4 id="_9">イメージのアップロード</h4>
-<p>ロゴやイメージをアップロードしてカスタムアップに追加したい場合、Base App上のDataBoxのimages.dbにファイルをアップロードしてimgタグを取得して上記ポータルページのBodyもしくはlogoフィールドに貼り付けて下さい
+<p>ロゴやイメージをアップロードしてカスタムアップに追加したい場合、Base App上のDataBoxのimages.dbにファイルをアップロードしてimgタグを取得して、編集画面のBodyもしくはlogoフィールドに貼り付けて下さい
 <img alt="Screenshot" src="../img/images.db.png" /></p>
 <p>以下はアップロードしたロゴファイルのimageタグをコピーする例です
 <img alt="Screenshot" src="../img/scratch_app_logo.png" /></p>
@@ -1445,7 +1445,7 @@ App Name: genDoc
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 4
 Primary Databox: none
 </code></pre></div>
-上記対話の後、最終確認をyesとするとアプリケーションが生成されますので、生成されたAccess URLへアクセスしてみましょう。IPアドレスが前頁からの例のとおり172.28.9.180であった場合は、http://172.28.9.180/genDocになります。標準のポータル画面が表示されていると思いますが、DataBox関連のボタンやメニューをクリックするとエラーになりますが、今回はgen対話時にデータボックスをnoneとしていますので想定どおりの挙動となります。</p>
+上記対話の後、最終確認をyesとするとアプリケーションが生成されますので、生成されたAccess URLへアクセスしてみましょう。IPアドレスが前頁からの例のとおり172.28.9.180であった場合は、http://172.28.9.180/genDocになります。テンプレートページが表示されていると思いますが、DataBoxボタンやメニューからtableをクリックするとエラーになります。今回はgen対話時にデータボックスをnoneとしていますので想定どおりの挙動になります。不要なボタンや、メニューはドキュメントの編集で消していく必要があります。</p>
 <h4 id="_13">ドキュメントの編集</h4>
 <p>BaseAppにログイン後にgenDoc.UI.md.defを選択してページの編集をしていきましょう
 <img alt="Screenshot" src="../img/genDoc_table.png" /></p>
@@ -1456,7 +1456,7 @@ Primary Databox: none
 4. Bodyにマークダウンでドキュメントを記述
 5. イメージをアップロードしimgタグを挿入
 </code></pre></div></p>
-<p>なお、ポータルの編集方法については<a href="./#_9">ポータルの編集</a>を、イメージをアップロードして挿入する方法については<a href="./#_10">イメージのアップロード</a>を参考にしてください。
+<p>なお、メインページの編集方法については<a href="./#_9">メインページの編集</a>を、イメージをアップロードして挿入する方法については<a href="./#_10">イメージのアップロード</a>を参考にしてください。
 以下はマークダウンの<a href="https://docs.google.com/document/d/1FaaikX_BeI1GOL2YUzvfg4_8BqYjMG2Fwbrof2xm_e0/edit?usp=sharing">サンプル</a>を利用して編集・生成した画面になります。電源アイコンのサンプルはフリー素材のサイトなどから入手してください</p>
 <p><img alt="Screenshot" src="../img/genDoc.png" /></p>
 <h4 id="_14">ドキュメントのエクスポート</h4>

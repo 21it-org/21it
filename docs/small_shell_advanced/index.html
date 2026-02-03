@@ -687,12 +687,12 @@
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ポータルのアップデート
+        メインページのアップデート
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ポータルのアップデート">
+    <nav class="md-nav" aria-label="メインページのアップデート">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1205,12 +1205,12 @@
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ポータルのアップデート
+        メインページのアップデート
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ポータルのアップデート">
+    <nav class="md-nav" aria-label="メインページのアップデート">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1663,14 +1663,14 @@ Is that OK? (yes | no): yes
 genコマンドが完了次第、再度イベント登録画面にいくとフィールドが更新されていることを確認しましょう。その後、テスト用のeventを登録してください</p>
 <h6 id="_10">更新後のイベント追加画面</h6>
 <p><img alt="Screenshot" src="../img/new_event.png" /></p>
-<h3 id="_11">ポータルのアップデート</h3>
-<p>続いて21DOJOへのログイン時に最初に表示されるポータルページに最新のイベント情報が出てくるようにしましょう</p>
+<h3 id="_11">メインページのアップデート</h3>
+<p>続いて21DOJOへのログイン時に最初に表示されるメインページに最新のイベント情報が出てくるようにしましょう</p>
 <h4 id="html">HTML編集</h4>
-<p>今回のポータルページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。Base Appログイン後、21DOJO.md.defデータボックスを選択して定義を更新しましょう。
+<p>今回のメインページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。Base Appログイン後、21DOJO.md.defデータボックスを選択して定義を更新しましょう。
 以下の通りBodyを全て消して以下を貼り付けて更新してください。
 <img alt="Screenshot" src="../img/update_portal.png" /></p>
 <div class="highlight"><span class="filename">サンプルHTMLコード</span><pre><span></span><code>&lt;div class=&quot;flex-box&quot;&gt;
-  &lt;div class=&quot;potal-description&quot;&gt;
+  &lt;div class=&quot;flex-description&quot;&gt;
     &lt;h2&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h2&gt;
     &lt;h2&gt;記載のURLからご参加いただければと思います&lt;/h2&gt;
     &lt;a href=&quot;./21DOJO?%%params&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
@@ -1738,7 +1738,7 @@ cat /var/www/def/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
 | $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
 | $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
 </code></pre></div></p>
-<p>完成したポータルはこちらになります
+<p>完成したページはこちらになります
 <img alt="Screenshot" src="../img/portal_3.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
