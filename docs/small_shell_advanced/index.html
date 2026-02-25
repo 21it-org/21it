@@ -1778,8 +1778,8 @@ keys=name,start,end,url,detail
 <h3 id="graph">Graph生成</h3>
 <p>pyshellを使うことで容易にGraph生成ができます、まずはsmall shell公式サイトを確認してpython及びlibraryのインストールをしてください。公式サイトはChromeの翻訳機能を使えば日本語での閲覧が可能です   </p>
 <p><a href="https://small-shell.org/python_tour/">pyshell</a></p>
-<p>公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではenv設定が適切に実施されpython3.12がインストールされていることを確認します
-<div class="highlight"><pre><span></span><code>$ cat /usr/local/small-shell/util/pyshell/env | grep PYTHON
+<p>公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではpyenv設定が適切に実施されpython3.12がインストールされていることを確認します
+<div class="highlight"><pre><span></span><code>$ cat /usr/local/small-shell/util/pyshell/pyenv | grep PYTHON
 PYTHON=&quot;/usr/local/bin/python3.12&quot;
 $ ls /usr/local/bin/python3.12
 /usr/local/bin/python3.12
@@ -1787,7 +1787,7 @@ $ ls /usr/local/bin/python3.12
 <p>日本語を扱えるようにフォントをインストールしてフォント定義を変更しましょう
 <div class="highlight"><pre><span></span><code># フォントインストール
 $ sudo apt install fonts-ipaexfont
-$ sudo vi /usr/local/small-shell/util/pyshell/env
+$ sudo vi /usr/local/small-shell/util/pyshell/pyenv
 --code--
 font_family=&quot;IPAexGothic&quot; 
 --------
