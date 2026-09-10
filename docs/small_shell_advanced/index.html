@@ -1631,26 +1631,19 @@ genコマンドが完了次第、再度イベント登録画面にいくとフ�
 リロードして、位置が以下のように調整できたことを確認してください
 <img alt="Screenshot" src="../img/portal_2.png" /></p>
 <h4 id="mainsh">main.sh</h4>
-<p>続いて21DOJOのmain.shにて%%eventタグの変換処理をいれます。アップデート対象の1つ目は、DATA_SHELL=としてDATA_SHELLの変数を定義している箇所の下に、”#以下行を追加”とある処理を追加してください。続いて、アップデート対象の2つ目として、render HTMLというコメントの箇所まで移動し、"#以下行をコメントアウト"と記載のある箇所はコメントアウトし、"以下行を追加"という行を追加してください。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>追加している処理の具体的な内容としてはdataboxの最新の1行目のエントリーをhead -1でサーチして、idを取得、データをeventファイルに書き出したのちsedで%%eventを上書しています</p>
-</div>
-<p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo nano /var/www/bin/21DOJO_main.sh
-
---アップデート対象1--
-# SET BASE_COMMAND
+<p>続いて21DOJOのmain.shにて%%eventタグの変換処理をいれます。アップデート対象の1つ目は、DATA_SHELL=としてDATA_SHELLの変数を定義している箇所の下に、”#以下行を追加”とある処理を追加してください。</p>
+<pre><code>$ sudo nano  /var/www/bin/21DOJO_main.sh
+</code></pre>
+<div class="highlight"><span class="filename">Update対象1</span><pre><span></span><code># SET BASE_COMMAND
 META=&quot;${small_shell_path}/bin/meta&quot;
 DATA_SHELL=&quot;${small_shell_path}/bin/DATA_shell session:$session pin:$pin app:21DOJO&quot;
 
 # 以下行を追加
 id=$($DATA_SHELL databox:events command:head_-1 format:none | $AWK -F &quot;,&quot; &#39;{print $1}&#39;)
 $DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail format:html_tag &gt; /var/www/tmp/$session/event
--------------------
-
-
---アップデート対象2--
-# -----------------
+</code></pre></div>
+<p>続いて、アップデート対象の2つ目として、render HTMLというコメントの箇所まで移動し、"#以下行をコメントアウト"と記載のある箇所はコメントアウトし、"以下行を追加"という行を追加してください。</p>
+<div class="highlight"><span class="filename">Update対象2</span><pre><span></span><code># -----------------
 # render HTML
 # -----------------
 
@@ -1675,11 +1668,15 @@ cat /var/www/def/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
 | $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
 | $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
 </code></pre></div>
-上記更新ができたらファイルを保存し、ページをリロードしてください。<br />
-完成イメージはこちらになります
-<img alt="Screenshot" src="../img/portal_3.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>追加している処理の具体的な内容としてはdataboxの最新の1行目のエントリーをhead -1でサーチして、idを取得、データをeventファイルに書き出したのちsedで%%eventを上書しています</p>
+</div>
+<p>上記更新ができたらファイルを保存し、ページをリロードしてください。<br />
+完成イメージはこちらになります
+<img alt="Screenshot" src="../img/portal_3.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>イベントが何も登録されていないときは"error: please input id"というメッセージが表示されるため、Team AppもしくはBase Appでevents databoxにイベントを登録して下さい</p>
 </div>
 <h3 id="read-only">Read onlyへの変更</h3>
@@ -1690,12 +1687,9 @@ successfully set attr peremission 21DOJO/21DOJO.app{ro}&quot;
 <p>アプリのカスタマイズは以上で完成となります！</p>
 <h2 id="_12">その他の高度な機能</h2>
 <h3 id="graph">Graph生成</h3>
-<p>pyshellを使うことで容易にGraph生成ができます、まずはsmall shell公式サイトを確認してpython及びlibraryのインストールをしてください。公式サイトはChromeの翻訳機能を使えば日本語での閲覧が可能です   </p>
-<p><a href="https://small-shell.org/python_tour/">pyshell</a></p>
-<p>公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではpyenv設定が適切に実施されpython3.12がインストールされていることを確認します
-<div class="highlight"><pre><span></span><code>$ cat /usr/local/small-shell/util/pyshell/pyenv | grep PYTHON
-PYTHON=&quot;/usr/local/bin/python3.12&quot;
-$ ls /usr/local/bin/python3.12
+<p><a href="https://small-shell.org/python_tour/">pyshell</a>を使うことで容易にGraph生成ができます、まずはsmall shell公式のStatisticsに関する項目を確認してpython及びpython libraryのインストールをしてください。   </p>
+<p>インストールが完了したら、公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではpyenv設定が適切に実施されpython3.12がインストールされていることを確認します
+<div class="highlight"><pre><span></span><code>$ ls /usr/local/bin/python3.12
 /usr/local/bin/python3.12
 </code></pre></div></p>
 <p>日本語を扱えるようにフォントをインストールしてフォント定義を変更しましょう
@@ -1710,7 +1704,7 @@ font_family=&quot;IPAexGothic&quot;
 $ sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-*.json
 </code></pre></div></p>
 <h4 id="snapshot-graph">Snapshot Graph</h4>
-<p>pyshell環境が適切に設定できていたら、utility scriptであるcountup.shを使ってスナップショットグラフを作成しましょう。スナップショットグラフとはpyshell実行時点のデータを集計し、記録したグラフです。スナップショット以外にデータ蓄積を前提としたhourly, daily, monthlyのグラフの作成が可能です。以下はsmall-shell基礎#1でアンケート集計のために作成したsurvey.dbを"良い"、"普通"、"悪い"でそれぞれデータを集計するコマンド例になります</p>
+<p>pyshell環境が適切に設定できていたら、utility scriptであるcountup.shを使ってスナップショットグラフを作成しましょう。スナップショットグラフとはpyshell実行時点のデータを集計し、記録したグラフです。スナップショット以外にデータ蓄積を前提としたhourly, daily, monthlyのグラフの作成が可能です。以下は<a href="../small_shell2/#_18">small-shell基礎2</a>でアンケート集計のために作成したsurvey.dbを"良い"、"普通"、"悪い"でそれぞれデータを集計するコマンド例になります</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.db key:impression filters:良い,普通,悪い type:pie frequency:snapshot
 </code></pre></div>
 <p>タイトルを入れたい場合はtitleも入力してください、ここではタイトルにスペースを使わず"2024-12-02_調査結果"としています
