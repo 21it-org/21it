@@ -733,45 +733,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#key_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        閲覧keyの制限
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#url_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        チケットURL整備
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="チケットURL整備">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#url_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        URLデザイン
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1251,45 +1212,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#key_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        閲覧keyの制限
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#url_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        チケットURL整備
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="チケットURL整備">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#url_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        URLデザイン
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1448,20 +1370,20 @@
 
 <h1 id="small-shell-advanced">small shell Advanced</h1>
 <h2 id="_1">アプリ開発</h2>
-<p>small shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。Application Shellの基本構造を理解することで、生成したCustom AppにLinuxコマンドでそのまま処理を追加でき、データを結合、加工することができます。本コースではCustom Appの生成とカスタマイズの流れをご説明します。それでは早速Custom Appを生成してApplication Shellの構造を読み解いていきましょう</p>
-<p>Custom Appを使って作成するアプリケーションのシナリオは以下のとおりです</p>
+<p>small shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。App Shellの基本構造を理解することで、生成したCustom AppにLinuxコマンドでそのまま処理を追加でき、データを結合、加工することができます。本コースではCustom Appの生成とカスタマイズの流れをご説明します。それでは早速Custom Appを生成してApp Shellの構造を読み解いていきましょう。今回の例でCustom Appを使って作成するアプリケーションのシナリオは以下のとおりです</p>
 <h5 id="web">Webアプリシナリオ</h5>
-<pre><code>1. アプリへはパスコードもしくは専用URL(QRコード化も可能)でアクセスする
+<pre><code>[イベント情報表示アプリ]
+1. アプリへはパスコードを知っている人のみアクセス可能
 2. 認証が成功した場合、アプリはイベントの詳細情報を表示する
 3. 管理者はTeam Appでイベント管理をする
 </code></pre>
 <h4 id="team-app">Team Appの生成</h4>
-<p>small shell基礎#2にてTeam Appはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team Appのinstall</a>を参照のうえ生成してください</p>
+<p>今回のアプリでは管理者はTeam Appでイベントを管理し、エンドユーザー向けには今回生成するWebアプリを通じて別途定義するページで特定情報のみ表示するようにします。small shell基礎#2にてTeam Appはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team Appのinstall</a>を参照のうえ生成しておいてください。</p>
 <h2 id="_2">カスタムアプリ生成</h2>
-<p>早速Custom Appを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。前提としてsmall-shell基礎#1で作成したBase Appが作られている必要がありますのでsmall-shell基礎#1を参照して生成しておいてください。</p>
+<p>早速Custom Appを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。今回のアプリに限らず、カスタムアプリは前提としてBase Appが稼働している必要がありますので、<a href="../small_shell1/#base-app">small-shell基礎1</a>にてOSのセットアップとBase Appのインストールは完了しておいてください。</p>
 <div class="highlight"><span class="filename">生成コマンド</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
 </code></pre></div>
-<p>対話が始まりますが、ここではアプリケーションの名前は21DOJOとします、pass codeは任意の4桁の数字を入力しています
+<p>対話が始まりますが、ここではアプリケーションの名前は21DOJOとします。pass codeは以下例ではXXXXとしていますが、任意の4桁の数字を入力してください。また、DataBoxはeventsとしていますが、これはTeam Appをインストールすると自動生成されるDataBoxになります。
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of App (1.BASE | 2.FORM | 3.CUSTOM): 3
 App Name: 21DOJO
@@ -1470,7 +1392,7 @@ Shared Passcode: XXXX
 Primary Databox: events
 </code></pre></div>
 前章同様、アプリはshared passを選択しますがもちろん他の認証方式も選択可能です。
-databoxの指定までできると最終確認をもとめられますので、yesと回答しましょう</p>
+DataBoxの指定までできると最終確認をもとめられますので、yesと回答しましょう</p>
 <h4 id="_3">ログイン画面の確認</h4>
 <p>アプリケーションが生成されたのでアクセスしてみましょう  <br />
 (アクセスURLはカスタムアプリ生成後に出力されます)</p>
@@ -1580,7 +1502,7 @@ exit 0
     $DATA_SHELL databox:$databox action:get id:$id keys:$keys format:html_tag &gt; /var/www/tmp/$session/dataset
 </code></pre></div></p>
 <p>また、HTMLを還す際は以下のようにsedで%%datasetタグの中に上記で抽出した情報を埋め込みます</p>
-<div class="highlight"><span class="filename">タグへの情報の埋め込み</span><pre><span></span><code>$ sudo tail -20 /var/www/bin/21DOJO_get.sh
+<div class="highlight"><span class="filename">タグへの情報の埋め込み</span><pre><span></span><code>$ sudo tail -21 /var/www/bin/21DOJO_get.sh
 # render HTML
 cat /var/www/def/${view} | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
 | $SED &quot;/%%common_menu/r /var/www/def/common_parts/21DOJO_common_menu&quot; \
@@ -1624,6 +1546,10 @@ Databox Name: events
 column&#39;s key name: description 
 Delete more column from the databox? (yes | no) : no 
 </code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>上記に限らず、genコマンドの対話中に間違った入力をしてしまった場合、その場でctrlボタンと同時にcを入力することで対話をリセットし、最初から始めることができますので間違った場合は使用してみてください。</p>
+</div>
 <p>続いて必要なkeyを追加していきます
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -addcol
 Databox Name: events
@@ -1667,7 +1593,7 @@ genコマンドが完了次第、再度イベント登録画面にいくとフ�
 <p>続いて21DOJOへのログイン時に最初に表示されるメインページに最新のイベント情報が出てくるようにしましょう</p>
 <h4 id="html">HTML編集</h4>
 <p>今回のメインページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。Base Appログイン後、21DOJO.md.defデータボックスを選択して定義を更新しましょう。
-以下の通りBodyを全て消して以下を貼り付けて更新してください。
+以下の通りBodyを全て消して以下を貼り付けて更新してください。また、Body以外のフィールドの値は消してもらえればと思います。
 <img alt="Screenshot" src="../img/update_portal.png" /></p>
 <div class="highlight"><span class="filename">サンプルHTMLコード</span><pre><span></span><code>&lt;div class=&quot;flex-box&quot;&gt;
   &lt;div class=&quot;flex-description&quot;&gt;
@@ -1682,7 +1608,7 @@ genコマンドが完了次第、再度イベント登録画面にいくとフ�
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre></div>
-<p>以下が更新後の画面です、現時点で%%eventタグが埋め込まれていないためそのまま%%eventタグが表示されています、またeventの位置があまりよくないためcssをつかって位置を調整しましょう
+<p>上記コードを投入後、カスタムアプリに戻ってリロードした画面は以下のとおりです。現時点で%%eventタグが埋め込まれていないためそのまま%%eventタグが表示されています、またeventの位置があまりよくないためcssをつかって位置を調整しましょう
 <img alt="Screenshot" src="../img/portal_1.png" /></p>
 <p>アプリ毎のcss定義については直接編集が可能です</p>
 <pre><code>sudo nano /var/www/html/21DOJO.css
@@ -1693,18 +1619,26 @@ genコマンドが完了次第、再度イベント登録画面にいくとフ�
   flex-wrap:wrap;
 } 
 
+.flex-description {
+  max-width: 640px;
+}
+
 .event {
   padding-left: 48px;
-}   
+  max-width: 120px;
+} 
 </code></pre></div>
-位置が以下のように調整できたことを確認してください
+リロードして、位置が以下のように調整できたことを確認してください
 <img alt="Screenshot" src="../img/portal_2.png" /></p>
 <h4 id="mainsh">main.sh</h4>
-<p>続いて21DOJOのmain.shにて%%eventタグの変換処理をいれます。”#以下行を追加”とある処理を追加し、"#以下行をコメントアウト"と記載のある箇所はコメントアウトしてください。
-具体的な処理としてはdataboxの最新の1行目のエントリーをhead -1でサーチして、idを取得、データをeventファイルに書き出したのちsedで%%eventを上書しています
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo nano /var/www/bin/21DOJO_main.sh
+<p>続いて21DOJOのmain.shにて%%eventタグの変換処理をいれます。アップデート対象の1つ目は、DATA_SHELL=としてDATA_SHELLの変数を定義している箇所の下に、”#以下行を追加”とある処理を追加してください。続いて、アップデート対象の2つ目として、render HTMLというコメントの箇所まで移動し、"#以下行をコメントアウト"と記載のある箇所はコメントアウトし、"以下行を追加"という行を追加してください。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>追加している処理の具体的な内容としてはdataboxの最新の1行目のエントリーをhead -1でサーチして、idを取得、データをeventファイルに書き出したのちsedで%%eventを上書しています</p>
+</div>
+<p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo nano /var/www/bin/21DOJO_main.sh
 
---対象コード--
+--アップデート対象1--
 # SET BASE_COMMAND
 META=&quot;${small_shell_path}/bin/meta&quot;
 DATA_SHELL=&quot;${small_shell_path}/bin/DATA_shell session:$session pin:$pin app:21DOJO&quot;
@@ -1712,7 +1646,10 @@ DATA_SHELL=&quot;${small_shell_path}/bin/DATA_shell session:$session pin:$pin ap
 # 以下行を追加
 id=$($DATA_SHELL databox:events command:head_-1 format:none | $AWK -F &quot;,&quot; &#39;{print $1}&#39;)
 $DATA_SHELL databox:events action:get id:$id keys:name,start,end,url,detail format:html_tag &gt; /var/www/tmp/$session/event
+-------------------
 
+
+--アップデート対象2--
 # -----------------
 # render HTML
 # -----------------
@@ -1737,43 +1674,20 @@ cat /var/www/def/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
 | $SED &quot;s/%%user/${user_name}/g&quot; \
 | $SED &quot;s/%%session/session=$session\&amp;pin=$pin/g&quot; \
 | $SED &quot;s/%%params/session=$session\&amp;pin=$pin/g&quot;
-</code></pre></div></p>
-<p>完成したページはこちらになります
+</code></pre></div>
+上記更新ができたらファイルを保存し、ページをリロードしてください。<br />
+完成イメージはこちらになります
 <img alt="Screenshot" src="../img/portal_3.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>イベントが何も登録されていないときは"error: please input id"というメッセージが表示されるため、イベントを登録して下さい</p>
+<p>イベントが何も登録されていないときは"error: please input id"というメッセージが表示されるため、Team AppもしくはBase Appでevents databoxにイベントを登録して下さい</p>
 </div>
 <h3 id="read-only">Read onlyへの変更</h3>
-<p>21DOJOはshared passのためシステムユーザーしかもちませんが、このユーザーをread onlyに変更することでアプリ全体が読み取り権限のみとなり書き込みができなくなります</p>
+<p>21DOJOはshared passのためシステムユーザーでログインしますが、ログイン後に編集権限をもってしまっています。そのため、このユーザーをread onlyに変更することでアプリ全体が読み取り権限のみとなり書き込みができなくなります</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops set.attr:21DOJO.app{ro} app:21DOJO
 successfully set attr peremission 21DOJO/21DOJO.app{ro}&quot;
 </code></pre></div>
-<h3 id="key_1">閲覧keyの制限</h3>
-<p>管理目的以外で使用しないkeyは21DOJOアプリからは閲覧できないようkeys=allをコメントアウトして閲覧可能なkeyを制限しましょう。</p>
-<p>以下はkey制限前のテーブルイメージです
-<img alt="Screenshot" src="../img/before_key_edit.png" /></p>
-<p>keyを制限するため、/bin配下のスクリプトを編集します
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>sudo nano /var/www/bin/21DOJO_table.sh
---対象コード--
-#keys=all
-keys=name,start,end,url,detail
----------
-</code></pre></div></p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>sudo nano /var/www/bin/21DOJO_get.sh
---対象コード--
-#keys=all
-keys=name,start,end,url,detail
----------
-</code></pre></div>
-<p>コード編集後にkeyが制限されたことを確認してください
-<img alt="Screenshot" src="../img/after_key_edit.png" /></p>
-<h3 id="url_1">チケットURL整備</h3>
-<p>より簡易的なアクセスができるよう、URL自体にpass codeを埋め込みアクセスしてみましょう、そうすることで認証画面なしで自動ログインが可能です</p>
-<h4 id="url_2">URLデザイン</h4>
-<p>以下はpass codeとして1234を設定したアプリにQUERY STRINGを利用してログインするためのURLの例です。アプリをインターネット公開している場合はこのURLをQRコード生成サイトなどでQRコード化すればスマホなどでアクセスと自動ログインが可能になります</p>
-<pre><code>http://{サーバアドレス}/cgi-bin/auth.21DOJO?received_pass=1234
-</code></pre>
+<p>アプリのカスタマイズは以上で完成となります！</p>
 <h2 id="_12">その他の高度な機能</h2>
 <h3 id="graph">Graph生成</h3>
 <p>pyshellを使うことで容易にGraph生成ができます、まずはsmall shell公式サイトを確認してpython及びlibraryのインストールをしてください。公式サイトはChromeの翻訳機能を使えば日本語での閲覧が可能です   </p>
