@@ -1254,7 +1254,7 @@
   ---------     ---------------------------
 </code></pre></div>
 <h2 id="base-app">Base Appの利用シナリオ</h2>
-<p>Base App(ベースアプリ）は即席で生成できるsmall-shellの標準Webアプリケーションですが、Webアプリケーション自体の特性であるデータの共有のしやすさや、オープンで共同作業をしやすいという性質を持ちます。その点においてチームによるデータ管理を行う際、Excel等のスプレッドシートよりも優れているといえるでしょう。Base AppはAnd検索が可能で、Unix Basic 2コースでご紹介した高度なUnixコマンド群を使ったデータ分析も可能です。Formを用いることで外部からのデータ収集や依頼受付などもすることができます。本章ではBase Appを利用してデータを扱う方法を説明します。なお、以下高度な連携の実装については<a href="https://small-shell.org">公式ホームページ</a>を参照ください。公式サイトは英語ですので、適時翻訳ツールで翻訳いただければと思います。</p>
+<p>Base App(ベースアプリ）は即席で生成できるsmall-shellの標準Webアプリケーションですが、Webアプリケーション自体の特性であるデータの共有のしやすさや、オープンで共同作業をしやすいという性質を持ちます。その点においてチームによるデータ管理を行う際、Excel等のスプレッドシートよりも優れているといえるでしょう。また、Base Appはベースレイヤーの基盤アプリとしてsmall-shell2で説明するカスタムアプリの実行基盤にもなります。WebアプリとしてのBase Appの機能は以下をご確認ください。本章では環境構築からBase Appの起動と基本操作まで手順を説明できればと思います。</p>
 <h4 id="_3">標準機能</h4>
 <ul>
 <li>容易なデータ共有と同時編集</li>
@@ -1299,7 +1299,8 @@ sudo git clone https://github.com/small-shell/small-shell.git
 sudo chown -R small-shell:small-shell /usr/local/small-shell
 </code></pre>
 <h3 id="_6">データ構造の検討</h3>
-<p>BaseAppは基本的にはDataBox(データボックス)を管理するためのアプリケーションですが、DataBoxは名前のとおりデータを入れるための箱といえます。箱の構造を設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
+<p>Base Appを通じてデータを操作することができますが、一方でデータを入れる箱自体の設計もする必要があります。    </p>
+<p>small-shellにおいてデータを入れる箱はDataBoxと呼ばれていますが、その名のとおりデータを入れるための箱といえます。箱の構造を設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
 <h4 id="keyvalue">KeyとValue</h4>
 <p>DataBoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataBoxを想定していますが、item_info(アイテム情報)というkey照会に対して、"メーカーAのノートパソコン・・・・"という具体的な値(value)が返されます。</p>
 <div class="highlight"><span class="filename">key value例</span><pre><span></span><code>key   : item_info
@@ -1313,14 +1314,16 @@ value : メーカーAのノートパソコン、在庫として10個ある
 <p>一意となるkeyが選定できない場合はPrimary Keyを指定せず、システム側で自動生成される値とすることができます。自動生成の設定例は<a href="../small_shell2/#box">アンケートの収集</a>で紹介されていますので、そちらを参照下さい。</p>
 </div>
 <p>item_infoを複数keyに厳密に分解していった例が以下となります</p>
-<div class="highlight"><span class="filename">keyの分割例(硬いデータ構造)</span><pre><span></span><code>keys  : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
+<div class="highlight"><span class="filename">keyの分割例(比較的厳格なデータ構造)</span><pre><span></span><code>keys  : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
 </code></pre></div>
-<p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataBoxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度の、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義しましょう。なお、*がついているkeyは必須入力のとします</p>
+<p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataBoxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度にし、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義する必要があります。併せて必須入力項目も定義し、データ入力時の抜け漏れが発生しないようにします</p>
 <div class="highlight"><span class="filename">フラットなkey分割</span><pre><span></span><code>#在庫データ
 keys   : item_name(primary_key), maker, item_type, stock_num, note
 label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
+
+*がついているkeyは必須入力項目とする
 </code></pre></div>
-<p>なお、上記データがWebアプリ上で表示される際には、各keyが列となり、テーブル型のデータとして表示されることになります</p>
+<p>上記データがWebアプリ上で表示される際には、各keyが列となり、テーブル型のデータとして表示されることになります</p>
 <div class="admonition key分割という概念について">
 <p class="admonition-title">Key分割という概念について</p>
 <p>重複などを排除し、テーブルの構造を厳密にしていく作業を一般的には正規化と呼びます。key分割という呼称はsmall-shellの独自の概念になります。データ構造をシステム設計の観点で最適化する正規化に対して、small-shellでは目的(上記例ではアイテム情報の管理)から要素を分解して必須の項目を定義するという作業によりフォーカスしているためkey分割という呼び方をしています。このような要素への分割と必須項目の定義自体はどんなシステムにおいても必要になる作業といえます</p>
@@ -1330,15 +1333,16 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 <p>データボックスの正式表記は"Databox"になりますが、本ドキュメントにおいては"データ"をいれる"箱"であることを強調するため"DataBox"としています</p>
 </div>
 <h3 id="databox">DataBox生成</h3>
-<p>データ構造を比較的緩めなものにすると決まったところで、さっそくDataBoxを生成していきましょう、以下の通りgenコマンドで簡単に生成できます。</p>
+<p>データ構造が決まったところで、さっそくDataBoxを生成していきましょう、以下の通りgenコマンドで簡単に生成できます。</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -databox
 </code></pre>
-<p>コマンド実行後に対話が始まりますが、以下実行例のとおり入力してみてください。DataBox自体の名前はわかりやすくitem.db(dbはdataboxの略)として、在庫管理のために使ってみましょう。Add more columns to thd databox？と聞かれた際にnoと答えると対話が終了しデータボックスが生成されます。またSet this as required?と聞かれてyesと答えると必須の入力項目としてBaseAppで扱われます。通常のフィールドはフリーワードが登録できるtext、ある程度固定値にして入力値をコントロールしたいフィールドにはselectを選択して固定値を指定しましょう</p>
+<p>コマンド実行後に対話が始まりますが、以下実行例のとおり入力してみてください。DataBox自体の名前はわかりやすくitem.db(dbはdataboxの略)としています。
+備考などある程度フリーワード入力を許容するフィールドにはtextを使用し、固定値にして入力値をコントロールしたいフィールドにはselectを選択して固定値を指定していきます。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>対話を途中で抜けたい場合はctrlボタンとcボタンを同時に押して抜けてください。やり取りが破棄されリセットできます</p>
 </div>
-<p>こちらの実行例についてはやりとりが長いため動画も作成しました。<a href="https://drive.google.com/file/d/1R0R22itd4N0LyUMRS_k-Fl48X2Pbrr75/view?usp=sharing">実行例動画</a>を参照して実行してみてください
+<p>こちらの実行例についてはやりとりが長いため動画も作成しました。<a href="https://drive.google.com/file/d/1R0R22itd4N0LyUMRS_k-Fl48X2Pbrr75/view?usp=sharing">実行例動画</a>を参照して実行してみてください。補足も動画のコメントとして追記していますのでぜひ参考にしてください。
 <div class="highlight"><span class="filename">gen -databox実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -databox
 ※はコメントですので入力しないでください
 
