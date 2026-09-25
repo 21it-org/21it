@@ -2066,15 +2066,15 @@ $ ls -a
 <pre><code>sleep 秒数
 </code></pre>
 <h3 id="_22">スクリプトの強制終了</h3>
-<p>実行中のスクリプトを停止したい場合、ctrl + cを押すことで停止することができます。以下は30秒sleepするスクリプトを途中停止する例です</p>
+<p>実行中のスクリプトを停止したい場合、Ctrl + Cを押すことで停止することができます。以下は30秒sleepするスクリプトを途中停止する例です</p>
 <div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano sleep.sh
 </code></pre></div>
 <div class="highlight"><span class="filename">sleep.shの内容</span><pre><span></span><code>#!/bin/bash
 sleep 30
 </code></pre></div>
-<p>ファイルが作成できたら実行してみましょう、30秒応答がなくなりますので途中でctrl + cを入力して抜けてみましょう
+<p>ファイルが作成できたら実行してみましょう、30秒応答がなくなりますので途中でCtrl + Cを入力して抜けてみましょう
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash sleep.sh
-ctrl + cで強制停止
+Ctrl + Cで強制停止
 </code></pre></div></p>
 <h3 id="_23">バックグラウンドでの実行</h3>
 <p>上述のsleepを含むようなスクリプトは処理に時間がかかるため、処理を裏で動かして継続したい場合があります。そういった場合は&amp;をつけてバックグラウンドで実行することができます。以下実行例では15293というプロセスIDが付与され、背後で実行されていますがpsコマンドで動いていることを確認できます</p>

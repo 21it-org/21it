@@ -1966,11 +1966,11 @@ ls -l
 <h2 id="_3">基本操作</h2>
 <p>以下ではLinuxの基本的な操作をご説明します、基本的にはターミナル上での操作になりますが、本ページで説明されているコマンドをそのままコピーしてペーストすると簡単です。その際、ブラウザ上でのテキストのコピーの方法とLinux端末上でのコピー&amp;ペーストの方法が若干異なりますのでご認識下さい。</p>
 <div class="highlight"><span class="filename">copy & past</span><pre><span></span><code># ブラウザ上でのコピー
-コピー: ctrl + c
+コピー: Ctrl + C
 
 # Linux端末上でのコピーとペースト
-コピー: ctrl + shift + c
-ペースト: ctrl + shift + v
+コピー: Ctrl + Shift + C
+ペースト: Ctrl + Shift + V
 </code></pre></div>
 <h3 id="root">root(ルート)になる</h3>
 <p>Linux上で作業をする際に、特権ユーザーになって作業することがあります。その際、特権ユーザーへの昇格のためには主にsu(エスユー)コマンドを使います。パスワードを求められますが、suコマンドの場合rootのパスワードを入力する必要があります</p>
@@ -2155,10 +2155,10 @@ test test_mv
 <pre><code>du -h .
 </code></pre>
 <h3 id="_17">パーミッション</h3>
-<p>パーミッションとは、ファイルやディレクトリに設定された属性で、所有者に対する権限、所有者所属グループに対する権限、それ以外のユーザーに対する権限の3つの権限をもちます。参考程度に以下を確認いただければと思います。</p>
+<p>パーミッションとは、ファイルやディレクトリに設定された属性で、所有者に対する権限、所有者所属グループに対する権限、それ以外のユーザーに対する権限の3つの権限をもちます。権限の定義は確認いただければと思います。なお、実行権限をつけることでプログラムファイルとして実行可能な状態になります</p>
 <div class="highlight"><span class="filename">アルファベット略称による権限定義</span><pre><span></span><code># 権限
 r - read only #読み取りのみ
-w - read and write #編集可能
+w - write #編集可能
 x - exec #実行権限
 
 # 数値化された権限
@@ -2166,16 +2166,22 @@ x - exec #実行権限
 +2 - w
 +1 - x
 </code></pre></div>
-<p>パーミッションと所有権はchmod(チェンジモド)及びchown(チェンジオウン)コマンドにより変更できます。また、権限はls -lオプションで確認することができます。その際、ls -lの結果は、所有者に対する権限、所有者所属グループに対する権限、それ以外のユーザーに対する権限の順に表示されます</p>
+<p>パーミッションの確認はlsコマンドに"l"オプションをつけることで可能です。以下はtestというファイルを作成してパーミッションを確認する例となります</p>
+<div class="highlight"><span class="filename">パーミッション確認</span><pre><span></span><code>$ touch test
+$ ls -l test
+-rw-r--r--  1 naruo  wheel  0  9月 26 06:32 test
+
+※パーミッションは&quot;所有者の権限,所属グループに対する権限,それ以外のユーザーに対する権限&quot;の順に並んでいますが
+ここでは所有者naruoに対してrw(read write)の権限が付与され、グループwheelに対してはr(read only)、それ以外のユーザーもr(read only)になっています
+</code></pre></div>
+<p>パーミッションと所有権はchmod(チェンジモド)及びchown(チェンジオウン)コマンドにより変更できます</p>
 <pre><code>chown
 chmod
-ls -l
 </code></pre>
-<p>以下は"test"ファイルの権限を所有者とへは全権限を、所有者と同一グループ所属するユーザーには読み取りと書き込み権限を、それ以外のユーザーには読み取り権限のみを付与する例です</p>
-<div class="highlight"><span class="filename">実行例(ファイルを作成し権限を変更)</span><pre><span></span><code>$ touch test
-$ chmod 764 test
+<p>以下は"test"ファイルの権限を所有者とへは全権限を、所有者と同一グループ所属するユーザーには読み取りと書き込み権限を、それ以外のユーザーには読み取り権限のみを数値によって付与する例です。たとえば7は(読み取り(4)+書き込み(2)+実行(1))という数値の合算で、全権限を与える数値になります</p>
+<div class="highlight"><span class="filename">実行例(ファイルを作成し権限を変更)</span><pre><span></span><code>$ chmod 764 test
 $ ls -l test
--rwxrw-r-- 1 test_user test_user 0 Jan 22 19:30 test
+-rwxrw-r--  1 naruo  wheel  0  9月 26 06:32 test
 </code></pre></div>
 <h2 id="_18">入出力</h2>
 <h3 id="_19">文字を出力させる</h3>
@@ -2239,44 +2245,44 @@ ls: cannot access &#39;/abc&#39;: No such file or directory
 </code></pre>
 <p>テキストエディタが起動したら、任意の文字を入力してみて下さい</p>
 <h3 id="_24">行をコピーする</h3>
-<p>行をコピー（カット）したい場合はCtrl + kを使います</p>
-<pre><code>Ctlr + k
+<p>行をコピー（カット）したい場合はCtrl + Kを使います</p>
+<pre><code>Ctlr + K
 </code></pre>
 <h3 id="_25">ペーストする</h3>
-<p>行をペーストする場合はCtrl + uを押してください</p>
-<pre><code>Ctrl + u
+<p>行をペーストする場合はCtrl + Uを押してください</p>
+<pre><code>Ctrl + U
 </code></pre>
 <h3 id="_26">元に戻す</h3>
-<p>記入した内容を元に戻したい場合はAlt + uを押してください</p>
-<pre><code>Alt + u
+<p>記入した内容を元に戻したい場合はAlt + Uを押してください</p>
+<pre><code>Alt + U
 </code></pre>
-<p>元に戻した内容を取り消したい場合は Alt + eを押してください</p>
-<pre><code>Alt + e
+<p>元に戻した内容を取り消したい場合は Alt + Eを押してください</p>
+<pre><code>Alt + E
 </code></pre>
 <h3 id="_27">検索する</h3>
-<p>ファイル内の文字列を検索したい場合、Ctrl + wを入力した後、検索ワードを入力してください</p>
-<pre><code>Ctrl + w
+<p>ファイル内の文字列を検索したい場合、Ctrl + Wを入力した後、検索ワードを入力してください</p>
+<pre><code>Ctrl + W
 </code></pre>
 <h3 id="_28">移動する</h3>
 <p>ファイル内の移動をスムーズに行いたい場合、ショートカットキーで一番下に移動することができます</p>
 <h4 id="_29">行の最初に移動する</h4>
-<pre><code>Ctrl + a
+<pre><code>Ctrl + A
 </code></pre>
 <h4 id="_30">行末に移動する</h4>
-<pre><code>Ctrl + e
+<pre><code>Ctrl + E
 </code></pre>
 <h4 id="_31">次のページへ移動する</h4>
-<pre><code>Ctrl + v
+<pre><code>Ctrl + V
 </code></pre>
 <h4 id="_32">前のページへ移動する</h4>
-<pre><code>Ctrl + y
+<pre><code>Ctrl + Y
 </code></pre>
 <h3 id="_33">上書する</h3>
-<p>nanoで上書したい場合はCtrl + oと打ってください。その後以下のようなメニューが出てきますが、気にせずEnterを押してください
+<p>nanoで上書したい場合はCtrl + Oと打ってください。その後以下のようなメニューが出てきますが、気にせずEnterを押してください
 <img alt="Screenshot" src="../img/nano_write.png" /></p>
-<p>ちなみにCtrl + sと打った場合でもファイル保存ができます</p>
+<p>ちなみにCtrl + Sと打った場合でもファイル保存ができます</p>
 <h3 id="_34">終了する</h3>
-<p>nanoを終了したい場合はCtrl + xと打ってください、もしも内容が保存されていない場合は保存するかどうかの確認がされますが
+<p>nanoを終了したい場合はCtrl + Xと打ってください、もしも内容が保存されていない場合は保存するかどうかの確認がされますが
 保存する場合はyと打ってください。保存しない場合はnと押すか、cと入力してキャンセルしてください
 <img alt="Screenshot" src="../img/nano_fin.png" /></p>
 <p>上書保存となった場合は先ほどと同じく、上書の確認メニューが表示されますが気にせずエンターを押してください</p>
