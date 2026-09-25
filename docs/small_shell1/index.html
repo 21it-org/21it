@@ -528,7 +528,7 @@
   <a href="#key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        key分割とプライマリーキー
+        Key分割とプライマリーキー
       
     </span>
   </a>
@@ -544,7 +544,7 @@
   <a href="#databox" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DataBox生成
+        Databox生成
       
     </span>
   </a>
@@ -999,7 +999,7 @@
   <a href="#key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        key分割とプライマリーキー
+        Key分割とプライマリーキー
       
     </span>
   </a>
@@ -1015,7 +1015,7 @@
   <a href="#databox" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DataBox生成
+        Databox生成
       
     </span>
   </a>
@@ -1304,13 +1304,13 @@ sudo chown -R small-shell:small-shell /usr/local/small-shell
 </code></pre>
 <h3 id="_6">データ構造の検討</h3>
 <p>Base Appを通じてデータを操作することができますが、一方でデータを入れる箱自体の設計もする必要があります。    </p>
-<p>small-shellにおいてデータを入れる箱はDataBoxと呼ばれていますが、その名のとおりデータを入れるための箱といえます。箱の構造を設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
+<p>small-shellにおいてデータを入れる箱はDataboxと呼ばれていますが、その名のとおりデータを入れるための箱といえます。箱の構造を設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
 <h4 id="keyvalue">KeyとValue</h4>
-<p>DataBoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataBoxを想定していますが、item_info(アイテム情報)というkey照会に対して、"メーカーAのノートパソコン・・・・"という具体的な値(value)が返されます。</p>
+<p>Databoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataboxを想定していますが、item_info(アイテム情報)というkey照会に対して、"メーカーAのノートパソコン・・・・"という具体的な値(value)が返されます。</p>
 <div class="highlight"><span class="filename">key value例</span><pre><span></span><code>key   : item_info
 value : メーカーAのノートパソコン、在庫として10個ある
 </code></pre></div>
-<h4 id="key">key分割とプライマリーキー</h4>
+<h4 id="key">Key分割とプライマリーキー</h4>
 <p>上記key valueの例ではvalueに様々な情報が含まれますが、フリーワード入力のようなかたちになるため、入力時の抜け漏れや検索時の情報の探しにくさなどに繋がります。そのため、目的に応じて複数のkeyに分割し、必須入力のkeyを必須入力にすることでデータ管理が適切にできるようになります。     </p>
 <p>また、データを複数のkeyで構造的に管理する際、そのデータを一意で識別するためのkeyをprimary key (プライマリーキー)と呼びます。通常primary keyはアイテム名といった一意となるものを設定しますが、このようなキーを主キーと呼びます。</p>
 <div class="admonition note">
@@ -1320,7 +1320,7 @@ value : メーカーAのノートパソコン、在庫として10個ある
 <p>item_infoを複数keyに厳密に分解していった例が以下となります</p>
 <div class="highlight"><span class="filename">keyの分割例(比較的厳格なデータ構造)</span><pre><span></span><code>keys  : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
 </code></pre></div>
-<p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataBoxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度にし、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義する必要があります。併せて必須入力項目も定義し、データ入力時の抜け漏れが発生しないようにします</p>
+<p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataboxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度にし、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義する必要があります。併せて必須入力項目も定義し、データ入力時の抜け漏れが発生しないようにします</p>
 <div class="highlight"><span class="filename">フラットなkey分割</span><pre><span></span><code>#在庫データ
 keys   : item_name(primary_key), maker, item_type, stock_num, note
 label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
@@ -1332,15 +1332,11 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 <p class="admonition-title">Key分割という概念について</p>
 <p>重複などを排除し、テーブルの構造を厳密にしていく作業を一般的には正規化と呼びます。key分割という呼称はsmall-shellの独自の概念になります。データ構造をシステム設計の観点で最適化する正規化に対して、small-shellでは目的(上記例ではアイテム情報の管理)から要素を分解して必須の項目を定義するという作業によりフォーカスしているためkey分割という呼び方をしています。このような要素への分割と必須項目の定義自体はどんなシステムにおいても必要になる作業といえます</p>
 </div>
-<div class="admonition データボックスの正式表記について">
-<p class="admonition-title">データボックスの正式表記について</p>
-<p>データボックスの正式表記は"Databox"になりますが、本ドキュメントにおいては"データ"をいれる"箱"であることを強調するため"DataBox"としています</p>
-</div>
-<h3 id="databox">DataBox生成</h3>
-<p>データ構造が決まったところで、さっそくDataBoxを生成していきましょう、以下の通りgenコマンドで簡単に生成できます。</p>
+<h3 id="databox">Databox生成</h3>
+<p>データ構造が決まったところで、さっそくDataboxを生成していきましょう、以下の通りgenコマンドで簡単に生成できます。</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -databox
 </code></pre>
-<p>コマンド実行後に対話が始まりますが、以下実行例のとおり入力してみてください。DataBox自体の名前はわかりやすくitem.db(dbはdataboxの略)としています。
+<p>コマンド実行後に対話が始まりますが、以下実行例のとおり入力してみてください。Databox自体の名前はわかりやすくitem.db(dbはdataboxの略)としています。
 備考などある程度フリーワード入力を許容するフィールドにはtextを使用し、固定値にして入力値をコントロールしたいフィールドにはselectを選択して固定値を指定していきます。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1350,7 +1346,7 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 <div class="highlight"><span class="filename">gen -databox実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -databox
 ※はコメントですので入力しないでください
 
-Databox Name: item.db ※item DataBoxという意味でitem.dbとしていますが英数字のフリーワードで設定できます
+Databox Name: item.db ※item Databoxという意味でitem.dbとしていますが英数字のフリーワードで設定できます
 Primary Key Name: item_name
 Primary Key Label: アイテム名(型番)
 Add more columns to the databox? (yes | no): yes ※データボックスに列(key)を追加しますかという意味です、以降もyesと答えてください
@@ -1507,7 +1503,7 @@ sudo /usr/local/small-shell/adm/ops del.tag:item.db{item_type{モニター}}
 検索ワード #line:100
 </code></pre>
 <h3 id="_13">コンソールによる分析</h3>
-<p>メニューからコンソールへ遷移すると、高度なUnixコマンドとして紹介した各種コマンドを使った分析ができます。以下はDataBoxをパソコンというワードでgrepし、件数をwcで集計する例になります
+<p>メニューからコンソールへ遷移すると、高度なUnixコマンドとして紹介した各種コマンドを使った分析ができます。以下はDataboxをパソコンというワードでgrepし、件数をwcで集計する例になります
 <div class="highlight"><pre><span></span><code>grep パソコン | wc -l
 </code></pre></div></p>
 <p><img alt="Screenshot" src="../img/console.png" /></p>
@@ -1517,7 +1513,7 @@ sudo /usr/local/small-shell/adm/ops del.tag:item.db{item_type{モニター}}
 </code></pre></div></p>
 <p><img alt="Screenshot" src="../img/console_log.png" /></p>
 <h3 id="_15">ダウンロード / 一括更新</h3>
-<p>DataBoxのデータをWeb上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してみましょう</p>
+<p>DataboxのデータをWeb上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してみましょう</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>primary keyをhashidとした場合で、新規データをファイルimportにより登録したい場合hashidの値は一律newとしてください、その後自動採番されます</p>
