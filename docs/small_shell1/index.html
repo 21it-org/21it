@@ -489,7 +489,7 @@
   <a href="#small-shell" class="md-nav__link">
     <span class="md-ellipsis">
       
-        small shellのインストール
+        small-shellのインストール
       
     </span>
   </a>
@@ -960,7 +960,7 @@
   <a href="#small-shell" class="md-nav__link">
     <span class="md-ellipsis">
       
-        small shellのインストール
+        small-shellのインストール
       
     </span>
   </a>
@@ -1244,11 +1244,11 @@
 
 
 
-<h1 id="small-shell-basic-1">small shell Basic 1</h1>
+<h1 id="small-shell-basic-1">small-shell Basic 1</h1>
 <h2 id="_1">スモールシェル</h2>
-<p>small shell(スモールシェル)はshellだけでWebアプリケーションを書くことができるようにした、特異なフレームワークです。フレームワークというのはある一定の枠組みに従って進めると、一定のアウトプットがでるような一連の手続きのことを指します。手続きといっても、そう難しいものではなく、small shellにおいてはただコマンドを並べるだけであったり対話式のコマンドに答えるだけでWebアプリケーションができあがります。</p>
+<p>small-shell(スモールシェル)はshellだけでWebアプリケーションを書くことができるようにした、特異なフレームワークです。フレームワークというのはある一定の枠組みに従って進めると、一定のアウトプットがでるような一連の手続きのことを指します。手続きといっても、そう難しいものではなく、small-shellにおいてはただコマンドを並べるだけであったり対話式のコマンドに答えるだけでWebアプリケーションができあがります。</p>
 <h3 id="_2">ジェネレーター</h3>
-<p>small shellでは"gen"コマンドによって様々なアプリケーションを生成することができますが、同時にデータを投入する箱も生成することができます。Webアプリケーションがユーザーとの接続点となり、データの箱へのアクセスを提供するというのが基本的な構造になります。</p>
+<p>small-shellでは"gen"コマンドによって様々なアプリケーションを生成することができますが、同時にデータを投入する箱も生成することができます。Webアプリケーションがユーザーとの接続点となり、データの箱へのアクセスを提供するというのが基本的な構造になります。</p>
 <div class="highlight"><span class="filename">IMAGE</span><pre><span></span><code>  ---------     ---------------------------
  | Web App | - | DATA BOX = データを入れる箱 |
   ---------     ---------------------------
@@ -1272,7 +1272,7 @@
 <p>OS setupからBase App生成までを動画にしていますので、<a href="https://vimeo.com/1228663586">こちら</a>も確認ください</p>
 </div>
 <h3 id="os-setup">OS setup</h3>
-<p>small shellをインストールする前にLinux OSの基本設定から始めましょう、ここでは必要なOSユーザーを作成し、必要ライブラリを事前にインストールします</p>
+<p>small-shellをインストールする前にLinux OSの基本設定から始めましょう、ここでは必要なOSユーザーを作成し、必要ライブラリを事前にインストールします</p>
 <h5 id="_5">環境設定</h5>
 <pre><code># OSへのユーザーの追加
 sudo useradd -s /sbin/nologin small-shell
@@ -1296,7 +1296,7 @@ Do you want to continue? [Y/n] y    </p>
 <p>(日本語の場合)  <br />
 続行しますか? [Y/n] y    </p>
 </div>
-<h5 id="small-shell">small shellのインストール</h5>
+<h5 id="small-shell">small-shellのインストール</h5>
 <p>続いて、以下コマンドでGitHubからsmall-shellをダウンロードしてインストールしましょう</p>
 <pre><code>cd /usr/local
 sudo git clone https://github.com/small-shell/small-shell.git

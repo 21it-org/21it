@@ -852,10 +852,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#macos" class="md-nav__link">
+  <a href="#mac" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MacOSの利用
+        Macの利用
       
     </span>
   </a>
@@ -1331,10 +1331,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#macos" class="md-nav__link">
+  <a href="#mac" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MacOSの利用
+        Macの利用
       
     </span>
   </a>
@@ -1368,9 +1368,9 @@
 
 
 
-<h1 id="small-shell-advanced">small shell Advanced</h1>
+<h1 id="small-shell-advanced">small-shell Advanced</h1>
 <h2 id="_1">アプリ開発</h2>
-<p>small shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。App Shellの基本構造を理解することで、生成したCustom AppにLinuxコマンドでそのまま処理を追加でき、データを結合、加工することができます。本コースではCustom Appの生成とカスタマイズの流れをご説明します。それでは早速Custom Appを生成してApp Shellの構造を読み解いていきましょう。今回の例でCustom Appを使って作成するアプリケーションのシナリオは以下のとおりです</p>
+<p>small-shellはそれ自体がシェルのため、Linux上で動きうるどんなものも呼びだすことができ、操作することができます。App Shellの基本構造を理解することで、生成したCustom AppにLinuxコマンドでそのまま処理を追加でき、データを結合、加工することができます。本コースではCustom Appの生成とカスタマイズの流れをご説明します。それでは早速Custom Appを生成してApp Shellの構造を読み解いていきましょう。今回の例でCustom Appを使って作成するアプリケーションのシナリオは以下のとおりです</p>
 <h5 id="web">Webアプリシナリオ</h5>
 <pre><code>[イベント情報表示アプリ]
 1. アプリへはパスコードを知っている人のみアクセス可能
@@ -1378,7 +1378,7 @@
 3. 管理者はTeam Appでイベント管理をする
 </code></pre>
 <h4 id="team-app">Team Appの生成</h4>
-<p>今回のアプリでは管理者はTeam Appでイベントを管理し、エンドユーザー向けには今回生成するWebアプリを通じて別途定義するページで特定情報のみ表示するようにします。small shell基礎#2にてTeam Appはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team Appのinstall</a>を参照のうえ生成しておいてください。</p>
+<p>今回のアプリでは管理者はTeam Appでイベントを管理し、エンドユーザー向けには今回生成するWebアプリを通じて別途定義するページで特定情報のみ表示するようにします。small-shell基礎#2にてTeam Appはすでに作成済みかと思いますが、もし生成していない場合は<a href="../small_shell2/#team-app-install">Team Appのinstall</a>を参照のうえ生成しておいてください。</p>
 <h2 id="_2">カスタムアプリ生成</h2>
 <p>早速Custom Appを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。今回のアプリに限らず、カスタムアプリは前提としてBase Appが稼働している必要がありますので、<a href="../small_shell1/#base-app">small-shell基礎1</a>にてOSのセットアップとBase Appのインストールは完了しておいてください。</p>
 <div class="highlight"><span class="filename">生成コマンド</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app
@@ -1398,7 +1398,7 @@ DataBoxの指定までできると最終確認をもとめられますので、y
 (アクセスURLはカスタムアプリ生成後に出力されます)</p>
 <p><img alt="Screenshot" src="../img/21login.png" /></p>
 <h2 id="app-shell">App shell基本構造</h2>
-<p>アプリケーションシェルの構造を理解して、カスタムアプリを更新していきましょう。カスタムアプリ作成時に以下のようにコードを含むファイルが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">App shell</a>も参考にしてください</p>
+<p>アプリケーションシェルの構造を理解して、カスタムアプリを更新していきましょう。カスタムアプリ作成時に以下のようにコードを含むファイルが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall-shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">App shell</a>も参考にしてください</p>
 <div class="highlight"><span class="filename">生成されたファイル</span><pre><span></span><code>------------------------------------------------------------
 Custom App is successfully generated
 Access URL: http://{サーバアドレス}/21DOJO
@@ -1438,7 +1438,7 @@ You can also update main page on Base App #21DOJO.UI.md.def using markdown.
 <h3 id="_5">コントローラー</h3>
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="_6">ルーティング</h4>
-<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small shellフレームワークではこのcase文をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY STRINGとして渡されたパラメーターをcase文で分岐して実行する後続のスクリプトに渡します</p>
+<p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small-shellフレームワークではこのcase文をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY STRINGとして渡されたパラメーターをcase文で分岐して実行する後続のスクリプトに渡します</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo tail -48 /var/www/cgi-bin/21DOJO
 #----------------------------
 # routing to bin scripts
@@ -1597,7 +1597,7 @@ genコマンドが完了次第、再度イベント登録画面にいくとフ�
 <img alt="Screenshot" src="../img/update_portal.png" /></p>
 <div class="highlight"><span class="filename">サンプルHTMLコード</span><pre><span></span><code>&lt;div class=&quot;flex-box&quot;&gt;
   &lt;div class=&quot;flex-description&quot;&gt;
-    &lt;h2&gt;21世紀IT塾公開講義の最新情報をご確認ください&lt;/h2&gt;
+    &lt;h2&gt;21DOJOオンラインイベントの最新情報をご確認ください&lt;/h2&gt;
     &lt;h2&gt;記載のURLからご参加いただければと思います&lt;/h2&gt;
     &lt;a href=&quot;./21DOJO?%%params&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
   &lt;/div&gt;
@@ -1687,7 +1687,7 @@ successfully set attr peremission 21DOJO/21DOJO.app{ro}&quot;
 <p>アプリのカスタマイズは以上で完成となります！</p>
 <h2 id="_12">その他の高度な機能</h2>
 <h3 id="graph">Graph生成</h3>
-<p><a href="https://small-shell.org/python_tour/">pyshell</a>を使うことで容易にGraph生成ができます、まずはsmall shell公式のStatisticsに関する項目を確認してpython及びpython libraryのインストールをしてください。   </p>
+<p><a href="https://small-shell.org/python_tour/">pyshell</a>を使うことで容易にGraph生成ができます、まずはsmall-shell公式のStatisticsに関する項目を確認してpython及びpython libraryのインストールをしてください。   </p>
 <p>インストールが完了したら、公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではpyenv設定が適切に実施されpython3.12がインストールされていることを確認します
 <div class="highlight"><pre><span></span><code>$ ls /usr/local/bin/python3.12
 /usr/local/bin/python3.12
@@ -1728,7 +1728,7 @@ $ sudo rm /usr/local/small-shell/util/statistics/graph/countup_s_20241202_db_sur
 $ sudo rm /usr/local/small-shell/util/statistics/rawdata/countup_s_20241202_db_survey.db_impression_filtered.csv
 </code></pre></div>
 <h3 id="_13">定期ジョブの登録</h3>
-<p>定期ジョブを用いて、提携処理を自動で実行することができます。ここではグラフを定期取得するためのジョブを登録しましょう、small shellでは対話を通じたcronへのジョブ登録が可能です</p>
+<p>定期ジョブを用いて、提携処理を自動で実行することができます。ここではグラフを定期取得するためのジョブを登録しましょう、small-shellでは対話を通じたcronへのジョブ登録が可能です</p>
 <h4 id="_14">ジョブの生成と登録</h4>
 <p>以下では先ほど実行したcountup.shを毎日0時0分に実行するジョブを登録しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -job
@@ -1783,12 +1783,12 @@ LATEST STATUS OF JOB
 2022-03-30 21:27:53 del_session successfully completed
 2022-04-19 20:22:18 gen_survey_graph successfully completed
 </code></pre></div>
-e-cronを用いるとさらに高度なジョブの登録や、他のホストとのメッセージ交換やデータ交換ができるようになります。詳細はsmall shell公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron</a>をご確認ください。chromeで翻訳して閲覧することをお勧めします。</p>
+e-cronを用いるとさらに高度なジョブの登録や、他のホストとのメッセージ交換やデータ交換ができるようになります。詳細はsmall-shell公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron</a>をご確認ください。chromeで翻訳して閲覧することをお勧めします。</p>
 <h3 id="_15">さらなる学習のために</h3>
 <h4 id="_16">公式ドキュメントの活用</h4>
-<p><a href="https://small-shell.org/">small shell</a>公式サイトにはより詳細なドキュメントが公開されていますので是非ブラウザの翻訳機能などを使って読むことをお勧めします。</p>
-<h4 id="macos">MacOSの利用</h4>
-<p>本オンラインドキュメントではWindowsおよびChromebook上でLinuxをインストールして使う方法を主に紹介しましたが、small-shellはMacでも使うことができます。Macを利用してsmall-shellを構築することも簡単にできます。MacOSを利用することで、本格的なプライベートネットワーク上のサーバとして活用することができます。Macへのインストール方法についても公式ドキュメントを参照して下さい。<a href="https://www.small-shell.org/quick_start_Mac/">Macへのインストール</a></p>
+<p><a href="https://small-shell.org/">small-shell</a>公式サイトにはより詳細なドキュメントが公開されていますので是非ブラウザの翻訳機能などを使って読むことをお勧めします。</p>
+<h4 id="mac">Macの利用</h4>
+<p>本オンラインドキュメントではWindowsおよびChromebook上でLinuxをインストールして使う方法を主に紹介しましたが、small-shellはMacでも使うことができます。Mac miniなどを利用することで、インターネットには後悔せず安全にプライベートネットワーク上のサーバとしてチームでアプリを共有して活用することができます。Macへのインストール方法についても公式ドキュメントを参照して下さい。<a href="https://www.small-shell.org/quick_start_Mac/">Macへのインストール</a></p>
 
 
 
