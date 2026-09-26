@@ -1481,7 +1481,7 @@ Hello
 $ echo &quot;World&quot;
 World
 </code></pre></div>
-<p>上述の処理をスクリプト化すると以下コードの処理のようになります。手動実行していた処理が固められ、まとめて実施が可能になります。それではスクリプトファイルをnanoコマンドで作成してきましょう</p>
+<p>上述の処理をプログラムファイルにすると以下コード（コードとはプログラムファイルの記述です）のようになります。手動実行していた処理が固められ、まとめて実施が可能になります。このようなbashのプログラムを"スクリプト"と呼びます。それではスクリプトファイルをnanoコマンドで作成してきましょう</p>
 <div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano echo.sh
 </code></pre></div>
 <p>nanoで開いた新規ファイルに以下echo.shのコードの内容を貼り付けて保存して下さい
@@ -1499,7 +1499,7 @@ Hello
 World
 </code></pre></div>
 <h2 id="_2">条件分岐</h2>
-<p>shell scriptは上述のとおり単に処理を並べて書いていくだけでも処理を自動化できますが、様々な条件のもと処理を分岐させ、パターンに応じた望ましい処理を展開することができます。以下例ではスクリプトに対してHelloというパラメーターが渡されると、Worldと返す分岐を作成しています。その際渡されるパラメーターはVALUEという変数に格納されています。変数やif文については後述します</p>
+<p>shell scriptは上述のとおり単に処理を並べて書いていくだけでも処理を自動化できますが、様々な条件のもと処理を分岐させ、パターンに応じた望ましい処理を展開することができます。以下例ではスクリプトに対してHelloというパラメーターが渡されると、Worldと返す分岐を作成しています。処理内容の詳細は追って説明しますが、まずは動作をみてください。</p>
 <div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano hello.sh
 </code></pre></div>
 <div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
@@ -1542,32 +1542,29 @@ $
 2024年 11月 18日 月曜日 10:03:23 JST
 </code></pre></div>
 <h2 id="_5">論理演算と判定</h2>
-<p>条件分岐のためには論理演算を多用します。[]内で実行される論理演算では、各種判定をおこない、結果に応じてif文やwhile文が分岐を制御します</p>
+<p>条件分岐のためには論理演算を多用します。[ ]内で実行される論理演算では、各種判定をおこない、結果に応じてif文やwhile文が分岐を制御します</p>
 <h4 id="_6">文字の比較</h4>
 <p>単純に右側と左側の文字列が同じであるかを判定する場合、単に=を使います。=の場合は同じ値である場合に真となり、!=はその逆の異なる値の場合に真とします</p>
 <div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>[ &quot;文字列A&quot; = &quot;文字列B&quot; ]
 </code></pre></div>
 <p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。
-まずは変数にそれぞれ異なる値を格納しましょう</p>
-<pre><code>WORD_A="abc"
-WORD_B="def"
-</code></pre>
-<p>論理演算を実行します。実行結果が正常か異常かについては$?変数を使うことで確認できます</p>
+論理演算はスクリプト内だけでなくコマンドプロンプト上でもそのまま実行できます。以下例では$?変数によって<a href="./#_2">終了ステータス</a>を取得して確認していますが、0が正常、0以外が異常終了だと考えてください</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>$?変数は直前の処理結果が正常終了であれば0を表示し、異常終了であれば異常として0以外の数値を返します</p>
+<p>コマンドプロンプトが%などになっている場合は最初にbashとうって$に変更してください。最後にexitすればもとのプロンプトに戻れます</p>
 </div>
-<p><div class="highlight"><span class="filename">論理演算の実行例(イコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+<p><div class="highlight"><span class="filename">論理演算の実行例(イコール判定)</span><pre><span></span><code>% bash
+$ WORD_A=&quot;abc&quot;
+$ WORD_B=&quot;def&quot;
+$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
 1
 &gt; WORD_AとBは違うため異常(1)が返ってきます
 </code></pre></div>
-次に、変数にそれぞれ同じ値を格納しましょう</p>
-<pre><code>WORD_A="abc"
-WORD_B="abc"
-</code></pre>
-<p>論理演算の実行結果が正常(0)になることが確認できます
-<div class="highlight"><span class="filename">論理演算の実行例(イコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+次に、変数にそれぞれ同じ値を格納しましょう。論理演算の実行結果が正常(0)になることが確認できます
+<div class="highlight"><span class="filename">論理演算の実行例(イコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
+$ WORD_B=&quot;abc&quot;
+$ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
 0
 &gt; WORD_AとBが同じため正常終了(0)が返されます
@@ -1607,20 +1604,16 @@ $ echo $?
 [ -d 対象ディレクトリPATH ]
 </code></pre></div>
 <p>以下はdoneというファイルがあるかどうかで結果がどう変わるかを示した例です。
-まずは、ファイルを作成しましょう</p>
-<pre><code>touch done
-</code></pre>
-<p>存在確認を実施すると正常値が返ってきます
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ -f ./done ]
+doneというファイルをtouchコマンドで作成し、存在確認を実施すると正常値が返ってきます
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ touch done
+$ [ -f ./done ]
 $ echo $?
 0
 &gt; ファイルが存在するため正常(0)が返ってきます
 </code></pre></div></p>
-<p>続いてdoneファイルを削除します</p>
-<pre><code>rm done
-</code></pre>
-<p>ファイルが存在しないため異常値が返ってきます
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ -f ./done ]
+<p>続いてdoneファイルを削除して再度論理演算を実行すると、ファイルが存在しないため異常値が返ってきます
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ rm done
+$ [ -f ./done ]
 $ echo $?
 1
 &gt; ファイルが存在しないため異常(1)が返ってきます
@@ -1634,20 +1627,16 @@ $ echo $?
 [ -s 対象ファイルPATH]
 </code></pre></div>
 <p>以下はos-releaseファイルで任意の文字を検索して結果が空だったかどうかを判定しています。
-まずは変数に空の値を格納しましょう</p>
-<pre><code>NULL_CHECK=""
-</code></pre>
-<p>続いて論理演算を実行してみましょう
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ &quot;$NULL_CHECK&quot; ]
+変数に空の値を格納して、論理演算を実行してみましょう
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ NULL_CHECK=&quot;&quot;
+$ [ &quot;$NULL_CHECK&quot; ]
 $ echo $?
 1
 &gt; 変数が空のため異常(1)が返ってきます
 </code></pre></div></p>
-<p>続いて変数に文字を格納します</p>
-<pre><code>NULL_CHECK="test"
-</code></pre>
-<p>変数が空ではないため正常終了します</p>
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ [ &quot;$NULL_CHECK&quot; ]
+<p>続いて変数に文字を格納して、実行すると空ではないため正常終了します</p>
+<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ NULL_CHECK=&quot;test&quot;
+$ [ &quot;$NULL_CHECK&quot; ]
 $ echo $?
 0
 &gt; 変数に値が入っているため正常終了(0)が返ってきます
@@ -2066,7 +2055,7 @@ $ ls -a
 <pre><code>sleep 秒数
 </code></pre>
 <h3 id="_22">スクリプトの強制終了</h3>
-<p>実行中のスクリプトを停止したい場合、Ctrl + Cを押すことで停止することができます。以下は30秒sleepするスクリプトを途中停止する例です</p>
+<p>コマンドの実行中に処理を中断する方法をUNIX基礎#1で紹介しましたが、実行中のスクリプトを停止したい場合もCtrl + Cを押すことで停止することができます。以下は30秒sleepするスクリプトを途中停止する例です</p>
 <div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano sleep.sh
 </code></pre></div>
 <div class="highlight"><span class="filename">sleep.shの内容</span><pre><span></span><code>#!/bin/bash
@@ -2075,6 +2064,7 @@ sleep 30
 <p>ファイルが作成できたら実行してみましょう、30秒応答がなくなりますので途中でCtrl + Cを入力して抜けてみましょう
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash sleep.sh
 Ctrl + Cで強制停止
+$
 </code></pre></div></p>
 <h3 id="_23">バックグラウンドでの実行</h3>
 <p>上述のsleepを含むようなスクリプトは処理に時間がかかるため、処理を裏で動かして継続したい場合があります。そういった場合は&amp;をつけてバックグラウンドで実行することができます。以下実行例では15293というプロセスIDが付与され、背後で実行されていますがpsコマンドで動いていることを確認できます</p>
