@@ -1680,11 +1680,15 @@ cat /var/www/def/21DOJO_main.html.def | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
 <p>イベントが何も登録されていないときは"error: please input id"というメッセージが表示されるため、Team AppもしくはBase Appでevents databoxにイベントを登録して下さい</p>
 </div>
 <h3 id="read-only">Read onlyへの変更</h3>
-<p>21DOJOはshared passのためシステムユーザーでログインしますが、ログイン後に編集権限をもってしまっています。そのため、このユーザーをread onlyに変更することでアプリ全体が読み取り権限のみとなり書き込みができなくなります</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops set.attr:21DOJO.app{ro} app:21DOJO
+<p>21DOJOはshared passのためシステムユーザーでログインしますが、イベント詳細ページなどでイベントの編集権限をもってしまっています。そのため、このユーザーをread onlyに変更することでアプリ全体が読み取り権限のみとなり書き込みができなくなります</p>
+<p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops set.attr:21DOJO.app{ro} app:21DOJO
 successfully set attr peremission 21DOJO/21DOJO.app{ro}&quot;
 </code></pre></div>
-<p>アプリのカスタマイズは以上で完成となります！</p>
+上記コマンドを実行すると、イベント詳細ページが以下のように編集可能だったものが
+<img alt="Screenshot" src="../img/before_readonly.png" /></p>
+<p>readonly化後のイベントページ詳細はこのようになります</p>
+<p><img alt="Screenshot" src="../img/after_readonly.png" />
+アプリのカスタマイズは以上で完成となります。</p>
 <h2 id="_12">その他の高度な機能</h2>
 <h3 id="graph">Graph生成</h3>
 <p><a href="https://small-shell.org/python_tour/">pyshell</a>を使うことで容易にGraph生成ができます、まずはsmall-shell公式のStatisticsに関する項目を確認してpython及びpython libraryのインストールをしてください。   </p>
