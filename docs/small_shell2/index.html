@@ -1303,7 +1303,7 @@ Is that OK? (yes | no): yes
 <ul>
 <li>[shared pass] 共用パスコードでアクセス</li>
 <li>[user key] ユーザー毎に鍵を発行してアクセス</li>
-<li>[other] 認証方式を自分で定義</li>
+<li>[other] 認証方式を自分で作成し個別に実装する</li>
 <li>[none] アプリへのアクセスに認証が不要</li>
 </ul>
 <div class="admonition note">
@@ -1318,7 +1318,7 @@ Is that OK? (yes | no): yes
 <p><img alt="Screenshot" src="../img/default_page.png" /></p>
 <h3 id="_7">マークダウン</h3>
 <p>マークダウンはHTMLをより直感的な文法で記述し、即席で生成するための文法ですが、small-shellではページの編集に用いることができます。マークダウンの編集はBase App上で行うことができます。
-文法はデフォルトページに表示されていますので記述例をコピーしてつかっていただくのが効率的です。文法の詳細はこちらもご確認ください<a href="https://www.21it.org/markdown_ja.html">Markdown</a>    </p>
+文法はデフォルトページに表示されていますので記述例をコピーしてつかっていただくのが効率的です。文法の詳細はこちらもご確認ください &gt; <a href="https://www.21it.org/markdown_ja.html">Markdown</a>    </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>ページはアプリ毎に定義されますので、 Base Appのテーブル左メニューから"アプリ名.UI.md.def"を選択のうえ編集してください。"アプリ名.UI.md.def"はカスタムアプリを作成すると自動生成されます。以下はtestアプリの編集ページリンクです</p>
@@ -1365,7 +1365,7 @@ Is that OK? (yes | no): yes
 <p>各フィールドに該当する部分は以下のとおりです
 <img alt="Screenshot" src="../img/component.png" /></p>
 <h4 id="_9">イメージのアップロード</h4>
-<p>ロゴやイメージをアップロードしてカスタムアップに追加したい場合、Base App上のDataBoxのimages.dbにファイルをアップロードしてimgタグを取得して、編集画面のBodyもしくはlogoフィールドに貼り付けて下さい。なお、images.dbはカスタムアプリを生成すると自動で生成されるDataBoxになります。
+<p>ロゴやイメージをアップロードしてカスタムアップに追加したい場合、Base App上のDataboxのimages.dbにファイルをアップロードしてimgタグを取得して、編集画面のBodyもしくはlogoフィールドに貼り付けて下さい。なお、images.dbはカスタムアプリを生成すると自動で生成されるDataboxになります。
 <img alt="Screenshot" src="../img/images.db.png" /></p>
 <p>以下はアップロードしたロゴファイルのimageタグをコピーする例です
 <img alt="Screenshot" src="../img/custom_app_logo.png" /></p>
@@ -1374,9 +1374,9 @@ Is that OK? (yes | no): yes
 <pre><code>sudo /usr/local/small-shell/adm/ops app:&lt;アプリ&gt; add.usr:&lt;ユーザー名&gt;
 </code></pre>
 <h2 id="_11">テンプレートの利用</h2>
-<p>small-shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam Appをインポートして使ってみましょう。Team Appではチームの共同作業に必要な機能をパッケージ化したsmall-shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team Appに管理したいDataBoxを追加することもできます</p>
+<p>small-shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam Appをインポートして使ってみましょう。Team Appではチームの共同作業に必要な機能をパッケージ化したsmall-shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team Appに管理したいDataboxを追加することもできます</p>
 <h3 id="team-app-install">Team App install</h3>
-<p>早速Team Appをインストールしましょう、git cloneした後deploy.shを実行するとアプリとDataBoxが自動生成されます。</p>
+<p>早速Team Appをインストールしましょう、git cloneした後deploy.shを実行するとアプリとDataboxが自動生成されます。</p>
 <p>テンプレートのダウンロードはgit cloneコマンドでおこないます</p>
 <pre><code>git clone https://github.com/naruoken/small-shell-apps
 </code></pre>
@@ -1405,7 +1405,7 @@ small-shell root (/usr/local/small-shell): ※特に何も入力せず、ENTER�
 </code></pre></div>
 <p><img alt="Screenshot" src="../img/team_app_menu.png" /></p>
 <h3 id="_12">データボックスの追加</h3>
-<p>Teamで管理したいDataBoxを追加したい場合も、容易に追加ができます。Team Appのサブアプリとしてアプリケーションを追加しましょう、3.CUSTOM を選択してapp_nameを定義する際に@teamと付けることでTeam App配下のsub Appという宣言が可能です。その後追加したいDataBoxを指定しましょう。以下ではitem.dbを追加します。Team App以外のカスタムアップでも同様に@をつけることでサブアプリの作成とデータボックスの追加が可能です</p>
+<p>Teamで管理したいDataboxを追加したい場合も、容易に追加ができます。Team Appのサブアプリとしてアプリケーションを追加しましょう、3.CUSTOM を選択してapp_nameを定義する際に@teamと付けることでTeam App配下のsub Appという宣言が可能です。その後追加したいDataboxを指定しましょう。以下ではitem.dbを追加します。Team App以外のカスタムアップでも同様に@をつけることでサブアプリの作成とデータボックスの追加が可能です</p>
 <p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of App (1.BASE | 2.FORM | 3.CUSTOM): 3
 App Name: item@team
@@ -1433,7 +1433,7 @@ Is it OK? (yes | no): yes
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>インポートしたアプリについては諸々編集権限がないため細かいカスタマイズを行うには直接編集が必要になりますが、1から生成したカスタムアプリであればBase Appでメニュー含めて更新可能です。カスタムアプリについてはsmall-shell基礎#2をご確認ください</p>
+<p>インポートしたアプリのカスタマイズを行うには直接編集が必要になりますが、genコマンドで生成したカスタムアプリであればBase Appでメニュー含めて更新可能です。カスタムアプリについてはsmall-shell基礎#2をご確認ください</p>
 </div>
 <h2 id="web">Webドキュメントの生成</h2>
 <p>small-shellをアプリケーションの生成・実行環境として利用する代わりに、Webドキュメントの生成ツールとして利用することもできます。たとえば、WLSやChromebook上のLinuxで作成したドキュメントをエクスポートして、電子ファイルとしてメールやチャットなどで共有することが可能になります。以下はWebドキュメントを生成し、電子ファイルとしてダウンロードしてローカル保存するまでの例となります</p>
@@ -1450,10 +1450,10 @@ Primary Databox: none
 <p>BaseAppにログイン後にgenDoc.UI.md.defを選択してページの編集をしていきましょう
 <img alt="Screenshot" src="../img/genDoc_table.png" /></p>
 <p>以下段取りでページを編集しています
-<div class="highlight"><pre><span></span><code>1. ナビゲーションバーの右メニュー(navbar-right-menu)を消す
-2. 左上のgenDocという記述をManualに変更
-3. フッター(footer)も消す
-4. Bodyにマークダウンでドキュメントを記述
+<div class="highlight"><pre><span></span><code>1. Bodyにマークダウンでドキュメントを記述
+2. ナビゲーションバーの右メニュー(navbar-right-menu)を消す
+3. 左上のgenDocという記述をManualに変更
+4. フッター(footer)も消す
 5. イメージをアップロードしimgタグを挿入
 </code></pre></div></p>
 <p>なお、メインページの編集方法については<a href="./#_9">メインページの編集</a>を、イメージ画像をアップロードして挿入する方法については<a href="./#_10">イメージのアップロード</a>を参考にしてください。
@@ -1507,9 +1507,9 @@ $ sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
 $ sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test
 </code></pre></div>
 <h2 id="_17">フォーム利用の検討</h2>
-<p>アカウントを持たない外部ユーザーから所定の入力項目をもとにデータを収集し、DataBoxに格納するために外部Formの作成をすることができます。ここでは外部ユーザーからの意見収集のためのアンケートformの作成を例としてご説明します。</p>
+<p>アカウントを持たない外部ユーザーから所定の入力項目をもとにデータを収集し、Databoxに格納するために外部Formの作成をすることができます。ここでは外部ユーザーからの意見収集のためのアンケートフォームの作成を例としてご説明します。</p>
 <h3 id="box">アンケートBox作成</h3>
-<p>初めに収集したいデータを格納するDataBoxを作成しましょう、ここでは架空の製品である"XYZ"についての感想をアンケートとして収集しましょう。その際一意となるkeyは特に想定されないため、primary_keyはhashidとします</p>
+<p>初めに収集したいデータを格納するDataboxを作成します、ここでは架空の製品である"XYZ"についての感想をアンケートとして収集することとします。その際一意となるkeyは特に想定されないため、primary_keyはhashidとします</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>primary_keyをhashidとすることで一意となるkeyを指定せずに、IDをシステム側で自動生成させることが可能です</p>
@@ -1554,14 +1554,10 @@ option=&quot;&quot; &lt;- Set this as required ?をNoで回答
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>入力値をパラメーターとして選べるようにする際、区切り文字として上記例のとおりカンマ,を使って並べて記載することができます。</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>対話モードの際にバックスペースを使って日本語を修正すると入力値が壊れるため、できるだけコピペなどで生成してください。また、対話を一旦終了して最初からやり直したい場合はCtrlボタンと一緒にCを押すことでやり取りを終了することができます</p>
+<p>small-shell基礎#1でも記載しましたが、genコマンドを途中終了したい場合は、Ctrl + Cで終了できます。シェルの仕様上、対話モードの際にバックスペースを使って日本語を修正すると入力値が壊れることがあるため、できるだけコピペで指定することをお勧めします。</p>
 </div>
 <h3 id="_18">フォームの生成</h3>
-<p>DataBoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます。アプリケーションタイプとして2.FORMを選択し、名前は仮にsurveyとしましょう。DataBoxとしては先ほど作成したsurvey.dbを指定します</p>
+<p>Databoxの作成に続いて、外部向けの入力フォームを生成しましょう、ここでもgenコマンドをお使いただきます。アプリケーションタイプとして2.FORMを選択し、名前は仮にsurveyとしましょう。Databoxとしては先ほど作成したsurvey.dbを指定します</p>
 <p><div class="highlight"><span class="filename">Form作成実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of App (1.BASE | 2.FORM | 3.CUSTOM): 2
 Form Name: survey
