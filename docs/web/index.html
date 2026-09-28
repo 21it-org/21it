@@ -484,6 +484,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macの場合のコマンド補足
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -742,6 +753,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macの場合のコマンド補足
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -797,7 +819,7 @@ DATA {data seq:1-10}       DATA {data seq:11-20}      DATA {data seq:21-30}
 <h2 id="_5">ハンズオン</h2>
 <p>以下では手を動かしながらインターネットのミクロな仕組みをデスクトップ上に作っていきます</p>
 <h4 id="_6">サーバクッキング</h4>
-<p>デーモンの姿を理解してもらうためにWebサーバをお手元のLinux上で立ててみましょう。Linuxにログイン後、aptコマンドでApache HTTP serverをインストールしてください</p>
+<p>デーモンの姿を理解してもらうためにWebサーバをお手元のLinux上にインストールしてみましょう。Linuxにログイン後、aptコマンドでApache HTTP serverをインストールしてください。なお、Macを利用している場合は最初からapacheがインストールされているためインストールの必要はありません。</p>
 <pre><code>sudo apt update
 sudo apt install apache2
 </code></pre>
@@ -808,10 +830,10 @@ Do you want to continue? [Y/n] y    </p>
 <p>(日本語の場合)  <br />
 続行しますか? [Y/n] y    </p>
 </div>
-<p>続いて、サーバプロセスを起動しましょう</p>
+<p>続いて、サーバプロセスを起動しましょう。Macの場合は<a href="./#mac">こちら</a>を参照ください</p>
 <pre><code>sudo service apache2 start
 </code></pre>
-<p>apache2デーモンが動いていることはpsコマンドで確認できます</p>
+<p>デーモンが動いていることはpsコマンドで確認できます</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ps -ef | grep apache2
 root       102     8  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
 www-data   105   102  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
@@ -828,12 +850,16 @@ ubuntu     115     9  0 21:53 pts/0    00:00:00 grep --color=auto apache2
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ hostname --all-ip-addresses
 172.28.9.188
 </code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Macの場合は上記コマンドが機能しないため、IPアドレスはlocalhostとしてください</p>
+</div>
 <p>確認できたアドレスをブラウザに入力してWebサーバの動作を確認してみましょう。Apacheのデフォルトページが表示されるはずです</p>
 <div class="highlight"><span class="filename">URL例</span><pre><span></span><code>http://172.28.9.180
 </code></pre></div>
 <p><img alt="Screenshot" src="../img/welcome.png" /></p>
 <h4 id="html">HTMLクッキング</h4>
-<p>サーバが立ち上がったら続いて、代表的なtagを使ってHTMLページを追加してみましょう</p>
+<p>サーバが立ち上がったら続いて、代表的なtagを使ってHTMLページを追加してみましょう。Macの場合は<a href="./#mac">こちら</a>を参照ください</p>
 <pre><code>sudo nano /var/www/html/sample.html
 </code></pre>
 <p><div class="highlight"><span class="filename">sample.htmlサンプルコード</span><pre><span></span><code>&lt;html&gt;
@@ -854,7 +880,7 @@ ubuntu     115     9  0 21:53 pts/0    00:00:00 grep --color=auto apache2
 <div class="highlight"><span class="filename">URL例</span><pre><span></span><code>http://{先ほど確認したIPアドレス}/sample.html
 </code></pre></div>
 <p>以下はよく使われるタグの説明です。その他、HTMLで表現できるtagは多くありますし、cssでスタイルを定義したりjavascriptで動きのあるページを作ることもできます。さらなる美しいサイトを作りたい場合はインターネット上で情報を集めてあなた独自のページを作ってみましょう</p>
-<div class="highlight"><span class="filename">HTML主要タグ</span><pre><span></span><code>html    : htmlページであることを宣言します
+<p><div class="highlight"><span class="filename">HTML主要タグ</span><pre><span></span><code>html    : htmlページであることを宣言します
 head    : ヘッダー情報を記載します。上記例では言語コードとしてUTF-8を指定し、Titleを記載しています
 body    : ブラウザ上で表示されるコンテンツをbodyタグの中に記載します
 h1      : 見出し（大項目）を記載します
@@ -866,10 +892,21 @@ p       : 本文を記載します
 b       : 囲んだ文字を大文字にします
 br      : 改行します
 </code></pre></div>
-<p>次章に進む前にapacheサーバは一旦停止しましょう　　　　</p>
-<pre><code>sudo service apache2 stop
-</code></pre>
-<p>Webサーバのインストールと起動、HTMLサイトの作成を学んでいただきましたが上記はあくまで文章をタグで補完して表現を整えているだけのいわば紙芝居のようなサイトです。次章のsmall-shellではデータの出し入れや要求毎の処理の分岐などができる本格的なアプリケーションを作っていきましょう　　　</p>
+Webサーバのインストールと起動、HTMLサイトの作成を学んでいただきましたが上記はあくまで文章をタグで補完して表現を整えているだけのいわば紙芝居のようなサイトです。次章のsmall-shellではデータの出し入れや要求毎の処理の分岐などができる本格的なアプリケーションを作っていく方法についてご紹介します。なお、Macを利用されている場合は以下補足を参照してください。</p>
+<h4 id="mac">Macの場合のコマンド補足</h4>
+<p>上記はwindows/chromebook上のLinuxを前提にコマンドを記載していましたが、Macの場合は以下を参照してください</p>
+<div class="highlight"><pre><span></span><code># apacheの起動
+sudo apachectl start
+
+# 動作確認
+ps -ef | grep httpd
+
+# IPアドレスの確認(なし)
+localhostを使用してください
+
+# HTMLクッキングのドキュメントPATH
+sudo nano /Library/WebServer/Documents/sample.html
+</code></pre></div>
 
 
 
