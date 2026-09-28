@@ -846,7 +846,7 @@ www-data   113   102  0 21:49 ?        00:00:00 /usr/sbin/apache2 -k start
 ubuntu     115     9  0 21:53 pts/0    00:00:00 grep --color=auto apache2
 </code></pre></div>
 <h4 id="ip">IPアドレスの表示</h4>
-<p>つづいてLinuxサーバのアドレスを確認しましょう。hostname --all-ip-addressesコマンドをうつとサーバのIPアドレスが表示されます。
+<p>つづいてLinuxサーバのアドレスを確認しましょう。hostname --all-ip-addressesコマンドをうつとサーバのIPアドレスが表示されます。Macの場合は<a href="./#mac">こちら</a>を参照してください
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ hostname --all-ip-addresses
 172.28.9.188
 </code></pre></div></p>
@@ -897,14 +897,14 @@ Webサーバのインストールと起動、HTMLサイトの作成を学んで�
 <p>上記はwindows/chromebook上のLinuxを前提にコマンドを記載していましたが、Macの場合は以下を参照してください</p>
 <div class="highlight"><pre><span></span><code># apacheの起動
 sudo apachectl start
-
-# 動作確認
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># プロセス確認
 ps -ef | grep httpd
-
-# IPアドレスの確認(なし)
-localhostを使用してください
-
-# HTMLクッキングのドキュメントPATH
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># IPアドレスの確認
+ifconfig -l | xargs -n1 ipconfig getifaddr
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># HTMLクッキングのドキュメントPATH
 sudo nano /Library/WebServer/Documents/sample.html
 </code></pre></div>
 
