@@ -1486,15 +1486,15 @@ sort -nr Label名
 </code></pre>
 <p><img alt="Screenshot" src="../img/sort_table.png" /></p>
 <h4 id="_11">タグ</h4>
-<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます。以下例ではメーカーBというワードでタグを作っていますが、タグをクリックするとitem.dbの中からメーカーBというワードを含んだデータが検索されます。add.tagで追加、del.tagで削除できます</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{word}
+<p>Tableに定型的なフィルターをかけたい場合Tagを追加することができます。以下例ではメーカーBという検索ワードでタグを作っていますが、タグをクリックするとitem.dbの中からメーカーBというワードを含んだデータが検索されます。add.tagで追加、del.tagで削除できます</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{$word}
 (e.g.)
 sudo /usr/local/small-shell/adm/ops add.tag:item.db{メーカーB}
 sudo /usr/local/small-shell/adm/ops del.tag:item.db{メーカーB}
 </code></pre>
 <p><img alt="Screenshot" src="../img/tag_table.png" /></p>
-<p>さらにkeyを指定したフィルターを設定することもできます。その場合は databox{key{ワード}}として設定して下さい。以下例ではタグをクリックするとitem.dbの全フィールドではなく、item_typeとしてモニターという値をもったデータのみを検索できます</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}}
+<p>さらにkeyを指定したフィルターを設定することもできます。その場合は databox{key{検索ワード}}として設定して下さい。以下例ではタグをクリックするとitem.dbの全フィールドではなく、item_typeとしてモニターという値をもったデータのみを検索できます</p>
+<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{$key{$word}}
 (e.g.)
 sudo /usr/local/small-shell/adm/ops add.tag:item.db{item_type{モニター}}
 sudo /usr/local/small-shell/adm/ops del.tag:item.db{item_type{モニター}}

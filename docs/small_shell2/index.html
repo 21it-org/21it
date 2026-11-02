@@ -757,10 +757,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#custom-apptag" class="md-nav__link">
+  <a href="#custom-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom Appへのtag追加
+        Custom Appへのタグの追加
       
     </span>
   </a>
@@ -1212,10 +1212,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#custom-apptag" class="md-nav__link">
+  <a href="#custom-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom Appへのtag追加
+        Custom Appへのタグの追加
       
     </span>
   </a>
@@ -1571,9 +1571,13 @@ Is it OK? (yes | no): yes
 <p>インポートしたアプリのカスタマイズを行うには直接編集が必要になりますが、genコマンドで生成したカスタムアプリであればBase Appでメニュー含めて更新可能です。カスタムアプリについてはsmall-shell基礎#2をご確認ください</p>
 </div>
 <h2 id="_18">その他操作</h2>
-<h3 id="custom-apptag">Custom Appへのtag追加</h3>
-<p>カスタムアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops add.tag:$databox{key{word}} app:$app_name
+<h3 id="custom-app">Custom Appへのタグの追加</h3>
+<p>カスタムアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください。tag機能の詳細については<a href="../small_shell1/#_11">こちら</a>を参照してください</p>
+<pre><code># 検索ワードのみを設定したい場合
+sudo /usr/local/small-shell/adm/ops add.tag:$databox{$word} app:$app_name
+
+# keyを指定したい場合
+sudo /usr/local/small-shell/adm/ops add.tag:$databox{$key{$word}} app:$app_name
 </code></pre>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># statusがon-goingなタスクをフィルターするtagを追加
 $ sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
