@@ -1333,7 +1333,7 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 <p>重複などを排除し、テーブルの構造を厳密にしていく作業を一般的には正規化と呼びます。key分割という呼称はsmall-shellの独自の概念になります。データ構造をシステム設計の観点で最適化する正規化に対して、small-shellでは目的(上記例ではアイテム情報の管理)から要素を分解して必須の項目を定義するという作業によりフォーカスしているためkey分割という呼び方をしています。このような要素への分割と必須項目の定義自体はどんなシステムにおいても必要になる作業といえます</p>
 </div>
 <h3 id="databox">Databox生成</h3>
-<p>データ構造が決まったところで、さっそくDataboxを生成していきましょう、以下の通りgenコマンドで簡単に生成できます。</p>
+<p>データ構造が決まったところで、さっそくDataboxを生成していきましょう。以下の通りgenコマンドで簡単に生成できます。</p>
 <pre><code>sudo /usr/local/small-shell/adm/gen -databox
 </code></pre>
 <p>コマンド実行後に対話が始まりますが、以下実行例のとおり入力してみてください。Databox自体の名前はわかりやすくitem.db(dbはdataboxの略)としています。
@@ -1519,13 +1519,13 @@ sudo /usr/local/small-shell/adm/ops del.tag:item.db{item_type{モニター}}
 </code></pre></div></p>
 <p><img alt="Screenshot" src="../img/console_log.png" /></p>
 <h3 id="_15">ダウンロード / 一括更新</h3>
-<p>DataboxのデータをWeb上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してみましょう</p>
+<p>DataboxのデータをWeb上からダウンロードすることやimportで一括更新することができます。Table viewの#csvリンクからcsvデータをダウンロードし、更新後のデータをimportメニューから一括更新してください</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>primary keyをhashidとした場合で、新規データをファイルimportにより登録したい場合hashidの値は一律newとしてください、その後自動採番されます</p>
+<p>primary keyを定義しない場合、新規データをファイルimportにより登録したい場合hashidの値は一律newとしてください、その後自動採番されます</p>
 </div>
 <h3 id="initialize-url">Initialize URLの再生成</h3>
-<p>鍵は基本的にブラウザに自動保存されますが、もしも鍵をなくしてしまったりBase AppのURLがわからなくなった場合は再度鍵を生成しましょう。以下はtestユーザーの鍵生成URLを再作成している例です</p>
+<p>鍵は基本的にブラウザに自動保存されますが、もしも鍵をなくしてしまったりBase AppのURLがわからなくなった場合は再度鍵を生成できます。以下はtestユーザーの鍵生成URLを再作成している例です</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops initialize.usr:test
 </code></pre></div>
 <p>以上がBaseAppをもちいたデータ管理方法についての説明になりますが、次章以降ではさらに多機能なアプリを生成する方法や、情報をまとめてポータル（ホームページのようなもの）で管理する方法をご説明します</p>

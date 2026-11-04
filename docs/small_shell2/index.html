@@ -728,24 +728,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        データボックスの追加
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         その他操作
@@ -757,10 +746,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#custom-app" class="md-nav__link">
+  <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom Appへのタグの追加
+        アプリへのデータボックス追加
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        アプリへのタグの追加
       
     </span>
   </a>
@@ -784,7 +784,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
+  <a href="#_20" class="md-nav__link">
     <span class="md-ellipsis">
       
         実環境の構築
@@ -1183,24 +1183,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        データボックスの追加
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         その他操作
@@ -1212,10 +1201,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#custom-app" class="md-nav__link">
+  <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom Appへのタグの追加
+        アプリへのデータボックス追加
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        アプリへのタグの追加
       
     </span>
   </a>
@@ -1239,7 +1239,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
+  <a href="#_20" class="md-nav__link">
     <span class="md-ellipsis">
       
         実環境の構築
@@ -1539,8 +1539,9 @@ small-shell root (/usr/local/small-shell): ※特に何も入力せず、ENTER�
 <div class="highlight"><span class="filename">Team AppログインURL</span><pre><span></span><code>http://{サーバアドレス}/team
 </code></pre></div>
 <p><img alt="Screenshot" src="../img/team_app_menu.png" /></p>
-<h3 id="_17">データボックスの追加</h3>
-<p>Teamで管理したいDataboxを追加したい場合も、容易に追加ができます。Team Appのサブアプリとしてアプリケーションを追加しましょう、3.CUSTOM を選択してapp_nameを定義する際に@teamと付けることでTeam App配下のsub Appという宣言が可能です。その後追加したいDataboxを指定しましょう。以下ではitem.dbを追加します。Team App以外のカスタムアップでも同様に@をつけることでサブアプリの作成とデータボックスの追加が可能です</p>
+<h2 id="_17">その他操作</h2>
+<h3 id="_18">アプリへのデータボックス追加</h3>
+<p>カスタムアプリにDataboxを追加したい場合、サブアプリを定義することで容易に追加ができます。以下はTeam Appのサブアプリとしてアプリケーションを追加する例です。3.CUSTOM を選択してapp_nameを定義する際に@teamと付けることでTeam App配下のsub Appという宣言が可能です。その後追加したいDataboxを指定可能です。以下ではitem.dbを追加します。Team App以外のカスタムアップでも同様に@をつけることでサブアプリの作成とデータボックスの追加が可能です</p>
 <p><div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app
 Type of App (1.BASE | 2.FORM | 3.CUSTOM): 3
 App Name: item@team
@@ -1568,10 +1569,9 @@ Is it OK? (yes | no): yes
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>インポートしたアプリのカスタマイズを行うには直接編集が必要になりますが、genコマンドで生成したカスタムアプリであればBase Appでメニュー含めて更新可能です。カスタムアプリについてはsmall-shell基礎#2をご確認ください</p>
+<p>インポートしたアプリのカスタマイズを行うには直接編集が必要になりますが、genコマンドで生成したカスタムアプリであればBase Appで更新可能です</p>
 </div>
-<h2 id="_18">その他操作</h2>
-<h3 id="custom-app">Custom Appへのタグの追加</h3>
+<h3 id="_19">アプリへのタグの追加</h3>
 <p>カスタムアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください。tag機能の詳細については<a href="../small_shell1/#_11">こちら</a>を参照してください</p>
 <pre><code># 検索ワードのみを設定したい場合
 sudo /usr/local/small-shell/adm/ops add.tag:$databox{$word} app:$app_name
@@ -1590,7 +1590,7 @@ $ sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># team Appを指定する場合
 $ sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test
 </code></pre></div>
-<h2 id="_19">実環境の構築</h2>
+<h2 id="_20">実環境の構築</h2>
 <p>small-shellの学習環境として<a href="../unix1/">UNIX基礎#1</a>ではWSLとChromebookをご紹介しましたが、WSL,chromebookはともに外部からのアクセスができないためローカルでの学習にとどまります。アプリをネットワーク上でアクセス可能にするためには、Macを利用するか、クラウドの利用をする必要があります。    </p>
 <p>クラウドサービスとしてはAWSやVPSを利用することが考えられますが、インターネットへのサーバ公開に際してはセキュリティ対策が必要になりますので予め注意してください。サーバに関する専門知識をつけた上で運用することをおすすめします</p>
 

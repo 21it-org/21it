@@ -660,7 +660,7 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        新規イベント登録画面
+        新規イベント登録画面（編集前）
       
     </span>
   </a>
@@ -1111,7 +1111,7 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        新規イベント登録画面
+        新規イベント登録画面（編集前）
       
     </span>
   </a>
@@ -1344,7 +1344,7 @@ Databoxの指定までできると最終確認をもとめられますので、y
 <h2 id="app-shell">App shell基本構造</h2>
 <p>アプリケーションシェルの構造を理解して、カスタムアプリを更新していきましょう。カスタムアプリ作成時に以下のようにコードを含むファイルが生成されたと思いますが、それぞれのコードは更新して機能を作りこんでいくことができます、本コースではあくまで構造の外観を説明するのみですので詳細はsmall-shell公式サイトの<a href="https://small-shell.org/app_shell_tour/">App shell</a>も参考にしてください</p>
 <div class="highlight"><span class="filename">生成されたファイル</span><pre><span></span><code>------------------------------------------------------------
-Custom App is successfully generated
+21DOJO has been successfully generated
 Access URL: http://{サーバアドレス}/21DOJO
 ------------------------------------------------------------
 Here is the generated code that you can modify.
@@ -1479,10 +1479,10 @@ exit 0
 &lt;/button&gt;
 </code></pre></div></p>
 <h2 id="_8">アプリのカスタマイズ</h2>
-<p>大枠の構造を理解いただいたところで、さっそくアプリのカスタマイズを行っていきましょう。</p>
+<p>大枠の構造を把握したところで、さっそくアプリのカスタマイズを行っていきましょう。</p>
 <h3 id="key">keyの再定義</h3>
-<p>まずは今回の目的に応じてDataboxを拡張しましょう。Team Appのデフォルトのevents定義から今回作成したアプリに適した内容になるよう、genコマンドで再定義していきましょう</p>
-<h6 id="_9">新規イベント登録画面</h6>
+<p>まずは今回の目的に応じてDataboxを拡張しましょう。Team Appのデフォルトのevents定義から今回作成したアプリに適した内容になるよう、genコマンドで再定義します</p>
+<h6 id="_9">新規イベント登録画面（編集前）</h6>
 <p><img alt="Screenshot" src="../img/org_event.png" /></p>
 <p>keyの追加削除にはgenコマンドを使用します。不要なkeyをまずは消しましょう。
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -delcol
@@ -1507,43 +1507,21 @@ Col8 Key Label: イベント詳細
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file): textarea
 Set this as required? (yes | no): no
 Add more columns to dataset ? (yes | no) : no
-</code></pre></div>
-最終確認が求められますので問題なければyesと解答してkeyの追加を完了しましょう。
-<div class="highlight"><pre><span></span><code>The databox will be updated in the following order. Please check it.
------------------------------------------------------------------
-
-Databox Name:events
-+addcol
-
-#key(col7)
-name=&quot;url&quot;
-label=&quot;イベントURL&quot;
-type=&quot;url&quot;
-option=&quot;&quot;
-
-#key(col8)
-name=&quot;detail&quot;
-label=&quot;イベント詳細&quot;
-type=&quot;textarea&quot;
-option=&quot;&quot;
-
------------------------------------------------------------------
-Is that OK? (yes | no): yes
-</code></pre></div>
-genコマンドが完了次第、再度イベント登録画面にいくとフィールドが更新されていることを確認しましょう。その後、テスト用のeventを登録してください</p>
+</code></pre></div></p>
+<p>genコマンドが完了次第、再度イベント登録画面にいくとフィールドが更新されていることを確認しましょう。その後、テスト用のeventを登録してください。</p>
 <h6 id="_10">更新後のイベント追加画面</h6>
 <p><img alt="Screenshot" src="../img/new_event.png" /></p>
 <h3 id="_11">メインページのアップデート</h3>
 <p>続いて21DOJOへのログイン時に最初に表示されるメインページに最新のイベント情報が出てくるようにしましょう</p>
 <h4 id="html">HTML編集</h4>
 <p>今回のメインページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。Base Appログイン後、21DOJO.md.defデータボックスを選択して定義を更新しましょう。
-以下の通りBodyを全て消して以下を貼り付けて更新してください。また、Body以外のフィールドの値は消してもらえればと思います。
+以下の通りBodyを全て消して以下を貼り付けて更新してください。また、Footerフィールドの値は不要なため消してもらえればと思います。
 <img alt="Screenshot" src="../img/update_portal.png" /></p>
 <div class="highlight"><span class="filename">サンプルHTMLコード</span><pre><span></span><code>&lt;div class=&quot;flex-box&quot;&gt;
   &lt;div class=&quot;flex-description&quot;&gt;
     &lt;h2&gt;21DOJOオンラインイベントの最新情報をご確認ください&lt;/h2&gt;
     &lt;h2&gt;記載のURLからご参加いただければと思います&lt;/h2&gt;
-    &lt;a href=&quot;./21DOJO?%%params&amp;req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
+    &lt;a href=&quot;./21DOJO?req=table&quot;&gt;&lt;button class=&quot;button&quot;&gt;SEARCH&lt;/button&gt;&lt;/a&gt;
   &lt;/div&gt;
   &lt;div class=&quot;event&quot;&gt;
     &lt;div class=&quot;app-form&quot;&gt;
