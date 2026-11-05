@@ -653,38 +653,10 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="keyの再定義">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        新規イベント登録画面（編集前）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        更新後のイベント追加画面
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         メインページのアップデート
@@ -739,7 +711,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         その他の高度な機能
@@ -784,24 +756,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#graph_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Graphの削除
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         定期ジョブの登録
@@ -813,7 +774,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         ジョブの生成と登録
@@ -829,7 +790,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         さらなる学習のために
@@ -1104,38 +1065,10 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="keyの再定義">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        新規イベント登録画面（編集前）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        更新後のイベント追加画面
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         メインページのアップデート
@@ -1190,7 +1123,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         その他の高度な機能
@@ -1235,24 +1168,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#graph_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Graphの削除
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         定期ジョブの登録
@@ -1264,7 +1186,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         ジョブの生成と登録
@@ -1280,7 +1202,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         さらなる学習のために
@@ -1482,8 +1404,8 @@ exit 0
 <p>大枠の構造を把握したところで、さっそくアプリのカスタマイズを行っていきましょう。</p>
 <h3 id="key">keyの再定義</h3>
 <p>まずは今回の目的に応じてDataboxを拡張しましょう。Team Appのデフォルトのevents定義から今回作成したアプリに適した内容になるよう、genコマンドで再定義します</p>
-<h6 id="_9">新規イベント登録画面（編集前）</h6>
-<p><img alt="Screenshot" src="../img/org_event.png" /></p>
+<p>[新規イベント登録画面（編集前)]
+<img alt="Screenshot" src="../img/org_event.png" /></p>
 <p>keyの追加削除にはgenコマンドを使用します。不要なkeyをまずは消しましょう。
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -delcol
 Databox Name: events
@@ -1509,9 +1431,9 @@ Set this as required? (yes | no): no
 Add more columns to dataset ? (yes | no) : no
 </code></pre></div></p>
 <p>genコマンドが完了次第、再度イベント登録画面にいくとフィールドが更新されていることを確認しましょう。その後、テスト用のeventを登録してください。</p>
-<h6 id="_10">更新後のイベント追加画面</h6>
-<p><img alt="Screenshot" src="../img/new_event.png" /></p>
-<h3 id="_11">メインページのアップデート</h3>
+<p>[更新後のイベント追加画面]
+<img alt="Screenshot" src="../img/new_event.png" /></p>
+<h3 id="_9">メインページのアップデート</h3>
 <p>続いて21DOJOへのログイン時に最初に表示されるメインページに最新のイベント情報が出てくるようにしましょう</p>
 <h4 id="html">HTML編集</h4>
 <p>今回のメインページはより構造的な情報を表示したいため、markdownでは記述せずHTMLを記述しましょう。Base Appログイン後、21DOJO.md.defデータボックスを選択して定義を更新しましょう。
@@ -1611,7 +1533,7 @@ successfully set attr peremission 21DOJO/21DOJO.app{ro}&quot;
 <p>readonly化後のイベントページ詳細はこのようになります</p>
 <p><img alt="Screenshot" src="../img/after_readonly.png" />
 アプリのカスタマイズは以上で完成となります。</p>
-<h2 id="_12">その他の高度な機能</h2>
+<h2 id="_10">その他の高度な機能</h2>
 <h3 id="graph">Graph生成</h3>
 <p><a href="https://small-shell.org/python_tour/">pyshell</a>を使うことで容易にGraph生成ができます、まずはsmall-shell公式のStatisticsに関する項目を確認してpython及びpython libraryのインストールをしてください。   </p>
 <p>インストールが完了したら、公式サイトの手順通りにpyshellのセットアップが完了しているか確認しましょう、以下ではpyenv設定が適切に実施されpython3.12がインストールされていることを確認します
@@ -1626,16 +1548,15 @@ $ sudo vi /usr/local/small-shell/util/pyshell/pyenv
 font_family=&quot;IPAexGothic&quot; 
 --------
 
-# キャッシュの削除
-$ sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-*.json
+# キャッシュの削除 (もし以下ディレクトリにfontlistがある場合は削除してください）
+$ sudo ls /home/small-shell/.cache/matplotlib
+fontlist-v3.11.0.json
+$ sudo rm /home/small-shell/.cache/matplotlib/fontlist-v3.11.0.json
 </code></pre></div></p>
 <h4 id="snapshot-graph">Snapshot Graph</h4>
 <p>pyshell環境が適切に設定できていたら、utility scriptであるcountup.shを使ってスナップショットグラフを作成しましょう。スナップショットグラフとはpyshell実行時点のデータを集計し、記録したグラフです。スナップショット以外にデータ蓄積を前提としたhourly, daily, monthlyのグラフの作成が可能です。以下は<a href="../small_shell2/#_18">small-shell基礎2</a>でアンケート集計のために作成したsurvey.dbを"良い"、"普通"、"悪い"でそれぞれデータを集計するコマンド例になります</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.db key:impression filters:良い,普通,悪い type:pie frequency:snapshot
 </code></pre></div>
-<p>タイトルを入れたい場合はtitleも入力してください、ここではタイトルにスペースを使わず"2024-12-02_調査結果"としています
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo -u small-shell /usr/local/small-shell/util/scripts/countup.sh databox:survey.db key:impression filters:良い,普通,悪い title:2024-12-02_調査結果 type:pie frequency:snapshot
-</code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>countup.shは指定のDataboxのデータに対し指定のwordで検索をかけ、その件数を集計しグラフにします</p>
@@ -1643,23 +1564,15 @@ $ sudo -u small-shell rm /home/small-shell/.cache/matplotlib/fontlist-*.json
 <h4 id="graph_1">Graphの確認</h4>
 <p>countup.shの実行がエラーなく完了したらconsoleでgraphを確認しましょう、command lineに#statsと打ち込めば作成されたグラフの一覧が出てきます。</p>
 <p><img alt="Screenshot" src="../img/graph.png" /></p>
-<p>Title付きのグラフをクリックしてみましょう、グラフがポップアップで表示されます</p>
+<p>グラフリンクをクリックするとポップアップで表示されます</p>
 <p><img alt="Screenshot" src="../img/popup_graph.png" /></p>
-<h4 id="graph_2">Graphの削除</h4>
-<p>Graphを削除したい場合は、統計データを蓄積しているstatisticsディレクトリで直接データを消してください</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ ls /usr/local/small-shell/util/statistics/graph
-countup_s_20241202_db_survey.db_impression_filtered.png　countup_s_20241202_db_survey.db{2024-12-02_調査結果}impression_filtered.pn
-
-$ sudo rm /usr/local/small-shell/util/statistics/graph/countup_s_20241202_db_survey.db_impression_filtered.png
-$ sudo rm /usr/local/small-shell/util/statistics/rawdata/countup_s_20241202_db_survey.db_impression_filtered.csv
-</code></pre></div>
-<h3 id="_13">定期ジョブの登録</h3>
+<h3 id="_11">定期ジョブの登録</h3>
 <p>定期ジョブを用いて、提携処理を自動で実行することができます。ここではグラフを定期取得するためのジョブを登録しましょう、small-shellでは対話を通じたcronへのジョブ登録が可能です</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>macでのジョブ登録は追加設定が必要となり、「システム設定」＞「プライバシーとセキュリティ」＞「フルディスクアクセス」を開き、+ ボタンから /usr/sbin/cron を追加してチェックをオンにする必要があります。</p>
 </div>
-<h4 id="_14">ジョブの生成と登録</h4>
+<h4 id="_12">ジョブの生成と登録</h4>
 <p>以下では先ほど実行したcountup.shを毎日0時0分に実行するジョブを登録しています</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -job
 job name: gen_survey_graph
@@ -1710,7 +1623,7 @@ LATEST STATUS OF JOB
 2022-04-19 20:22:18 gen_survey_graph successfully completed
 </code></pre></div>
 e-cronを用いるとさらに高度なジョブの登録や、他のホストとのメッセージ交換やデータ交換ができるようになります。詳細はsmall-shell公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron</a>をご確認ください。chromeで翻訳して閲覧することをお勧めします。</p>
-<h3 id="_15">さらなる学習のために</h3>
+<h3 id="_13">さらなる学習のために</h3>
 <p><a href="https://small-shell.org/">small-shell</a>公式サイトにはより詳細なドキュメントが公開されていますので是非ブラウザの翻訳機能などを使って読むことをお勧めします。</p>
 
 
