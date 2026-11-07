@@ -668,10 +668,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mainsh" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        main.sh
+        内部処理の編集
       
     </span>
   </a>
@@ -700,7 +700,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         その他の高度な機能
@@ -751,7 +751,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         定期ジョブの登録
@@ -767,7 +767,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         テンプレートの利用
@@ -817,7 +817,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
         その他操作
@@ -829,7 +829,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       
         アプリへのタグの追加
@@ -856,7 +856,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         さらなる学習のために
@@ -1141,10 +1141,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mainsh" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        main.sh
+        内部処理の編集
       
     </span>
   </a>
@@ -1173,7 +1173,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         その他の高度な機能
@@ -1224,7 +1224,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         定期ジョブの登録
@@ -1240,7 +1240,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         テンプレートの利用
@@ -1290,7 +1290,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
         その他操作
@@ -1302,7 +1302,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       
         アプリへのタグの追加
@@ -1329,7 +1329,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         さらなる学習のために
@@ -1432,56 +1432,8 @@ shelフレームワーク上でreqという変数に格納されるmainという
 <p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
 <h4 id="_6">ルーティング</h4>
 <p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small-shellフレームワークではこのcase文をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY 
-STRINGとして渡されたパラメーターをcase文で分岐して実行する後続のスクリプトに渡します</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo tail -48 /var/www/cgi-bin/21DOJO
-#----------------------------
-# routing to bin scripts
-#----------------------------
-
-case &quot;$req&quot; in
-
-  &quot;main&quot;)
-    /var/www/bin/21DOJO_main.sh session:$session pin:$pin user_name:$user_name ;;
-
-  &quot;get&quot;)
-    # if its replica host, master definition will be in ./def/.small-shell.conf
-    if [ ! &quot;$master&quot; ];then
-      /var/www/bin/21DOJO_get.sh session:$session pin:$pin user_name:$user_name id:$id duplicate:$duplicate databox:$databox
-    else
-      sync=$(${small_shell_path}/bin/extension_auth app:21DOJO sync:${session}@${master})
-      if [ &quot;$sync&quot; = &quot;synced&quot; ];then
-        redirect=yes
-      else
-        redirect=no
-      fi
-      /var/www/bin/21DOJO_get.sh session:$session pin:$pin user_name:$user_name id:$id duplicate:$duplicate redirect:$redirect databox:$databox
-    fi
-    ;;
-
-  &quot;set&quot;)
-    /var/www/bin/21DOJO_set.sh session:$session pin:$pin user_name:$user_name id:$id databox:$databox ;;
-
-  &quot;del&quot;)
-    /var/www/bin/21DOJO_del.sh session:$session pin:$pin user_name:$user_name id:$id databox:$databox ;;
-
-  &quot;table&quot;)
-    table_command=&quot;$(echo &quot;$table_command&quot; | $SED &quot;s/ /{%%space}/g&quot;)&quot;
-    /var/www/bin/21DOJO_table.sh session:$session pin:$pin user_name:$user_name id:$id page:$page table_command:$table_command line:$line ;;
-
-  &quot;log_viewer&quot;)
-    /var/www/bin/21DOJO_log_viewer.sh session:$session pin:$pin id:$id databox:$databox ;;
-
-  &quot;file&quot;)
-    /var/www/bin/21DOJO_dl.sh session:$session pin:$pin id:$id ;;
-
-  # sub app routing section
-
-  *)
-    echo &quot;error: wrong request&quot;;;
-
-esac
-
-exit 0
+STRINGとして渡されたパラメーターをcase文で分岐して実行する後続のスクリプトに渡します。case文を処理しているコードに関しては以下コマンドで確認してください、コントローラの48行目以降が表示されます</p>
+<div class="highlight"><pre><span></span><code>sudo tail -48 /var/www/cgi-bin/21DOJO
 </code></pre></div>
 <h4 id="parse">Parse (パース)</h4>
 <p>ルーティングに至る前処理としてクライアントから送信(POST) 
@@ -1492,14 +1444,14 @@ exit 0
 STRINGは前述のとおりURLに埋め込まれていますが、POSTデータは主にフォームを通じてデータ送信されます</p>
 </div>
 <h3 id="_7">スクリプト</h3>
-<p>コントローラーがルーティングを通じて呼び出すのがbin配下のスクリプトですが、ユーザーへの応答を返すのはこちらのスクリプトになります。主な処理としてはデータシェルへ接続して特定のidを持つデータを抽出したうえで所定のHTML 
-defのHTMLファイルに動的な情報を埋め込んで返します。その際、動的情報の埋め込みとしては%%タグ(印)をsedで置き換えるという処理を行っています。</p>
-<p>データシェルへの接続部分はget.shの中の以下処理となります 
-<div class="highlight"><span class="filename">DATA_shellへの接続とデータの抽出</span><pre><span></span><code>$DATA_SHELL databox:$databox action:get id:$id keys:$keys format:html_tag &gt; /var/www/tmp/${session}/dataset
-</code></pre></div></p>
-<p>また、HTMLを還す際は以下のようにsedで%%datasetタグの中に上記で抽出した情報を埋め込みます</p>
-<div class="highlight"><span class="filename">タグへの情報の埋め込み</span><pre><span></span><code>$ sudo tail -21 /var/www/bin/21DOJO_get.sh
-# render HTML
+<p>コントローラーがルーティングを通じて呼び出すのがbin配下のスクリプトですが、ユーザーへの応答を返すのはこのスクリプト群になります。
+スクリプトの主な処理としてはデータシェルへ接続して特定のidを持つdatasetを抽出したうえでHTMLファイルにdatasetを埋め込んで返します。
+その際、HTML内にあらかじめ%%タグ(印)を埋め込んでおきsedで抽出したデータに置き換えるという処理を行っています。</p>
+<p>たとえば、getスクリプト(/var/www/bin/21DOJO_get.sh)がデータシェルからデータを取得している箇所は以下箇所になります</p>
+<div class="highlight"><span class="filename">DATA_shellへの接続とデータの抽出箇所</span><pre><span></span><code>$DATA_SHELL databox:$databox action:get id:$id keys:$keys format:html_tag &gt; /var/www/tmp/${session}/dataset
+</code></pre></div>
+<p>データ抽出後にHTMLを還す際はsedで%%datasetタグの中に情報を埋め込みます。その他タグも変換していますが主要な処理はdatasetの変換だと思ってください</p>
+<div class="highlight"><span class="filename">タグへの情報の埋め込み</span><pre><span></span><code># render HTML
 cat /var/www/def/${view} | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
 | $SED &quot;/%%common_menu/r /var/www/def/common_parts/21DOJO_common_menu&quot; \
 | $SED &quot;/%%common_menu/d&quot; \
@@ -1513,23 +1465,16 @@ cat /var/www/def/${view} | $SED -r &quot;s/^( *)&lt;/&lt;/1&quot; \
 | $SED &quot;s/%%pdls/session=${session}\&amp;pin=${pin}\&amp;req=get/g&quot; \
 | $SED &quot;s/%%session/session=${session}\&amp;pin=${pin}/g&quot; \
 | $SED &quot;s/%%params/session=${session}\&amp;pin=${pin}\&amp;databox=${databox}/g&quot;
-
-
-if [ &quot;$session&quot; ];then
-  rm -rf /var/www/tmp/${session}
-fi
-
-exit 0
 </code></pre></div>
 <h3 id="htmldef">HTML(.def)</h3>
-<p>bin配下のスクリプトが呼び出しているHTMLの定義も見てみましょう。HTMLの以下%%dataset部分にスクリプトがデータを埋め込みます 
-<div class="highlight"><span class="filename">HTML内の%%datasetタグ</span><pre><span></span><code>$ cat /var/www/def/21DOJO_get_rw.html.def | grep -2 %%dataset | sed -r &quot;s/^(.*)&lt;/&lt;/g&quot;
-&lt;form id=&quot;one-time-form&quot; method=&quot;post&quot; action=&quot;./21DOJO?%%params&amp;req=set&amp;id=%%id&quot; autocomplete=&quot;off&quot; onclick=&quot;document.charset=&#39;utf-8&#39;;&quot;&gt;
+<p>bin配下のスクリプトが呼び出しているHTMLの定義も見てみましょう。  <br />
+/var/www/def/21DOJO_get_rw.html.defをみてみると以下箇所に%%datasetタグが埋め込まれていることが確認できます。bin/getスクリプトはこのHTMLを読み込みタグを変換しながらrendering（出力）していると思っていただければと思います</p>
+<div class="highlight"><span class="filename">HTML内の%%datasetタグ</span><pre><span></span><code>&lt;form id=&quot;one-time-form&quot; method=&quot;post&quot; action=&quot;./21DOJO?%%params&amp;req=set&amp;id=%%id&quot; autocomplete=&quot;off&quot; onclick=&quot;document.charset=&#39;utf-8&#39;;&quot;&gt;
 &lt;ul&gt;
          %%dataset
 &lt;/ul&gt;
 &lt;/button&gt;
-</code></pre></div></p>
+</code></pre></div>
 <h2 id="_8">アプリのカスタマイズ</h2>
 <p>大枠の構造を把握したところで、さっそくアプリのカスタマイズを行っていきましょう。</p>
 <h3 id="_9">メインページの編集</h3>
@@ -1564,7 +1509,7 @@ Subapp Databox: 21DOJO.events
 <p><img alt="Screenshot" src="../img/menu_update.png" /></p>
 <p>その後再度ログインすると、イベント一覧がメニューに表示されるようになりました。イベント一覧をクリックするとテーブル形式でイベントの一覧が表示されることを確認してください</p>
 <p><img alt="Screenshot" src="../img/main4.png" /></p>
-<h4 id="mainsh">main.sh</h4>
+<h4 id="_11">内部処理の編集</h4>
 <p>続いて21DOJOのmain.shにてリンク内に埋め込まれている%%latest_event_idタグの変換処理をいれます。以下のとおりrender HTMLというコメントの下の行をコメントアウトして
 追加コードを追記してください</p>
 <pre><code>sudo nano /var/www/bin/21DOJO_main.sh
@@ -1611,7 +1556,7 @@ successfully set attr peremission 21DOJO/21DOJO.app{ro}
 </code></pre></div>
 上記コマンドを実行すると、イベントの登録がアプリ上でできなくなり、参照専用のアプリになりますのでイベントはBase App上から21DOJO.eventsに登録することで管理してください。
 想定どおりアプリ上でイベント登録などできなくなっていること、各種リンクが正しく機能していることなど最終確認してもらえればと思います。問題なければ以上でアプリ作成は完了となります。</p>
-<h2 id="_11">その他の高度な機能</h2>
+<h2 id="_12">その他の高度な機能</h2>
 <h3 id="graph">Graph生成</h3>
 <p><a href="https://small-shell.org/python_tour/">pyshell</a>を使うことで容易にGraph生成ができます、まずはsmall-shell公式のStatisticsに関する項目を確認してpython及びpython 
 libraryのインストールをしてください。</p>
@@ -1645,9 +1590,9 @@ monthlyのグラフの作成が可能です。以下は<a href="../small_shell2/
 <p><img alt="Screenshot" src="../img/graph.png" /></p>
 <p>グラフリンクをクリックするとポップアップで表示されます</p>
 <p><img alt="Screenshot" src="../img/popup_graph.png" /></p>
-<h3 id="_12">定期ジョブの登録</h3>
+<h3 id="_13">定期ジョブの登録</h3>
 <p>定期ジョブを用いて、定型処理を自動で実行することができます。詳細に関しては公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron</a>を参照してください</p>
-<h2 id="_13">テンプレートの利用</h2>
+<h2 id="_14">テンプレートの利用</h2>
 <p>small-shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam Appをインポートして使ってみましょう。Team Appではチームの共同作業に必要な機能をパッケージ化したsmall-shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team 
 Appに管理したいDataboxを追加することもできます</p>
 <h3 id="team-app-install">Team App install</h3>
@@ -1678,8 +1623,8 @@ eventやtaskをカレンダーに一元的に表示できるので便利です�
 <div class="highlight"><span class="filename">Team AppログインURL</span><pre><span></span><code>http://{サーバアドレス}/team 
 </code></pre></div>
 <p><img alt="Screenshot" src="../img/team_app_menu.png" /></p>
-<h2 id="_14">その他操作</h2>
-<h3 id="_15">アプリへのタグの追加</h3>
+<h2 id="_15">その他操作</h2>
+<h3 id="_16">アプリへのタグの追加</h3>
 <p>カスタムアプリのテーブルにタグを追加したい場合、以下コマンドを実行してください。tag機能の詳細については<a href="../small_shell1/#_11">こちら</a>を参照してください</p>
 <pre><code># 検索ワードのみを設定したい場合
 sudo /usr/local/small-shell/adm/ops add.tag:$databox{$word} app:$app_name
@@ -1698,8 +1643,8 @@ $ sudo /usr/local/small-shell/adm/ops add.tag:tasks{status{on-going}} app:tasks
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># team Appを指定する場合
 $ sudo /usr/local/small-shell/adm/ops app:team initialize.usr:test 
 </code></pre></div>
-<h2 id="_16">さらなる学習のために</h2>
-<p><a href="https://small-shell.org/">small-shell</a>公式サイトにはより詳細なドキュメントが公開されていますので是非ブラウザの翻訳機能などを使って読むことをお勧めします。</p>
+<h2 id="_17">さらなる学習のために</h2>
+<p><a href="https://small-shell.org/">small-shell</a>公式サイトにはより詳細なドキュメントが公開されていますので、興味のあるかたは是非ブラウザの翻訳機能などをつかって読んでみてください。</p>
 
 
 
