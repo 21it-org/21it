@@ -2175,16 +2175,19 @@
 2.abc
 3.def
 4.efg
+5.abbecd
 </code></pre></div>
 <p>作成したファイルに対してコマンド実行してみます</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>#abというワードを含む行の抽出
 $ cat test | grep ab
 1.ab
 2.abc
+5.abbecd
 
-#ab,cというand条件を満たす行の抽出
+#ab + cというand条件を満たす行の抽出
 $ cat test | grep ab | grep c
 2.abc
+5.abbecd
 </code></pre></div>
 <h4 id="_5">特定文字を含まない行の検索</h4>
 <p>grep -vは非常に有用なコマンドですが、指定文字を"含まない"行を表示することができます。これを用いることで任意の行をファイル内から除外して表示することができ、例えばリストから指定のIDを消したい場合などに有用です。</p>
@@ -2195,14 +2198,14 @@ $ cat test | grep ab | grep c
 </code></pre>
 <p>以下ファイルをコピーしてファイルに追記して保存して下さい</p>
 <div class="highlight"><span class="filename">list.csvファイルの内容</span><pre><span></span><code>id,name
-01,adam
-02,eve 
+01,tanaka
+02,suzuki
 </code></pre></div>
 <p>ファイルの準備ができたらコマンド実行を試してみましょう。以下実行例となります</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># id=01の行を除外して表示
-$ cat list.csv | grep -v 01,
+$ cat list.csv | grep -v 01
 id,name
-02,eve
+02,suzuki
 </code></pre></div>
 <h4 id="_6">さらに高度な検索</h4>
 <p>メタキャラクターを使用してさらに高度な検索をすることができます。詳しくは<a href="#meta-charactor">メタキャラクター</a>を参照してください</p>
@@ -2592,25 +2595,28 @@ ghr
 <h3 id="meta-charactor">Meta charactor</h3>
 <p>UNIX/Linuxのコマンドライン上で特別な意味をもった文字Meta charactor（メタキャラクター）を扱うことができます。この使用法はワイルドカードや正規表現と呼ばれますが、ここでは単純に特別な意味合いを持った文字と考えましょう、代表的なものを以下紹介します。メタキャラクターを使うことで、非常に柔軟な検索や文字変換、プログラムの際の条件分岐が行えるようになります。</p>
 <h4 id="_21">アスタリスク</h4>
-<p>"*"は任意の文字列を意味しますが、例えばHello Woldという文字列は、アスタリスクを用いて以下のような表現に置き換えられます</p>
-<div class="highlight"><span class="filename">アスタリスク使用例</span><pre><span></span><code>Hello World (メタ文字なし)
-
-使用例 
-grep H* test.txt  　 # test.txt内でHから始まる任意の文字列を検索、Hello Wolrdを含む行もヒット
-grep H*d test.txt  　# test.txt内でHから始まりdで終わる任意の文字列で、Hello Worldむ行もヒット
-grep Hello *    　   # Helloという単語を含むすべての&quot;ファイル&quot;を検索（対象ファイル自体をアスタリスクにしています）
+<p>"*"は任意の文字列を意味しますが、Hello Worldという文字列がどのように表現されるか確認しましょう。まずはテキストファイルを作成し</p>
+<pre><code>nano meta.txt
+</code></pre>
+<p><div class="highlight"><span class="filename">meta.txtの内容</span><pre><span></span><code>Hello World
 </code></pre></div>
+アスタリスクを使用して検索をするといずれもHello Worldという行にヒットします
+<div class="highlight"><span class="filename">アスタリスク使用例</span><pre><span></span><code>使用例 
+grep H* meta.txt  　 # meta.txt内でHから始まる任意の文字列を検索、Hello Wolrdを含む行もヒット
+grep H*d meta.txt  　# meta.txt内でHから始まりdで終わる任意の文字列で、Hello Worldむ行もヒット
+grep Hello *    　   # Helloという単語を含むすべての&quot;ファイル&quot;を検索（対象ファイル自体をアスタリスクにしています）
+</code></pre></div></p>
 <h4 id="_22">行頭</h4>
 <p>"^"ハットはUNIXのメタ文字としては行の最初を意味します、これを使うことで例えば文章の最初がHelloではじまる行などを容易に検索でき、非常に便利です。検索例などは後続のセクションでご確認いただけます</p>
-<div class="highlight"><span class="filename">行頭の指定例</span><pre><span></span><code>grep ^Hello test.txt　# test.txt内で行頭がHelloから始まる行を検索
+<div class="highlight"><span class="filename">行頭の指定例</span><pre><span></span><code>grep ^Hello meta.txt　# meta.txt内で行頭がHelloから始まる行を検索
 </code></pre></div>
 <h4 id="_23">行末</h4>
 <p>"$"をパラメーターの最後に記載した場合行末という意味を持ちます。単体で使う場合や最後に持ってきた場合行末を意味するようになります（パラメーターの最初につけると変数という別の意味を持ってきますので注意して下さい)</p>
-<div class="highlight"><span class="filename">行末の指定例</span><pre><span></span><code>grep World$ test.txt #test.txt内でWorldという文字列で終わる行を検索
+<div class="highlight"><span class="filename">行末の指定例</span><pre><span></span><code>grep World$ meta.txt #meta.txt内でWorldという文字列で終わる行を検索
 </code></pre></div>
 <h4 id="_24">任意の一文字</h4>
 <p>"."は正規表現を使うコマンドでは任意の1文字を表します</p>
-<div class="highlight"><span class="filename">使用例</span><pre><span></span><code>grep H.llo test.txt #Hの次の文字は任意となりHelloもヒットします
+<div class="highlight"><span class="filename">使用例</span><pre><span></span><code>grep H.llo meta.txt #Hの次の文字は任意となりHelloもヒットします
 </code></pre></div>
 <h4 id="_25">無効化</h4>
 <p>各メタ文字に\をつけることで、その意味合いを無効化することができます</p>
@@ -2623,16 +2629,14 @@ grep Hello *    　   # Helloという単語を含むすべての&quot;ファイ
 </code></pre></div>
 <h4 id="_28">文字区切り</h4>
 <p>""を使うことで、どこまでが文字列かをコマンドに対して明示することができるようになります。スペースを含む単語を検索したい場合などに便利です</p>
-<div class="highlight"><span class="filename">ダブルクオート使用例</span><pre><span></span><code>grep &quot;Hello World&quot; test.txt #test.txt内でHello Worldという単語を含む行を検索
+<div class="highlight"><span class="filename">ダブルクオート使用例</span><pre><span></span><code>grep &quot;Hello World&quot; meta.txt
 (&quot;&quot;をつけない場合スペースを含むためエラーになります）
 </code></pre></div>
 <h2 id="vivim">高度なエディター (vi/vim)</h2>
 <p>vi(ブイアイ)やvim(ヴィム)は高度なコマンドライン機能を持ったエディタで、Unix/Linuxでは非常に歴史あるエディタです。慣れると非常に高いパフォーマンスを発揮する一方で、習得には少し訓練を要します。もし興味のある方は<a href="https://ja.wikipedia.org/wiki/Vim">vim</a>のwikiページなどをみて参考にしてみてください</p>
 <h2 id="_29">その他のテクニック</h2>
 <h4 id="_30">候補の表示</h4>
-<p>コマンドライン上でtab keyを打つと候補を表示することができ、非常に便利です。たとえば、ディレクトリをすべて手で打つよりは ls /hに続いてtabキーを打つと/homeが候補として表示されます</p>
-<pre><code>+tab
-</code></pre>
+<p>前章の最後でも補完機能として紹介しましたが、コマンドライン上でtabを打つと候補を表示することができ、非常に便利です。たとえば、ディレクトリをすべて手で打つよりは ls /hに続いてtabキーを打つと/homeが候補として表示されます</p>
 <h2 id="administrator">Administrator</h2>
 <p>UNIX/Linuxを管理するための最低限の操作を説明します</p>
 <div class="admonition note">
