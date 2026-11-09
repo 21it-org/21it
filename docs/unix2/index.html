@@ -383,17 +383,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        大文字小文字を無視
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#and" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -405,10 +394,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         特定文字を含まない行の検索
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大文字小文字を区別しない
       
     </span>
   </a>
@@ -817,15 +817,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#meta-charactor" class="md-nav__link">
+  <a href="#meta-character" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Meta charactor
+        Meta character
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Meta charactor">
+    <nav class="md-nav" aria-label="Meta character">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1039,10 +1039,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ssh" class="md-nav__link">
+  <a href="#_34" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SSHでログインする
+        リモートログイン
       
     </span>
   </a>
@@ -1050,7 +1050,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_34" class="md-nav__link">
+  <a href="#_35" class="md-nav__link">
     <span class="md-ellipsis">
       
         オートメーション
@@ -1116,7 +1116,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_35" class="md-nav__link">
+  <a href="#_36" class="md-nav__link">
     <span class="md-ellipsis">
       
         体系的な学習
@@ -1386,17 +1386,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        大文字小文字を無視
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#and" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1408,10 +1397,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         特定文字を含まない行の検索
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大文字小文字を区別しない
       
     </span>
   </a>
@@ -1820,15 +1820,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#meta-charactor" class="md-nav__link">
+  <a href="#meta-character" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Meta charactor
+        Meta character
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Meta charactor">
+    <nav class="md-nav" aria-label="Meta character">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2042,10 +2042,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ssh" class="md-nav__link">
+  <a href="#_34" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SSHでログインする
+        リモートログイン
       
     </span>
   </a>
@@ -2053,7 +2053,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_34" class="md-nav__link">
+  <a href="#_35" class="md-nav__link">
     <span class="md-ellipsis">
       
         オートメーション
@@ -2119,7 +2119,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_35" class="md-nav__link">
+  <a href="#_36" class="md-nav__link">
     <span class="md-ellipsis">
       
         体系的な学習
@@ -2161,10 +2161,6 @@
 <p>-eオプションはgrepだけでor検索をできるようにします、任意の単語を含む行を指定ファイルから抽出します。以下は検索ワードAもしくは検索ワードBを含む行を検索するコマンド例となります</p>
 <pre><code>grep -e 検索ワードA -e 検索ワードB 対象ファイル
 </code></pre>
-<h4 id="_4">大文字小文字を無視</h4>
-<p>-iオプションは大文字小文字を区別しません</p>
-<pre><code>grep -i 検索ワード 対象ファイル
-</code></pre>
 <h4 id="and">パイプを使用したAND検索</h4>
 <p>処理結果にフィルターをかけてパイプ"|"でつなげることで、and検索をすることもできます、以下例をご確認下さい。
 まずはファイルを作成します</p>
@@ -2189,7 +2185,7 @@ $ cat test | grep ab | grep c
 2.abc
 5.abbecd
 </code></pre></div>
-<h4 id="_5">特定文字を含まない行の検索</h4>
+<h4 id="_4">特定文字を含まない行の検索</h4>
 <p>grep -vは非常に有用なコマンドですが、指定文字を"含まない"行を表示することができます。これを用いることで任意の行をファイル内から除外して表示することができ、例えばリストから指定のIDを消したい場合などに有用です。</p>
 <pre><code>grep -v 検索ワード　対象ファイル
 </code></pre>
@@ -2207,8 +2203,12 @@ $ cat list.csv | grep -v 01
 id,name
 02,suzuki
 </code></pre></div>
+<h4 id="_5">大文字小文字を区別しない</h4>
+<p>-iオプションは大文字小文字を区別しません</p>
+<pre><code>grep -i 検索ワード 対象ファイル
+</code></pre>
 <h4 id="_6">さらに高度な検索</h4>
-<p>メタキャラクターを使用してさらに高度な検索をすることができます。詳しくは<a href="#meta-charactor">メタキャラクター</a>を参照してください</p>
+<p>メタキャラクターを使用してさらに高度な検索をすることができます。詳しくは<a href="#meta-character">メタキャラクター</a>を参照してください</p>
 <h3 id="awk">{ awk }</h3>
 <p>awk(オウク)は任意の文字を区切り文字として、指定の列を抽出します、デフォルトの区切り文字はスペースになります</p>
 <h4 id="_7">スペース区切り</h4>
@@ -2326,7 +2326,7 @@ abc def ghr jkl mno pqr
 <p>Mac OSについてはLinux標準のsedと動作が多少ことなるため、-zオプションが使えませんがご了承ください。-zオプションを使いたい場合gnu-sedをインストールする必要があります</p>
 </div>
 <h4 id="_12">行頭・行末への文字追加</h4>
-<p>メタキャラクターを使用してさらに高度な変換をすることができます。例えば行頭、行末に一括で特定の文字列を付与することができ、非常に便利です。行頭は^、行末は$で表すことができます。その他メタキャラクタも多数ありますので、詳細については<a href="#meta-charactor">メタキャラクター</a>を参照してください。</p>
+<p>メタキャラクターを使用してさらに高度な変換をすることができます。例えば行頭、行末に一括で特定の文字列を付与することができ、非常に便利です。行頭は^、行末は$で表すことができます。その他メタキャラクタも多数ありますので、詳細については<a href="#meta-character">メタキャラクター</a>を参照してください。</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
 $ cat abc.csv
 abc,def,ghr
@@ -2592,8 +2592,8 @@ ghr
 &gt; abc,def,ghr
 &gt; jkl,mno,pqr
 </code></pre></div>
-<h3 id="meta-charactor">Meta charactor</h3>
-<p>UNIX/Linuxのコマンドライン上で特別な意味をもった文字Meta charactor（メタキャラクター）を扱うことができます。この使用法はワイルドカードや正規表現と呼ばれますが、ここでは単純に特別な意味合いを持った文字と考えましょう、代表的なものを以下紹介します。メタキャラクターを使うことで、非常に柔軟な検索や文字変換、プログラムの際の条件分岐が行えるようになります。</p>
+<h3 id="meta-character">Meta character</h3>
+<p>UNIX/Linuxのコマンドライン上で特別な意味をもった文字Meta character（メタキャラクター）を扱うことができます。この使用法はワイルドカードや正規表現と呼ばれますが、ここでは単純に特別な意味合いを持った文字と考えましょう、代表的なものを以下紹介します。メタキャラクターを使うことで、非常に柔軟な検索や文字変換、プログラムの際の条件分岐が行えるようになります。</p>
 <h4 id="_21">アスタリスク</h4>
 <p>"*"は任意の文字列を意味しますが、Hello Worldという文字列がどのように表現されるか確認しましょう。まずはテキストファイルを作成し</p>
 <pre><code>nano meta.txt
@@ -2695,16 +2695,10 @@ sudo apt remove パッケージ名
 # インストールされているパッケージのリストを表示
 sudo apt list --installed
 </code></pre>
-<h3 id="ssh">SSHでログインする</h3>
-<p>クラウド環境のLinuxにログインする場合、ssh(エスエスエイチ)プロトコルを使ってLinuxにログインしましょう。localにインストールしているubuntuで以下コマンドを実行してください</p>
-<pre><code>ssh -l ユーザー名 サーバIP
-</code></pre>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>クラウド環境でLinuxを使う場合はパスワード認証は極力使わず、証明書認証を使いましょう。併せてクラウド管理コンソールなどで特定のIPアドレスからの接続のみ許可することを推奨します</p>
-</div>
-<h3 id="_34">オートメーション</h3>
-<p>Unix/Linuxで処理の自動化を行う際にcron(クーロン)を使います。cron自体は非常にすぐれたツールですが、エンジニア以外には少し使い勝手が難しい部分もあります。後述のsmall-shellを利用することで、登録や結果の確認が容易になりますのでぜひsmall-shell応用コースで登録方法を確認してください</p>
+<h3 id="_34">リモートログイン</h3>
+<p>クラウド環境のLinuxにログインする場合、ssh(エスエスエイチ)プロトコルを使ってLinuxにログインして管理することになります。その際、パスワード認証は危険なため鍵認証を使用することをお勧めします。リモートでシステムを管理する場合、高度なセキュリティ知識が必要になりますのでその点を認識していただければと思います。</p>
+<h3 id="_35">オートメーション</h3>
+<p>Unix/Linuxで処理の自動化を行う際にcron(クーロン)を使います。cronコマンドをつかうことで定期的なジョブをシステムに登録することができます。ただし、システム運用者以外はあまり使わない機能のためここでは詳細は割愛できればと思います。</p>
 <h2 id="web">Web系コマンド</h2>
 <p>Web系システムの開発を行う際に、以下コマンドを知っていると非常に有用です。それぞれ奥深いコマンドですので、ここで使い方を網羅的に説明することは避けますが、APIを使う場合はcurlを、jsonフォーマットを扱う際はjqを、というように覚えておいてもらえると良いと思います。</p>
 <h3 id="wget">{wget}</h3>
@@ -2716,7 +2710,7 @@ wget https://www.21it.org
 <p>curl(カール)もwgetと同様にWebページを取得するコマンドですが、多用なオプションを有するため、例えば他サイトのAPIと連携する際に使うと便利です。curlを使ったAPI実装例が豊富に紹介されています。ぜひ自分で一度curlコマンドを調べてみて使ってみてください    </p>
 <h3 id="jq">{jq}</h3>
 <p>jq(ジェイキュー)はWeb上でのデータ交換の際に使われるjsonフォーマットのデータを扱うためのコマンドです。コマンドラインで容易にjsonデータを解析できるためWebサイトの開発の際に便利に使えます。curlとjqを組み合併せることで他サイトとの連携が容易に実装できます。こちらもプログラムを開発をするなかで身に着けるのが良いでしょう</p>
-<h2 id="_35">体系的な学習</h2>
+<h2 id="_36">体系的な学習</h2>
 <p>Linuxについてより深く、体系的に理解したい場合はLPICの教材などで学習することをお勧めします。LPIC1相当の知識があればLinuxを扱うには十分だといえます</p>
 
 

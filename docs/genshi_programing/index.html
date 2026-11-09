@@ -1539,7 +1539,7 @@ $
 </code></pre>
 <p>コマンド結果を格納した変数の中身を表示しましょう</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
-2024年 11月 18日 月曜日 10:03:23 JST
+2026年 11月 9日 月曜日 10:03:23 JST
 </code></pre></div>
 <h2 id="_5">論理演算と判定</h2>
 <p>条件分岐のためには論理演算を多用します。[ ]内で実行される論理演算では、各種判定をおこない、結果に応じてif文やwhile文が分岐を制御します</p>
@@ -1668,7 +1668,7 @@ $ echo $?
 [ 条件式A -a 条件式B -a 条件式C ]
 </code></pre></div>
 <h4 id="_12">正規表現の利用</h4>
-<p>正規表現とは<a href="../unix2/#meta-charactor">メタキャラクター</a>などを利用してパターンを表現する表現ですが、分岐に正規表現を利用することもできます、その場合[[ ]]で囲み、演算子として=~を利用してください</p>
+<p>正規表現とは<a href="../unix2/#meta-character">メタキャラクター</a>などを利用してパターンを表現する表現ですが、分岐に正規表現を利用することもできます、その場合[[ ]]で囲み、演算子として=~を利用してください</p>
 <div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>[[ 文字列A =~ 文字列B ]]
 </code></pre></div>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 例：aからはじまりdで終わる任意の文字列であれば真、^aがaが先頭文字であることをあらわし .*が任意の文字の繰り返しをあらわし、d$がdで終わる文字というのを正規表現であらわします
