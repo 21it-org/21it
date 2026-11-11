@@ -2168,10 +2168,10 @@
 <h4 id="and">パイプを使用したAND検索</h4>
 <p>処理結果にフィルターをかけてパイプ"|"でつなげることで、and検索をすることもできます、以下例をご確認下さい。
 まずはファイルを作成します</p>
-<pre><code>nano test
+<pre><code>nano test.txt
 </code></pre>
 <p>エディタでファイルを生成したら以下内容を貼り付けます</p>
-<div class="highlight"><span class="filename">testファイルの内容</span><pre><span></span><code>1.ab
+<div class="highlight"><span class="filename">test.txtファイルの内容</span><pre><span></span><code>1.ab
 2.abc
 3.def
 4.efg
@@ -2179,7 +2179,7 @@
 </code></pre></div>
 <p>作成したファイルに対してコマンド実行してみます</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>#abというワードを含む行の抽出
-$ cat test | grep ab
+$ cat test.txt | grep ab
 1.ab
 2.abc
 5.abbecd
@@ -2303,7 +2303,7 @@ c
 </code></pre></div></p>
 <h4 id="_11">改行処理</h4>
 <p>sedを利用して、改行を加えて見やすくしたり、逆に改行をなくして1列にして処理をしやすくしたりすることがあります。\nはUNIXの改行コードです。
-先程作成したabc.csvファイルを使って改行処理を実行してみましょう</p>
+awkコマンド実行の際に作成したabc.csvファイルを使って改行処理を実行してみましょう</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの内容確認
 $ cat abc.csv
 abc,def,ghr
@@ -2349,9 +2349,9 @@ $ cat abc.csv | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&qu
 &lt;p&gt;jkl,mno,pqr&lt;/p&gt;
 </code></pre></div>
 <h3 id="sort">{ sort }</h3>
-<p>sort(ソート)は並び替えを行うためのコマンドですが、パイプ"|"と組み合わせて使うことが多いです。先ほどのabc.csvを解体して並び替えてみましょう</p>
+<p>sort(ソート)は並び替えを行うためのコマンドですが、パイプ"|"と組み合わせて使うことが多いです。ここでもawkコマンド実行の際に作成したabc.csvを使用して並び替えてみましょう</p>
 <h4 id="_13">昇順、降順の並び替え</h4>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイル
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
 $ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
@@ -2381,7 +2381,7 @@ abc
 <h3 id="uniq">{ uniq }</h3>
 <p>uniq(ユニーク)は重複した行を集約するコマンドです、一般的にパイプでsortと一緒に使うことが多いです。以下例ではコマンドを組み合わせながら文字列を操作し、あえて重複を作った後、最後に重複を排除しています。なお、重複しているファイルは前章の"<a href="../unix1/#_24">ファイルへの書き出し</a>"でご紹介したリダイレクトを使っています</p>
 <h4 id="_15">重複排除の例</h4>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認 (awkコマンド実行の際に作成したファイルです）
 $ nano abc.csv
 abc,def,ghr
 jkl,mno,pqr 
@@ -2450,7 +2450,7 @@ $ cat /etc/os-release | grep VERSION | wc -l
 <h4 id="n">N列抽出</h4>
 <pre><code>cut -f 列番号 -d "区切り文字"
 </code></pre>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認 (awkコマンド実行時に作成したファイルです）
 $ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr
@@ -2514,7 +2514,7 @@ $ cat /etc/os-release | nl
 </code></pre>
 <p>以下はuniqでも使用した例ですが、最後に上位3行をheadで表示しています</p>
 <h4 id="_19">先頭から指定行数を表示</h4>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 対象ファイルの中身を確認 (awkコマンド実行時に作成したファイルです）
 $ cat abc.csv
 abc,def,ghr
 jkl,mno,pqr 
