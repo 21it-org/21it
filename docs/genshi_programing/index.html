@@ -350,7 +350,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        プログラミング
+        シェルプログラミング
       
     </span>
   </a>
@@ -988,7 +988,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        プログラミング
+        シェルプログラミング
       
     </span>
   </a>
@@ -1471,7 +1471,7 @@
 
 
 <h1 id="shell-script">shell script</h1>
-<h2 id="_1">プログラミング</h2>
+<h2 id="_1">シェルプログラミング</h2>
 <p><a href="../unix1/#shell">シェル</a>(shell)はコマンドラインインターフェースとして都度コマンド要求を処理することもできますが、処理を固めて自動化することもできます。もっとも簡単なプログラム、たとえば所定の文字を出力するだけのたった2行の処理を代表的なshellであるbash(バッシュ)を使って記述してみましょう。処理をファイルに書き出し固めることで、都度コマンドで打っていた仕事が再生産可能な仕事として自動化することができます。</p>
 <p><br>
 コマンドライン上でechoコマンドを実行した結果は以下のとおりです</p>
@@ -1484,6 +1484,7 @@ World
 <p>上述の処理をプログラムファイルにすると以下コード（コードとはプログラムファイルの記述です）のようになります。手動実行していた処理が固められ、まとめて実施が可能になります。このようなbashのプログラムを<strong>"スクリプト"</strong>と呼びます。それではスクリプトファイルをnanoコマンドで作成してきましょう</p>
 <div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano echo.sh
 </code></pre></div>
+<p>なお、nanoコマンドの使用法については<a href="../unix1/#nano_1">nanoコマンドの基本操作</a>を、エコーコマンドについては<a href="../unix1/#_13">入出力</a>を参照してください</p>
 <p>nanoで開いた新規ファイルに以下echo.shのコードの内容を貼り付けて保存して下さい
 <div class="highlight"><span class="filename">echo.shのコード</span><pre><span></span><code>#!/bin/bash
 echo &quot;Hello&quot;
