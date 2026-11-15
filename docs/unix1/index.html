@@ -1939,17 +1939,34 @@ $ cat os-release
 <h2 id="nano">nanoを使ったファイル編集</h2>
 <p>nano(ナノ)はLinux上でテキスト編集する際にもっとも使い勝手が簡単なエディタです。ファイルの作成や編集はnanoコマンドを使うのが一番簡単ですので以下使用法を説明します。</p>
 <h3 id="nano_1">nanoコマンドの基本操作</h3>
-<p>nanoコマンドに続いてファイル名を入力すると、すでにファイルがある場合は編集ができ、ファイルがない場合は新規作成できます。以下はtest.txtを作成する例になります</p>
-<pre><code>nano test.txt
+<p>nanoコマンドに続いてファイル名を入力すると、すでにファイルがある場合は編集ができ、ファイルがない場合は新規作成できます</p>
+<pre><code>nano ファイル名
 </code></pre>
-<p>テキストエディタが起動したら、任意の文字を入力してみて下さい。その後、ファイルを保存し編集モードを抜けます</p>
+<p>nanoコマンドを実行するとエディタが起動して編集モードになりますが、最も基本的な操作は以下になります</p>
 <p><div class="highlight"><span class="filename">最も基本的なボタン操作</span><pre><span></span><code>ファイルを保存する：CtrlとOを同時に押してからEnterを押す
 編集モードを抜ける：CtrlとXを同時に押してからEnterを押す
 </code></pre></div>
-ホームディレクトリでnanoコマンドをつかってファイル作成をし、その後できあがったファイルを確認するまでの一連の操作動画は以下を確認してください</p>
+以下はここまで出てきたコマンドを用いながらホームディレクトリに移動してファイル作成をし、できあがったファイルを確認するまでの操作例になります</p>
 <div style="padding:46.04% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1246956759?autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="nano"></iframe></div>
 <script src="https://player.vimeo.com/api/player.js"></script>
 
+<div class="highlight"><span class="filename">動画内コマンド詳細</span><pre><span></span><code># ホームディレクトリへ移動
+$ cd $HOME
+
+# ディレクトリ内を確認
+$ ls
+
+# nanoで作成し、testという文字を追記
+$ nano test.txt
+
+# ファイルができたことを確認
+$ ls
+test.txt
+
+# ファイルの中身を確認
+$ cat test.txt
+test
+</code></pre></div>
 <h4 id="nano_2">インストール（nanoコマンドがない場合）</h4>
 <p>nanoコマンドがもしも存在しない場合は以下コマンドでインストールしてください。もしパスワードが聞かれた場合は、設定済みのユーザーパスワードを入力してください</p>
 <pre><code>sudo apt install nano
