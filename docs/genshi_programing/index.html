@@ -789,17 +789,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tmp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        tmpファイルの多用
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_28" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1438,17 +1427,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tmp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        tmpファイルの多用
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_28" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1979,7 +1957,7 @@ $ ./ascii_chk.sh
 ERROR
 </code></pre></div></p>
 <h2 id="tips">Tips</h2>
-<p>スクリプト作成に際して便利な知識をTipsとして以下にまとめます</p>
+<p>スクリプト作成に際して便利な知識をTipsとして以下にまとめます。すべて理解する必要はありませんが、ざっと読んで頭の片隅にいれていただき必要な際に参照するといった使い方を推奨します。</p>
 <h3 id="_20">改行の処理</h3>
 <p>テキストファイルの改行コードを追加したり削除したりといった処理をプログラム上で行うことがありますが、以下は改行コードの追加・削除の例となります。</p>
 <div class="admonition note">
@@ -2160,8 +2138,6 @@ alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape
 $ eval $ls_exe
 alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape  lastlog  unattended-upgrades  wtmp
 </code></pre></div>
-<h3 id="tmp">tmpファイルの多用</h3>
-<p>処理を組み立てていく際にevalのように変数の中でコマンドを組み立てながら実行する方法もありますが、処理をテンポラリーファイルを作って過程を書き出しておくことであとからデバッグが容易になります</p>
 <h3 id="_28">スクリプトの定期実行</h3>
 <p>cron(クーロン)を利用することでスクリプトを自動で定期実行することができます。small-shellを導入することでcronをより簡単に利用できるようになります</p>
 <h3 id="_29">さらなる学習のために</h3>
