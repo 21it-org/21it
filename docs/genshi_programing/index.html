@@ -535,10 +535,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#for" class="md-nav__link">
+  <a href="#while" class="md-nav__link">
     <span class="md-ellipsis">
       
-        for文
+        while文
       
     </span>
   </a>
@@ -546,10 +546,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#while" class="md-nav__link">
+  <a href="#for" class="md-nav__link">
     <span class="md-ellipsis">
       
-        while文
+        for文
       
     </span>
   </a>
@@ -1184,10 +1184,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#for" class="md-nav__link">
+  <a href="#while" class="md-nav__link">
     <span class="md-ellipsis">
       
-        for文
+        while文
       
     </span>
   </a>
@@ -1195,10 +1195,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#while" class="md-nav__link">
+  <a href="#for" class="md-nav__link">
     <span class="md-ellipsis">
       
-        while文
+        for文
       
     </span>
   </a>
@@ -1495,16 +1495,14 @@
 <h1 id="shell-script">shell script</h1>
 <h2 id="_1">シェルプログラミング</h2>
 <p><a href="../unix1/#shell">シェル</a>(shell)はコマンドラインインターフェースとして都度コマンド要求を処理することもできますが、処理を固めて自動化することもできます。歴史的に様々なシェルが開発されてきましたが、ここではもっとも代表的なshellである<strong>bash(バッシュ)</strong>を使ったプログラムをご紹介します。</p>
-<p>シェルは以下のように単なるコマンド処理をそのままファイルに書き出すだけでも、立派なプログラムとして機能させることができます。</p>
-<p><br>
-コマンドライン上でechoコマンドを実行した結果は以下のとおりです（echoコマンドの使い方については<a href="../unix1/#_13">入出力</a>を参照してください）</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo &quot;Hello&quot;
+<p>シェルは単なるコマンドをそのままファイルに書き出すだけでも、立派なプログラムとして機能させることができます。例として、まずは<a href="../unix1/#_13">入出力</a>で説明したエコーコマンドを用いて文字を出力してみましょう</p>
+<div class="highlight"><span class="filename">手動実行例</span><pre><span></span><code>$ echo &quot;Hello&quot;
 Hello
 
 $ echo &quot;World&quot;
 World
 </code></pre></div>
-<p>続いて上述の処理をプログラムファイルにしていきたいと思います。
+<p>続いて上述の処理をプログラムファイルにします。
 まずはnanoコマンドでファイルを作成しましょう（nanoコマンドの使用法については<a href="../unix1/#nano_1">nanoコマンドの基本操作</a>を参照してください）</p>
 <div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano echo.sh
 </code></pre></div>
@@ -1531,7 +1529,7 @@ echo &quot;Hello&quot;
 echo &quot;World&quot;
 </code></pre></div>
 <h2 id="_3">条件分岐</h2>
-<p>シェルスクリプトは上述のとおり単に処理を並べて書いていくだけでも処理を自動化できますが、様々な条件のもと処理を分岐させ、パターンに応じた望ましい処理を展開することができます。以下例ではスクリプトに対してHelloというパラメーターが渡されると、Worldと返す分岐を作成しています。処理内容の詳細は追って説明しますが、まずは動作をみてください。</p>
+<p>シェルスクリプトは上述のとおり単に処理を並べて書いていくだけでもプログラムとして機能しますが、様々な条件のもと処理を分岐させ、パターンに応じた望ましい処理を展開することができます。以下例ではスクリプトに対してHelloというパラメーターが渡されると、Worldと返す分岐を作成しています。処理内容の詳細は追って説明しますが、まずは動作をみてください。</p>
 <div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano hello.sh
 </code></pre></div>
 <div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
@@ -1550,7 +1548,7 @@ World
 $
 </code></pre></div>
 <h2 id="_4">引数と返り値</h2>
-<p>スクリプト実行時に渡されるパラメーターを引数(ひきすう)といいます、また、スクリプトを実行して返される値を返り値(かえりち)といいます。上述のスクリプトではHelloが引数、Worldが返り値となります</p>
+<p>スクリプト実行時に渡されるパラメーターを引数(ひきすう)といいます。また、スクリプトを実行して返される値を返り値(かえりち)といいます。上述のスクリプトではHelloが引数、Worldが返り値となります</p>
 <h2 id="_5">変数</h2>
 <p>上記例でも条件分岐処理に利用されていますが、値を一時的に格納しておく箱として変数(へんすう)を利用すると処理が円滑に記述できます。変数はコマンドライン上でも、script内でもいずれもで使うことができます。例えば、以下にてtestという空の変数を定義しましょう</p>
 <pre><code>test=""
@@ -1566,7 +1564,7 @@ $
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
 123
 </code></pre></div>
-<p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは$()で囲んでください。以下例ではdateコマンドの実行結果を格納しています。shellは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できますが、操作からscript化まで非常に簡単に移行でき、コマンドを用いた様々な分岐を作ることができます。これはshellの非常に有用な特徴であり、利点であるといえます</p>
+<p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは$()で囲んでください。以下例ではdateコマンドの実行結果を格納しています。shellは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できるため、コマンドを用いた様々な分岐を作ることができます。これはshellの非常に有用な特徴であり、利点であるといえます</p>
 <pre><code>test=$(date)
 </code></pre>
 <p>コマンド結果を格納した変数の中身を表示しましょう</p>
@@ -1603,7 +1601,7 @@ $ echo $?
 &gt; !=(Not equal)での判定にした場合は、逆に異常(1)が返ってきます
 </code></pre></div></p>
 <h4 id="_8">数値の比較</h4>
-<p>数値どうしの判定に際してはいくつか使用可能なオプションがあります、以下をご確認ください。ちなみにshellの変数には特に何も意識せず変数には数値も文字も入れられます</p>
+<p>数値の判定に際してはいくつか使用可能なオプションがありますので、以下をご確認ください。ちなみにshellの変数にはなんの宣言も必要とせず数値でも文字でも入れられます</p>
 <div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># equal, 同じ値の場合に真
 [ 数値A -eq 数値B ]
 
@@ -1616,7 +1614,7 @@ $ echo $?
 # less than or equal, 左側の数値が右側の数値と同値かそれより小さければ真
 [ 数値A -le 数値B ]
 
-# greater than or equal, 左側の数値が右側の数値より大きければ真
+# greater than, 左側の数値が右側の数値より大きければ真
 [ 数値A -gt 数値B ]
 
 # greater than or equal, 左側の数値が右側の数値と同値かそれより大きければ真
@@ -1651,10 +1649,9 @@ $ echo $?
 [ &quot;変数&quot; ]
 
 # ファイルが空でない場合に真
-[ -s 対象ファイルPATH]
+[ -s 対象ファイルPATH ]
 </code></pre></div>
-<p>以下はos-releaseファイルで任意の文字を検索して結果が空だったかどうかを判定しています。
-変数に空の値を格納して、論理演算を実行してみましょう
+<p>変数に空の値を格納して、論理演算を実行してみましょう
 <div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ NULL_CHECK=&quot;&quot;
 $ [ &quot;$NULL_CHECK&quot; ]
 $ echo $?
@@ -1669,17 +1666,17 @@ $ echo $?
 &gt; 変数に値が入っているため正常終了(0)が返ってきます
 </code></pre></div>
 <h4 id="_11">否定</h4>
-<p>!を使うと、条件式の真と偽りが逆になります</p>
+<p>!を使うと、条件判定の結果が逆になります</p>
 <div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>#　文字列が異なる場合に真
-[ &quot;文字列A&quot; != &quot;文字列B&quot; ]
+[ ! &quot;文字列A&quot; = &quot;文字列B&quot; ]
 
 # 数値が異なる値の場合に真
 [ ! 数値A -eq 数値B ]
 
-# 変数が空(null)
+# 変数が空(null)の場合に真
 [ ! &quot;変数&quot; ]
 
-# 空ファイルの判定
+# 空ファイルではない場合に真
 [ ! -s 対象ファイルPATH ]
 </code></pre></div>
 <h3 id="_12">高度な分岐</h3>
@@ -1688,7 +1685,7 @@ $ echo $?
 <div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>#条件式AもしくはBが成立すれば真
 [ 条件式A -o 条件式B ]
 
-#条件式AもしｋはB,Cが成立すれば真
+#条件式A or B or Cのどれか一つでも成立すれば真
 [ 条件式A -o 条件式B -o 条件式C ]
 </code></pre></div>
 <h4 id="and">and条件</h4>
@@ -1696,7 +1693,7 @@ $ echo $?
 <div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>#条件式A及びBが成立すれば真
 [ 条件式A -a 条件式B ]
 
-#条件式A,B,Cが成立すれば真
+#条件式A,B,Cがすべて成立すれば真
 [ 条件式A -a 条件式B -a 条件式C ]
 </code></pre></div>
 <h4 id="_13">正規表現の利用</h4>
@@ -1731,7 +1728,7 @@ fi
 <p>本コースの冒頭で紹介した条件分岐の例にelse処理も加えて実行してみましょう</p>
 <div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano hello.sh
 </code></pre></div>
-<p><div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
+<div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
 VALUE=$1
 if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
   echo &quot;World&quot;
@@ -1739,13 +1736,48 @@ else
   echo &quot;Hello?&quot;
 fi
 </code></pre></div>
-スクリプトができたら実行してみましょう、Helloという入力を渡さないと聞き返されます</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ifのあとや[　]の中の各パーツの間にかならずスペースが必要ですので注意してください。以降の条件式でも同様です</p>
+</div>
+<p>スクリプトができたら実行してみましょう、Helloという入力を渡さないと聞き返されます</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash hello.sh
 Hello?
 
 $ bash hello.sh Hello
 World
 </code></pre></div>
+<h2 id="while">while文</h2>
+<p>while文は条件式が真の間、処理をループさせます</p>
+<div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>while [ 条件式 ]
+do
+  処理
+done
+</code></pre></div>
+<p>以下は1から10までカウントしながら出力するwhile文を使った処理の例です</p>
+<div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano while_test.sh
+</code></pre></div>
+<p><div class="highlight"><span class="filename">while_test.shのコード</span><pre><span></span><code>#!/bin/bash
+count=1
+while [ $count -le 10 ]
+do
+ echo $count
+ ((count++))
+done
+</code></pre></div>
+以下が実行結果になります
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash while_test.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</code></pre></div></p>
 <h2 id="for">for文</h2>
 <p>for文を使うとリストを変数に格納しながら１つずつ処理することが可能です</p>
 <div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>for 変数 in リスト
@@ -1788,37 +1820,6 @@ $ bash for_test.sh
 # 実行後のファイルの拡張子を確認 
 $ ls for_test
 fileA.txt  fileB.txt  fileC.txt  fileD.txt
-</code></pre></div></p>
-<h2 id="while">while文</h2>
-<p>while文は条件式が真の間、処理をループさせます</p>
-<div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>while [ 条件式 ]
-do
-  処理
-done
-</code></pre></div>
-<p>以下は1から10までカウントしながら出力するwhile文を使った処理の例です</p>
-<div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano while_test.sh
-</code></pre></div>
-<p><div class="highlight"><span class="filename">while_test.shのコード</span><pre><span></span><code>#!/bin/bash
-count=1
-while [ $count -le 10 ]
-do
- echo $count
- ((count++))
-done
-</code></pre></div>
-以下が実行結果になります
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash while_test.sh
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
 </code></pre></div></p>
 <h2 id="_14">コマンドライン読み取り</h2>
 <p>readはコマンドラインでの入力値を読み取り、変数に格納します。</p>
