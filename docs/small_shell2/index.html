@@ -1147,7 +1147,7 @@ Is that OK? (yes | no): yes
 <img alt="Screenshot" src="../img/custom_app_logo.png" /></p>
 <h2 id="_9">アプリへのユーザー追加</h2>
 <p>key認証を選択した場合、ユーザー毎に鍵を生成する必要があります。以下コマンドでユーザー毎の鍵生成URLを作成して下さい。なお、上述のアプリ作成例ではshared pass認証を選択しているため個々のユーザー作成は必要ありません</p>
-<pre><code>sudo /usr/local/small-shell/adm/ops app:&lt;アプリ&gt; add.usr:&lt;ユーザー名&gt;
+<pre><code>sudo /usr/local/small-shell/adm/ops app:アプリ名 add.usr:ユーザー名
 </code></pre>
 <h2 id="web">Webドキュメントの生成</h2>
 <p>small-shellをアプリケーションの生成・実行環境として利用する代わりに、Webドキュメントの生成ツールとして利用することもできます。たとえば、WLSやChromebook上のLinuxで作成したドキュメントをエクスポートして、電子ファイルとしてメールやチャットなどで共有することが可能になります。以下はWebドキュメントを生成し、電子ファイルとしてダウンロードしてローカル保存するまでの例となります</p>

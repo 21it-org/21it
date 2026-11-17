@@ -1693,7 +1693,7 @@ $ echo $?
 </code></pre></div>
 <h3 id="or">or判定</h3>
 <p>-oオプションを使うとor判定として機能させることができます。or判定は2つ以上でも記述可能です</p>
-<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># 変数AとBが同一、もしくは変数CとDが同一で真
+<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># 変数AとBの値が同一、もしくは変数CとDの値が同一で真
 [ &quot;変数A&quot; = &quot;変数B&quot; -o &quot;変数C&quot; = &quot;変数D&quot; ]
 
 # 変数AもしくはB,Cのどれか一つでも値が入っていれば真     
@@ -2060,7 +2060,7 @@ ERROR
 <h2 id="_23">その他のテクニック</h2>
 <p>その他、知っておくと便利な知識を以下にまとめます</p>
 <h4 id="_24">改行の処理</h4>
-<p>改行処理についてはUNIX基礎2でも扱いましたが、プログラムにおいても多用することがあります。以下はsedコマンドを用いた改行コードの追加・削除の例です</p>
+<p>改行処理についてはUNIX基礎#2でも扱いましたが、プログラムにおいても多用することがあります。以下はsedコマンドを用いた改行コードの追加・削除の例です</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Unix/Linuxの改行コードは\nです</p>
