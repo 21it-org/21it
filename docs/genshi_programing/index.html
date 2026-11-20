@@ -422,12 +422,12 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        論理演算と判定
+        条件式と判定
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="論理演算と判定">
+    <nav class="md-nav" aria-label="条件式と判定">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -669,17 +669,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#exit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        exit
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#load" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -706,6 +695,17 @@
     <span class="md-ellipsis">
       
         その他の条件分岐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        exit
       
     </span>
   </a>
@@ -1111,12 +1111,12 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        論理演算と判定
+        条件式と判定
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="論理演算と判定">
+    <nav class="md-nav" aria-label="条件式と判定">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1358,17 +1358,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#exit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        exit
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#load" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1395,6 +1384,17 @@
     <span class="md-ellipsis">
       
         その他の条件分岐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        exit
       
     </span>
   </a>
@@ -1651,23 +1651,23 @@ $
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
 2026年 11月 9日 月曜日 10:03:23 JST
 </code></pre></div>
-<h2 id="_7">論理演算と判定</h2>
-<p>条件分岐のためには論理演算を多用します。[ ]内で実行される論理演算では、各種判定をおこない、結果に応じてif文やwhile文が分岐を制御します</p>
+<h2 id="_7">条件式と判定</h2>
+<p>条件分岐のためには条件式を利用します。[ ]内で実行される条件式では、各種判定をおこない、結果に応じてif文などが分岐を制御します</p>
 <h4 id="_8">文字の比較</h4>
 <p>単純に右側と左側の文字列が同じであるかを判定する場合、単に=を使います。=の場合は同じ値である場合に真となり、!=はその逆の異なる値の場合に真とします</p>
-<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>[ &quot;文字列A&quot; = &quot;文字列B&quot; ]
+<div class="highlight"><span class="filename">判定式</span><pre><span></span><code>[ &quot;文字列A&quot; = &quot;文字列B&quot; ]
 </code></pre></div>
 <p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。
-論理演算はスクリプト内だけでなくコマンドプロンプト上でもそのまま実行できます。以下例では$?変数によって<a href="./#_2">終了ステータス</a>を取得して確認していますが、0が正常、0以外が異常終了だと考えてください</p>
-<p><div class="highlight"><span class="filename">論理演算の実行例(イコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
+条件式はスクリプト内だけでなくコマンドとしてプロンプト上でもそのまま実行できます。以下例では$?変数によって<a href="./#_2">終了ステータス</a>を取得して確認していますが、0が正常、0以外が異常終了だと考えてください</p>
+<p><div class="highlight"><span class="filename">実行例(イコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
 $ WORD_B=&quot;def&quot;
 $ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
 1
 &gt; WORD_AとBは違うため異常(1)が返ってきます
 </code></pre></div>
-次に、変数にそれぞれ同じ値を格納しましょう。論理演算の実行結果が正常(0)になることが確認できます
-<div class="highlight"><span class="filename">論理演算の実行例(イコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
+次に、変数にそれぞれ同じ値を格納しましょう。条件式の実行結果が正常(0)になることが確認できます
+<div class="highlight"><span class="filename">実行例(イコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
 $ WORD_B=&quot;abc&quot;
 $ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
@@ -1675,14 +1675,14 @@ $ echo $?
 &gt; WORD_AとBが同じため正常終了(0)が返されます
 </code></pre></div></p>
 <p>なお、以下の通りNotイコール判定をする場合は異常終了になります
-<div class="highlight"><span class="filename">論理演算の実行例(Notイコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; != &quot;$WORD_B&quot; ]
+<div class="highlight"><span class="filename">実行例(Notイコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; != &quot;$WORD_B&quot; ]
 $ echo $?
 1
 &gt; !=(Not equal)での判定にした場合は、逆に異常(1)が返ってきます
 </code></pre></div></p>
 <h4 id="_9">数値の比較</h4>
 <p>数値の判定に際してはいくつか使用可能なオプションがありますので、以下をご確認ください。ちなみにshellの変数にはなんの宣言も必要とせず数値でも文字でも入れられます</p>
-<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># equal, 同じ値の場合に真
+<div class="highlight"><span class="filename">判定式</span><pre><span></span><code># equal, 同じ値の場合に真
 [ 数値A -eq 数値B ]
 
 # equalの逆、異なる値の場合に真
@@ -1702,7 +1702,7 @@ $ echo $?
 </code></pre></div>
 <h4 id="_10">存在判定</h4>
 <p>ファイルやディレクトリの存在有無で分岐することも可能です、例えば全行程の処理が終わった場合にフラグファイルを作成し、そのファイルが存在すれば後工程に進むといったプログラムを書くことができます</p>
-<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># ファイルが存在する場合に真
+<div class="highlight"><span class="filename">判定式</span><pre><span></span><code># ファイルが存在する場合に真
 [ -f 対象ファイルPATH ]
 
 # ディレクトリが存在する場合に真
@@ -1710,14 +1710,14 @@ $ echo $?
 </code></pre></div>
 <p>以下はdoneというファイルがあるかどうかで結果がどう変わるかを示した例です。
 doneというファイルをtouchコマンドで作成し、存在確認を実施すると正常値が返ってきます
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ touch done
+<div class="highlight"><span class="filename">判定の実行例</span><pre><span></span><code>$ touch done
 $ [ -f ./done ]
 $ echo $?
 0
 &gt; ファイルが存在するため正常(0)が返ってきます
 </code></pre></div></p>
-<p>続いてdoneファイルを削除して再度論理演算を実行すると、ファイルが存在しないため異常値が返ってきます
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ rm done
+<p>続いてdoneファイルを削除して再度条件式を実行すると、ファイルが存在しないため異常値が返ってきます
+<div class="highlight"><span class="filename">判定の実行例</span><pre><span></span><code>$ rm done
 $ [ -f ./done ]
 $ echo $?
 1
@@ -1725,21 +1725,21 @@ $ echo $?
 </code></pre></div></p>
 <h4 id="_11">空判定</h4>
 <p>変数が空(null)か、ファイルが空(0byte)かといった判定が可能です。空判定はコマンド実行結果を変数に格納して、結果の有無で分岐することができ便利です。</p>
-<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># 変数が空(null)ではない場合に真
+<div class="highlight"><span class="filename">判定式</span><pre><span></span><code># 変数が空(null)ではない場合に真
 [ &quot;変数&quot; ]
 
 # ファイルが空でない場合に真
 [ -s 対象ファイルPATH ]
 </code></pre></div>
 <p>変数に空の値を格納して、論理演算を実行してみましょう
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ NULL_CHECK=&quot;&quot;
+<div class="highlight"><span class="filename">判定の実行例</span><pre><span></span><code>$ NULL_CHECK=&quot;&quot;
 $ [ &quot;$NULL_CHECK&quot; ]
 $ echo $?
 1
 &gt; 変数が空のため異常(1)が返ってきます
 </code></pre></div></p>
 <p>続いて変数に文字を格納して、実行すると空ではないため正常終了します</p>
-<div class="highlight"><span class="filename">論理演算の実行例</span><pre><span></span><code>$ NULL_CHECK=&quot;test&quot;
+<div class="highlight"><span class="filename">判定の実行例</span><pre><span></span><code>$ NULL_CHECK=&quot;test&quot;
 $ [ &quot;$NULL_CHECK&quot; ]
 $ echo $?
 0
@@ -1747,7 +1747,7 @@ $ echo $?
 </code></pre></div>
 <h4 id="_12">否定</h4>
 <p>!を使うと、条件判定の結果が逆になります</p>
-<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>#　文字列が異なる場合に真
+<div class="highlight"><span class="filename">判定式</span><pre><span></span><code>#　文字列が異なる場合に真
 [ ! &quot;文字列A&quot; = &quot;文字列B&quot; ]
 
 # 数値が異なる値の場合に真
@@ -1777,7 +1777,7 @@ $ echo $?
 </code></pre></div>
 <h3 id="_13">正規表現の利用</h3>
 <p>正規表現とは<a href="../unix2/#_16">メタキャラクター</a>などを利用してパターンを表現する表現ですが、分岐に正規表現を利用することもできます、その場合[[ ]]で囲み、演算子として=~を利用してください</p>
-<div class="highlight"><span class="filename">論理演算</span><pre><span></span><code>[[ 文字列A =~ 文字列B ]]
+<div class="highlight"><span class="filename">判定式</span><pre><span></span><code>[[ 文字列A =~ 文字列B ]]
 </code></pre></div>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 例：aからはじまりdで終わる任意の文字列であれば真、^aがaが先頭文字であることをあらわし .*が任意の文字の繰り返しをあらわし、d$がdで終わる文字というのを正規表現であらわします
 [[ &quot;変数&quot; =~ ^a.*d$ ]]
@@ -1914,7 +1914,7 @@ fileA.txt  fileB.txt  fileC.txt  fileD.txt
 <p><div class="highlight"><span class="filename">read_test.shのコード</span><pre><span></span><code>#!/bin/bash
 echo -n &quot;あなたの名前を入力してください: &quot;
 read name
-echo &quot;こんにちは$nameさん&quot;
+echo &quot;こんにちは ${name} さん&quot;
 </code></pre></div>
 以下が実行結果となります
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash read_test.sh
@@ -1953,10 +1953,10 @@ done &lt; ファイル名
 <p class="admonition-title">Note</p>
 <p>HTMLはブラウザ上の表示を定義するタグですが詳細は<a href="../web/#web">インターネット基礎</a>を参照してください</p>
 </div>
-<p><div class="highlight"><span class="filename">テキストファイル作成</span><pre><span></span><code>nano org.txt
+<p><div class="highlight"><span class="filename">テキストファイル作成</span><pre><span></span><code>nano input.txt
 </code></pre></div>
-org.txt(テキストファイル)の内容をファイルに転記して保存して下さい
-<div class="highlight"><span class="filename">org.txtファイル</span><pre><span></span><code>abc
+input.txt(テキストファイル)の内容をファイルに転記して保存して下さい
+<div class="highlight"><span class="filename">input.txtファイル</span><pre><span></span><code>abc
 def
 efg
 </code></pre></div>
@@ -1967,7 +1967,7 @@ efg
 while read line
 do
   echo &quot;&lt;p&gt;$line&lt;/p&gt;&quot; &gt;&gt; ch2html.txt
-done &lt; org.txt
+done &lt; input.txt
 </code></pre></div>
 <p>以下が実行結果になります、テキストファイルが新たに生成され、&lt;p&gt;というHTMLタグが付与されたことを確認して下さい
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash ch2html.sh
@@ -1991,14 +1991,22 @@ alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape
 <h3 id="_21">実行権限の付与</h3>
 <p>実行権限を付与していないスクリプトは本来はそのままでは実行できません、これまでの例では"bash スクリプト"というかたちで実行してきたことで、ファイルの読み取りさえできれば内容をコマンドのbashに渡して処理してきました。直接ファイルを指定するだけで実行可能な状態にするためにはchmodコマンドで実行権限を付与しましょう。755の権限付与がプログラムとしては最適です。chmodコマンドの詳細はあらためて<a href="../unix1/#_28">パーミッション</a>にて確認してください</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># PATHを指定してファイルを直接実行 (./は現在のディレクトリを意味する）
-$ ./case_test.sh
--bash: ./case_test.sh: Permission denied (実行失敗)
+$ ./while_test.sh
+-bash: ./while_test.sh: Permission denied (実行失敗)
 
 # ファイルの直接実行のため権限を変更
-$ chmod 755 case_test.sh
-$ ./case_test.sh
-AかBを選んでください: A
-正解です
+$ chmod 755 while_test.sh
+$ ./while_test.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
 </code></pre></div>
 <h3 id="_22">終了ステータス</h3>
 <p>論理演算の実行例の際にも使用しましたが、$?変数は直前のコマンドの終了ステータスを格納することができます。正常終了した場合に0を格納し、異常値だった場合に0以外のエラーコードを返すため、このエラーコードを数値判定することで分岐処理などを作ることができます。以下例では一般ユーザーが/rootを閲覧してエラーになっていますが、終了ステータスは2が返されています
@@ -2006,33 +2014,6 @@ AかBを選んでください: A
 ls: cannot open directory &#39;/root&#39;: Permission denied
 $ echo $?
 2
-</code></pre></div></p>
-<h3 id="exit">exit</h3>
-<p>exitを記述することで、スクリプトを明示的に終了することができます。また、exitの後に数字を付与することで、終了ステータスとして返すことができます。
-<div class="highlight"><span class="filename">ファイルへ追記</span><pre><span></span><code>nano case_test.sh
---code--
-#!/bin/bash
-echo -n &quot;AかBを選んでください: &quot;
-read input
-
-case $input in
-  A) echo &quot;正解です&quot;
-     exit 0;;
-
-  B) echo &quot;不正解です&quot;  
-     exit 0;;
-
-  *) echo &quot;AかBを入力してください&quot;
-     exit 1;;
-esac
---------
-</code></pre></div></p>
-<p>AかBどちらかを入力されるべきところで、Cを入力されたためにエラーステータスを返します
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash case_test.sh
-AかBを選んでください: C
-AかBを入力してください
-$ echo $?
-1
 </code></pre></div></p>
 <h3 id="load">load</h3>
 <p>パラメーター一覧が記載されたファイルを直接読み込み一度に変数をロードすることができます。このテクニックをスクリプトの冒頭に入れれば、外部環境ファイルを毎回読み込むことなどができます</p>
@@ -2047,28 +2028,27 @@ param2=&quot;def&quot;
 </code></pre></div>
 以下実行結果となります
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># param.envの内容を読み込みロードします
+# Macの場合はzshのためロードの際にbashになる必要があります
+$ bash
 $ . params.env
 
 # param1変数の内容が格納されていることを確認します
 $ echo $param1
 abc
+$ exit
 </code></pre></div></p>
 <h3 id="_23">デバッグ</h3>
 <p>bash実行時に-xオプションを付与すると、スクリプトをデバッグモードで実行できます。これによりスクリプトの処理経過が可視化できます</p>
 <pre><code>bash -x スクリプト
 </code></pre>
 <p>以下は再びcase_test.shを使った例ですが、コードの各ステップの処理が標準出力にデバッグ出力されるため、コード内で正常に処理できているか確認することができます
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash -x case_test.sh
-+ echo -n &#39;AかBを選んでください: &#39;
-AかBを選んでください: + read input
-A
-+ case $input in
-+ echo 正解です
-正解です
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash -x read_test.sh
++ echo -n &#39;あなたの名前を入力してください: &#39;
+あなたの名前を入力してください: + read name
+田中
++ echo &#39;こんにちは 田中 さん&#39;
+こんにちは 田中 さん
 </code></pre></div></p>
-<p>処理結果が長い場合は、debugファイルに書き出して中身を確認しましょう</p>
-<pre><code>bash -x スクリプト &gt; debug 2&gt;&amp;1
-</code></pre>
 <h3 id="_24">その他の条件分岐</h3>
 <p>if文以外の条件分岐として、case文を使用することがあります。変数の値がマッチした場合の処理をそれぞれ記述できます</p>
 <p><div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>case 変数 in
@@ -2093,6 +2073,33 @@ esac
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash case_test.sh
 AかBを選んでください: A
 正解です
+</code></pre></div></p>
+<h3 id="exit">exit</h3>
+<p>exitを記述することで、スクリプトを明示的に終了することができます。また、exitの後に数字を付与することで、終了ステータスとして返すことができます。
+<div class="highlight"><span class="filename">exitをファイルへ追記</span><pre><span></span><code>nano case_test.sh
+--code--
+#!/bin/bash
+echo -n &quot;AかBを選んでください: &quot;
+read input
+
+case $input in
+  A) echo &quot;正解です&quot;
+     exit 0;;
+
+  B) echo &quot;不正解です&quot;
+     exit 0;;
+
+  *) echo &quot;AかBを入力してください&quot;
+     exit 1;;
+esac
+--------
+</code></pre></div></p>
+<p>AかBどちらかを入力されるべきところで、Cを入力されたためにエラーステータスを返します
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash case_test.sh
+AかBを選んでください: C
+AかBを入力してください
+$ echo $?
+1
 </code></pre></div></p>
 <h3 id="_25">関数の利用</h3>
 <p><b>function</b>を用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です、ASCIIテキスト以外ではエラーを返します</p>
@@ -2144,30 +2151,18 @@ $ echo &quot;HelloWorld&quot; |  sed &quot;s/Hello/Hello\n/g&quot;
 Hello
 World
 </code></pre></div></p>
-<p>以下は一旦改行コードを含むファイルを作成し、その改行コードをsedで削除して表示する例となります。なおechoコマンドは最後の文字に自動で改行を付与するものと考えてください
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># ファイルを作成
-$ echo &quot;Hello&quot; &gt; hello.txt
-$ echo &quot;World&quot; &gt;&gt; hello.txt
-$ cat hello.txt
-Hello
-World
-
-# 改行を削除 (sedに-zオプションをつけて実行します)
-$ cat hello.txt | sed -z &quot;s/\n//g&quot;
-HelloWorld
-</code></pre></div></p>
 <h4 id="awksed">awk,sedの多用</h4>
 <p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます、以下は<a href="#_18">ファイルの読み込み処理</a>で作成したファイル読み込み処理を1ラインで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます。    </p>
-<p>次章以降で説明しますがWebサービスは最終的にブラウザにHTMLテキストを返していますので、このようなUnixコマンドを用いて簡潔に処理することで記述の合理化と処理の高速化できます。そのためぜひUNIX基礎#2のコマンドを利用してテキスト処理を合理化することをお勧めしたいです</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># sed
-$ time cat org.txt | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
+<p>次章以降で説明しますがWebサービスは最終的にブラウザにHTMLテキストを返していますので、このようなUnixコマンドを用いて簡潔に処理することで記述の合理化と処理の高速化できます。そのためぜひUNIX基礎#2のコマンドを利用してテキスト処理を合理化することをお勧めします</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># sedでタグを付与
+$ cat input.txt | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
 &lt;p&gt;abc&lt;/p&gt;
 &lt;p&gt;def&lt;/p&gt;
 &lt;p&gt;efg&lt;/p&gt;
 
 
-# awk
-$ time cat org.txt | awk &#39;{print &quot;&lt;p&gt;&quot;$1&quot;&lt;/p&gt;&quot;}&#39;
+# awkでタグを付与
+$ cat input.txt | awk &#39;{print &quot;&lt;p&gt;&quot;$1&quot;&lt;/p&gt;&quot;}&#39;
 &lt;p&gt;abc&lt;/p&gt;
 &lt;p&gt;def&lt;/p&gt;
 &lt;p&gt;efg&lt;/p&gt;
@@ -2184,7 +2179,7 @@ $ ls -a
 <pre><code>sleep 秒数
 </code></pre>
 <h4 id="_29">スクリプトの強制終了</h4>
-<p>コマンドの実行中に処理を中断する方法をUNIX基礎#1で紹介しましたが、実行中のスクリプトを停止したい場合もCtrl + Cを押すことで停止することができます。以下は30秒sleepするスクリプトを途中停止する例です</p>
+<p>コマンドの実行中に処理を中断する方法をUNIX基礎#1で紹介しましたが、実行中のスクリプトを停止したい場合もCtrlボタンとCボタンを同時に押すことで停止することができます。以下は30秒sleepするスクリプトを途中停止する例です</p>
 <div class="highlight"><span class="filename">スクリプトの作成</span><pre><span></span><code>nano sleep.sh
 </code></pre></div>
 <div class="highlight"><span class="filename">sleep.shの内容</span><pre><span></span><code>#!/bin/bash
@@ -2219,21 +2214,6 @@ naruo      15388   12575  0 10:41 pts/2    00:00:00 bash sleep.sh
 /var/log/apache2/access.log
 $ ls /var/log/apache2/access.log  | xargs basename -a
 access.log
-</code></pre></div>
-<p>grepコマンドでファイル名だけを表示したい場合は -l オプションを付けてください</p>
-<pre><code>grep -l
-</code></pre>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code># オプションなし実行
-$ grep ubuntu /etc/os-release
-ID=ubuntu
-HOME_URL=&quot;https://www.ubuntu.com/&quot;
-SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;
-BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;
-PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;
-
-# ファイル名のみ抽出
-$ grep -l ubuntu /etc/os-release
-/etc/os-release
 </code></pre></div>
 <h4 id="_32">変数をコマンドとして実行</h4>
 <p>コマンド変数内で組み立てて、実行することもできます</p>
