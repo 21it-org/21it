@@ -1646,7 +1646,7 @@ $
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>シェルの変数にはなんの宣言も必要とせず数値でも文字でも入れられます</p>
+<p>シェルの変数には数値でも文字でも入れられますが、シェルが文字なのか数字なのか自動判定をします。また、変数名は大文字でも小文字でもどちらも扱えます</p>
 </div>
 <p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは$()で囲んでください。以下例ではdateコマンドの実行結果を格納しています。シェルは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できるため、コマンドを用いた様々な分岐を作ることができます。これはシェルの非常に有用な特徴であり、利点であるといえます</p>
 <pre><code>test=$(date)
@@ -1662,7 +1662,7 @@ $
 <div class="highlight"><span class="filename">判定式</span><pre><span></span><code>[ &quot;文字列A&quot; = &quot;文字列B&quot; ]
 </code></pre></div>
 <p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。
-条件式はスクリプト内だけでなくコマンドとしてプロンプト上でもそのまま実行できます。以下例では$?変数によって<a href="./#_2">終了ステータス</a>を取得して確認していますが、0が正常、0以外が異常終了だと考えてください</p>
+条件式はスクリプト内だけでなくコマンドとしてプロンプト上でもそのまま実行できます。$?変数によって<a href="./#_2">終了ステータス</a>を取得して確認していますが、0が正常、0以外が異常終了だと考えてください</p>
 <p><div class="highlight"><span class="filename">実行例(イコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
 $ WORD_B=&quot;def&quot;
 $ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
@@ -1677,12 +1677,6 @@ $ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
 $ echo $?
 0
 &gt; WORD_AとBが同じため正常終了(0)が返されます
-</code></pre></div></p>
-<p>なお、以下の通りNotイコール判定をする場合は異常終了になります
-<div class="highlight"><span class="filename">実行例(Notイコール判定)</span><pre><span></span><code>$ [ &quot;$WORD_A&quot; != &quot;$WORD_B&quot; ]
-$ echo $?
-1
-&gt; !=(Not equal)での判定にした場合は、逆に異常(1)が返ってきます
 </code></pre></div></p>
 <h4 id="_9">数値の比較</h4>
 <p>数値の判定に際してはいくつか使用可能なオプションがありますので、以下をご確認ください</p>
@@ -1704,6 +1698,18 @@ $ echo $?
 # greater than or equal, 左側の数値が右側の数値と同値かそれより大きければ真
 [ 数値A -ge 数値B ]
 </code></pre></div>
+<div class="highlight"><span class="filename">判定式</span><pre><span></span><code># 以下ではLess thanの比較例を実行します
+$ VALUE_A=1234
+$ VALUE_B=5678
+$ [ &quot;$VALUE_A&quot; -lt &quot;$VALUE_B&quot; ]
+$ $?
+0
+&gt; 右側より左側のほうが小さいため正常終了となります
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>[ ]内の変数は"$VALUE_A"といったかたちで""で括ることをお勧めします。これは変数内にスペースが入ってしまうことで条件式が壊れることを防止するためです。そのため、100%数字しか入らないような変数の場合は""で括らなくても問題なく処理できます</p>
+</div>
 <h4 id="_10">存在判定</h4>
 <p>ファイルやディレクトリの存在有無で分岐することも可能です、例えば全行程の処理が終わった場合にフラグファイルを作成し、そのファイルが存在すれば後工程に進むといったプログラムを書くことができます</p>
 <div class="highlight"><span class="filename">判定式</span><pre><span></span><code># ファイルが存在する場合に真
@@ -1755,7 +1761,7 @@ $ echo $?
 [ ! &quot;文字列A&quot; = &quot;文字列B&quot; ]
 
 # 数値が異なる値の場合に真
-[ ! 数値A -eq 数値B ]
+[ ! &quot;数値A&quot; -eq &quot;数値B&quot; ]
 
 # 変数が空(null)の場合に真
 [ ! &quot;変数&quot; ]
@@ -1763,6 +1769,19 @@ $ echo $?
 # 空ファイルではない場合に真
 [ ! -s 対象ファイルPATH ]
 </code></pre></div>
+<p>以下の通りNotイコール判定をする場合は同じ値で判定しても異常終了になります
+<div class="highlight"><span class="filename">実行例(Notイコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
+$ WORD_B=&quot;abc&quot;
+$ [ ! &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
+$ echo $?
+1
+&gt; Not equalでの判定にすることで異常(1)が返ってきます
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>文字列のイコール判定については != という記載でもNotイコール判定ができます。  <br />
+上記例での記述は[ "$WORD_A" != "$WORD_B" ]でも同様の動きになります</p>
+</div>
 <h3 id="or">or判定</h3>
 <p>-oオプションを使うとor判定として機能させることができます。or判定は2つ以上でも記述可能です</p>
 <div class="highlight"><span class="filename">論理演算</span><pre><span></span><code># 変数AとBの値が同一、もしくは変数CとDの値が同一で真
@@ -1877,8 +1896,12 @@ $ touch ./for_test/fileA
 $ touch ./for_test/fileB
 $ touch ./for_test/fileC
 $ touch ./for_test/fileD
-</code></pre></div>
-続いてスクリプトファイルを作成します</p>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>$HOMEのように、システムやシェルによってあらかじめ定義されている変数は環境変数と呼びます。こういった変数は自分で定義せず所定の動作をします。上記では$HOME変数にはユーザーのホームディレクトリのPATHが変数として入っている為安全に作業できます</p>
+</div>
+<p>続いてスクリプトファイルを作成します</p>
 <p><div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano for_test.sh
 </code></pre></div>
 以下for_test.shのコードをコピーしてファイルを保存して下さい
