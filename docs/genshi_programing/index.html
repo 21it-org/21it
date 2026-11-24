@@ -1620,11 +1620,11 @@ if [ &quot;$VALUE&quot; = &quot;Hello&quot; ];then
 fi
 </code></pre></div>
 <p>実行すると以下のような結果になります。Helloという引数を渡して実行するとWorldという返り値が返ってくることが確認できます</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash hello.sh Hello
+<div class="highlight"><span class="filename">実行例（引数あり）</span><pre><span></span><code>$ bash hello.sh Hello
 World
 </code></pre></div>
 <p>Helloを引数として渡していない場合は、何も返ってきません</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash hello.sh 
+<div class="highlight"><span class="filename">実行例（引数なし）</span><pre><span></span><code>$ bash hello.sh 
 $
 </code></pre></div>
 <h2 id="_5">引数と返り値</h2>
@@ -1633,26 +1633,30 @@ $
 <p>上記例でも条件分岐処理に利用されていますが、値を一時的に格納しておく箱として変数(へんすう)を利用すると処理が円滑に記述できます。変数はコマンドライン上でも、スクリプト内でも使うことができます。例えば、以下にてtestという空の変数を定義しましょう</p>
 <pre><code>test=""
 </code></pre>
-<p>変数testの内容はechoコマンドで出力することができます。コマンドの引数として冒頭に$をつけることで変数として扱われます</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
-! 空のため何も返ってこない
+<p>変数testの内容はechoコマンドで出力することができますが、コマンドの引数として冒頭に$をつけることで変数として扱われます。変数の値が入っていない場合は何も表示されません</p>
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ test=&quot;&quot;
+$ echo $test
+$ 
+&gt; 空のため何も表示されない
 </code></pre></div>
 <p>次に変数testに、値を入れて出力してみましょう。変数に格納する文字列は""(ダブルクオーテーション)で囲んでください</p>
 <pre><code>test="123"
 </code></pre>
 <p>変数の中身を見てみましょう</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ test=&quot;123&quot;
+$ echo $test
 123
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>シェルの変数には数値でも文字でも入れられますが、シェルが文字なのか数字なのか自動判定をします。また、変数名は大文字でも小文字でもどちらも扱えます</p>
 </div>
-<p>変数にはコマンド実行結果を格納することもできます、その際、コマンドは$()で囲んでください。以下例ではdateコマンドの実行結果を格納しています。シェルは、コマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できるため、コマンドを用いた様々な分岐を作ることができます。これはシェルの非常に有用な特徴であり、利点であるといえます</p>
+<p>変数にはコマンド実行結果を格納することもできます。その際、コマンドは$()で囲んでください。以下例ではdateコマンドの実行結果を格納しています。シェルはコマンドライン上でもスクリプト内でも同じように変数を扱うことができ、豊富なコマンドの出力結果を変数に直接代入できるため、コマンドを用いた様々な分岐を作ることができます。これはシェルの非常に有用な特徴であり、利点であるといえます</p>
 <pre><code>test=$(date)
 </code></pre>
 <p>コマンド結果を格納した変数の中身を表示しましょう</p>
-<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ echo $test
+<div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ test=$(date)
+$ echo $test
 2026年 11月 9日 月曜日 10:03:23 JST
 </code></pre></div>
 <h2 id="_7">条件式と判定</h2>
@@ -1662,7 +1666,7 @@ $
 <div class="highlight"><span class="filename">判定式</span><pre><span></span><code>[ &quot;文字列A&quot; = &quot;文字列B&quot; ]
 </code></pre></div>
 <p>以下はそれぞれの変数に文字列を代入し、同一かどうかを判定した例です。
-条件式はスクリプト内だけでなくコマンドとしてプロンプト上でもそのまま実行できます。$?変数によって<a href="./#_2">終了ステータス</a>を取得して確認していますが、0が正常、0以外が異常終了だと考えてください</p>
+条件式はスクリプト内だけでなくコマンドとしてプロンプト上でもそのまま実行できます。$?変数によって<a href="./#_22">終了ステータス</a>を取得して確認していますが、0が正常、0以外が異常終了だと考えてください</p>
 <p><div class="highlight"><span class="filename">実行例(イコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
 $ WORD_B=&quot;def&quot;
 $ [ &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
@@ -1698,7 +1702,7 @@ $ echo $?
 # greater than or equal, 左側の数値が右側の数値と同値かそれより大きければ真
 [ 数値A -ge 数値B ]
 </code></pre></div>
-<div class="highlight"><span class="filename">判定式</span><pre><span></span><code># 以下ではLess thanの比較例を実行します
+<div class="highlight"><span class="filename">実行例（数値比較）</span><pre><span></span><code># 以下ではLess thanの比較例を実行します
 $ VALUE_A=1234
 $ VALUE_B=5678
 $ [ &quot;$VALUE_A&quot; -lt &quot;$VALUE_B&quot; ]
@@ -1711,7 +1715,7 @@ $ $?
 <p>[ ]内の変数は"$VALUE_A"といったかたちで""で括ることをお勧めします。これは変数内にスペースが入ってしまうことで条件式が壊れることを防止するためです。そのため、100%数字しか入らないような変数の場合は""で括らなくても問題なく処理できます</p>
 </div>
 <h4 id="_10">存在判定</h4>
-<p>ファイルやディレクトリの存在有無で分岐することも可能です、例えば全行程の処理が終わった場合にフラグファイルを作成し、そのファイルが存在すれば後工程に進むといったプログラムを書くことができます</p>
+<p>ファイルやディレクトリの存在有無で分岐することも可能です。例えば全行程の処理が終わった場合にフラグファイルを作成し、そのファイルが存在すれば後工程に進むといったプログラムを書くことができます</p>
 <div class="highlight"><span class="filename">判定式</span><pre><span></span><code># ファイルが存在する場合に真
 [ -f 対象ファイルPATH ]
 
@@ -1769,7 +1773,7 @@ $ echo $?
 # 空ファイルではない場合に真
 [ ! -s 対象ファイルPATH ]
 </code></pre></div>
-<p>以下の通りNotイコール判定をする場合は同じ値で判定しても異常終了になります
+<p>以下の通り否定をつけていますので、同じ値で判定しても異常終了になります
 <div class="highlight"><span class="filename">実行例(Notイコール判定)</span><pre><span></span><code>$ WORD_A=&quot;abc&quot;
 $ WORD_B=&quot;abc&quot;
 $ [ ! &quot;$WORD_A&quot; = &quot;$WORD_B&quot; ]
@@ -1799,7 +1803,7 @@ $ echo $?
 [ &quot;変数A&quot; -a &quot;変数B&quot; -a &quot;変数C&quot; ]
 </code></pre></div>
 <h3 id="_13">正規表現の利用</h3>
-<p>正規表現とは<a href="../unix2/#_16">メタキャラクター</a>などを利用してパターンを表現する表現ですが、分岐に正規表現を利用することもできます、その場合[[ ]]で囲み、演算子として=~を利用してください</p>
+<p>正規表現とは<a href="../unix2/#_16">メタキャラクター</a>などを利用してパターンを表現する記法ですが、分岐に正規表現を利用することもできます。その場合[[ ]]で囲み、演算子として=~を利用してください</p>
 <div class="highlight"><span class="filename">判定式</span><pre><span></span><code>[[ 文字列A =~ 文字列B ]]
 </code></pre></div>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># 例：aからはじまりdで終わる任意の文字列であれば真、^aがaが先頭文字であることをあらわし .*が任意の文字の繰り返しをあらわし、d$がdで終わる文字というのを正規表現であらわします
@@ -1820,8 +1824,9 @@ $ echo $?
 &gt; aからはじまりdで終わるため正常終了(0)が返ってきます
 </code></pre></div>
 <h2 id="_14">条件分岐</h2>
+<p>プログラミングでは条件式の判定をもとに処理を分岐させ、様々な処理を記述するのが一般的です。代表的な条件分岐の処理はif文で記述できます</p>
 <h3 id="if">if文</h3>
-<p>それでは早速条件分岐をもちいながらプログラミングを組み上げていきましょう。if文による条件分岐は通常以下のように記載されます。以下例では文字列Aと文字列Bが同一であった場合、処理Aが実行されます。処理を柔軟にするため文字列Aは変数を使うのが良いでしょう</p>
+<p>それでは早速条件分岐をもちいながらプログラミングを組み上げていきましょう。if文による条件分岐は通常以下のように記載されます。以下例では文字列Aと文字列Bが同一であった場合、処理Aが実行されます。また、文字列AとBが同一でなかった場合はelse処理として処理Bが実行されます</p>
 <div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>if [ &quot;文字列A&quot; = &quot;文字列B&quot; ];then
     処理A #条件式が真の場合に実行
 else
@@ -1829,7 +1834,7 @@ else
 fi
 </code></pre></div>
 <p>本コースの冒頭で紹介した条件分岐の例にelse処理も加えて実行してみましょう</p>
-<div class="highlight"><span class="filename">スクリプトファイルの作成</span><pre><span></span><code>nano hello.sh
+<div class="highlight"><span class="filename">スクリプトファイルの編集</span><pre><span></span><code>nano hello.sh
 </code></pre></div>
 <div class="highlight"><span class="filename">hello.shのコード</span><pre><span></span><code>#!/bin/bash
 VALUE=$1
@@ -1841,9 +1846,9 @@ fi
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>ifのあとや[　]の中の各パーツの間にかならずスペースが必要ですので注意してください。以降の条件式でも同様です</p>
+<p>ifのあとや[ ]の中の各パーツの間にかならずスペースが必要ですので注意してください。以降の条件式でも同様です</p>
 </div>
-<p>スクリプトができたら実行してみましょう、Helloという入力を渡さないと聞き返されます</p>
+<p>スクリプトが編集できたら実行してみましょう、Helloという入力を渡さないと聞き返されます</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ bash hello.sh
 Hello?
 
@@ -1851,6 +1856,7 @@ $ bash hello.sh Hello
 World
 </code></pre></div>
 <h2 id="_15">繰り返し処理</h2>
+<p>条件式を利用して繰り返し処理を定義することもできます。繰り返し処理ではwhile文やfor文が各種プログラミング言語で用意されています</p>
 <h3 id="while">while文</h3>
 <p>while文は条件式が真の間、処理をループさせます</p>
 <div class="highlight"><span class="filename">条件分岐</span><pre><span></span><code>while [ 条件式 ]
@@ -1949,7 +1955,7 @@ echo &quot;こんにちは ${name} さん&quot;
 こんにちは田中さん
 </code></pre></div></p>
 <h3 id="_18">引数読み取り</h3>
-<p>$数字はスクリプトに渡されたパラメータを順番に変数に格納します、以下例では1-3までのパラメーターを読み取っています</p>
+<p>$番号はスクリプトに渡されたパラメータを順番に変数に格納します。以下例では1-3までのパラメーターを読み取っています</p>
 <div class="highlight"><span class="filename">スクリプトファイル作成</span><pre><span></span><code>nano param_test.sh
 </code></pre></div>
 <p><div class="highlight"><span class="filename">param_test.shのコード</span><pre><span></span><code>#!/bin/bash
@@ -1982,7 +1988,7 @@ done &lt; ファイル名
 </div>
 <p><div class="highlight"><span class="filename">テキストファイル作成</span><pre><span></span><code>nano input.txt
 </code></pre></div>
-input.txt(テキストファイル)の内容をファイルに転記して保存して下さい
+input.txt(テキストファイル)の内容をファイルに貼り付けて保存して下さい
 <div class="highlight"><span class="filename">input.txtファイル</span><pre><span></span><code>abc
 def
 efg
@@ -2230,7 +2236,7 @@ naruo      15388   12575  0 10:41 pts/2    00:00:00 bash sleep.sh
 <p>バックグラウンドで実行しているスクリプトや後述の自動実行しているプロセスを終了したい場合、killコマンドで終了することができます</p>
 <pre><code>kill プロセスID(PID)
 </code></pre>
-<p>上述の<a href="./#_23">バックグラウンド</a>で実行しているスクリプト(PID 15388)を終了させたい場合、以下のように終了します</p>
+<p>上述の<a href="./#_30">バックグラウンド</a>で実行しているスクリプト(PID 15388)を終了させたい場合、以下のように終了します</p>
 <pre><code>kill 15388
 </code></pre>
 <h4 id="_31">ファイル名のみ抽出</h4>
