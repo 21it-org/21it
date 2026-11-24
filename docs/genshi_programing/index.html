@@ -2016,7 +2016,7 @@ $ echo $ls_exe
 alternatives.log  apache2  apt  btmp  dist-upgrade  dpkg.log  journal  landscape  lastlog  unattended-upgrades  wtmp
 </code></pre></div>
 <h3 id="_21">実行権限の付与</h3>
-<p>実行権限を付与していないスクリプトは本来はそのままでは実行できません、これまでの例では"bash スクリプト"というかたちで実行してきたことで、ファイルの読み取りさえできれば内容をコマンドのbashに渡して処理してきました。直接ファイルを指定するだけで実行可能な状態にするためにはchmodコマンドで実行権限を付与しましょう。755の権限付与がプログラムとしては最適です。chmodコマンドの詳細はあらためて<a href="../unix1/#_28">パーミッション</a>にて確認してください</p>
+<p>実行権限を付与していないスクリプトは本来はそのままでは実行できません。これまでの例では"bash ./スクリプトファイル名"というかたちで実行してきたことで、ファイルの読み取りさえできれば、bashコマンドの引数としてファイル名を渡して処理してきました。直接ファイルを指定するだけで実行可能な状態にするためにはchmodコマンドで実行権限を付与する必要があります。755の権限付与がプログラムとしては最適です。chmodコマンドの詳細はあらためて<a href="../unix1/#_28">パーミッション</a>にて確認してください</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># PATHを指定してファイルを直接実行 (./は現在のディレクトリを意味する）
 $ ./while_test.sh
 -bash: ./while_test.sh: Permission denied (実行失敗)
@@ -2065,7 +2065,7 @@ abc
 $ exit
 </code></pre></div></p>
 <h3 id="_23">デバッグ</h3>
-<p>bash実行時に-xオプションを付与すると、スクリプトをデバッグモードで実行できます。これによりスクリプトの処理経過が可視化できます</p>
+<p>スクリプト実行時に-xオプションを付与すると、スクリプトをデバッグモードで実行できます。これによりスクリプトの処理経過が可視化できます</p>
 <pre><code>bash -x スクリプト
 </code></pre>
 <p>以下は再びcase_test.shを使った例ですが、コードの各ステップの処理が標準出力にデバッグ出力されるため、コード内で正常に処理できているか確認することができます
@@ -2129,7 +2129,7 @@ $ echo $?
 1
 </code></pre></div></p>
 <h3 id="_25">関数の利用</h3>
-<p><b>function</b>を用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です、ASCIIテキスト以外ではエラーを返します</p>
+<p><b>function</b>を用いるとスクリプト内で同じ処理を何度も呼び出すことができます。以下は入力がASCIIテキストかどうか判定する関数を使ったスクリプトの例です。ASCIIテキストの場合はASCIIという返り値を、それ以外ではERRORを返します</p>
 <div class="highlight"><span class="filename">スクリプトファイル作成</span><pre><span></span><code>nano ascii_chk.sh
 </code></pre></div>
 <p><div class="highlight"><span class="filename">ascii_chk.shのコード</span><pre><span></span><code>#!/bin/bash
@@ -2179,7 +2179,7 @@ Hello
 World
 </code></pre></div></p>
 <h4 id="awksed">awk,sedの多用</h4>
-<p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます、以下は<a href="#_18">ファイルの読み込み処理</a>で作成したファイル読み込み処理を1ラインで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます。    </p>
+<p>while文で処理を行うのに比べ、awkやsedを使ったほうが処理も端的に記述でき高速化することができます。以下は<a href="#_19">ファイルの読み込み処理</a>で作成したファイル読み込み処理を1ライナーで記述した例です。awk, sedとメタキャラクターを組み合わせることで様々な処理が記述できます。    </p>
 <p>次章以降で説明しますがWebサービスは最終的にブラウザにHTMLテキストを返していますので、このようなUnixコマンドを用いて簡潔に処理することで記述の合理化と処理の高速化できます。そのためぜひUNIX基礎#2のコマンドを利用してテキスト処理を合理化することをお勧めします</p>
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code># sedでタグを付与
 $ cat input.txt | sed &quot;s/^/&lt;p&gt;/g&quot; | sed &quot;s/$/&lt;\/p&gt;/g&quot;
