@@ -2283,22 +2283,22 @@ meta.txt:Hello World Hello
 <p>ファイル名に*を使った検索テクニックがよく使われるため、grepを例にしていますがメタキャラクターは他のUnix標準のコマンドで使用できます</p>
 </div>
 <h4 id="_19">行頭</h4>
-<p>"^"ハットはUNIXのメタ文字としては行の最初を意味します、これを使うことで例えば文章の最初がHelloではじまる行などを容易に検索できますが、以下実行例ではmeta.txtを2行に絞ることができます。
+<p>ハット"^"はUNIXのメタ文字としては行の最初を意味します、これを使うことで例えば文章の最初がHelloではじまる行などを容易に検索できますが、以下実行例ではmeta.txtを2行に絞ることができます。
 <div class="highlight"><span class="filename">行頭の指定例</span><pre><span></span><code>$ grep ^Hello meta.txt　# 行頭がHelloから始まる&quot;行&quot;を検索
 Hello World
 Hello World Hello
 </code></pre></div></p>
 <h4 id="_20">行末</h4>
-<p>"$"を最後につけると行末という意味を持ちます。これを使うことでmeta.txtの検索対象を1行に絞れました
+<p>ダラー"$"を最後につけると行末という意味を持ちます。これを使うことでmeta.txtの検索対象を1行に絞れました
 <div class="highlight"><span class="filename">行末の指定例</span><pre><span></span><code>$ grep World$ meta.txt #meta.txt内でWorldという文字列で終わる&quot;行&quot;を検索
 Hello World
 </code></pre></div></p>
 <h4 id="_21">任意の一文字</h4>
-<p>"."は正規表現を使うコマンドでは任意の1文字を表します</p>
+<p>ドット"."は正規表現を使うコマンドでは任意の1文字を表します</p>
 <div class="highlight"><span class="filename">使用例</span><pre><span></span><code>grep H.llo meta.txt #Hの次の文字は任意となりHelloもヒットします
 </code></pre></div>
 <h4 id="_22">無効化</h4>
-<p>各メタ文字に\をつけることで、その意味合いを無効化することができます</p>
+<p>各メタ文字にバックスラッシュ"\"をつけることで、その意味合いを無効化することができます</p>
 <div class="highlight"><span class="filename">無効化例</span><pre><span></span><code>\* (メタキャラクターとしてのアスタリスクの無効化、アスタリスクは単なる文字に戻ります)
 </code></pre></div>
 <h4 id="_23">その他の特殊文字</h4>
@@ -2307,7 +2307,7 @@ Hello World
 <div class="highlight"><span class="filename">改行コード</span><pre><span></span><code>\n
 </code></pre></div>
 <h5 id="_25">文字区切り</h5>
-<p>""を使うことで、どこまでが文字列かをコマンドに対して明示することができるようになります。スペースを含む単語を検索したい場合などに便利です</p>
+<p>ダブルクオート""を使うことで、どこまでが文字列かをコマンドに対して明示することができるようになります。スペースを含む単語を検索したい場合などに便利です</p>
 <div class="highlight"><span class="filename">ダブルクオート使用例</span><pre><span></span><code>grep &quot;Hello World&quot; meta.txt
 (&quot;&quot;をつけない場合スペースを含むためエラーになります）
 </code></pre></div>
