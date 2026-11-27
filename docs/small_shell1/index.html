@@ -1306,7 +1306,7 @@ sudo chown -R small-shell:small-shell /usr/local/small-shell
 <p>Base Appを通じてデータを操作することができますが、一方でデータを入れる箱自体の設計もする必要があります。    </p>
 <p>small-shellにおいてデータを入れる箱はDataboxと呼ばれていますが、その名のとおりデータを入れるための箱といえます。箱の構造を設計することでデータを整理して管理（蓄積・共有・更新）することができ、共同作業や仕事などで役立てることができます。</p>
 <h4 id="keyvalue">KeyとValue</h4>
-<p>Databoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataboxを想定していますが、item_info(アイテム情報)というkey照会に対して、"メーカーAのノートパソコン・・・・"という具体的な値(value)が返されます。</p>
+<p>Databoxではkey(キー)とvalue(バリュー)という概念でデータを管理します。以下例では在庫管理のDataboxを想定していますが、item_info(アイテム情報)というkey照会に対して、"メーカーAのノートパソコン・・・・"という値(value)が返されます</p>
 <div class="highlight"><span class="filename">key value例</span><pre><span></span><code>key   : item_info
 value : メーカーAのノートパソコン、在庫として10個ある
 </code></pre></div>
@@ -1320,7 +1320,7 @@ value : メーカーAのノートパソコン、在庫として10個ある
 <p>item_infoを複数keyに厳密に分解していった例が以下となります</p>
 <div class="highlight"><span class="filename">keyの分割例(比較的厳格なデータ構造)</span><pre><span></span><code>keys  : item_name(primary_key), maker, CPU, Memory, HDD, model number, pc_type ...
 </code></pre></div>
-<p>上述のデータ構造までkeyを分割してしまうと、パソコン管理に限定したDataboxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度にし、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義する必要があります。併せて必須入力項目も定義し、データ入力時の抜け漏れが発生しないようにします</p>
+<p>上記のように厳格なかたちでkeyを分割してしまうと、パソコン管理に限定したDataboxになってしまうため用途が限定されてしまいます。small-shellではフラットな箱にデータを入れ直観的に管理することを目指していますので、最低限メーカー名は選択式にしてメーカー毎の検索ができる程度にし、タイプもパソコンに限定せず汎用的なものにして、補足がnoteで入れられるような緩いデータを扱うこととしましょう。また、keyは基本的には英数字しか扱うことができないため、誰にでも理解しやすいlabelを定義する必要があります。併せて必須入力項目も定義し、データ入力時の抜け漏れが発生しないようにします</p>
 <div class="highlight"><span class="filename">フラットなkey分割</span><pre><span></span><code>#在庫データ
 keys   : item_name(primary_key), maker, item_type, stock_num, note
 label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
@@ -1342,34 +1342,31 @@ label : アイテム名(型番)*, メーカー*, タイプ*, 在庫数*, 備考
 <p class="admonition-title">Note</p>
 <p>対話を途中で抜けたい場合はCtrlボタンとCボタンを同時に押して抜けてください。やり取りが破棄されリセットできます</p>
 </div>
-<div class="highlight"><span class="filename">gen -databox実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -databox
-
-# ↓item Databoxという意味でitem.dbとしていますが英数字のフリーワードで設定できます
+<p>以下実行例ではitem.dbというデータボックスを生成していますが、英数字のフリーワードで任意の名前が設定できます。.dbもデータボックスという意味でつけていますが任意です</p>
+<div class="highlight"><span class="filename">gen -databox実行例(プライマリーキー設定)</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -databox
 Databox Name: item.db 
 Do you want to define Primary Key? (yes | no): yes
 Primary Key Name: item_name
 Primary Key Label: アイテム名(型番)
-
-# ↓データボックスに列(key)を追加しますかという意味です、以降もyesと答えてください
 Add more columns to the databox? (yes | no): yes 
-
-Col2 Key Name: maker
+</code></pre></div>
+<p>上記のとおりカラムを追加するか確認されますのでyesとして追加していきましょう。selectやradioをData typeとして指定した場合、値をカンマ区切りで指定できます
+<div class="highlight"><span class="filename">実行例続き(2-3列目の追加)</span><pre><span></span><code>Col2 Key Name: maker
 Col2 Key Label: メーカー
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file): select
-
-# ↓selectやradioの場合、値をカンマ区切りで指定できます
 Please list the values, separated by commas: メーカーA社,メーカーB社,メーカーC社,その他
+Add more columns to the databox? (yes | no): yes
 
 Col3 Key Name: item_type
 Col3 Key Label: タイプ
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file): select
 Please list the values, separated by commas: パソコン,モニター,アクセサリー,その他
-
-Col4 Key Name: stock_num
+Add more columns to the databox? (yes | no): yes
+</code></pre></div></p>
+<p>選択式項目は入力が必須になりますが、以下のように数値タイプや備考欄などに使えるnoteタイプのフィールドは必須かどうかを選択できます。以下では在庫数を必須、備考は任意としています</p>
+<div class="highlight"><span class="filename">実行例続き(4-5列目の追加)</span><pre><span></span><code>Col4 Key Name: stock_num
 Col4 Key Label: 在庫数
 Data Type (text | select | radio | checkbox | email | num | tel | date | date-time | url | textarea | file): num
-
-# ↓必須項目はyesとします、なおprimary keyや選択式項目などは必須入力として確認はありません。
 Set this as required? (yes | no): yes 
 
 Col5 Key Name: note
@@ -1379,7 +1376,7 @@ Set this as required? (yes | no): no
 Add more columns to the databox? (yes | no) : no
 </code></pre></div>
 <p>最終確認が求められるのでyesと答えてデータボックスを生成しましょう
-<div class="highlight"><span class="filename">gen -databox実行例(続き)</span><pre><span></span><code>The databox will be generated in the following order. Please check it.
+<div class="highlight"><span class="filename">実行例（最終確認）</span><pre><span></span><code>The databox will be generated in the following order. Please check it.
 -----------------------------------------------------------------
 
 Databox Name:item.db

@@ -509,8 +509,7 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="メインページの編集">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
@@ -520,11 +519,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -853,8 +847,7 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="メインページの編集">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
@@ -864,11 +857,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1094,14 +1082,10 @@ Is that OK? (yes | no): yes
 <p>また、右側メニューを展開するとitem.dbへのリンクが確認でき、item.dbのテーブルへ遷移することができます。このようにカスタムアプリではメインページとデータボックスを同時にアプリ内に収容することで、各種情報を集約していくことができると考えてください</p>
 <p><img alt="Screenshot" src="../img/default_menu.png" /></p>
 <h3 id="_7">メインページの編集</h3>
-<p>マークダウンはHTMLをより直感的な文法で記述し、即席で生成するための文法ですが、small-shellではメインページの編集に用いることができます。マークダウンの編集はBase App上で行うことができます。
-文法はデフォルトページに表示されていますので記述例をコピーしてつかっていただくのが効率的です。文法の詳細はこちらもご確認ください &gt; <a href="https://www.21it.org/markdown_ja.html">Markdown</a>    </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>ページはアプリ毎に定義されますので、 Base Appのテーブル左メニューから"アプリ名.UI.md.def"を選択のうえ編集してください。"アプリ名.UI.md.def"はカスタムアプリを作成すると自動生成されます。以下はtestアプリの編集ページリンクです</p>
-</div>
+<p>マークダウンはHTMLをより直感的な文法で記述し、即席で生成するための文法ですが、small-shellではメインページの編集に用いることができます。マークダウンの編集はBase App上で行うことができます。    </p>
+<p>Base App上で"アプリ名.UI.md.def(今回の例ではtest.UI.md.def)"というデータボックスがカスタムアプリとともに自動生成されていますので、定義データを更新していきましょう</p>
 <p><img alt="Screenshot" src="../img/test.UI.md.def.png" /></p>
-<p>Base App上で"アプリ名.UI.md.def(上記ではtest.UI.md.def)"というデータボックスが確認できたら、データを更新していきましょう。各フィールドの説明は以下を参照ください</p>
+<p>定義データの各フィールドの説明は以下チャートを参照ください。Bodyが本文にあたりますが、マークダウンとHTMLで記述ができます    </p>
 <table>
 <thead>
 <tr>
@@ -1114,7 +1098,7 @@ Is that OK? (yes | no): yes
 <tr>
 <td>Body</td>
 <td>Markdown or HTML</td>
-<td>本文を記述します。markdownとHTMLどちらも併用できるため柔軟なページ編集が可能です</td>
+<td>本文を記述します。markdownとHTMLどちらも併用できるため柔軟なページ編集が可能です。文法はデフォルトページに表示されていますので記述例をコピーしてつかっていただくのが効率的です。文法の詳細は<a href="https://www.21it.org/markdown_ja.html">こちら</a>でも確認できます</td>
 </tr>
 <tr>
 <td>YAML for navbar-right-menu</td>
@@ -1140,8 +1124,12 @@ Is that OK? (yes | no): yes
 </table>
 <p>各フィールドに該当する部分は以下のとおりです
 <img alt="Screenshot" src="../img/component.png" /></p>
-<h4 id="_8">イメージのアップロード</h4>
-<p>ロゴやイメージをアップロードしてカスタムアップに追加したい場合、Base App上のDataboxのimages.dbにファイルをアップロードしてimgタグを取得して、編集画面のBodyもしくはlogoフィールドに貼り付けて下さい。なお、images.dbもカスタムアプリを生成すると自動で生成されるDataboxになります
+<p>ページ編集のデモは以下を確認してください。メインページをHTMLドキュメントとしてエクスポートして使用することもできますので、ドキュメントとして使用したい場合は<a href="#_11">こちら</a>を参照してください</p>
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1232852808?autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="markdown_demo"></iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<h3 id="_8">イメージのアップロード</h3>
+<p>ロゴやイメージをアップロードしてカスタムアップに追加したい場合、Base App上のDataboxのimages.dbにファイルをアップロードしてimgタグを取得して、定義データのBodyもしくはlogoフィールドに貼り付けて下さい。なお、images.dbもカスタムアプリを生成すると自動で生成されるDataboxになります
 <img alt="Screenshot" src="../img/images.db.png" /></p>
 <p>以下はアップロードしたロゴファイルのimageタグをコピーする例です
 <img alt="Screenshot" src="../img/custom_app_logo.png" /></p>
@@ -1159,7 +1147,7 @@ App Name: genDoc
 Type of Authentication (1.shared pass | 2.user key | 3.other | 4.none): 4
 Primary Databox: none
 </code></pre></div>
-上記対話の後、最終確認をyesとするとアプリケーションが生成されますので、生成されたAccess URLへアクセスしてみましょう。IPアドレスが前頁からの例のとおり172.28.9.180であった場合は、http://172.28.9.180/genDocになります。テンプレートページが表示されていると思いますが、DataBoxボタンやメニューからtableをクリックするとエラーになります。今回はgen対話時にデータボックスをnoneとしていますので想定どおりの挙動になります。不要なボタンや、メニューはドキュメントの編集で消していく必要があります。</p>
+上記対話の後、最終確認をyesとするとアプリケーションが生成されますので、生成されたAccess URLへアクセスしてみましょう。IPアドレスが前頁からの例のとおり172.28.9.180であった場合は、http://172.28.9.180/genDocになります。    </p>
 <h4 id="_10">ドキュメントの編集</h4>
 <p>BaseAppにログイン後にgenDoc.UI.md.defを選択してページの編集をしていきましょう
 <img alt="Screenshot" src="../img/genDoc_table.png" /></p>
@@ -1170,13 +1158,9 @@ Primary Databox: none
 4. フッター(footer)も消す
 5. イメージをアップロードしimgタグを挿入
 </code></pre></div></p>
-<p>なお、メインページの編集方法については<a href="./#_9">メインページの編集</a>を、イメージ画像をアップロードして挿入する方法については<a href="./#_10">イメージのアップロード</a>を参考にしてください。
+<p>なお、メインページの編集方法については<a href="#_7">メインページの編集</a>を、イメージ画像をアップロードして挿入する方法については<a href="#_8">イメージのアップロード</a>を参考にしてください。
 以下はマークダウンの<a href="https://docs.google.com/document/d/1FaaikX_BeI1GOL2YUzvfg4_8BqYjMG2Fwbrof2xm_e0/edit?usp=sharing">サンプル</a>を利用して編集・生成した画面になります。電源アイコン画像のサンプルはフリー素材のサイトなどから入手してBaseAppにアップロードしてください</p>
 <p><img alt="Screenshot" src="../img/genDoc.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Webドキュメントの生成のデモ動画も公開していますので<a href="https://vimeo.com/1229031039">こちら</a>もご確認ください</p>
-</div>
 <h4 id="_11">ドキュメントのエクスポート</h4>
 <p>dist.shを利用することで、ドキュメントを電子ファイルとしてエクスポートすることができます    </p>
 <pre><code>sudo /usr/local/small-shell/util/scripts/dist.sh $App $EXPORT_DIR
@@ -1285,7 +1269,7 @@ Is it OK? (yes | no): yes
 <p>BaseAppで登録されたデータを見てみると、一意のIDも自動生成されていることが確認できます。
 <img alt="Screenshot" src="../img/survey_table.png" /></p>
 <h2 id="_15">実環境の構築</h2>
-<p>small-shellの学習環境として<a href="../unix1/">UNIX基礎#1</a>ではWSLとChromebookをご紹介しましたが、WSL,chromebookはともに外部からのアクセスができないためローカルでの学習にとどまります。アプリをネットワーク上でアクセス可能にするためには、Macを利用するか、クラウドの利用をする必要があります。    </p>
+<p>small-shellの学習環境として<a href="../unix1/">UNIX基礎#1</a>ではWSLとChromebookをご紹介しましたが、WSL,chromebookはともに外部からのアクセスができないためローカルでの学習にとどまります。また、Macを利用した場合でも同じWiFiルーターに接続している場合などには他の端末からアプリにアクセスすることができますが、インターネット上からはアクセスできません。アプリをインターネット上で共有するためには、クラウドの利用をする必要があります。    </p>
 <p>クラウドサービスとしてはAWSやVPSを利用することが考えられますが、インターネットへのサーバ公開に際してはセキュリティ対策が必要になりますので予め注意してください。サーバに関する専門知識をつけた上で運用することをおすすめします。</p>
 
 
