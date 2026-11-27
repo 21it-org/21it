@@ -1369,11 +1369,11 @@ Appを生成してApp Shellの構造を読み解いていきましょう。今�
 </code></pre>
 <h2 id="_2">カスタムアプリ生成</h2>
 <p>早速Custom Appを生成してみましょう、ここでもgen dialogでのアプリケーション生成を行います。今回のアプリに限らず、カスタムアプリは前提としてBase 
-Appが稼働している必要がありますので、<a href="../small_shell1/#base-app">small-shell基礎1</a>にてOSのセットアップとBase Appのインストールは完了しておいてください。</p>
+Appが稼働している必要がありますので、<a href="../small_shell1/#base-app">small-shell基礎1</a>にてOSのセットアップとBase Appのインストールは完了しておいてください</p>
 <div class="highlight"><span class="filename">生成コマンド</span><pre><span></span><code>sudo /usr/local/small-shell/adm/gen -app 
 </code></pre></div>
 <p>対話が始まりますが、ここではアプリケーションの名前は21DOJOとします。pass codeは以下例では****と記載していますが、任意の4桁の数字を入力してください。
-また、Databoxは一旦なしとして生成し、その後追加するかたちとします。
+また、Databoxは一旦なしとして生成し、その後追加するかたちとします
 <div class="highlight"><span class="filename">実行例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/gen -app 
 Type of App (1.BASE | 2.FORM | 3.CUSTOM): 3 
 App Name: 21DOJO 
@@ -1427,17 +1427,17 @@ You can also update main page on Base App #21DOJO.UI.md.def using markdown.
 <h3 id="query-string">QUERY STRING</h3>
 <p>QUERY 
 STRING(クエリーストリング)とはURLに付加するパラメーターですが、プログラムの後に?を付けてパラメーターを記述することでプログラムに値を渡すことができます。上記req=mainというパラメーターはsmall 
-shelフレームワーク上でreqという変数に格納されるmainという値として展開します、また&amp;を付けることで複数のQUERY STRINGをURLに連結していくことができます</p>
+shelフレームワーク上でreqという変数に格納されるmainという値として展開します、また&amp;を付けることで複数のQUERY STRINGをURLに連結していくことができます。</p>
 <h3 id="_5">コントローラー</h3>
-<p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します</p>
+<p>コントローラーはcgi-bin配下に置かれ、認証後のセッションの維持やrequest毎にbin配下のスクリプトへのルーティングを記述しています。21DOJOアプリのコントローラーの中身を見てみましょう。cgi-bin配下には設定したアプリケーション名がそのままプログラムとして生成され、コントローラーとして機能します。</p>
 <h4 id="_6">ルーティング</h4>
 <p>cgi-bin配下の21DOJOをcatで確認するとルーティングがコード自体に埋め込まれていることが確認できます。req変数(上述のURLではmainが格納された)に入っている内容に応じてcase分で分岐処理を行いますが、small-shellフレームワークではこのcase文をルーティングと呼んでいます。また、ルーティングに際してコントローラーはQUERY 
-STRINGとして渡されたパラメーターをcase文で分岐して実行する後続のスクリプトに渡します。case文を処理しているコードに関しては以下コマンドで確認してください、コントローラの48行目以降が表示されます</p>
+STRINGとして渡されたパラメーターをcase文で分岐して実行する後続のスクリプトに渡します。case文を処理しているコードに関しては以下コマンドで確認してください。コントローラの48行目以降が表示されます</p>
 <div class="highlight"><pre><span></span><code>sudo tail -48 /var/www/cgi-bin/21DOJO
 </code></pre></div>
 <h4 id="parse">Parse (パース)</h4>
 <p>ルーティングに至る前処理としてクライアントから送信(POST) 
-された要求を解析するプログラムとしてparse.shが使用されます。controllerに、例えばitem.dbというデータボックスの主keyであるitem_nameの値をPOSTした場合、controllerは/var/www/tmp/$session配下にitem_nameというファイルを作り、そこにPOSTされたアイテム名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください</p>
+された要求を解析するプログラムとしてparse.shが使用されます。controllerに、例えばitem.dbというデータボックスの主keyであるitem_nameの値をPOSTした場合、controllerは/var/www/tmp/$session配下にitem_nameというファイルを作り、そこにPOSTされたアイテム名を格納します。$sessionは要求の都度生成されるsession値が入ります。詳細は<a href="https://small-shell.org/app_shell_tour/#parse">parse</a>を翻訳して確認してください。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>QUERY STRINGとPOSTはともにサーバにクライアントからデータを渡しますがそれぞれ方法が異なります。QUERY 
@@ -1594,7 +1594,7 @@ monthlyのグラフの作成が可能です。以下は<a href="../small_shell2/
 <p>定期ジョブを用いて、定型処理を自動で実行することができます。詳細に関しては公式サイトの<a href="https://small-shell.org/automation_tour/">e-cron</a>を参照してください</p>
 <h2 id="_14">テンプレートの利用</h2>
 <p>small-shellの周辺プロジェクトとしてテンプレートがいくつか公開されています、ここではTeam Appをインポートして使ってみましょう。Team Appではチームの共同作業に必要な機能をパッケージ化したsmall-shellフレームワークを利用したツールです。チームのカレンダー共有、ファイル共有、タスクの可視化、外部からの問い合わせ受付などが行えます。また、Team 
-Appに管理したいDataboxを追加することもできます</p>
+Appに管理したいDataboxを追加することもできます。</p>
 <h3 id="team-app-install">Team App install</h3>
 <p>早速Team Appをインストールしましょう、git cloneした後deploy.shを実行するとアプリとDataboxが自動生成されます。</p>
 <p>テンプレートのダウンロードはgit cloneコマンドでおこないます</p>
@@ -1616,7 +1616,7 @@ $ cd ${HOME}/small-shell-apps/dictionary/JP; sudo ./deploy.sh small-shell root (
 <div class="highlight"><span class="filename">testユーザーの追加例</span><pre><span></span><code>$ sudo /usr/local/small-shell/adm/ops app:team add.usr:test 
 </code></pre></div>
 <p>ユーザー生成後に、Initialize URL（鍵の初期化URL)が生成れるのでユーザーへURLを案内しましょう。Base Appと同じくInitialize URLへアクセスするとTeam 
-Appへアクセスするための鍵とリンクが生成されます。Initialize URLは一回アクセスすると無効になるので気をつけてください</p>
+Appへアクセスするための鍵とリンクが生成されます。Initialize URLは一回アクセスすると無効になるので気をつけてください。</p>
 <h3 id="team-app_1">Team Appログイン</h3>
 <p>Team Appへログインして右上のeven(=)メニューをクリックするとメニューが展開します。各種機能をお試しください, Team 
 eventやtaskをカレンダーに一元的に表示できるので便利です。ドライブを使うとファイル共有も簡単に行えます</p>
